@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation du profil{% endblock %}
+
+{% block body %}
+    <h1>Créez votre profil</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.photoFile) }}
+    {{ form_row(form.sexe) }}
+    {{ form_row(form.objectifSportif) }}
+    {{ form_row(form.bio) }}
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}

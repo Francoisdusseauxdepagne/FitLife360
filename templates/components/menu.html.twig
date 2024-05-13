@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand fs-4 text-white" href="{{ path('app_home') }}">FitLife360</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav fs-5 me-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ path('app_home') }}">Accueil</a>
+                </li>
+                {% if app.user %}
+                    {% if app.user.isVerified() %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('app_profile')}}">Mon profil</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ path('admin')}}">Administrateur</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav fs-5">
+                {% if not app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path('app_register')}}">S'inscrire</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path('app_login')}}">Connexion</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#"><i class="fa-solid fa-basket-shopping"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white hover-underline-animation" aria-label="déconnexion" href="{{ path('app_logout') }}">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
