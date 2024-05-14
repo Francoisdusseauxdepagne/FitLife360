@@ -9,14 +9,14 @@
             <h1 class="text-center my-5">Découvrez nos Abonnements</h1>
             <div class="row">
                 {% for abonnement in abonnements %}
-                <div class="col-md-4 mb-4">
+                <div class="col-lg-4 col-sm-12 col-md-12 mb-4">
                     <div class="card h-100 border-0 shadow">
                         <div class="card-body">
-                            <h2 class="card-title text-center my-4">{{ abonnement.title }}</h2>
+                            <h2 class="card-title text-center my-4 display-6 fw-bold">{{ abonnement.title }}</h2>
                             <ul class="list-unstyled">
                                 {% set abonnement_details = abonnement.description|split(", ") %}
                                 {% for detail in abonnement_details %}
-                                    <li class="mb-2">{{ detail|replace({'. ': ''}) }}</li>
+                                    <li>{{ detail|replace({'. ': ''}) }}</li>
                                     {% if not loop.last %}
                                         <hr class="w-50 mx-auto">
                                     {% endif %}
@@ -24,8 +24,8 @@
                             </ul>
                             <p class="card-text text-center mt-4"><strong>{{ abonnement.prix }}€ / an</strong></p>
                         </div>
-                        <div class="card-footer bg-transparent border-0">
-                            <a href="{{ path('app_abonnement', {'id': abonnement.id}) }}" class="btn btn-success btn-block btn-lg">Je m'inscris</a>
+                        <div class="card-footer bg-transparent border-0 text-center">
+                            <a href="{{ path('app_abonnement', {'id': abonnement.id}) }}" class="btn btn-success btn-lg">Je m'inscris</a>
                         </div>
                     </div>
                 </div>

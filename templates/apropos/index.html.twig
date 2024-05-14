@@ -3,10 +3,18 @@
 {% block title %}À propos{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Nos Coachs</h1>
-        {% for coach in coaches %}
-            <h2 class="card-title"> {{ coach.firstName }} {{ coach.name }}</h2>
-            <p class="card-text">{{ coach.bio }}</p>
-            <p class="card-text"><strong>Spécialité:</strong> {{ coach.specialisation }}</p>
-        {% endfor %}
+<div class="container">
+    <h1 class="text-center mb-5">Nos Coachs</h1>
+    {% for coach in coaches %}
+    <div class="row mb-5">
+        <div class="col-lg-12">
+        </div>
+        <div class="col">
+            <h2 class="fw-bold">{{ coach.firstName }} {{ coach.name }}</h2>
+            <p class="lead fst-italic">"{{ coach.bio }}"</p>
+            <p><strong>Spécialité:</strong> {{ coach.specialisation }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
