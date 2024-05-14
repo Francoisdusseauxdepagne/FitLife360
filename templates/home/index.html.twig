@@ -1,15 +1,134 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - Votre site de sport{% endblock %}
 
 {% block body %}
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  <!-- Hero Section -->
+  <section id="hero" class="text-dark text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h1 class="display-4">Bienvenue sur notre site de sport!</h1>
+          <p class="lead">Obtenez des entraînements personnalisés, des vidéos de cours et des conseils en nutrition pour atteindre vos objectifs de remise en forme.</p>
+          <a class="btn btn-primary btn-lg" href="#" role="button">Commencer</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/francoisdusseaux-depagne/Sites/projetFinal/FitLife360/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Users/francoisdusseaux-depagne/Sites/projetFinal/FitLife360/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+  <!-- About Section -->
+  <section id="about" class="py-5 bg-light text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>À propos de nous</h2>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut ligula vel tortor sagittis varius.</p>
+        </div>
+        <div class="col-md-6">
+          <img src="https://via.placeholder.com/400" alt="About Us" class="img-fluid rounded-circle">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card text-center">
+            <div class="card-body">
+              <i class="fas fa-dumbbell fa-3x mb-3"></i>
+              <h3 class="card-title">Entraînements personnalisés</h3>
+              <p class="card-text">Recevez des programmes d'entraînement adaptés à vos besoins et objectifs spécifiques.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card text-center">
+            <div class="card-body">
+              <i class="fas fa-video fa-3x mb-3"></i>
+              <h3 class="card-title">Vidéos de cours</h3>
+              <p class="card-text">Accédez à une bibliothèque de vidéos de cours animés par des experts pour vous guider dans votre entraînement.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card text-center">
+            <div class="card-body">
+              <i class="fas fa-utensils fa-3x mb-3"></i>
+              <h3 class="card-title">Nutrition</h3>
+              <p class="card-text">Découvrez des conseils en nutrition pour optimiser vos performances et atteindre vos objectifs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Section -->
+  <section id="reservation" class="bg-light py-5 text-center">
+    <div class="container">
+      <h2 class="mb-4">Réservez une sortie sportive</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Vélo</h3>
+              <p class="card-text">Participez à nos sorties cyclistes guidées par des experts.</p>
+              <a href="#" class="btn btn-primary">Réserver</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Course à pied</h3>
+              <p class="card-text">Rejoignez nos sessions de course à pied pour tous les niveaux.</p>
+              <a href="#" class="btn btn-primary">Réserver</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title">Sports en extérieur</h3>
+              <p class="card-text">Profitez de nos sessions sportives en plein air dans des endroits magnifiques.</p>
+              <a href="#" class="btn btn-primary">Réserver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Contactez-nous</h2>
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Nom">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer" class="bg-dark text-white py-4 text-center">
+    <div class="container">
+      <p>&copy; 2024 Votre site de sport. Tous droits réservés.</p>
+    </div>
+  </footer>
 {% endblock %}
