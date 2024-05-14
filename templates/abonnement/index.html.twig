@@ -25,7 +25,15 @@
                             <p class="card-text text-center mt-4"><strong>{{ abonnement.prix }}€ / an</strong></p>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-center">
-                            <a href="{{ path('app_abonnement', {'id': abonnement.id}) }}" class="btn btn-success btn-lg">Je m'inscris</a>
+                            {% if app.user and app.user.profile %}
+                                {% if app.user.profile.idAbonnement.id == abonnement.id %}
+                                    <button class="btn btn-success btn-lg">Abonné</button>
+                                {% else %}
+                                    <a href="{{ path('app_abonnement', {'id': abonnement.id}) }}" class="btn btn-secondary btn-lg">Je m'inscris</a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{{ path('app_register') }}" class="btn btn-success btn-lg">Inscrivez-vous</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

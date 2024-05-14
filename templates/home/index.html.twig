@@ -77,6 +77,15 @@
                 <div class="col-lg-12 text-center">
                     <h2 class="display-4 fw-bold">Vidéos d'entraînement</h2>
                     <p class="lead">Accédez à notre bibliothèque de vidéos d'entraînement pour vous aider à atteindre vos objectifs.</p>
+                    {% if app.user and app.user.profile %}
+                        {% if app.user.profile.idAbonnement %}
+                            {% if app.user.profile.idAbonnement.title == "Vip" %}
+                                <a href="{{ path('app_tuto_video') }}" class="btn btn-success btn-lg">Voir les vidéos</a>
+                            {% elseif app.user.profile.idAbonnement.title == "Premium" %}
+                                <a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-lg">Voir les vidéos</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -12,8 +12,6 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ path('app_apropos') }}">A propos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ path('app_abonnement') }}">Abonnement</a>
                 {% if app.user %}
                     {% if app.user.isVerified() %}
                         <li class="nav-item">
@@ -27,6 +25,10 @@
                     {% endif %}
                      <li class="nav-item">
                         <a class="nav-link text-white" href="{{ path('app_logout')}}"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    </li>
+                {% elseif not app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path('app_abonnement') }}">Abonnement</a>
                     </li>
                 {% endif %}
             </ul>
