@@ -4,7 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Trip;
 use App\Entity\User;
+use App\Entity\Coach;
 use App\Entity\Profile;
+use App\Entity\TutoVideo;
+use App\Entity\Abonnement;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -48,8 +51,14 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Retour à l\'accueil', 'fa fa-home', 'app_home');
         yield MenuItem::linkToDashboard('Retour Dashboard', 'fa-solid fa-user-tie');
         yield MenuItem::linkToRoute('Vue page profile', 'fa-solid fa-eye', 'app_profile');
-        yield MenuItem::section('Geston des Utilisateurs');
+        yield MenuItem::section('Gestion des Utilisateurs');
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class);
         yield MenuItem::linkToCrud('Profils', 'fa-regular fa-address-card', Profile::class);
+        yield MenuItem::section('Gestion des abonnements');
+        yield MenuItem::linkToCrud('Abonnements', 'fa-solid fa-credit-card', Abonnement::class);
+        yield MenuItem::section('Gestion des Collaborateur');
+        yield MenuItem::linkToCrud('Collaborateurs', 'fa-solid fa-people-group', Coach::class);
+        yield MenuItem::section('Gestion des Videos sportives');
+        yield MenuItem::linkToCrud('Videos sportives', 'fa-solid fa-film', TutoVideo::class);
     }
 }
