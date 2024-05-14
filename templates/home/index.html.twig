@@ -3,5 +3,113 @@
 {% block title %}Accueil - Votre site de sport{% endblock %}
 
 {% block body %}
-  
+<div class="container-fluid p-0">
+    <header class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold">Bienvenue sur FitLife360</h1>
+                    <p class="lead mb-0">Votre partenaire pour une vie plus saine et plus active</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ asset('images/imgHomeEntrainement.jpeg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Entraînement personnalisé</h2>
+                            <p class="card-text">Obtenez un programme d'entraînement personnalisé adapté à vos objectifs et votre niveau.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ asset('images/imgHomeSuivi.jpeg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Suivi de votre progression</h2>
+                            <p class="card-text">Suivez vos progrès et analysez vos performances pour atteindre vos objectifs plus rapidement.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ asset('images/imgHomeNutrition.jpeg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h2 class="card-title">Nutrition équilibrée</h2>
+                            <p class="card-text">Des conseils nutritionnels personnalisés pour vous aider à adopter une alimentation saine et équilibrée.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="display-4 fw-bold">À propos</h2>
+                    <p class="lead">Découvrez qui nous sommes et notre mission.</p>
+                    <a href="{{ path('app_apropos') }}" class="btn btn-primary btn-lg">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="display-4 fw-bold">Abonnements</h2>
+                    <p class="lead">Découvrez nos différents abonnements et choisissez celui qui vous convient le mieux.</p>
+                    <a href="{{ path('app_abonnement') }}" class="btn btn-primary btn-lg">Voir les abonnements</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="display-4 fw-bold">Sports en plein air</h2>
+                    <p class="lead">Découvrez nos activités de plein air et rejoignez-nous pour des sorties sportives inoubliables.</p>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+                            <div class="card h-100">
+                                <img src="{{ asset('images/imgHomeVelo.jpeg') }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sorties vélo</h5>
+                                    <p class="card-text">Participez à nos sorties vélo et découvrez les plus beaux paysages de la région.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+                            <div class="card h-100">
+                                <img src="{{ asset('images/imgHomeEscalade.jpeg') }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Escalade en plein air</h5>
+                                    <p class="card-text">Venez découvrir les joies de l'escalade en plein air dans des sites exceptionnels.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+                            <div class="card h-100">
+                                <img src="{{ asset('images/imgHomeCourse.jpeg') }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Course en plein air</h5>
+                                    <p class="card-text">Participez à nos courses en plein air et devenez un membre de notre communaute.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}

@@ -5,10 +5,10 @@
 {% block body %}
 <div class="container">
     <div class="row mt-5 justify-content-start">
-        <div class="col-lg-4 mx-O">
+        <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-header bg-light text-white">
-                    <h1 class="fs-4 mb-0">Bonjour {{ app.user.firstName }} {{ app.user.name }} !</h1>
+                    <h1 class="fs-4 mb-0 text-primary">Bonjour {{ app.user.firstName }} {{ app.user.name }} !</h1>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -36,14 +36,27 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row my-3">
-                        <div class="col-lg-12">
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="{{ path('app_logout') }}" class="btn btn-warning">Deconnexion</a>
-                            </li>
-                        </ul>
-                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header bg-light text-dark">
+                    <h2 class="fs-4 mb-0">Abonnement</h2>
+                </div>
+                <div class="card-body">
+                {% if profile.idAbonnement %}
+                    <h2 class="card-title text-center my-2">{{ profile.idAbonnement.title }}</h2>
+                    <ul class="list-unstyled">
+                        {% set abonnement_details = profile.idAbonnement.description|split(", ") %}
+                        {% for detail in abonnement_details %}
+                            <li class="mb-2">{{ detail|replace({'. ': ''}) }}</li>
+                        {% endfor %}
+                    </ul>
+                        <p class="card-text text-center mt-4"><strong>Prix de l'abonnement est de: {{ profile.idAbonnement.prix }}€ / an</strong></p>
+                    {% else %}
+                        <p>Aucun abonnement choisi.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

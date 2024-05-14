@@ -26,6 +26,9 @@ class PlanAlimentaire
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateFin = null;
 
+    #[ORM\ManyToOne(inversedBy: 'planAlimentaires')]
+    private ?Profile $idProfile = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class PlanAlimentaire
     public function setDateFin(\DateTimeInterface $dateFin): static
     {
         $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    public function getIdProfile(): ?Profile
+    {
+        return $this->idProfile;
+    }
+
+    public function setIdProfile(?Profile $idProfile): static
+    {
+        $this->idProfile = $idProfile;
 
         return $this;
     }

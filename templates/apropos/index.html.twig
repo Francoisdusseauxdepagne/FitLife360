@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À propos{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Nos Coachs</h1>
+        {% for coach in coaches %}
+            <h2 class="card-title"> {{ coach.firstName }} {{ coach.name }}</h2>
+            <p class="card-text">{{ coach.bio }}</p>
+            <p class="card-text"><strong>Spécialité:</strong> {{ coach.specialisation }}</p>
+        {% endfor %}
+{% endblock %}

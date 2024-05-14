@@ -3,11 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Profile;
+use App\Entity\Abonnement;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ProfileType extends AbstractType
 {
@@ -41,7 +43,14 @@ class ProfileType extends AbstractType
                 ],
                 'placeholder' => 'Choisissez votre objectif sportif',
             ])
-            ->add('bio', null, ['label' => 'Biographie']);
+            ->add('bio', null, ['label' => 'Dites en plus sur vous'])
+            ->add('idAbonnement', EntityType::class, [
+                'class' => Abonnement::class,
+                'choice_label' => 'title',
+                'label' => 'Abonnement',
+                'placeholder' => 'Choisissez votre abonnement',
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProfileRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -43,6 +45,34 @@ class Profile
 
     #[ORM\Column]
     private ?bool $isActive = null;
+
+    #[ORM\ManyToOne(inversedBy: 'profiles')]
+    private ?Abonnement $idAbonnement = null;
+
+    /**
+     * @var Collection<int, PlanAlimentaire>
+     */
+    #[ORM\OneToMany(targetEntity: PlanAlimentaire::class, mappedBy: 'idProfile')]
+    private Collection $planAlimentaires;
+
+    /**
+     * @var Collection<int, Comment>
+     */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'idProfile')]
+    private Collection $comments;
+
+    /**
+     * @var Collection<int, Reservation>
+     */
+    #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'idProfile')]
+    private Collection $reservations;
+
+    public function __construct()
+    {
+        $this->planAlimentaires = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -166,6 +196,108 @@ class Profile
     public function setIsActive(bool $isActive): static
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getIdAbonnement(): ?Abonnement
+    {
+        return $this->idAbonnement;
+    }
+
+    public function setIdAbonnement(?Abonnement $idAbonnement): static
+    {
+        $this->idAbonnement = $idAbonnement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlanAlimentaire>
+     */
+    public function getPlanAlimentaires(): Collection
+    {
+        return $this->planAlimentaires;
+    }
+
+    public function addPlanAlimentaire(PlanAlimentaire $planAlimentaire): static
+    {
+        if (!$this->planAlimentaires->contains($planAlimentaire)) {
+            $this->planAlimentaires->add($planAlimentaire);
+            $planAlimentaire->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanAlimentaire(PlanAlimentaire $planAlimentaire): static
+    {
+        if ($this->planAlimentaires->removeElement($planAlimentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($planAlimentaire->getIdProfile() === $this) {
+                $planAlimentaire->setIdProfile(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getIdProfile() === $this) {
+                $comment->setIdProfile(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getIdProfile() === $this) {
+                $reservation->setIdProfile(null);
+            }
+        }
 
         return $this;
     }

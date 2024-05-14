@@ -20,6 +20,12 @@ class Comment
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?TutoVideo $idTutoVideo = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?Profile $idProfile = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +51,30 @@ class Comment
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getIdTutoVideo(): ?TutoVideo
+    {
+        return $this->idTutoVideo;
+    }
+
+    public function setIdTutoVideo(?TutoVideo $idTutoVideo): static
+    {
+        $this->idTutoVideo = $idTutoVideo;
+
+        return $this;
+    }
+
+    public function getIdProfile(): ?Profile
+    {
+        return $this->idProfile;
+    }
+
+    public function setIdProfile(?Profile $idProfile): static
+    {
+        $this->idProfile = $idProfile;
 
         return $this;
     }
