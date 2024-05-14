@@ -38,6 +38,9 @@ class PlanEntrainement
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'planEntrainements')]
+    private ?Profile $idProfile = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +138,18 @@ class PlanEntrainement
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getIdProfile(): ?Profile
+    {
+        return $this->idProfile;
+    }
+
+    public function setIdProfile(?Profile $idProfile): static
+    {
+        $this->idProfile = $idProfile;
 
         return $this;
     }

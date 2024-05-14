@@ -67,11 +67,18 @@ class Profile
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'idProfile')]
     private Collection $reservations;
 
+    /**
+     * @var Collection<int, PlanEntrainement>
+     */
+    #[ORM\OneToMany(targetEntity: PlanEntrainement::class, mappedBy: 'idProfile')]
+    private Collection $planEntrainements;
+
     public function __construct()
     {
         $this->planAlimentaires = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->planEntrainements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -296,6 +303,36 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($reservation->getIdProfile() === $this) {
                 $reservation->setIdProfile(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlanEntrainement>
+     */
+    public function getPlanEntrainements(): Collection
+    {
+        return $this->planEntrainements;
+    }
+
+    public function addPlanEntrainement(PlanEntrainement $planEntrainement): static
+    {
+        if (!$this->planEntrainements->contains($planEntrainement)) {
+            $this->planEntrainements->add($planEntrainement);
+            $planEntrainement->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanEntrainement(PlanEntrainement $planEntrainement): static
+    {
+        if ($this->planEntrainements->removeElement($planEntrainement)) {
+            // set the owning side to null (unless already changed)
+            if ($planEntrainement->getIdProfile() === $this) {
+                $planEntrainement->setIdProfile(null);
             }
         }
 
