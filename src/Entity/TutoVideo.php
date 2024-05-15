@@ -34,6 +34,9 @@ class TutoVideo
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'idTutoVideo')]
     private Collection $comments;
 
+    #[ORM\Column(length: 255)]
+    private ?string $temps = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -118,6 +121,18 @@ class TutoVideo
                 $comment->setIdTutoVideo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTemps(): ?string
+    {
+        return $this->temps;
+    }
+
+    public function setTemps(string $temps): static
+    {
+        $this->temps = $temps;
 
         return $this;
     }

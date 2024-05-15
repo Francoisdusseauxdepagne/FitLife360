@@ -30,9 +30,9 @@
                             {% elseif app.user and app.user.profile is null %}
                                 <a href="{{ path('app_edit_profile') }}" class="btn btn-success btn-lg">Complétez votre profil</a>
                             {% elseif app.user.profile.idAbonnement is null %}
-                                <a href="{{ path('app_abonnement') }}" class="btn btn-success btn-lg">Je choisis</a>
-                            {# {% else %}
-                                <a href="#" class="btn btn-success btn-lg">Je choisis</a> #}
+                                <a href="{{ path('app_panier', {'id': abonnement.id}) }}" class="btn btn-success btn-lg">Je choisis</a>
+                            {% else %}
+                                <a href="{{ path('app_panier', {'id': abonnement.id}) }}" class="btn btn-success btn-lg">Je choisis</a>
                             {% endif %}
                         </div>
                     </div>

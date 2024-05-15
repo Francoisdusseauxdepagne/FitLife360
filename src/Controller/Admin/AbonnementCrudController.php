@@ -22,7 +22,7 @@ class AbonnementCrudController extends AbstractCrudController
             TextField::new('title'),
             TextEditorField::new('description'),
             NumberField::new('prix'),
-            NumberField::new('vente'),
+            // NumberField::new('vente'),
         ];
     }
 }
