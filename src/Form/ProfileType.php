@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Coach;
 use App\Entity\Profile;
 use App\Entity\Abonnement;
 use Symfony\Component\Form\AbstractType;
@@ -44,12 +45,14 @@ class ProfileType extends AbstractType
                 'placeholder' => 'Choisissez votre objectif sportif',
             ])
             ->add('bio', null, ['label' => 'Dites en plus sur vous'])
-            // ->add('idAbonnement', EntityType::class, [
-            //     'class' => Abonnement::class,
-            //     'choice_label' => 'title',
-            //     'label' => 'Abonnement',
-            //     'placeholder' => 'Choisissez votre abonnement',
-            // ])
+            ->add('idCoach', EntityType::class, [
+                'class' => Coach::class,
+                'label' => 'Coach',
+                'choice_label' => function (Coach $coach) {
+                    return $coach->getFirstName() . ' ' . $coach->getName();
+                },
+                'placeholder' => 'Choisissez votre coach',
+            ])
         ;
     }
 

@@ -79,6 +79,9 @@ class Profile
     #[ORM\OneToMany(targetEntity: Panier::class, mappedBy: 'idProfile')]
     private Collection $paniers;
 
+    #[ORM\ManyToOne(inversedBy: 'profiles')]
+    private ?Coach $idCoach = null;
+
     public function __construct()
     {
         $this->planAlimentaires = new ArrayCollection();
@@ -372,6 +375,18 @@ class Profile
                 $panier->setIdProfile(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIdCoach(): ?Coach
+    {
+        return $this->idCoach;
+    }
+
+    public function setIdCoach(?Coach $idCoach): static
+    {
+        $this->idCoach = $idCoach;
 
         return $this;
     }
