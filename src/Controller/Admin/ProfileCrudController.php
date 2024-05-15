@@ -7,7 +7,6 @@ use App\Controller\VichImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -22,6 +21,9 @@ class ProfileCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IdField::new('idUser.id', 'Id du user'),
+            TextField::new('idUser.firstName', 'Prenom du user'),
+            TextField::new('idUser.name', 'Nom du user'),
             TextField::new('sexe'),
             TextField::new('objectifSportif'),
             TextEditorField::new('bio'),

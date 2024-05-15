@@ -2,20 +2,18 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\TutoVideo;
+use App\Entity\PlanAlimentaire;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
-class TutoVideoCrudController extends AbstractCrudController
+class PlanAlimentaireCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return TutoVideo::class;
+        return PlanAlimentaire::class;
     }
 
     public function configureFields(string $pageName): iterable
@@ -23,9 +21,8 @@ class TutoVideoCrudController extends AbstractCrudController
         return [
             TextField::new('title'),
             TextEditorField::new('description'),
-            UrlField::new('url'),
-            DateField::new('datePublication'),
-            TextField::new('temps'),
+            DateField::new('dateDebut'),
+            DateField::new('dateFin'),
         ];
     }
 }

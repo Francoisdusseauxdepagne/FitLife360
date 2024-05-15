@@ -9,6 +9,8 @@ use App\Entity\Comment;
 use App\Entity\Profile;
 use App\Entity\TutoVideo;
 use App\Entity\Abonnement;
+use App\Entity\PlanAlimentaire;
+use App\Entity\PlanEntrainement;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -54,7 +56,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Vues pages');
         yield MenuItem::linkToRoute('Profile', 'fa-solid fa-eye', 'app_profile');
         yield MenuItem::linkToRoute('Abonnement', 'fa-solid fa-cart-plus', 'app_abonnement');
-        yield Menuitem::linkToRoute('A propos', 'fa-solid fa-address-card', 'app_apropos');
+        yield MenuItem::linkToRoute('A propos', 'fa-solid fa-address-card', 'app_apropos');
+        yield MenuItem::linkToRoute('Vidéos', 'fa-solid fa-film', 'app_tuto_video');
         yield MenuItem::section('Gestion des Utilisateurs');
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class);
         yield MenuItem::linkToCrud('Profils', 'fa-regular fa-address-card', Profile::class);
@@ -65,5 +68,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion des Videos sportives');
         yield MenuItem::linkToCrud('Videos sportives', 'fa-solid fa-film', TutoVideo::class);
         yield MenuItem::linkToCrud('Commentaires', 'fa-solid fa-comment', Comment::class);
+        yield MenuItem::section('Gestion des programmes');
+        yield MenuItem::linkToCrud('Entrainement', 'fa-solid fa-dumbbell', PlanEntrainement::class);
+        yield MenuItem::linkToCrud('Nutrition', 'fa-solid fa-utensils', PlanAlimentaire::class);
     }
 }

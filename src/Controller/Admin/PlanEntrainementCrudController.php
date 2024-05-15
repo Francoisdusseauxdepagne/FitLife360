@@ -2,18 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Abonnement;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use App\Entity\PlanEntrainement;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class AbonnementCrudController extends AbstractCrudController
+class PlanEntrainementCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Abonnement::class;
+        return PlanEntrainement::class;
     }
 
     public function configureFields(string $pageName): iterable
@@ -21,8 +20,13 @@ class AbonnementCrudController extends AbstractCrudController
         return [
             TextField::new('title'),
             TextEditorField::new('description'),
-            NumberField::new('prix'),
-            NumberField::new('vente'),
+            TextField::new('duree'),
+            TextField::new('objectif'),
+            TextField::new('type'),
+            TextField::new('niveau'),
+            DateField::new('createdAt'),
+            DateField::new('updatedAt'),
+            
         ];
     }
 }
