@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Trip;
 use App\Entity\User;
 use App\Entity\Coach;
+use App\Entity\Comment;
 use App\Entity\Profile;
 use App\Entity\TutoVideo;
 use App\Entity\Abonnement;
@@ -63,5 +64,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Collaborateurs', 'fa-solid fa-people-group', Coach::class);
         yield MenuItem::section('Gestion des Videos sportives');
         yield MenuItem::linkToCrud('Videos sportives', 'fa-solid fa-film', TutoVideo::class);
+        yield MenuItem::linkToCrud('Commentaires', 'fa-solid fa-comment', Comment::class);
     }
 }
