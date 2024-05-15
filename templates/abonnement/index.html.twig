@@ -25,14 +25,14 @@
                             <p class="card-text text-center mt-4"><strong>{{ abonnement.prix }}€ / an</strong></p>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-center">
-                            {% if app.user and app.user.profile %}
-                                {% if app.user.profile.idAbonnement.id == abonnement.id %}
-                                    <button class="btn btn-success btn-lg">Abonné</button>
-                                {% else %}
-                                    <a href="{{ path('app_abonnement', {'id': abonnement.id}) }}" class="btn btn-secondary btn-lg">Je m'inscris</a>
-                                {% endif %}
-                            {% else %}
+                            {% if not app.user %}
                                 <a href="{{ path('app_register') }}" class="btn btn-success btn-lg">Inscrivez-vous</a>
+                            {% elseif app.user and app.user.profile is null %}
+                                <a href="{{ path('app_edit_profile') }}" class="btn btn-success btn-lg">Complétez votre profil</a>
+                            {% elseif app.user.profile.idAbonnement is null %}
+                                <a href="{{ path('app_abonnement') }}" class="btn btn-success btn-lg">Je choisis</a>
+                            {# {% else %}
+                                <a href="#" class="btn btn-success btn-lg">Je choisis</a> #}
                             {% endif %}
                         </div>
                     </div>

@@ -44,12 +44,12 @@ class ProfileType extends AbstractType
                 'placeholder' => 'Choisissez votre objectif sportif',
             ])
             ->add('bio', null, ['label' => 'Dites en plus sur vous'])
-            ->add('idAbonnement', EntityType::class, [
-                'class' => Abonnement::class,
-                'choice_label' => 'title',
-                'label' => 'Abonnement',
-                'placeholder' => 'Choisissez votre abonnement',
-            ])
+            // ->add('idAbonnement', EntityType::class, [
+            //     'class' => Abonnement::class,
+            //     'choice_label' => 'title',
+            //     'label' => 'Abonnement',
+            //     'placeholder' => 'Choisissez votre abonnement',
+            // ])
         ;
     }
 

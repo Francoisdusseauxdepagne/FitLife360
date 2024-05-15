@@ -1,130 +1,126 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profil
-{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block body %}
-	<div class="container">
-		<div class="row mt-5 justify-content-start">
-			<div class="col-lg-4">
-				<div class="card mb-4">
-					<div class="card-header bg-light text-white">
-						<h1 class="fs-4 mb-0 text-success">Bonjour
-							{{ app.user.firstName }}
-							{{ app.user.name }}
-							💪</h1>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<img src="{{ asset('images/photos/' ~ profile.photo) }}" class="card-img-top" alt="Profile">
-							</div>
-						</div>
-						<div class="row mt-5">
-							<div class="col-lg-12">
-								<h2>Informations personnelles :</h2>
-								<ul class="list-group">
-									<li class="list-group-item">Prénom :
-										{{ app.user.firstName }}</li>
-									<li class="list-group-item">Nom :
-										{{ app.user.name }}</li>
-									<li class="list-group-item">Email :
-										{{ app.user.email }}</li>
-									<li class="list-group-item">Profil créé le :
-										{{ profile.createdAt | date('d/m/Y') }}</li>
-								</ul>
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-lg-12">
-								<h2>Objectifs :</h2>
-								<ul class="list-group">
-									<li class="list-group-item">Objectif sportif :
-										{{ profile.objectifSportif }}</li>
-									<li class="list-group-item">Biographie :
-										{{ profile.bio }}</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-8">
-				<div class="card mb-4">
-					<div class="card-header bg-light text-dark">
-						<h2 class="fs-4 mb-0">Mon abonnement
-							{{ profile.idAbonnement.title }}</h2>
-					</div>
-					<div class="card-body">
-						{% if profile.idAbonnement %}
-							<ul class="list-unstyled">
-								{% set abonnement_details = profile.idAbonnement.description|split(", ") %}
-								{% for detail in abonnement_details %}
-									<div class="d-flex align-items-center flex-row">
-										<span class="mx-2">
-											<i class="fa-regular fa-square-check"></i>
-										</span>
-										<li class="mb-2 fs-6 fst-italic">{{ detail|replace({'. ': ''}) }}</li>
-									</div>
-								{% endfor %}
-							</ul>
-							<p class="card-text mt-4 fs-5">
-								<strong>Prix de l'abonnement est de:
-									{{ profile.idAbonnement.prix }}€ / an</strong>
-							</p>
-							<a href="{{ path('app_abonnement') }}" class="btn btn-primary">Voir les abonnements</a>
-						{% else %}
-							<p>Aucun abonnement choisi.</p>
-						{% endif %}
-					</div>
-					<div class="card mt-3">
-						<div class="card-header bg-light text-dark">
-							<h2 class="fs-4 mb-0">Mes acces
-								{{ profile.idAbonnement.title }}</h2>
-						</div>
-						<div class="card-body">
-							{% if profile.idAbonnement %}
-								{% if profile.idAbonnement.title == "Vip" %}
-									<div class="row">
-										<div class="col-">
-											<a href="{{ path('app_tuto_video') }}" class="btn btn-success btn-sm mb-2">Accès aux vidéos</a>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<a href="{{ path('app_plan_alimentaire') }}" class="btn btn-success btn-sm mb-2">Accès à mon programme alimentaire</a>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<a href="{{ path('app_plan_entrainement') }}" class="btn btn-success btn-sm mb-2">Accès à mon programme d'entraînement</a>
-										</div>
-									</div>
-								{% elseif profile.idAbonnement.title == "Premium" %}
-									<div class="row">
-										<div class="col">
-											<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
-										</div>
-									</div>
-								{% elseif profile.idAbonnement.title == "Basic" %}
-									<div class="row">
-										<div class="col">
-											<a href="{{ path('app_plan_entrainement') }}" class="btn btn-primary btn-sm mb-2">Accès à mon programme d'entraînement</a>
-										</div>
-									</div>
-								{% endif %}
-							{% else %}
-								<p>Aucun abonnement choisi.</p>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="container">
+    <div class="row mt-5 justify-content-start">
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header bg-light text-white">
+                    <h1 class="fs-4 mb-0 text-success">Bonjour {{ app.user.firstName }} {{ app.user.name }} 💪</h1>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <img src="{{ asset('images/photos/' ~ profile.photo) }}" class="card-img-top" alt="Profile">
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-lg-12">
+                            <h2>Informations personnelles :</h2>
+                            <ul class="list-group">
+                                <li class="list-group-item">Prénom : {{ app.user.firstName }}</li>
+                                <li class="list-group-item">Nom : {{ app.user.name }}</li>
+                                <li class="list-group-item">Email : {{ app.user.email }}</li>
+                                <li class="list-group-item">Profil créé le : {{ profile.createdAt | date('d/m/Y') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-12">
+                            <h2>Objectifs :</h2>
+                            <ul class="list-group">
+                                <li class="list-group-item">Objectif sportif : {{ profile.objectifSportif }}</li>
+                                <li class="list-group-item">Biographie : {{ profile.bio }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            {% if profile.idAbonnement %}
+            <div class="card mb-4">
+                <div class="card-header bg-light text-dark">
+                    <h2 class="fs-4 mb-0">Mon abonnement {{ profile.idAbonnement.title }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        {% set abonnement_details = profile.idAbonnement.description|split(", ") %}
+                        {% for detail in abonnement_details %}
+                        <div class="d-flex align-items-center flex-row">
+                            <span class="mx-2">
+                                <i class="fa-regular fa-square-check"></i>
+                            </span>
+                            <li class="mb-2 fs-6 fst-italic">{{ detail|replace({'. ': ''}) }}</li>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                    <p class="card-text mt-4 fs-5">
+                        <strong>Prix de l'abonnement est de: {{ profile.idAbonnement.prix }}€ / an</strong>
+                    </p>
+                    <a href="{{ path('app_abonnement') }}" class="btn btn-primary">Voir les abonnements</a>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header bg-light text-dark">
+                    <h2 class="fs-4 mb-0">Mes accès {{ profile.idAbonnement.title }}</h2>
+                </div>
+                <div class="card-body">
+                    {% if profile.idAbonnement %}
+                    {% if profile.idAbonnement.title == "Vip" %}
+                    <div class="row">
+                        <div class="col">
+                            <a href="{{ path('app_tuto_video') }}" class="btn btn-success btn-sm mb-2">Accès aux vidéos</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="{{ path('app_plan_alimentaire') }}" class="btn btn-success btn-sm mb-2">Accès à mon programme alimentaire</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="{{ path('app_plan_entrainement') }}" class="btn btn-success btn-sm mb-2">Accès à mon programme d'entraînement</a>
+                        </div>
+                    </div>
+                    {% elseif profile.idAbonnement.title == "Premium" %}
+                    <div class="row">
+                        <div class="col">
+                            <a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
+                        </div>
+                    </div>
+                    {% elseif profile.idAbonnement.title == "Basic" %}
+                    <div class="row">
+                        <div class
+class="col">
+                            <a href="{{ path('app_plan_entrainement') }}" class="btn btn-primary btn-sm mb-2">Accès à mon programme d'entraînement</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <p>Aucun abonnement choisi.</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <div class="card mt-3">
+                <div class="card-header bg-light text-dark">
+                    <h2 class="fs-4 mb-0">Choisir un abonnement</h2>
+                </div>
+                <div class="card-body">
+                    <p>Vous n'avez pas encore choisi d'abonnement.</p>
+                    <a href="{{ path('app_abonnement') }}" class="btn btn-primary">Voir les abonnements</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
