@@ -73,12 +73,19 @@ class Profile
     #[ORM\OneToMany(targetEntity: PlanEntrainement::class, mappedBy: 'idProfile')]
     private Collection $planEntrainements;
 
+    /**
+     * @var Collection<int, Panier>
+     */
+    #[ORM\OneToMany(targetEntity: Panier::class, mappedBy: 'idProfile')]
+    private Collection $paniers;
+
     public function __construct()
     {
         $this->planAlimentaires = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->reservations = new ArrayCollection();
         $this->planEntrainements = new ArrayCollection();
+        $this->paniers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -333,6 +340,36 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($planEntrainement->getIdProfile() === $this) {
                 $planEntrainement->setIdProfile(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Panier>
+     */
+    public function getPaniers(): Collection
+    {
+        return $this->paniers;
+    }
+
+    public function addPanier(Panier $panier): static
+    {
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers->add($panier);
+            $panier->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removePanier(Panier $panier): static
+    {
+        if ($this->paniers->removeElement($panier)) {
+            // set the owning side to null (unless already changed)
+            if ($panier->getIdProfile() === $this) {
+                $panier->setIdProfile(null);
             }
         }
 

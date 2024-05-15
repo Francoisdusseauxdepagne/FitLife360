@@ -34,9 +34,16 @@ class Abonnement
     #[ORM\OneToMany(targetEntity: Profile::class, mappedBy: 'idAbonnement')]
     private Collection $profiles;
 
+    /**
+     * @var Collection<int, Panier>
+     */
+    #[ORM\OneToMany(targetEntity: Panier::class, mappedBy: 'idAbonnement')]
+    private Collection $paniers;
+
     public function __construct()
     {
         $this->profiles = new ArrayCollection();
+        $this->paniers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,6 +123,36 @@ class Abonnement
             // set the owning side to null (unless already changed)
             if ($profile->getIdAbonnement() === $this) {
                 $profile->setIdAbonnement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Panier>
+     */
+    public function getPaniers(): Collection
+    {
+        return $this->paniers;
+    }
+
+    public function addPanier(Panier $panier): static
+    {
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers->add($panier);
+            $panier->setIdAbonnement($this);
+        }
+
+        return $this;
+    }
+
+    public function removePanier(Panier $panier): static
+    {
+        if ($this->paniers->removeElement($panier)) {
+            // set the owning side to null (unless already changed)
+            if ($panier->getIdAbonnement() === $this) {
+                $panier->setIdAbonnement(null);
             }
         }
 
