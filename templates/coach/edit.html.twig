@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation du profil Coach{% endblock %}
+
+{% block body %}
+    <h1>Créez votre profil</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.dob) }}
+    {{ form_row(form.diplome) }}
+    {{ form_row(form.experience) }}
+    {{ form_row(form.genre) }}
+    {{ form_row(form.bio) }}
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Coach;
 use App\Entity\Profile;
-use App\Entity\Abonnement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
