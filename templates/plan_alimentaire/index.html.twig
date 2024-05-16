@@ -1,7 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PlanAlimentaireController!{% endblock %}
+{% block title %}FitLife360-Plan alimentaire{% endblock %}
 
 {% block body %}
-
+<div class="container">
+    <h1 class="text-center mb-5">Mon Plan alimentaire</h1>
+    {% for planAlimentaire in planAlimentaires %}
+    <div class="row mb-5">
+        <div class="col">
+            <h2 class="fw-bold">{{ planEntrainement.title }}</h2>
+            <p class="lead">"{{ planEntrainement.description }}"</p>
+            <p class="lead">{{ planEntrainement.dateDebut }}</p>
+            <p class="lead">{{ planEntrainement.dateFin }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
