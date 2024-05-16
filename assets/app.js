@@ -6,6 +6,8 @@ import './bootstrap.js';
  * which should already be in your base.html.twig.
  */
 import './styles/app.scss';
+import './styles/home.scss';
+import './styles/profile.scss';
 // the bootstrap module doesn't export/return anything
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('bootstrap');
