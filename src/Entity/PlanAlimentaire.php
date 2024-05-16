@@ -29,6 +29,9 @@ class PlanAlimentaire
     #[ORM\ManyToOne(inversedBy: 'planAlimentaires')]
     private ?Profile $idProfile = null;
 
+    #[ORM\ManyToOne(inversedBy: 'planAlimentaires')]
+    private ?ProfileCoach $idProfileCoach = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class PlanAlimentaire
     public function setIdProfile(?Profile $idProfile): static
     {
         $this->idProfile = $idProfile;
+
+        return $this;
+    }
+
+    public function getIdProfileCoach(): ?ProfileCoach
+    {
+        return $this->idProfileCoach;
+    }
+
+    public function setIdProfileCoach(?ProfileCoach $idProfileCoach): static
+    {
+        $this->idProfileCoach = $idProfileCoach;
 
         return $this;
     }

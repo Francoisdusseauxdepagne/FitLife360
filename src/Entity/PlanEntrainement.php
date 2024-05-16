@@ -41,6 +41,9 @@ class PlanEntrainement
     #[ORM\ManyToOne(inversedBy: 'planEntrainements')]
     private ?Profile $idProfile = null;
 
+    #[ORM\ManyToOne(inversedBy: 'planEntrainements')]
+    private ?ProfileCoach $idProfileCoach = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +153,18 @@ class PlanEntrainement
     public function setIdProfile(?Profile $idProfile): static
     {
         $this->idProfile = $idProfile;
+
+        return $this;
+    }
+
+    public function getIdProfileCoach(): ?ProfileCoach
+    {
+        return $this->idProfileCoach;
+    }
+
+    public function setIdProfileCoach(?ProfileCoach $idProfileCoach): static
+    {
+        $this->idProfileCoach = $idProfileCoach;
 
         return $this;
     }

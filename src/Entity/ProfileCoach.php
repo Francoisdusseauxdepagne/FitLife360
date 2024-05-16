@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProfileCoachRepository;
@@ -49,6 +51,24 @@ class ProfileCoach
 
     #[ORM\Column]
     private ?bool $isActive = null;
+
+    /**
+     * @var Collection<int, PlanEntrainement>
+     */
+    #[ORM\OneToMany(targetEntity: PlanEntrainement::class, mappedBy: 'idProfileCoach')]
+    private Collection $planEntrainements;
+
+    /**
+     * @var Collection<int, PlanAlimentaire>
+     */
+    #[ORM\OneToMany(targetEntity: PlanAlimentaire::class, mappedBy: 'idProfileCoach')]
+    private Collection $planAlimentaires;
+
+    public function __construct()
+    {
+        $this->planEntrainements = new ArrayCollection();
+        $this->planAlimentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -191,6 +211,66 @@ class ProfileCoach
     public function setActive(bool $isActive): static
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlanEntrainement>
+     */
+    public function getPlanEntrainements(): Collection
+    {
+        return $this->planEntrainements;
+    }
+
+    public function addPlanEntrainement(PlanEntrainement $planEntrainement): static
+    {
+        if (!$this->planEntrainements->contains($planEntrainement)) {
+            $this->planEntrainements->add($planEntrainement);
+            $planEntrainement->setIdProfileCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanEntrainement(PlanEntrainement $planEntrainement): static
+    {
+        if ($this->planEntrainements->removeElement($planEntrainement)) {
+            // set the owning side to null (unless already changed)
+            if ($planEntrainement->getIdProfileCoach() === $this) {
+                $planEntrainement->setIdProfileCoach(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlanAlimentaire>
+     */
+    public function getPlanAlimentaires(): Collection
+    {
+        return $this->planAlimentaires;
+    }
+
+    public function addPlanAlimentaire(PlanAlimentaire $planAlimentaire): static
+    {
+        if (!$this->planAlimentaires->contains($planAlimentaire)) {
+            $this->planAlimentaires->add($planAlimentaire);
+            $planAlimentaire->setIdProfileCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanAlimentaire(PlanAlimentaire $planAlimentaire): static
+    {
+        if ($this->planAlimentaires->removeElement($planAlimentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($planAlimentaire->getIdProfileCoach() === $this) {
+                $planAlimentaire->setIdProfileCoach(null);
+            }
+        }
 
         return $this;
     }
