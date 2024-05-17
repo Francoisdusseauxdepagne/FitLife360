@@ -2,7 +2,13 @@
 
 namespace App\Controller;
 
+// src/Controller/CoachController.php
+
 use App\Entity\ProfileCoach;
+use App\Entity\PlanAlimentaire;
+use App\Entity\PlanEntrainement;
+use App\Form\PlanAlimentaireType;
+use App\Form\PlanEntrainementType;
 use App\Form\ProfileTypeCoachType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,7 +68,58 @@ class CoachController extends AbstractController
             return $this->redirectToRoute('app_coach');
         }
 
-        return $this->render('coach/index.html.twig', [
+        return $this->render('coach/edit_profileCoach.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/coach/create-entrainement', name: 'app_coach_create_entrainement')]
+    public function createEntrainement(Request $request): Response
+    {
+        $user = $this->getUser();
+        $profileCoach = $user->getProfileCoach();
+
+        $planEntrainement = new PlanEntrainement();
+        $form = $this->createForm(PlanEntrainementType::class, $planEntrainement);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $planEntrainement->setIdProfileCoach($profileCoach);
+            $planEntrainement->setCreatedAt(new \DateTimeImmutable());
+            $planEntrainement->setUpdatedAt(new \DateTimeImmutable());
+
+            $this->entityManager->persist($planEntrainement);
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'Plan d\'entraînement créé avec succès !');
+            return $this->redirectToRoute('app_coach');
+        }
+
+        return $this->render('coach/createEntrainement.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/coach/create-alimentaire', name: 'app_coach_create_alimentaire')]
+    public function createAlimentaire(Request $request): Response
+    {
+        $planAlimentaire = new PlanAlimentaire();
+        $form = $this->createForm(PlanAlimentaireType::class, $planAlimentaire);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $profileCoach = $this->getUser()->getProfileCoach();
+            $planAlimentaire->setIdProfileCoach($profileCoach);
+
+            $this->entityManager->persist($planAlimentaire);
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'Plan d\'alimentataire créé avec succès !');
+
+            return $this->redirectToRoute('app_coach');
+        }
+
+        return $this->render('coach/createNutrition.html.twig', [
             'form' => $form->createView(),
         ]);
     }

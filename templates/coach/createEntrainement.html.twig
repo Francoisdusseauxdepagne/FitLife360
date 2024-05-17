@@ -1,0 +1,22 @@
+{# templates/coach/createEntrainement.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un plan d'entraînement{% endblock %}
+
+{% block body %}
+    <h1>Créer un plan d'entraînement</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.duree) }}
+        {{ form_row(form.objectif) }}
+        {{ form_row(form.type) }}
+        {{ form_row(form.niveau) }}
+        {{ form_row(form.createdAt)}}
+        {{ form_row(form.updatedAt) }}
+        {{ form_row(form.idProfile) }}
+        <button type="submit" class="btn btn-primary">Créer le programme d'entraînement</button>
+    {{ form_end(form) }}
+{% endblock %}

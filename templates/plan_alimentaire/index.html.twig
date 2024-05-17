@@ -8,10 +8,10 @@
     {% for planAlimentaire in planAlimentaires %}
     <div class="row mb-5">
         <div class="col">
-            <h2 class="fw-bold">{{ planEntrainement.title }}</h2>
-            <p class="lead">"{{ planEntrainement.description }}"</p>
-            <p class="lead">{{ planEntrainement.dateDebut }}</p>
-            <p class="lead">{{ planEntrainement.dateFin }}</p>
+            <h2 class="fw-bold">{{ planAlimentaire.title }}</h2>
+            <p class="lead">"{{ planAlimentaire.description }}"</p>
+            <p class="lead">{{ planAlimentaire.dateDebut | date('d/m/Y') }}</p>
+            <p class="lead">{{ planAlimentaire.dateFin | date('d/m/Y') }}</p>
         </div>
     </div>
     {% endfor %}
