@@ -68,7 +68,7 @@ class CoachController extends AbstractController
             return $this->redirectToRoute('app_coach');
         }
 
-        return $this->render('coach/edit_profileCoach.html.twig', [
+        return $this->render('coach/editCoach.html.twig', [
             'form' => $form->createView(),
         ]);
     }

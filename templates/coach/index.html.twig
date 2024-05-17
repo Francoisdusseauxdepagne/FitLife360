@@ -1,46 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FitLife360-Coach{% endblock %}
+{% block title %}FitLife360-Coach
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row mt-5 justify-content-start">
-        <div class="col-lg-4">
-            <div class="card mb-4">
-                <div class="card-header bg-light text-white">
-                    <h1 class="fs-4 mb-0 text-success">Bonjour Coach {{ app.user.firstName }} {{ app.user.name }}</h1>
-                </div>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="row mt-5">
-                            <div class="col-lg-12">
-                                <h2>Informations personnelles :</h2>
-                                <ul class="list-group">
-                                    <li class="list-group-item">Nom : {{ profileCoach.name }}</li>
-                                    <li class="list-group-item">Date de naissance : {{ profileCoach.dob|date('d/m/Y') }}</li>
-                                    <li class="list-group-item">Profil Coach créé le : {{ profileCoach.createdAt|date('d/m/Y') }}</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-lg-12">
-                                <h2>Bio :</h2>
-                                <ul class="list-group">
-                                    <li class="list-group-item">Biographie : {{ profileCoach.bio }}</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-lg-12">
-                                <a href="{{ path('app_coach_create_entrainement') }}" class="btn btn-primary">Créer un plan d'entraînement</a>
-                            </div>
-                            <div class="col-lg-12">
-                                <a href="{{ path('app_coach_create_alimentaire') }}" class="btn btn-primary">Créer un plan alimentaire</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="container">
+		<div class="row mt-5 justify-content-start">
+			<div class="col-lg-4">
+				<div class="card mb-4">
+					<div class="card-header bg-light text-white">
+						<h1 class="fs-4 mb-0 text-success">Bonjour Coach
+							{{ app.user.firstName }}
+							{{ app.user.name }}</h1>
+					</div>
+					<div class="card mb-4">
+						<div class="card-body">
+							<div class="row mt-5">
+								<div class="col-lg-12">
+									<h2>Informations personnelles :</h2>
+									<ul class="list-group">
+										<li class="list-group-item">Date de naissance :
+											{{ profileCoach.dob|date('d/m/Y') }}</li>
+										<li class="list-group-item">Profil Coach créé le :
+											{{ profileCoach.createdAt|date('d/m/Y') }}</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-lg-12">
+									<h2>Biographie :
+									</h2>
+									<p class="lead">{{ profileCoach.bio }}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8">
+				<div class="row mt-3 d-flex flex-column">
+					<div class="card mb-4">
+						<div class="card-header bg-light text-dark">
+							<h2>Création de plans d'entrainement et alimentaires :</h2>
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-6 my-2">
+									<a href="{{ path('app_coach_create_entrainement') }}" class="btn btn-success btn-block">Créer un plan d'entraînement</a>
+								</div>
+								<div class="col-lg-6 my-2">
+									<a href="{{ path('app_coach_create_alimentaire') }}" class="btn btn-info btn-block">Créer un plan alimentaire</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

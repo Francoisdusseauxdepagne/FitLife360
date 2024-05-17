@@ -3,7 +3,8 @@
 {% block title %}Creation du profil Coach{% endblock %}
 
 {% block body %}
-    <h1>Créez votre profil</h1>
+    <h1 class="fs-2 text-success">Bonjour Coach {{ app.user.firstName }}</h1>
+    <h2 class="fs-4 my-3">Créé votre profil</h2>
 
     {{ form_start(form) }}
     {{ form_row(form.name) }}

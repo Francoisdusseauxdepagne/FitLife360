@@ -16,9 +16,14 @@ class ProfileTypeCoachType extends AbstractType
             ->add('name')
             ->add('dob', null, [
                 'widget' => 'single_text',
+                'label' => 'Date de naissance',
             ])
-            ->add('diplome')
-            ->add('experience')
+            ->add('diplome' , null, [
+                'label' => 'Vos diplômes et certifications',
+            ])
+            ->add('experience' , null, [
+                'label' => 'Votre expérience sportive',
+            ])
             ->add('photo')
             ->add('genre', ChoiceType::class, [
                 'choices' => [
@@ -26,7 +31,9 @@ class ProfileTypeCoachType extends AbstractType
                     'Femme' => 'Femme'
                 ]
             ])
-            ->add('bio')
+            ->add('bio', null, [
+                'label' => 'Biographie',
+            ])
         ;
     }
 
