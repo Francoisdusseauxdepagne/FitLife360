@@ -64,6 +64,9 @@ class ProfileCoach
     #[ORM\OneToMany(targetEntity: PlanAlimentaire::class, mappedBy: 'idProfileCoach')]
     private Collection $planAlimentaires;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $contrat = null;
+
     public function __construct()
     {
         $this->planEntrainements = new ArrayCollection();
@@ -271,6 +274,18 @@ class ProfileCoach
                 $planAlimentaire->setIdProfileCoach(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getContrat(): ?string
+    {
+        return $this->contrat;
+    }
+
+    public function setContrat(?string $contrat): static
+    {
+        $this->contrat = $contrat;
 
         return $this;
     }

@@ -26,7 +26,7 @@ class ProfileCoachCrudController extends AbstractCrudController
             TextField::new('genre'),
             TextEditorField::new('bio'),
             DateField::new('createdAt'),
-
+            TextField::new('contrat'),
         ];
     }
 }

@@ -9,10 +9,12 @@
     <div class="row mb-5">
         <div class="col">
             <h2 class="fw-bold">{{ planEntrainement.title }}</h2>
-            <p class="lead">"{{ planEntrainement.description }}"</p>
-            <p class="lead">{{ planEntrainement.duree }} mois</p>
-            <p class="lead">{{ planEntrainement.objectif }}</p>
-            <p class="lead">{{ planEntrainement.niveau }}</p>
+            <div class="plan-details">
+                <p><strong>Description:</strong> {{ planEntrainement.description }}</p>
+                <p><strong>Durée:</strong> {{ planEntrainement.duree }}</p>
+                <p><strong>Objectif:</strong> {{ planEntrainement.objectif }}</p>
+                <p><strong>Niveau:</strong> {{ planEntrainement.niveau }}</p>
+            </div>
         </div>
     </div>
     {% endfor %}
