@@ -77,7 +77,12 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <a href="{{ path('app_plan_alimentaire') }}" class="btn btn-success btn-sm mb-2">Accès à mon programme alimentaire</a>
+                            <a href="{{ path('app_plan_entrainement') }}" class="btn btn-success btn-sm mb-2">Reserver une sortie</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="{{ path('app_plan_alimentaire') }}" class="btn btn-success btn-sm mb-2">Accès à mes conseils alimentaire</a>
                         </div>
                     </div>
                     <div class="row">
@@ -127,6 +132,9 @@ class="col">
                 <div class="card-body">
                     <p>{{ profile.idCoach.firstName }} {{ profile.idCoach.name }}</p>
                     <p>{{ profile.idCoach.specialisation }}</p>
+                    {% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium" %}
+                    <a href="#" class="btn btn-warning">Reserver un créneau avec mon coach</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

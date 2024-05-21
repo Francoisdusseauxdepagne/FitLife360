@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\PlanAlimentaire;
 use App\Entity\Profile;
-use App\Entity\ProfileCoach;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
