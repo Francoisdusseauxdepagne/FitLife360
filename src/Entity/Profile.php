@@ -82,6 +82,12 @@ class Profile
     #[ORM\ManyToOne(inversedBy: 'profiles')]
     private ?Coach $idCoach = null;
 
+    /**
+     * @var Collection<int, DetailEntrainement>
+     */
+    #[ORM\OneToMany(targetEntity: DetailEntrainement::class, mappedBy: 'idProfile')]
+    private Collection $detailEntrainements;
+
     public function __construct()
     {
         $this->planAlimentaires = new ArrayCollection();
@@ -89,6 +95,7 @@ class Profile
         $this->reservations = new ArrayCollection();
         $this->planEntrainements = new ArrayCollection();
         $this->paniers = new ArrayCollection();
+        $this->detailEntrainements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -394,5 +401,35 @@ class Profile
     public function __toString() : string
     {
         return $this->id;
+    }
+
+    /**
+     * @return Collection<int, DetailEntrainement>
+     */
+    public function getDetailEntrainements(): Collection
+    {
+        return $this->detailEntrainements;
+    }
+
+    public function addDetailEntrainement(DetailEntrainement $detailEntrainement): static
+    {
+        if (!$this->detailEntrainements->contains($detailEntrainement)) {
+            $this->detailEntrainements->add($detailEntrainement);
+            $detailEntrainement->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailEntrainement(DetailEntrainement $detailEntrainement): static
+    {
+        if ($this->detailEntrainements->removeElement($detailEntrainement)) {
+            // set the owning side to null (unless already changed)
+            if ($detailEntrainement->getIdProfile() === $this) {
+                $detailEntrainement->setIdProfile(null);
+            }
+        }
+
+        return $this;
     }
 }

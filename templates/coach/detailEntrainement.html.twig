@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'Entraînement{% endblock %}
+
+{% block body %}
+    <h1>Detail du programme d'entraînement</h1>
+
+        {{ form_start(form) }}
+            {{ form_row(form.day) }}
+            {{ form_row(form.echauffement) }}
+            {{ form_row(form.exercices) }}
+            {{ form_row(form.series) }}
+            {{ form_row(form.repetitions) }}
+            {{ form_row(form.description) }}
+
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        {{ form_end(form) }}
+{% endblock %}

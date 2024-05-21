@@ -67,10 +67,17 @@ class ProfileCoach
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $contrat = null;
 
+    /**
+     * @var Collection<int, DetailEntrainement>
+     */
+    #[ORM\OneToMany(targetEntity: DetailEntrainement::class, mappedBy: 'idProfileCoach')]
+    private Collection $detailEntrainements;
+
     public function __construct()
     {
         $this->planEntrainements = new ArrayCollection();
         $this->planAlimentaires = new ArrayCollection();
+        $this->detailEntrainements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -286,6 +293,36 @@ class ProfileCoach
     public function setContrat(?string $contrat): static
     {
         $this->contrat = $contrat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetailEntrainement>
+     */
+    public function getDetailEntrainements(): Collection
+    {
+        return $this->detailEntrainements;
+    }
+
+    public function addDetailEntrainement(DetailEntrainement $detailEntrainement): static
+    {
+        if (!$this->detailEntrainements->contains($detailEntrainement)) {
+            $this->detailEntrainements->add($detailEntrainement);
+            $detailEntrainement->setIdProfileCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailEntrainement(DetailEntrainement $detailEntrainement): static
+    {
+        if ($this->detailEntrainements->removeElement($detailEntrainement)) {
+            // set the owning side to null (unless already changed)
+            if ($detailEntrainement->getIdProfileCoach() === $this) {
+                $detailEntrainement->setIdProfileCoach(null);
+            }
+        }
 
         return $this;
     }

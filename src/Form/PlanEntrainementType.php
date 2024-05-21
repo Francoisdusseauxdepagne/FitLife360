@@ -20,13 +20,7 @@ class PlanEntrainementType extends AbstractType
             ->add('duree')
             ->add('objectif')
             ->add('type')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
             ->add('niveau')
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
             ->add('idProfile', EntityType::class, [
                 'class' => Profile::class,
                 'choice_label' => function (Profile $profile) {

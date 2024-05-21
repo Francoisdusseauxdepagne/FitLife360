@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-// src/Controller/CoachController.php
-
 use App\Entity\ProfileCoach;
 use App\Entity\PlanAlimentaire;
 use App\Entity\PlanEntrainement;
 use App\Form\PlanAlimentaireType;
+use App\Entity\DetailEntrainement;
 use App\Form\PlanEntrainementType;
 use App\Form\ProfileTypeCoachType;
+use App\Form\DetailEntrainementType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -92,12 +92,147 @@ class CoachController extends AbstractController
             $this->entityManager->flush();
 
             $this->addFlash('success', 'Plan d\'entraînement créé avec succès !');
-            return $this->redirectToRoute('app_coach');
+
+            // Redirection vers la page de détails de l'entraînement nouvellement créé
+            return $this->redirectToRoute('app_coach_detail_entrainement', ['id' => $planEntrainement->getId()]);
         }
 
         return $this->render('coach/createEntrainement.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/coach/detail-entrainement/{id}', name: 'app_coach_detail_entrainement')]
+    public function detailEntrainement($id, Request $request): Response
+    {
+        $planEntrainement = $this->entityManager->getRepository(PlanEntrainement::class)->find($id);
+
+        if (!$planEntrainement) {
+            throw $this->createNotFoundException('Plan d\'entraînement non trouvé');
+        }
+
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Récupérer le profil associé à l'utilisateur connecté
+        $profile = $user->getProfile();
+
+        // Créer un nouveau détail d'entraînement et associer les entités liées
+        $detailEntrainement = new DetailEntrainement();
+        $detailEntrainement->setIdProfileCoach($user->getProfileCoach());
+        $detailEntrainement->setIdProfile($profile);
+        $detailEntrainement->setIdPlanEntrainement($planEntrainement);
+
+        // Créer le formulaire pour le détail d'entraînement
+        $form = $this->createForm(DetailEntrainementType::class, $detailEntrainement);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $detailEntrainement->setCreatedAt(new \DateTimeImmutable());
+            $detailEntrainement->setUpdatedAt(new \DateTimeImmutable());
+
+            $this->entityManager->persist($detailEntrainement);
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'Détail d\'entraînement pour le ' . $detailEntrainement->getExercices() . ' ajouté avec succès !');
+
+            // Redirection vers la même page pour afficher le nouveau détail d'entraînement
+            return $this->redirectToRoute('app_coach_detail_entrainement', ['id' => $id]);
+        }
+
+        return $this->render('coach/detailEntrainement.html.twig', [
+            'planEntrainement' => $planEntrainement,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/coach/entrainements/', name: 'app_coach_list_entrainements')]
+    public function listEntrainements(): Response
+    {
+        // Récupérer tous les programmes d'entraînement avec leurs détails
+        $planEntrainements = $this->entityManager->getRepository(PlanEntrainement::class)->findAll();
+
+        return $this->render('coach/listEntrainements.html.twig', [
+            'planEntrainements' => $planEntrainements,
+        ]);
+    }
+    
+    #[Route('/coach/update-entrainement/{id}', name: 'app_coach_update_entrainement')]
+    public function updateEntrainement($id, Request $request): Response
+    {
+        $planEntrainement = $this->entityManager->getRepository(PlanEntrainement::class)->find($id);
+    
+        if (!$planEntrainement) {
+            throw $this->createNotFoundException('Plan d\'entraînement non trouvé');
+        }
+    
+        // Créer le formulaire pour le plan d'entraînement
+        $form = $this->createForm(PlanEntrainementType::class, $planEntrainement);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $planEntrainement->setUpdatedAt(new \DateTimeImmutable());
+    
+            $this->entityManager->flush();
+    
+            $this->addFlash('success', 'Plan d\'entraînement mis à jour avec succès !');
+    
+            // Redirection vers la page de détails de l'entraînement
+            return $this->redirectToRoute('app_coach_list_entrainements', ['id' => $id]);
+        }
+    
+        return $this->render('coach/updateEntrainement.html.twig', [
+            'planEntrainement' => $planEntrainement,
+            'form' => $form->createView(),
+        ]);
+    }
+    
+    #[Route('/coach/update-detail-entrainement/{id}', name: 'app_coach_update_detail_entrainement')]
+    public function updateDetailEntrainement($id, Request $request): Response
+    {
+        $detailEntrainement = $this->entityManager->getRepository(DetailEntrainement::class)->find($id);
+    
+        if (!$detailEntrainement) {
+            throw $this->createNotFoundException('Détail d\'entraînement non trouvé');
+        }
+    
+        // Créer le formulaire pour le détail d'entraînement
+        $form = $this->createForm(DetailEntrainementType::class, $detailEntrainement);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $detailEntrainement->setUpdatedAt(new \DateTimeImmutable());
+    
+            $this->entityManager->flush();
+    
+            $this->addFlash('success', 'Détail d\'entraînement mis à jour avec succès !');
+    
+            // Redirection vers la page de détails de l'entraînement
+            return $this->redirectToRoute('app_coach_detail_entrainement', ['id' => $detailEntrainement->getIdPlanEntrainement()->getId()]);
+        }
+    
+        return $this->render('coach/updateDetailEntrainement.html.twig', [
+            'detailEntrainement' => $detailEntrainement,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/coach/delete-detail-entrainement/{id}', name: 'app_coach_delete_detail_entrainement', methods: ['POST'])]
+    public function deleteDetailEntrainement($id, Request $request): Response
+    {
+        $detailEntrainement = $this->entityManager->getRepository(DetailEntrainement::class)->find($id);
+
+        if (!$detailEntrainement) {
+            throw $this->createNotFoundException('Détail d\'entraînement non trouvé');
+        }
+
+        $this->entityManager->remove($detailEntrainement);
+        $this->entityManager->flush();
+
+        $this->addFlash('success', 'Détail d\'entraînement supprimé avec succès !');
+
+        // Redirection vers la liste des programmes d'entraînement ou la page précédente
+        return $this->redirectToRoute('app_coach_list_entrainements');
     }
 
     #[Route('/coach/create-alimentaire', name: 'app_coach_create_alimentaire')]

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FitLife360 - Modifier le Détail d'Entraînement{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mb-5">Modifier le Détail d'Entraînement</h1>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="post">
+                {{ form_start(form) }}
+                {{ form_row(form.day, {'label': 'Jour'}) }}
+                {{ form_row(form.echauffement, {'label': 'Échauffement'}) }}
+                {{ form_row(form.exercices, {'label': 'Exercices'}) }}
+                {{ form_row(form.series, {'label': 'Séries'}) }}
+                {{ form_row(form.repetitions, {'label': 'Répétitions'}) }}
+                {{ form_row(form.description, {'label': 'Description'}) }}
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+                {{ form_end(form) }}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

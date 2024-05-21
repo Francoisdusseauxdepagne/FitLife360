@@ -12,6 +12,7 @@ use App\Entity\Abonnement;
 use App\Entity\ProfileCoach;
 use App\Entity\PlanAlimentaire;
 use App\Entity\PlanEntrainement;
+use App\Entity\DetailEntrainement;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -74,5 +75,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion des programmes');
         yield MenuItem::linkToCrud('Entrainement', 'fa-solid fa-dumbbell', PlanEntrainement::class);
         yield MenuItem::linkToCrud('Nutrition', 'fa-solid fa-utensils', PlanAlimentaire::class);
+        yield MenuItem::section('Gestion des detail des programmes');
+        yield MenuItem::linkToCrud('Detail d\'entrainement', 'fa-solid fa-dumbbell', DetailEntrainement::class);
     }
 }
