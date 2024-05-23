@@ -75,36 +75,15 @@
                             <a href="{{ path('app_tuto_video') }}" class="btn btn-success btn-sm mb-2">Accès aux vidéos</a>
                         </div>
                     </div>
-                    {# <div class="row">
-                        <div class="col">
-                            <a href="{{ path('app_plan_entrainement') }}" class="btn btn-success btn-sm mb-2">Reserver une sortie</a>
-                        </div>
-                    </div> #}
-                    {# <div class="row">
-                        <div class="col">
-                            <a href="{{ path('app_plan_alimentaire') }}" class="btn btn-success btn-sm mb-2">Accès à aux conseils alimentaire</a>
-                        </div>
-                    </div> #}
                     <div class="row">
                         <div class="col">
                             <a href="{{ path('app_plan_entrainement') }}" class="btn btn-success btn-sm mb-2">Accès à mon programme d'entraînement</a>
                         </div>
                     </div>
-                    {% elseif profile.idAbonnement.title == "Premium" %}
-                    <div class="row">
-                        <div class="col">
-                            <a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
-                        </div>
-                    </div>
+                    {% elseif profile.idAbonnement.title == "Basic" or profile.idAbonnement.title == "Premium" %}
                     <div class="row">
                         <div class="col">
                             <a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
-                        </div>
-                    </div>
-                    {% elseif profile.idAbonnement.title == "Basic" %}
-                    <div class="row">
-                        <div class="col">
-                            <a href="{{ path('app_plan_entrainement') }}" class="btn btn-primary btn-sm mb-2">Accès à mon programme d'entraînement</a>
                         </div>
                     </div>
                     {% endif %}

@@ -1,64 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tutoriel vidéo
-{% endblock %}
+{% block title %}Tutoriel vidéo{% endblock %}
 
 {% block body %}
-	<div class="container my-5">
-		<h1 class="display-4 fw-bold text-center mb-5">Vidéos sportives</h1>
-		<p class="fst-italic mb-4 fs-5">Ajout d'une vidéo par semaine</p>
-		<a href="{{ path('app_profile') }}" class="btn btn-primary btn-lg mb-3">Retourner à mon profil</a>
-		<h2 class="fs-5 mb-4">Bienvenue sur votre espace vidéo,
-			<strong class="text-success">{{ app.user.firstName }}</strong>. Vous trouverez ci-dessous des tutoriels pour vous aider à pratiquer des activités sportives en autonomie.</h2>
-		<small>
-			<p class="fs-6 mb-4">Nombre total de vidéos :
-				{{ videos|length }}</p>
-		</small>
-		<div class="row mx-auto w-75">
-			{% for video in videos %}
-				<div class="col-lg-12 col-md-12 col-sm-12 mb-4">
-					<div class="card h-100 border-0 shadow">
-						<div class="ratio ratio-16x9">
-							<iframe src="{{ video.url }}" allowfullscreen></iframe>
-						</div>
-						<div class="card-body">
-							<h3 class="card-title">{{ video.title }}</h3>
-							<p class="card-text">Type :
-								{{ video.description }}</p>
-							<p class="card-text">Durée :
-								{{ video.temps }}</p>
-							<p class="card-text">
-								<small class="text-muted">Ajout le :
-									{{ video.datePublication | date('d/m/Y') }}</small>
-							</p>
-						</div>
-						<div class="card-footer">
-							<h5 class="mb-3">Commentaires</h5>
-							{% for comment in video.comments %}
-								<div class="mb-3 d-flex flex-row">
-									<p class="mx-2">{{ comment.date|date('d/m/Y') }}, commentaire:
-										{{ comment.text }}</p>
-									<form action="{{ path('comment_delete', {'id': comment.id}) }}" method="post">
-										<input type="hidden" name="_method" value="DELETE">
-										<button type="submit" class="btn btn-sm btn-danger ms-2">Supprimer</button>
-									</form>
-								</div>
-							{% endfor %}
-							<form action="{{ path('comment_add') }}" method="post">
-								<div class="mb-3">
-									<textarea class="form-control" name="comment" rows="3" placeholder="Ajouter un commentaire"></textarea>
-								</div>
-								<input type="hidden" name="video_id" value="{{ video.id }}">
-								<button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
-							</form>
-						</div>
-					</div>
-				</div>
-				{% if not loop.last %}
-					<div class="w-100"></div>
-					<!-- Séparateur entre les vidéos -->
-				{% endif %}
-			{% endfor %}
-		</div>
-	</div>
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="display-4 fw-bold mb-4">Vidéos sportives</h1>
+                <p class="fs-5">Bienvenue sur votre espace vidéo. Découvrez nos tutoriels pour pratiquer des activités sportives en autonomie.</p>
+                <p class="fs-6 text-muted mb-5">Une nouvelle vidéo est ajoutée chaque semaine.</p>
+                <a href="{{ path('app_profile') }}" class="btn btn-primary btn-lg">Retourner à mon profil</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {% for video in videos %}
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-0 shadow">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{ video.url }}" class="card-img-top" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title">{{ video.title }}</h2>
+                        <p class="card-text">{{ video.description }}</p>
+                        <p class="card-text"><small class="text-muted">Ajouté le {{ video.datePublication|date('d/m/Y') }}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <h5 class="mb-3">Commentaires</h5>
+                        {% for comment in video.comments %}
+                        <div class="mb-3 d-flex align-items-center">
+                            <p class="flex-grow-1 mb-0"><strong>{{ comment.date|date('d/m/Y') }}</strong> - {{ comment.text }}</p>
+                            <form action="{{ path('comment_delete', {'id': comment.id}) }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                            </form>
+                        </div>
+                        {% endfor %}
+                        <form action="{{ path('comment_add') }}" method="post">
+                            <div class="mb-3">
+                                <textarea class="form-control" name="comment" rows="3" placeholder="Ajouter un commentaire"></textarea>
+                            </div>
+                            <input type="hidden" name="video_id" value="{{ video.id }}">
+                            <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}
