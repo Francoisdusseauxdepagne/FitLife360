@@ -19,14 +19,14 @@ class ReportingType extends AbstractType
             ->add('createdAt', null, [
                 'widget' => 'single_text',
             ])
-            ->add('idProfile', EntityType::class, [
-                'class' => Profile::class,
-                'choice_label' => 'id',
-            ])
-            ->add('idComment', EntityType::class, [
-                'class' => Comment::class,
-                'choice_label' => 'id',
-            ])
+            // ->add('idProfile', EntityType::class, [
+            //     'class' => Profile::class,
+            //     'choice_label' => 'id',
+            // ])
+            // ->add('idComment', EntityType::class, [
+            //     'class' => Comment::class,
+            //     'choice_label' => 'id',
+            // ])
         ;
     }
 
