@@ -23,8 +23,7 @@ class ReportingController extends AbstractController
     #[Route('/reporting', name: 'app_reporting')]
     public function index(Request $request): Response
     {
-        // Récupérer le profil connecté
-        $profile = $this->getProfile();
+        $user = $this->getUser();
         
         $reporting = new Reporting();
         
@@ -33,10 +32,9 @@ class ReportingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $reporting->getComment();
-            
             $reporting->setCreatedAt(new \DateTimeImmutable());
-            $reporting->setIdProfile($profile->getProfile());
-            $reporting->setIdComment($comment);
+            $reporting->setIdProfile($user->getProfile());
+            $reporting->setComment($comment);
             
             $this->entityManager->persist($reporting);
             $this->entityManager->flush();
