@@ -64,7 +64,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion des Utilisateurs');
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class);
         yield MenuItem::linkToCrud('Profils', 'fa-regular fa-address-card', Profile::class);
-        yield MenuItem::linkToCrud('Profile Coach', 'fa-solid fa-user', ProfileCoach::class);
         yield MenuItem::section('Gestion des abonnements');
         yield MenuItem::linkToCrud('Abonnements', 'fa-solid fa-credit-card', Abonnement::class);
         yield MenuItem::section('Gestion des Collaborateur');

@@ -21,9 +21,9 @@ class ProfileCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('idUser.id', 'Id du user'),
-            TextField::new('idUser.firstName', 'Prenom du user'),
-            TextField::new('idUser.name', 'Nom du user'),
+            TextField::new('idUser.email', 'Email utilisateur'),
+            TextField::new('firstname', 'Prenom'),
+            TextField::new('name', 'Nom'),
             TextField::new('sexe'),
             TextField::new('objectifSportif'),
             TextEditorField::new('bio'),
@@ -37,6 +37,7 @@ class ProfileCrudController extends AbstractCrudController
             VichImageField::new('photoFile', 'Image File')
                 ->setTemplatePath('admin/field/vich_image_widget.html.twig')
                 ->hideOnIndex(),
+            TextField::new('idAbonnement.title', 'Abonnement'),
         ];
     }
 }

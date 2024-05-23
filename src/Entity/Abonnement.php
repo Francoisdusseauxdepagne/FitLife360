@@ -25,9 +25,6 @@ class Abonnement
     #[ORM\Column]
     private ?float $prix = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $vente = null;
-
     /**
      * @var Collection<int, Profile>
      */
@@ -83,18 +80,6 @@ class Abonnement
     public function setPrix(float $prix): static
     {
         $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getVente(): ?float
-    {
-        return $this->vente;
-    }
-
-    public function setVente(?float $vente): static
-    {
-        $this->vente = $vente;
 
         return $this;
     }
