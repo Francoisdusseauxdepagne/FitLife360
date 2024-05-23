@@ -91,6 +91,12 @@ class Profile
     #[ORM\ManyToOne(inversedBy: 'profiles')]
     private ?ProfileCoach $idProfileCoach = null;
 
+    /**
+     * @var Collection<int, Reporting>
+     */
+    #[ORM\OneToMany(targetEntity: Reporting::class, mappedBy: 'idProfile')]
+    private Collection $reportings;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -98,6 +104,7 @@ class Profile
         $this->paniers = new ArrayCollection();
         $this->detailEntrainements = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->reportings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -437,6 +444,36 @@ class Profile
     public function setIdProfileCoach(?ProfileCoach $idProfileCoach): static
     {
         $this->idProfileCoach = $idProfileCoach;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reporting>
+     */
+    public function getReportings(): Collection
+    {
+        return $this->reportings;
+    }
+
+    public function addReporting(Reporting $reporting): static
+    {
+        if (!$this->reportings->contains($reporting)) {
+            $this->reportings->add($reporting);
+            $reporting->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReporting(Reporting $reporting): static
+    {
+        if ($this->reportings->removeElement($reporting)) {
+            // set the owning side to null (unless already changed)
+            if ($reporting->getIdProfile() === $this) {
+                $reporting->setIdProfile(null);
+            }
+        }
 
         return $this;
     }
