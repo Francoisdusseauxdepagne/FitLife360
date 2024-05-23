@@ -3,16 +3,19 @@
 {% block title %}Creation du profil Coach{% endblock %}
 
 {% block body %}
-    <h1 class="fs-2 text-success">Bonjour Coach {{ app.user.firstName }}</h1>
+    <h1 class="fs-2 text-success">Bonjour Coach</h1>
     <h2 class="fs-4 my-3">Créé votre profil</h2>
 
     {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.dob) }}
-    {{ form_row(form.diplome) }}
-    {{ form_row(form.experience) }}
-    {{ form_row(form.genre) }}
-    {{ form_row(form.bio) }}
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+        {{ form_row(form.firstName) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.diplome) }}
+        {{ form_row(form.expertise) }}
+        {{ form_row(form.dob) }}
+        {{ form_row(form.experience) }}
+        {{ form_row(form.genre) }}
+        {{ form_row(form.bio) }}
+        {{ form_row(form.photoFile) }}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
     {{ form_end(form) }}
 {% endblock %}

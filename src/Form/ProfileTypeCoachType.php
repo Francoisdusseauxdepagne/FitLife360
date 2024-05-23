@@ -22,9 +22,14 @@ class ProfileTypeCoachType extends AbstractType
                 'download_uri' => true,
                 'image_uri' => true,
                 'asset_helper' => true,
-                'label' => 'Photo de Coach',
+                'label' => 'Photo de profil',
             ])
-            ->add('name')
+            ->add('name', null, [
+                'label' => 'Nom',
+            ])
+            ->add('firstName', null, [
+                'label' => 'Prénom',
+            ])
             ->add('dob', null, [
                 'widget' => 'single_text',
                 'label' => 'Date de naissance',
@@ -35,6 +40,7 @@ class ProfileTypeCoachType extends AbstractType
             ->add('experience' , null, [
                 'label' => 'Votre expérience sportive',
             ])
+            ->add('expertise')
             ->add('genre', ChoiceType::class, [
                 'choices' => [
                     'Homme' => 'Homme',

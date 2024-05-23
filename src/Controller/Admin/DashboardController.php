@@ -68,7 +68,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion des abonnements');
         yield MenuItem::linkToCrud('Abonnements', 'fa-solid fa-credit-card', Abonnement::class);
         yield MenuItem::section('Gestion des Collaborateur');
-        yield MenuItem::linkToCrud('Collaborateurs', 'fa-solid fa-people-group', Coach::class);
+        yield MenuItem::linkToCrud('Collaborateurs', 'fa-solid fa-people-group', ProfileCoach::class);
         yield MenuItem::section('Gestion des Videos sportives');
         yield MenuItem::linkToCrud('Videos sportives', 'fa-solid fa-film', TutoVideo::class);
         yield MenuItem::linkToCrud('Commentaires', 'fa-solid fa-comment', Comment::class);
