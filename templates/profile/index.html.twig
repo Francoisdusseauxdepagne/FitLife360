@@ -133,7 +133,7 @@ class="col">
                     <p>{{ profile.idCoach.firstName }} {{ profile.idCoach.name }}</p>
                     <p>{{ profile.idCoach.specialisation }}</p>
                     {% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium" %}
-                    <a href="#" class="btn btn-warning">Reserver un créneau avec mon coach</a>
+                    <a href="{{ path('app_reservation') }}" class="btn btn-warning">Reserver un créneau avec mon coach</a>
                     {% endif %}
                 </div>
             </div>

@@ -14,40 +14,43 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateHeure = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $startTime = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?Profile $idProfile = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    private ?ProfileCoach $idProfileCoach = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateHeure(): ?\DateTimeInterface
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->dateHeure;
+        return $this->date;
     }
 
-    public function setDateHeure(\DateTimeInterface $dateHeure): static
+    public function setDate(\DateTimeInterface $date): static
     {
-        $this->dateHeure = $dateHeure;
+        $this->date = $date;
 
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStartTime(): ?\DateTimeInterface
     {
-        return $this->status;
+        return $this->startTime;
     }
 
-    public function setStatus(string $status): static
+    public function setStartTime(\DateTimeInterface $startTime): static
     {
-        $this->status = $status;
+        $this->startTime = $startTime;
 
         return $this;
     }
@@ -60,6 +63,18 @@ class Reservation
     public function setIdProfile(?Profile $idProfile): static
     {
         $this->idProfile = $idProfile;
+
+        return $this;
+    }
+
+    public function getIdProfileCoach(): ?ProfileCoach
+    {
+        return $this->idProfileCoach;
+    }
+
+    public function setIdProfileCoach(?ProfileCoach $idProfileCoach): static
+    {
+        $this->idProfileCoach = $idProfileCoach;
 
         return $this;
     }

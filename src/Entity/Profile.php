@@ -62,12 +62,6 @@ class Profile
     private Collection $comments;
 
     /**
-     * @var Collection<int, Reservation>
-     */
-    #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'idProfile')]
-    private Collection $reservations;
-
-    /**
      * @var Collection<int, PlanEntrainement>
      */
     #[ORM\OneToMany(targetEntity: PlanEntrainement::class, mappedBy: 'idProfile')]
@@ -88,14 +82,20 @@ class Profile
     #[ORM\OneToMany(targetEntity: DetailEntrainement::class, mappedBy: 'idProfile')]
     private Collection $detailEntrainements;
 
+    /**
+     * @var Collection<int, Reservation>
+     */
+    #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'idProfile')]
+    private Collection $reservations;
+
     public function __construct()
     {
         $this->planAlimentaires = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->reservations = new ArrayCollection();
         $this->planEntrainements = new ArrayCollection();
         $this->paniers = new ArrayCollection();
         $this->detailEntrainements = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -297,36 +297,6 @@ class Profile
     }
 
     /**
-     * @return Collection<int, Reservation>
-     */
-    public function getReservations(): Collection
-    {
-        return $this->reservations;
-    }
-
-    public function addReservation(Reservation $reservation): static
-    {
-        if (!$this->reservations->contains($reservation)) {
-            $this->reservations->add($reservation);
-            $reservation->setIdProfile($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReservation(Reservation $reservation): static
-    {
-        if ($this->reservations->removeElement($reservation)) {
-            // set the owning side to null (unless already changed)
-            if ($reservation->getIdProfile() === $this) {
-                $reservation->setIdProfile(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, PlanEntrainement>
      */
     public function getPlanEntrainements(): Collection
@@ -427,6 +397,36 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($detailEntrainement->getIdProfile() === $this) {
                 $detailEntrainement->setIdProfile(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getIdProfile() === $this) {
+                $reservation->setIdProfile(null);
             }
         }
 
