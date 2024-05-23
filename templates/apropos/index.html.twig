@@ -4,19 +4,39 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="text-center my-5">Nos Coachs</h1>
-    {% for profileCoach in profileCoachs %}
-    <div class="row my-5">
-        <div class="col-lg-6">
-            <p class="lead"><strong>Qui suis-je ?</strong> {{ profileCoach.firstName }} {{ profileCoach.name }}</p>
-            <p class="lead"><strong>Ma biographie :</strong> {{ profileCoach.bio }}</p>
-            <p class="lead"><strong>Mon diplome :</strong> {{ profileCoach.diplome }}</p>
-            <p class="lead"><strong>Mon exéperience :</strong> {{ profileCoach.experience }}</p>
+    <h1 class="text-center my-5">À Propos de FitLife360</h1>
+    <div class="row">
+        <div class="col-lg-9">
+            <p class="lead my-3 fs-4 fst-italic">"Notre mission est d'inspirer et d'aider les individus à atteindre leurs objectifs de santé et de bien-être en fournissant des ressources et un soutien personnalisé à travers nos coachs certifiés et nos plateformes en ligne".</p>
+            <h2 class="my-5 text-success">Nos Coachs</h2>
+            {% for profileCoach in profileCoachs %}
+            <div class="coach-profile my-4">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <img src="{{ asset('/images/photos/' ~ profileCoach.photo) }}" alt="Photo de profil de {{ profileCoach.firstName }} {{ profileCoach.name }}" class="img-fluid rounded-circle">
+                    </div>
+                    <div class="col-lg-8">
+                        <h3>{{ profileCoach.firstName }} {{ profileCoach.name }}</h3>
+                            <p><strong>Diplôme:</strong> {{ profileCoach.diplome }}</p>
+                            <p><strong>Expérience:</strong> {{ profileCoach.experience }}</p>
+                            <p>{{ profileCoach.bio }}</p>
+                        <h3>Domaines d'expertise</h3>
+                        <ul class="list-unstyled">
+                            <li class="list-group-item">{{ profileCoach.expertise }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        <div class="col-lg-6">
-            <img class="w-50 rounded-circle" src="{{ asset('/images/photos/' ~ profileCoach.photo) }}" alt="Photo de profil d'un coach" class="img-fluid">
+        <div class="col-lg-3">
+            <h2>Suivez-nous</h2>
+            <ul class="list-unstyled">
+                <li><a href="https://www.facebook.com/?locale=fr_FR" class="btn btn-outline-secondary my-2"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                <li><a href="https://x.com/?lang=fr" class="btn btn-outline-secondary my-2"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <li><a href="https://www.instagram.com/" class="btn btn-outline-secondary my-2"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
         </div>
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

@@ -88,6 +88,9 @@ class ProfileCoach
     #[ORM\OneToMany(targetEntity: Profile::class, mappedBy: 'idProfileCoach')]
     private Collection $profiles;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $expertise = null;
+
     public function __construct()
     {
         $this->planEntrainements = new ArrayCollection();
@@ -419,5 +422,17 @@ class ProfileCoach
     public function __toString() : string
     {
         return $this->id;
+    }
+
+    public function getExpertise(): ?string
+    {
+        return $this->expertise;
+    }
+
+    public function setExpertise(string $expertise): static
+    {
+        $this->expertise = $expertise;
+
+        return $this;
     }
 }
