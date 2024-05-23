@@ -23,15 +23,16 @@ class ReservationType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Heure du rendez-vous',
             ])
-            ->add('idProfile', EntityType::class, [
-                'class' => Profile::class,
-                'choice_label' => 'firstName',
-                'label' => 'Mon profil',
-            ])
+            // ->add('idProfile', EntityType::class, [
+            //     'class' => Profile::class,
+            //     'choice_label' => 'firstName',
+            //     'label' => 'Mon profil',
+            // ])
             ->add('idProfileCoach', EntityType::class, [
                 'class' => ProfileCoach::class,
-                'choice_label' => 'firstName',
                 'label' => 'Mon coach',
+                'choice_label' => 'firstName',
+                
             ])
         ;
     }

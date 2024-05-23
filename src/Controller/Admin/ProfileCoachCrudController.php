@@ -18,10 +18,11 @@ class ProfileCoachCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            TextField::new('firstname'),
             TextField::new('name'),
             DateField::new('dob'),
             TextField::new('diplome'),
-            TextField::new('experience'),
+            TextEditorField::new('experience'),
             TextField::new('photo'),
             TextField::new('genre'),
             TextEditorField::new('bio'),

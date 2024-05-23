@@ -123,17 +123,16 @@
             {% endif %}
             <div class="card mt-3">
                 <div class="card-header bg-light text-dark">
-                    <h2 class="fs-4 mb-2">Mon coach</h2>
+                    <h2 class="fs-4 mb-2">Mon coach personnel</h2>
                 </div>
-                <div class="card-body">
-                    {% if profile.idCoach %}
-                    <p>{{ profile.idCoach.firstName }} {{ profile.idCoach.name }}</p>
-                    <p>{{ profile.idCoach.specialisation }}</p>
-                    {% if profile.idAbonnement and (profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium") %}
-                    <a href="{{ path('app_reservation') }}" class="btn btn-warning">Reserver un créneau avec mon coach</a>
-                    {% endif %}
-                    {% else %}
-                    <p>Aucun coach assigné.</p>
+                <div class="card-body d-flex flex-column">
+                    {% if profile.idProfileCoach %}
+                        <img class="w-25 mb-3" src="{{ asset('/images/photos/' ~ profile.idProfileCoach.photo) }}" alt="Photo de profil de {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}" class="img-fluid">
+                        {% if profile.idAbonnement and (profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium") %}
+                        <a href="{{ path('app_reservation') }}" class="btn btn-warning w-50">Reserver un créneau avec un coach</a>
+                        {% endif %}
+                        {% else %}
+                        <p>Aucun coach assigné.</p>
                     {% endif %}
                 </div>
             </div>

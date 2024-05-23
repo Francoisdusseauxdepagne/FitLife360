@@ -4,13 +4,17 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="text-center mb-5">Nos Coachs</h1>
-    {% for coach in coaches %}
-    <div class="row mb-5">
-        <div class="col">
-            <h2 class="fw-bold">{{ coach.firstName }} {{ coach.name }}</h2>
-            <p class="lead fst-italic">"{{ coach.bio }}"</p>
-            <p><strong>Spécialité:</strong> {{ coach.specialisation }}</p>
+    <h1 class="text-center my-5">Nos Coachs</h1>
+    {% for profileCoach in profileCoachs %}
+    <div class="row my-5">
+        <div class="col-lg-6">
+            <p class="lead"><strong>Qui suis-je ?</strong> {{ profileCoach.firstName }} {{ profileCoach.name }}</p>
+            <p class="lead"><strong>Ma biographie :</strong> {{ profileCoach.bio }}</p>
+            <p class="lead"><strong>Mon diplome :</strong> {{ profileCoach.diplome }}</p>
+            <p class="lead"><strong>Mon exéperience :</strong> {{ profileCoach.experience }}</p>
+        </div>
+        <div class="col-lg-6">
+            <img class="w-50 rounded-circle" src="{{ asset('/images/photos/' ~ profileCoach.photo) }}" alt="Photo de profil d'un coach" class="img-fluid">
         </div>
     </div>
     {% endfor %}

@@ -40,6 +40,7 @@ class ReservationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Vérifier si une réservation existe déjà pour cette heure
             $date = $reservation->getDate();
+            $reservation->setIdProfile($this->getUser()->getProfile());
             $startTime = $reservation->getStartTime();
             $existingReservation = $entityManager->getRepository(Reservation::class)->findOneBy(['date' => $date, 'startTime' => $startTime]);
             if ($existingReservation) {

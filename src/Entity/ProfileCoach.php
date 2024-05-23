@@ -82,12 +82,19 @@ class ProfileCoach
     #[ORM\Column(length: 255)]
     private ?string $firstName = null;
 
+    /**
+     * @var Collection<int, Profile>
+     */
+    #[ORM\OneToMany(targetEntity: Profile::class, mappedBy: 'idProfileCoach')]
+    private Collection $profiles;
+
     public function __construct()
     {
         $this->planEntrainements = new ArrayCollection();
         $this->planAlimentaires = new ArrayCollection();
         $this->detailEntrainements = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->profiles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -377,5 +384,40 @@ class ProfileCoach
         $this->firstName = $firstName;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Profile>
+     */
+    public function getProfiles(): Collection
+    {
+        return $this->profiles;
+    }
+
+    public function addProfile(Profile $profile): static
+    {
+        if (!$this->profiles->contains($profile)) {
+            $this->profiles->add($profile);
+            $profile->setIdProfileCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProfile(Profile $profile): static
+    {
+        if ($this->profiles->removeElement($profile)) {
+            // set the owning side to null (unless already changed)
+            if ($profile->getIdProfileCoach() === $this) {
+                $profile->setIdProfileCoach(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString() : string
+    {
+        return $this->id;
     }
 }

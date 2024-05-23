@@ -73,8 +73,8 @@ class Profile
     #[ORM\OneToMany(targetEntity: Panier::class, mappedBy: 'idProfile')]
     private Collection $paniers;
 
-    #[ORM\ManyToOne(inversedBy: 'profiles')]
-    private ?Coach $idCoach = null;
+    // #[ORM\ManyToOne(inversedBy: 'profiles')]
+    // private ?Coach $idCoach = null;
 
     /**
      * @var Collection<int, DetailEntrainement>
@@ -96,6 +96,9 @@ class Profile
 
     #[ORM\Column]
     private ?int $age = null;
+
+    #[ORM\ManyToOne(inversedBy: 'profiles')]
+    private ?ProfileCoach $idProfileCoach = null;
 
     public function __construct()
     {
@@ -365,17 +368,17 @@ class Profile
         return $this;
     }
 
-    public function getIdCoach(): ?Coach
-    {
-        return $this->idCoach;
-    }
+    // public function getIdCoach(): ?Coach
+    // {
+    //     return $this->idCoach;
+    // }
 
-    public function setIdCoach(?Coach $idCoach): static
-    {
-        $this->idCoach = $idCoach;
+    // public function setIdCoach(?Coach $idCoach): static
+    // {
+    //     $this->idCoach = $idCoach;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function __toString() : string
     {
@@ -474,6 +477,18 @@ class Profile
     public function setAge(int $age): static
     {
         $this->age = $age;
+
+        return $this;
+    }
+
+    public function getIdProfileCoach(): ?ProfileCoach
+    {
+        return $this->idProfileCoach;
+    }
+
+    public function setIdProfileCoach(?ProfileCoach $idProfileCoach): static
+    {
+        $this->idProfileCoach = $idProfileCoach;
 
         return $this;
     }

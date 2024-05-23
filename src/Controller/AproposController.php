@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Coach;
+use App\Entity\ProfileCoach;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,10 +19,10 @@ class AproposController extends AbstractController
     #[Route('/apropos', name: 'app_apropos')]
     public function index(): Response
     {
-        $coaches = $this->entityManager->getRepository(Coach::class)->findAll();
+        $ProfileCoaches = $this->entityManager->getRepository(ProfileCoach::class)->findAll();
 
         return $this->render('apropos/index.html.twig', [
-            'coaches' => $coaches,
+            'profileCoachs' => $ProfileCoaches,
         ]);
     }
 }

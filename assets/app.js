@@ -14,16 +14,16 @@ require('bootstrap');
 
 // Configuration de FullCalendar
 document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+    let calendarEl = document.querySelector('#calendar');
 
-    var calendar = new Calendar(calendarEl, {
+    let calendar = new Calendar(calendarEl, {
         plugins: [ dayGridPlugin, interactionPlugin ],
         initialView: 'dayGridMonth',
         dateClick: function(info) {
             openReservationForm(info.dateStr);
         },
         events: '/reservations',
-        eventColor: '#ff0000',
+        eventColor: '#E73725',
         selectable: true,
         selectOverlap: function(event) {
             return event.rendering === 'background';
@@ -37,21 +37,21 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('/reservation/form?date=' + date)
             .then(response => response.text())
             .then(html => {
-                document.getElementById('reservationFormContainer').innerHTML = html;
-                document.getElementById('reservationModal').style.display = 'block';
+                document.querySelector('#reservationFormContainer').innerHTML = html;
+                document.querySelector('#reservationModal').style.display = 'block';
             })
             .catch(error => console.warn('Error fetching the form:', error));
     }
 
     // Fermer la modal
     document.querySelector('.close').onclick = function() {
-        document.getElementById('reservationModal').style.display = 'none';
+        document.querySelector('#reservationModal').style.display = 'none';
     };
 
     // Fermer la modal en cliquant en dehors de celle-ci
     window.onclick = function(event) {
-        if (event.target === document.getElementById('reservationModal')) {
-            document.getElementById('reservationModal').style.display = 'none';
+        if (event.target === document.querySelector('#reservationModal')) {
+            document.querySelector('#reservationModal').style.display = 'none';
         }
     };
 });

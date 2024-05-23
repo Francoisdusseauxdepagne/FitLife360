@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Coach;
 use App\Entity\Profile;
+use App\Entity\ProfileCoach;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -49,12 +50,10 @@ class ProfileType extends AbstractType
                 'placeholder' => 'Choisissez votre objectif sportif',
             ])
             ->add('bio', null, ['label' => 'Dites en plus sur vous'])
-            ->add('idCoach', EntityType::class, [
-                'class' => Coach::class,
-                'label' => 'Coach',
-                'choice_label' => function (Coach $coach) {
-                    return $coach->getFirstName() . ' ' . $coach->getName();
-                },
+            ->add('idProfileCoach', EntityType::class, [
+                'class' => ProfileCoach::class,
+                'choice_label' => 'firstName' . ' ' . 'name',
+                'label' => 'Mon coach',
                 'placeholder' => 'Choisissez votre coach',
             ])
         ;

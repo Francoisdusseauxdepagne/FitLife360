@@ -6,16 +6,17 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.12/index.global.min.js'></script>
 <script>
    document.addEventListener('DOMContentLoaded', function() {
-       var calendarEl = document.getElementById('calendar');
-       var calendar = new FullCalendar.Calendar(calendarEl, {
+       let calendarEl = document.querySelector('#calendar');
+       let calendar = new FullCalendar.Calendar(calendarEl, {
            initialView: 'dayGridMonth',
            events: [
                {% for reservation in reservations %}
-                   {
-                       title: 'Réservation de {{ reservation.idProfile.firstName }}',
-                       start: '{{ reservation.date|date('Y-m-d') }}T{{ reservation.startTime|date('H:i:s') }}'
-                       
-                   },
+                   {% if reservation.idProfile is not null %}
+                       {
+                            title: 'Réservation de {{ reservation.idProfile.firstName }}',
+                            start: '{{ reservation.date|date('Y-m-d') }}T{{ reservation.startTime|date('H:i:s') }}'
+                       },
+                   {% endif %}
                {% endfor %}
            ],
            dateClick: function(info) {
