@@ -8,7 +8,7 @@
         <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-header bg-light text-white">
-                    <h1 class="fs-4 mb-0 text-success">Bonjour {{ app.user.firstName }} {{ app.user.name }} 💪</h1>
+                    <h1 class="fs-4 mb-0 text-success">Bonjour {{ profile.firstName }} {{ profile.name }} 💪</h1>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -18,21 +18,22 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col-lg-12">
-                            <h2>Informations personnelles :</h2>
+                            <h2 class="text-primary">Informations personnelles :</h2>
                             <ul class="list-group">
-                                <li class="list-group-item">Prénom : {{ app.user.firstName }}</li>
-                                <li class="list-group-item">Nom : {{ app.user.name }}</li>
-                                <li class="list-group-item">Email : {{ app.user.email }}</li>
-                                <li class="list-group-item">Profil créé le : {{ profile.createdAt | date('d/m/Y') }}</li>
+                                <li class="list-group-item"><strong>Prénom :</strong> {{ profile.firstName }}</li>
+                                <li class="list-group-item"><strong>Nom :</strong> {{ profile.name }}</li>
+                                <li class="list-group-item"><strong>Age :</strong> {{ profile.age }} ans</li>
+                                <li class="list-group-item"><strong>Email :</strong> {{ app.user.email }}</li>
+                                <li class="list-group-item"><strong>Profil créé le :</strong> {{ profile.createdAt | date('d/m/Y') }}</li>
                             </ul>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-lg-12">
-                            <h2>Objectifs :</h2>
+                            <h2 class="text-primary">Objectifs :</h2>
                             <ul class="list-group">
-                                <li class="list-group-item">Objectif sportif : {{ profile.objectifSportif }}</li>
-                                <li class="list-group-item">Biographie : {{ profile.bio }}</li>
+                                <li class="list-group-item"><strong>Objectif sportif :</strong> {{ profile.objectifSportif }}</li>
+                                <li class="list-group-item"><strong>Biographie :</strong> {{ profile.bio }}</li>
                             </ul>
                         </div>
                     </div>
@@ -68,7 +69,6 @@
                     <h2 class="fs-4 mb-0">Mes accès {{ profile.idAbonnement.title }}</h2>
                 </div>
                 <div class="card-body">
-                    {% if profile.idAbonnement %}
                     {% if profile.idAbonnement.title == "Vip" %}
                     <div class="row">
                         <div class="col">
@@ -103,14 +103,10 @@
                     </div>
                     {% elseif profile.idAbonnement.title == "Basic" %}
                     <div class="row">
-                        <div class
-class="col">
+                        <div class="col">
                             <a href="{{ path('app_plan_entrainement') }}" class="btn btn-primary btn-sm mb-2">Accès à mon programme d'entraînement</a>
                         </div>
                     </div>
-                    {% endif %}
-                    {% else %}
-                    <p>Aucun abonnement choisi.</p>
                     {% endif %}
                 </div>
             </div>
@@ -125,15 +121,19 @@ class="col">
                 </div>
             </div>
             {% endif %}
-             <div class="card mt-3">
+            <div class="card mt-3">
                 <div class="card-header bg-light text-dark">
                     <h2 class="fs-4 mb-2">Mon coach</h2>
                 </div>
                 <div class="card-body">
+                    {% if profile.idCoach %}
                     <p>{{ profile.idCoach.firstName }} {{ profile.idCoach.name }}</p>
                     <p>{{ profile.idCoach.specialisation }}</p>
-                    {% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium" %}
+                    {% if profile.idAbonnement and (profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium") %}
                     <a href="{{ path('app_reservation') }}" class="btn btn-warning">Reserver un créneau avec mon coach</a>
+                    {% endif %}
+                    {% else %}
+                    <p>Aucun coach assigné.</p>
                     {% endif %}
                 </div>
             </div>

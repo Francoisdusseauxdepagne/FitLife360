@@ -88,6 +88,15 @@ class Profile
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'idProfile')]
     private Collection $reservations;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $firstName = null;
+
+    #[ORM\Column]
+    private ?int $age = null;
+
     public function __construct()
     {
         $this->planAlimentaires = new ArrayCollection();
@@ -429,6 +438,42 @@ class Profile
                 $reservation->setIdProfile(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): static
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        return $this->age;
+    }
+
+    public function setAge(int $age): static
+    {
+        $this->age = $age;
 
         return $this;
     }

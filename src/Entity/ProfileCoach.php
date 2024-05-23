@@ -79,6 +79,9 @@ class ProfileCoach
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'idProfileCoach')]
     private Collection $reservations;
 
+    #[ORM\Column(length: 255)]
+    private ?string $firstName = null;
+
     public function __construct()
     {
         $this->planEntrainements = new ArrayCollection();
@@ -360,6 +363,18 @@ class ProfileCoach
                 $reservation->setIdProfileCoach(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): static
+    {
+        $this->firstName = $firstName;
 
         return $this;
     }

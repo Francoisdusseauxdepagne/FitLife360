@@ -12,7 +12,7 @@
            events: [
                {% for reservation in reservations %}
                    {
-                       title: 'Réservation de {{ reservation.idProfile.id }}',
+                       title: 'Réservation de {{ reservation.idProfile.firstName }}',
                        start: '{{ reservation.date|date('Y-m-d') }}T{{ reservation.startTime|date('H:i:s') }}'
                        
                    },

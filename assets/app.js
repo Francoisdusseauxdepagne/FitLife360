@@ -9,6 +9,9 @@ import './styles/app.scss';
 // Démarrage de Stimulus (si utilisé)
 import './bootstrap';
 
+require('@fortawesome/fontawesome-free/css/all.min.css');
+require('bootstrap');
+
 // Configuration de FullCalendar
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
