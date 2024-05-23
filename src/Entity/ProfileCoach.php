@@ -58,12 +58,6 @@ class ProfileCoach
     #[ORM\OneToMany(targetEntity: PlanEntrainement::class, mappedBy: 'idProfileCoach')]
     private Collection $planEntrainements;
 
-    /**
-     * @var Collection<int, PlanAlimentaire>
-     */
-    #[ORM\OneToMany(targetEntity: PlanAlimentaire::class, mappedBy: 'idProfileCoach')]
-    private Collection $planAlimentaires;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $contrat = null;
 
@@ -94,7 +88,6 @@ class ProfileCoach
     public function __construct()
     {
         $this->planEntrainements = new ArrayCollection();
-        $this->planAlimentaires = new ArrayCollection();
         $this->detailEntrainements = new ArrayCollection();
         $this->reservations = new ArrayCollection();
         $this->profiles = new ArrayCollection();
@@ -269,36 +262,6 @@ class ProfileCoach
             // set the owning side to null (unless already changed)
             if ($planEntrainement->getIdProfileCoach() === $this) {
                 $planEntrainement->setIdProfileCoach(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, PlanAlimentaire>
-     */
-    public function getPlanAlimentaires(): Collection
-    {
-        return $this->planAlimentaires;
-    }
-
-    public function addPlanAlimentaire(PlanAlimentaire $planAlimentaire): static
-    {
-        if (!$this->planAlimentaires->contains($planAlimentaire)) {
-            $this->planAlimentaires->add($planAlimentaire);
-            $planAlimentaire->setIdProfileCoach($this);
-        }
-
-        return $this;
-    }
-
-    public function removePlanAlimentaire(PlanAlimentaire $planAlimentaire): static
-    {
-        if ($this->planAlimentaires->removeElement($planAlimentaire)) {
-            // set the owning side to null (unless already changed)
-            if ($planAlimentaire->getIdProfileCoach() === $this) {
-                $planAlimentaire->setIdProfileCoach(null);
             }
         }
 

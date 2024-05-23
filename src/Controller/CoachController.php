@@ -234,28 +234,4 @@ class CoachController extends AbstractController
         // Redirection vers la liste des programmes d'entraînement ou la page précédente
         return $this->redirectToRoute('app_coach_list_entrainements');
     }
-
-    #[Route('/coach/create-alimentaire', name: 'app_coach_create_alimentaire')]
-    public function createAlimentaire(Request $request): Response
-    {
-        $planAlimentaire = new PlanAlimentaire();
-        $form = $this->createForm(PlanAlimentaireType::class, $planAlimentaire);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $profileCoach = $this->getUser()->getProfileCoach();
-            $planAlimentaire->setIdProfileCoach($profileCoach);
-
-            $this->entityManager->persist($planAlimentaire);
-            $this->entityManager->flush();
-
-            $this->addFlash('success', 'Plan d\'alimentataire créé avec succès !');
-
-            return $this->redirectToRoute('app_coach');
-        }
-
-        return $this->render('coach/createNutrition.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
 }

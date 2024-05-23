@@ -50,12 +50,6 @@ class Profile
     private ?Abonnement $idAbonnement = null;
 
     /**
-     * @var Collection<int, PlanAlimentaire>
-     */
-    #[ORM\OneToMany(targetEntity: PlanAlimentaire::class, mappedBy: 'idProfile')]
-    private Collection $planAlimentaires;
-
-    /**
      * @var Collection<int, Comment>
      */
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'idProfile')]
@@ -72,9 +66,6 @@ class Profile
      */
     #[ORM\OneToMany(targetEntity: Panier::class, mappedBy: 'idProfile')]
     private Collection $paniers;
-
-    // #[ORM\ManyToOne(inversedBy: 'profiles')]
-    // private ?Coach $idCoach = null;
 
     /**
      * @var Collection<int, DetailEntrainement>
@@ -102,7 +93,6 @@ class Profile
 
     public function __construct()
     {
-        $this->planAlimentaires = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->planEntrainements = new ArrayCollection();
         $this->paniers = new ArrayCollection();
@@ -249,36 +239,6 @@ class Profile
     }
 
     /**
-     * @return Collection<int, PlanAlimentaire>
-     */
-    public function getPlanAlimentaires(): Collection
-    {
-        return $this->planAlimentaires;
-    }
-
-    public function addPlanAlimentaire(PlanAlimentaire $planAlimentaire): static
-    {
-        if (!$this->planAlimentaires->contains($planAlimentaire)) {
-            $this->planAlimentaires->add($planAlimentaire);
-            $planAlimentaire->setIdProfile($this);
-        }
-
-        return $this;
-    }
-
-    public function removePlanAlimentaire(PlanAlimentaire $planAlimentaire): static
-    {
-        if ($this->planAlimentaires->removeElement($planAlimentaire)) {
-            // set the owning side to null (unless already changed)
-            if ($planAlimentaire->getIdProfile() === $this) {
-                $planAlimentaire->setIdProfile(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Comment>
      */
     public function getComments(): Collection
@@ -367,18 +327,6 @@ class Profile
 
         return $this;
     }
-
-    // public function getIdCoach(): ?Coach
-    // {
-    //     return $this->idCoach;
-    // }
-
-    // public function setIdCoach(?Coach $idCoach): static
-    // {
-    //     $this->idCoach = $idCoach;
-
-    //     return $this;
-    // }
 
     public function __toString() : string
     {
