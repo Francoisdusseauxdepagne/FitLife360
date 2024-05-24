@@ -15,18 +15,9 @@ class ReportingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('comment')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
+            ->add('comment', null, [
+                'label' => 'Commentaire',
             ])
-            // ->add('idProfile', EntityType::class, [
-            //     'class' => Profile::class,
-            //     'choice_label' => 'id',
-            // ])
-            // ->add('idComment', EntityType::class, [
-            //     'class' => Comment::class,
-            //     'choice_label' => 'id',
-            // ])
         ;
     }
 
