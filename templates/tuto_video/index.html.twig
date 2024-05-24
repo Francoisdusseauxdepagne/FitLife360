@@ -42,7 +42,7 @@
 											par
 											{{ comment.getIdProfile().getFirstName() }}
 											{{ comment.getIdProfile().getName() }}:
-											{{ comment.text }}
+											<em class="text-muted">{{ comment.text }}</em>
 										</p>
 										{% if app.user.profile == comment.getIdProfile() %}
 											<form action="{{ path('comment_delete', {'id': comment.id}) }}" method="post">
