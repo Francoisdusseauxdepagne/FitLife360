@@ -2,17 +2,15 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Trip;
 use App\Entity\User;
-use App\Entity\Coach;
 use App\Entity\Comment;
 use App\Entity\Profile;
 use App\Entity\TutoVideo;
 use App\Entity\Abonnement;
 use App\Entity\ProfileCoach;
-use App\Entity\PlanAlimentaire;
 use App\Entity\PlanEntrainement;
 use App\Entity\DetailEntrainement;
+use App\Entity\Reporting;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -71,6 +69,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion des Videos sportives');
         yield MenuItem::linkToCrud('Videos sportives', 'fa-solid fa-film', TutoVideo::class);
         yield MenuItem::linkToCrud('Commentaires', 'fa-solid fa-comment', Comment::class);
+        yield MenuItem::linkToCrud('Signalement', 'fa-solid fa-flag', Reporting::class);
         yield MenuItem::section('Gestion des programmes');
         yield MenuItem::linkToCrud('Entrainement', 'fa-solid fa-dumbbell', PlanEntrainement::class);
         yield MenuItem::section('Gestion des detail des programmes');
