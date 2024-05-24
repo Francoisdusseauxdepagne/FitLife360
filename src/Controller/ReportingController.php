@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Reporting;
 use App\Form\ReportingType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,8 +21,8 @@ class ReportingController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/reporting', name: 'app_reporting')]
-    public function index(Request $request): Response
+    #[Route('/reporting/{id}', name: 'app_reporting')]
+    public function index(Request $request, Comment $comment): Response
     {
         $user = $this->getUser();
         
@@ -31,10 +32,10 @@ class ReportingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment = $reporting->getComment();
+          
             $reporting->setCreatedAt(new \DateTimeImmutable());
             $reporting->setIdProfile($user->getProfile());
-            $reporting->setComment($comment);
+            $reporting->setIdComment($comment);
             
             $this->entityManager->persist($reporting);
             $this->entityManager->flush();
