@@ -97,6 +97,9 @@ class Profile
     #[ORM\OneToMany(targetEntity: Reporting::class, mappedBy: 'idProfile')]
     private Collection $reportings;
 
+    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    private ?\DateTimeImmutable $dateDeNaissance = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -474,6 +477,18 @@ class Profile
                 $reporting->setIdProfile(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateDeNaissance(): ?\DateTimeImmutable
+    {
+        return $this->dateDeNaissance;
+    }
+
+    public function setDateDeNaissance(\DateTimeImmutable $dateDeNaissance): static
+    {
+        $this->dateDeNaissance = $dateDeNaissance;
 
         return $this;
     }

@@ -19,9 +19,9 @@ class ProfileType extends AbstractType
         $builder
             ->add('name', null, ['label' => 'Nom'])
             ->add('firstName', null, ['label' => 'Prénom'])
-            // ->add('age', null, [
-            //     'label' => 'Ton Age',
-            // ])
+            ->add('dateDeNaissance', null, [
+                'label' => 'Ta date de naissance',
+            ])
             ->add('photoFile', VichImageType::class, [
                 'required' => false,
                 'allow_delete' => true,

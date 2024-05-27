@@ -3,25 +3,47 @@
 {% block title %}FitLife360 - Modifier mon Profil{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1 class="text-center mb-5">Modifier mon Profil</h1>
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <form method="post" action="{{ path('app_update_profile') }}">
-                {{ form_start(form) }}
-                {{ form_row(form.name, {'label': 'Nom'}) }}
-                {{ form_row(form.firstName, {'label': 'Prénom'}) }}
-                {{ form_row(form.bio, {'label': 'Biographie'}) }}
-                {{ form_row(form.photoFile, {'label': 'Photo'}) }}
-                {{ form_row(form.objectifSportif, {'label': 'Objectif Sportif'}) }}
-                {# {{ form_row(form.age, {'label': 'Age'}) }} #}
-                {{ form_row(form.sexe, {'label': 'Sexe'}) }}
-                {{ form_row(form.idProfileCoach, {'label': 'Coach'}) }}
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12 col-sm-12">
+            <div class="card shadow p-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">Modifier mon Profil</h3>
                 </div>
-                {{ form_end(form) }}
-            </form>
+                <div class="card-body">
+                    <form method="post" action="{{ path('app_update_profile') }}">
+                        {{ form_start(form) }}
+                        <div class="mb-3">
+                            {{ form_row(form.name, {'label': 'Nom', 'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.firstName, {'label': 'Prénom', 'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.bio, {'label': 'Biographie', 'attr': {'class': 'form-control', 'rows': 3}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.photoFile, {'label': 'Photo', 'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.objectifSportif, {'label': 'Objectif Sportif', 'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.dateDeNaissance, {'label': 'Date de Naissance', 'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.sexe, {'label': 'Sexe', 'attr': {'class': 'form-select'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.idProfileCoach, {'label': 'Coach', 'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

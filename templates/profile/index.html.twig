@@ -26,9 +26,9 @@
                                 <li class="list-group-item">
                                     <strong>Nom :</strong>
                                     {{ profile.name }}</li>
-                                {# <li class="list-group-item">
-                                    <strong>Age :</strong>
-                                    {{ profile.age }} ans</li> #}
+                                <li class="list-group-item">
+                                    <strong>Date de naissance :</strong>
+                                    {{ profile.dateDeNaissance | date('d/m/Y') }}</li>
                                 <li class="list-group-item">
                                     <strong>Email :</strong>
                                     {{ app.user.email }}</li>
@@ -132,6 +132,21 @@
                             </div>
                         {% else %}
                             <p class="fs-6">Aucun coach assigné.</p>
+                        {% endif %}
+                        {% if reservation %}
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <h3 class="card-title fs-5 mb-3">Mon rendez-vous</h3>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Date : {{ reservation.date | date('d/m/Y') }}</li>
+                                        <li class="list-group-item">Heure : {{ reservation.startTime | date('H:i') }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% else %}
+                        <div class="alert alert-light mt-3" role="alert">
+                            Pas de rendez-vous programmé pour le moment.
+                        </div>
                         {% endif %}
                     </div>
                 </div>

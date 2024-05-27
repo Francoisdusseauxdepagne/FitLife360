@@ -59,7 +59,9 @@ class ReservationController extends AbstractController
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reservation');
+            $this->addFlash('success', 'La reservation a été correctement ajoutée.');
+
+            return $this->redirectToRoute('app_profile');
         }
 
         return $this->render('reservation/new.html.twig', [

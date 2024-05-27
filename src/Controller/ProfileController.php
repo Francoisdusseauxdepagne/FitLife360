@@ -6,6 +6,7 @@ use App\Entity\Profile;
 use App\Form\ProfileType;
 use App\Repository\AbonnementRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -65,13 +66,18 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/show', name: 'app_show_profile')]
-    public function showProfile(): Response
+    public function showProfile(ReservationRepository $reservationRepository): Response
     {
         $user = $this->getUser();
         $profile = $user->getProfile();
 
+        $reservation = $reservationRepository->findOneBy ([
+            'idProfile' => $profile
+        ]);
+
         return $this->render('profile/index.html.twig', [
-            'profile' => $profile
+            'profile' => $profile,
+            'reservation' => $reservation
         ]);
     }
 
