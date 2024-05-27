@@ -14,6 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProfileController extends AbstractController
 {   
+    private function calculateAge(\DateTimeImmutable $dateDeNaissance): int
+    {
+        $today = new \DateTimeImmutable();
+        $age = $today->diff($dateDeNaissance)->y;
+
+        return $age;
+    }
+
     private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
@@ -49,6 +57,20 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Calculer l'âge
+            $dateDeNaissance = $form->get('dateDeNaissance')->getData();
+            $age = $this->calculateAge($dateDeNaissance);
+
+            // Vérification age
+            if ($age < 18 ) {
+                $this->addFlash('warning', 'Vous devez avoir au moins 18 ans.');
+                return $this->redirectToRoute('app_edit_profile');
+            } elseif ($age > 99) {
+                $this->addFlash('warning', 'Vous ne pouvez pas avoir plus de 99 ans pour créer un profil.');
+                return $this->redirectToRoute('app_edit_profile');
+            }
+
             $profile->setIdUser($user);
             $profile->setCreatedAt(new \DateTimeImmutable());
             $profile->setIsActive(true);

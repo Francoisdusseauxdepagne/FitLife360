@@ -48,6 +48,20 @@ class ReservationController extends AbstractController
                 return $this->redirectToRoute('app_reservation_new');
             }
 
+            // Vérifier si la date du jour est pas dépassée
+            $now = new \DateTime();
+            if ($date < $now) {
+                $this->addFlash('danger', 'Veuillez choisir un créneau pour demain');
+                return $this->redirectToRoute('app_reservation_new');
+            }
+
+            // Autoriser seulement les reservations le lendemain
+            $tomorrow = $now->modify('+1 day');
+            if ($date == $tomorrow) {
+                $this->addFlash('danger', 'Vous pouvez reserver a partir du lendemain.');
+                return $this->redirectToRoute('app_reservation_new');
+            }
+
             // Vérifier si l'heure de début est valide (9h, 10h, 11h)
             $startTimeHour = $startTime->format('H');
             if (!in_array($startTimeHour, ['09', '10', '11'])) {

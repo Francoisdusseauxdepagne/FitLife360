@@ -55,6 +55,7 @@ class CoachController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $profileCoach->setIdUser($user);
             $profileCoach->setCreatedAt(new \DateTimeImmutable());
             $profileCoach->setActive(true);
