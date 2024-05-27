@@ -85,8 +85,8 @@ class Profile
     #[ORM\Column(length: 255)]
     private ?string $firstName = null;
 
-    #[ORM\Column]
-    private ?int $age = null;
+    // #[ORM\Column]
+    // private ?int $age = null;
 
     #[ORM\ManyToOne(inversedBy: 'profiles')]
     private ?ProfileCoach $idProfileCoach = null;
@@ -424,17 +424,17 @@ class Profile
         return $this;
     }
 
-    public function getAge(): ?int
-    {
-        return $this->age;
-    }
+    // public function getAge(): ?int
+    // {
+    //     return $this->age;
+    // }
 
-    public function setAge(int $age): static
-    {
-        $this->age = $age;
+    // public function setAge(int $age): static
+    // {
+    //     $this->age = $age;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getIdProfileCoach(): ?ProfileCoach
     {
