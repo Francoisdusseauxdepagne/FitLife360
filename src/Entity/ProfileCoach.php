@@ -25,8 +25,8 @@ class ProfileCoach
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dob = null;
+    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    private ?\DateTimeImmutable $dob = null;
 
     #[ORM\Column(length: 255)]
     private ?string $diplome = null;
@@ -130,12 +130,12 @@ class ProfileCoach
         return $this;
     }
 
-    public function getDob(): ?\DateTimeInterface
+    public function getDob(): ?\DateTimeImmutable
     {
         return $this->dob;
     }
 
-    public function setDob(\DateTimeInterface $dob): static
+    public function setDob(\DateTimeImmutable $dob): static
     {
         $this->dob = $dob;
 

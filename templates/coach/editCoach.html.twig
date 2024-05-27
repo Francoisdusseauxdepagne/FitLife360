@@ -1,21 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Creation du profil Coach{% endblock %}
+{% block title %}Création du profil Coach{% endblock %}
 
 {% block body %}
-    <h1 class="fs-2 text-success">Bonjour Coach</h1>
-    <h2 class="fs-4 my-3">Créé votre profil</h2>
-
-    {{ form_start(form) }}
-        {{ form_row(form.firstName) }}
-        {{ form_row(form.name) }}
-        {{ form_row(form.diplome) }}
-        {{ form_row(form.expertise) }}
-        {{ form_row(form.dob) }}
-        {{ form_row(form.experience) }}
-        {{ form_row(form.genre) }}
-        {{ form_row(form.bio) }}
-        {{ form_row(form.photoFile) }}
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-    {{ form_end(form) }}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h1 class="fs-2">Bonjour Coach</h1>
+                    <h2 class="fs-4 my-3">Créez votre profil</h2>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                        <div class="mb-3">
+                            {{ form_row(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.diplome, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.expertise, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.dob, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.experience, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.genre, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.bio, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.photoFile, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

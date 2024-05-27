@@ -16,6 +16,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CoachController extends AbstractController
 {
+    private function calculateAge(\DateTimeImmutable $dateDeNaissance): int
+    {
+        $today = new \DateTimeImmutable();
+        $age = $today->diff($dateDeNaissance)->y;
+
+        return $age;
+    }
+
     private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
@@ -55,6 +63,19 @@ class CoachController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+             // Calculer l'âge
+             $dateDeNaissance = $form->get('dob')->getData();
+             $age = $this->calculateAge($dateDeNaissance);
+ 
+             // Vérifier que l'utilisateur a au moins 18 ans et pas plus de 80 ans
+             if ($age < 18) {
+                 $this->addFlash('warning', 'Vous devez avoir au moins 18 ans pour créer un profil.');
+                 return $this->redirectToRoute('app_edit_profileCoach');
+             } elseif ($age > 80) {
+                 $this->addFlash('warning', 'Vous ne pouvez pas avoir plus de 80 ans pour créer un profil.');
+                 return $this->redirectToRoute('app_edit_profileCoach');
+             }
             
             $profileCoach->setIdUser($user);
             $profileCoach->setCreatedAt(new \DateTimeImmutable());
