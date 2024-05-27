@@ -98,10 +98,10 @@
                             <div class="row row-cols-1 row-cols-md-2 g-4">
                                 {% if profile.idAbonnement.title == "Vip" %}
                                     <div class="col">
-                                        <a href="{{ path('app_tuto_video') }}" class="btn btn-success btn-sm mb-2">Accès aux vidéos</a>
+                                        <a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
                                     </div>
                                     <div class="col">
-                                        <a href="{{ path('app_plan_entrainement') }}" class="btn btn-success btn-sm mb-2">Accès à mon programme d'entraînement</a>
+                                        <a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
                                     </div>
                                 {% else %}
                                     <div class="col">
@@ -141,6 +141,8 @@
                                         <li class="list-group-item">Date : {{ reservation.date | date('d/m/Y') }}</li>
                                         <li class="list-group-item">Heure : {{ reservation.startTime | date('H:i') }}</li>
                                     </ul>
+                                    <a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="btn btn-warning mt-3">Modifier mon rendez-vous</a>
+                                    <a href="{{ path('app_reservation_delete', {'id': reservation.id}) }}" class="btn btn-danger mt-3">Supprimer mon rendez-vous</a>
                                 </div>
                             </div>
                         {% else %}

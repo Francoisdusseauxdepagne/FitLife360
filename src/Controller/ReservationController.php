@@ -68,4 +68,37 @@ class ReservationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/reservation/delete/{id}', name: 'app_reservation_delete')]
+    public function delete(Reservation $reservation, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($reservation);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'La réservation a été supprimée avec succès.');
+
+        return $this->redirectToRoute('app_profile');
+    }
+
+    #[Route('/reservation/update/{id}', name: 'app_reservation_update')]
+    public function update(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ReservationType::class, $reservation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Si le formulaire est soumis et valide, enregistrez les modifications
+            $entityManager->flush();
+
+            $this->addFlash('success', 'La réservation a été mise à jour avec succès.');
+
+            return $this->redirectToRoute('app_profile');
+        }
+
+        // Si le formulaire n'est pas encore soumis ou s'il y a des erreurs de validation, affichez le formulaire de modification
+        return $this->render('reservation/update.html.twig', [
+            'form' => $form->createView(),
+            'reservation' => $reservation,
+        ]);
+    }
 }

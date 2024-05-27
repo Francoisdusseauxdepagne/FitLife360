@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le rendez-vous{% endblock %}
+
+{% block body %}
+    <h1>Modifier le rendez-vous</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.startTime) }}
+    {{ form_row(form.idProfileCoach)}}
+    <button type="submit" class="btn btn-primary mt-3">Enregistrer les modifications</button>
+    {{ form_end(form) }}
+{% endblock %}
