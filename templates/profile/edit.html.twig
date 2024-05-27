@@ -3,7 +3,8 @@
 {% block title %}Creation du profil{% endblock %}
 
 {% block body %}
-    <h1>Créez votre profil</h1>
+<div class="container">
+    <h1 class="mt-5 pt-5">Créez votre profil</h1>
 
     {{ form_start(form) }}
         {{ form_row(form.firstName) }}
@@ -13,7 +14,8 @@
         {{ form_row(form.sexe) }}
         {{ form_row(form.objectifSportif) }}
         {{ form_row(form.bio) }}
-        {{ form_row(form.idCoach)}}
+        {{ form_row(form.idProfileCoach) }}
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     {{ form_end(form) }}
+</div>
 {% endblock %}

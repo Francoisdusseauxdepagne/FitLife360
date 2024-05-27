@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ProfileCoach;
-use App\Entity\PlanAlimentaire;
 use App\Entity\PlanEntrainement;
-use App\Form\PlanAlimentaireType;
 use App\Entity\DetailEntrainement;
 use App\Form\PlanEntrainementType;
 use App\Form\ProfileTypeCoachType;

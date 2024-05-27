@@ -75,8 +75,8 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/update', name: 'profile_update')]
-    public function updateProfile(Request $request, AbonnementRepository $abonnementRepository): Response
+    #[Route('/profile/updateAbonnement', name: 'profile_update')]
+    public function updateProfileAbonnement(Request $request, AbonnementRepository $abonnementRepository): Response
     {
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
@@ -95,16 +95,27 @@ class ProfileController extends AbstractController
         return $this->redirectToRoute('app_show_profile');
     }
 
-    #[Route('/profile/delete-abonnement', name: 'profile_delete_abonnement')]
-    public function deleteAbonnement(Request $request): Response
+    #[Route('/profile/updateProfile', name: 'app_update_profile')]
+    public function updateProfileInfo(Request $request): Response
     {
         $user = $this->getUser();
-        $user->getProfile()->setIdAbonnement(null);
-    
-        $this->entityManager->persist($user->getProfile());
-        $this->entityManager->flush();
-    
-        $this->addFlash('success', 'Abonnement supprimé avec succès !');
-        return $this->redirectToRoute('app_show_profile');
+        $profile = $user->getProfile();
+
+        // Créer le formulaire de mise à jour du profil
+        $form = $this->createForm(ProfileType::class, $profile);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $profile->setUpdatedAt(new \DateTimeImmutable()); // Mettre à jour la date de mise à jour du profil
+
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'Profil mis à jour avec succès !');
+            return $this->redirectToRoute('app_show_profile');
+        }
+
+        return $this->render('profile/update.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
