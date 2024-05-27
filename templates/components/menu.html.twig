@@ -13,7 +13,7 @@
                     <a class="nav-link text-white" href="{{ path('app_apropos') }}">A propos</a>
                 </li>
                 {% if app.user %}
-                    {% if app.user.isVerified() and not is_granted('ROLE_COACH') %}
+                    {% if app.user.isVerified() %}
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ path('app_profile')}}">Mon profil</a>
                         </li>
