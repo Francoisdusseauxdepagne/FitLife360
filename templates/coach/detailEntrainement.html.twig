@@ -3,16 +3,40 @@
 {% block title %}Détails de l'Entraînement{% endblock %}
 
 {% block body %}
-    <h1>Detail du programme d'entraînement</h1>
+    <div class="container">
+        <h1 class="mt-5">Détail du programme d'entraînement</h1>
 
-        {{ form_start(form) }}
-            {{ form_row(form.day) }}
-            {{ form_row(form.echauffement) }}
-            {{ form_row(form.exercices) }}
-            {{ form_row(form.series) }}
-            {{ form_row(form.repetitions) }}
-            {{ form_row(form.description) }}
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        {{ form_row(form.day, {'attr': {'class': 'form-control', 'placeholder': 'Jour'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.echauffement, {'attr': {'class': 'form-control', 'placeholder': 'Échauffement'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.exercices, {'attr': {'class': 'form-control', 'placeholder': 'Exercices'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.series, {'attr': {'class': 'form-control', 'placeholder': 'Séries'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.repetitions, {'attr': {'class': 'form-control', 'placeholder': 'Répétitions'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+                    </div>
 
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
-        {{ form_end(form) }}
+                    <button type="submit" class="btn btn-primary">Enregistrer cet exercice</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <a class="btn btn-primary" href="{{ path('app_coach') }}">Valider le programme d'entraînement</a>
+                <a class="btn btn-danger" href="{{ path('app_coach') }}">Retour</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

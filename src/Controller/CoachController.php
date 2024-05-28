@@ -254,4 +254,22 @@ class CoachController extends AbstractController
         // Redirection vers la liste des programmes d'entraînement ou la page précédente
         return $this->redirectToRoute('app_coach_list_entrainements');
     }
+
+    #[Route('/coach/delete-entrainement/{id}', name: 'app_coach_delete_entrainement', methods: ['POST'])]
+    public function deleteEntrainement($id, Request $request): Response
+    {
+        $planEntrainement = $this->entityManager->getRepository(PlanEntrainement::class)->find($id);
+
+        if (!$planEntrainement) {
+            throw $this->createNotFoundException('Plan d\'entraînement non trouvé');
+        }
+
+        $this->entityManager->remove($planEntrainement);
+        $this->entityManager->flush();
+
+        $this->addFlash('success', 'Plan d\'entraînement supprimé avec succès !');
+
+        // Redirection vers la liste des programmes d'entraînement ou la page précedente
+        return $this->redirectToRoute('app_coach_list_entrainements');
+    }
 }

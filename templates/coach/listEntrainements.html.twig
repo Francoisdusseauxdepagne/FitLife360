@@ -1,65 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FitLife360 - Liste des Programmes d'Entraînement{% endblock %}
+{% block title %}FitLife360 - Liste des Programmes d'Entraînement
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1 class="text-center mb-5">Liste des Programmes d'Entraînement</h1>
-    <div class="row">
-        {% for planEntrainement in planEntrainements %}
-            <div class="col-lg-12 my-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ planEntrainement.title }}</h2>
-                        <p class="card-text">
-                            <strong>Client:</strong>
-                            {% if planEntrainement.idProfile is not null %}
-                                {{ planEntrainement.idProfile.idUser.firstName }} {{ planEntrainement.idProfile.idUser.name }}
-                            {% else %}
-                                N/A
-                            {% endif %}
-                        </p>
-                        <p class="card-text">
-                            <strong>Description:</strong>
-                            {{ planEntrainement.description }}
-                        </p>
-                        <p class="card-text">
-                            <strong>Durée:</strong>
-                            {{ planEntrainement.duree }}
-                        </p>
-                        <p class="card-text">
-                            <strong>Objectif:</strong>
-                            {{ planEntrainement.objectif }}
-                        </p>
-                        <p class="card-text">
-                            <strong>Niveau:</strong>
-                            {{ planEntrainement.niveau }}
-                        </p>
-                        <p class="card-text">
-                            <strong>Détails d'entraînement:</strong>
-                        </p>
-                        <ul>
-                            {% for detail in planEntrainement.detailEntrainements %}
-                                <li>
-                                    {{ detail.day }} - {{ detail.echauffement }} - {{ detail.exercices }} - {{ detail.series }} - {{ detail.repetitions }} - {{ detail.description }}
-                                    <form method="post" action="{{ path('app_coach_delete_detail_entrainement', {'id': detail.id}) }}">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ detail.id) }}">
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
-                                    <a href="{{ path('app_coach_update_detail_entrainement', {'id': detail.id}) }}" class="btn btn-sm btn-primary ml-1">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        <a href="{{ path('app_coach_update_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-success btn-sm">Modifier</a>
-                        <a href="{{ path('app_coach_detail_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-primary btn-sm ml-1">Ajouter détail Entrainement</a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-</div>
+	<div class="container">
+		<h1 class="text-center mb-5">Liste des Programmes d'Entraînement</h1>
+		<div class="row">
+			{% for planEntrainement in planEntrainements %}
+				<div class="col-lg-12 my-2">
+					<div class="card">
+						<div class="card-body">
+							<h2 class="card-title">{{ planEntrainement.title }}</h2>
+							<p class="card-text">
+								<strong>Client:</strong>
+								{{ planEntrainement.idProfile.firstName ?? 'N/A' }}
+								{{ planEntrainement.idProfile.name ?? '' }}
+							</p>
+							{% set details = planEntrainement.detailEntrainements %}
+							<p class="card-text">
+								<strong>Description:</strong>
+								{{ planEntrainement.description }}</p>
+							<p class="card-text">
+								<strong>Durée:</strong>
+								{{ planEntrainement.duree }}</p>
+							<p class="card-text">
+								<strong>Objectif:</strong>
+								{{ planEntrainement.objectif }}</p>
+							<p class="card-text">
+								<strong>Niveau:</strong>
+								{{ planEntrainement.niveau }}</p>
+							<p class="card-text">
+								<strong>Détails d'entraînement:</strong>
+							</p>
+							<ul>
+								{% for detail in details %}
+									<li>
+										{{ detail.day }}
+										-
+										{{ detail.echauffement }}
+										-
+										{{ detail.exercices }}
+										-
+										{{ detail.series }}
+										-
+										{{ detail.repetitions }}
+										-
+										{{ detail.description }}
+										<form method="post" action="{{ path('app_coach_delete_detail_entrainement', {'id': detail.id}) }}">
+											<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ detail.id) }}">
+											<button type="submit" class="btn btn-sm btn-danger">
+												<i class="fa-solid fa-trash"></i>
+											</button>
+										</form>
+										<a href="{{ path('app_coach_update_detail_entrainement', {'id': detail.id}) }}" class="btn btn-sm btn-primary ml-1">
+											<i class="fa-solid fa-pen"></i>
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+							<div class="container d-flex flex-direction-row gap-3">
+								<a href="{{ path('app_coach_update_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-success btn-sm">Modifier</a>
+								<a href="{{ path('app_coach_detail_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-primary btn-sm ml-1">Ajouter détail Entrainement</a>
+								<form action="{{ path('app_coach_delete_entrainement', {'id': planEntrainement.id}) }}" method="post">
+									<button type="submit" class="btn btn-danger btn-sm ml-1">Supprimer</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

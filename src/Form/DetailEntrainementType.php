@@ -43,21 +43,6 @@ class DetailEntrainementType extends AbstractType
             ->add('description', null, [
                 'label' => 'Description',
             ])
-            // ->add('idProfile', EntityType::class, [
-            //     'class' => Profile::class,
-            //     'label' => 'Nom de l\'utilisateur',
-            //     'choice_label' => function (Profile $profile) {
-            //         $user = $profile->getIdUser();
-            //         return $user->getFirstName() . ' ' . $user->getName();
-            //     },
-            // ])
-            // ->add('idPlanEntrainement', EntityType::class, [
-            //     'class' => PlanEntrainement::class,
-            //     'label' => 'Entraînement',
-            //     'choice_label' => function (PlanEntrainement $planEntrainement) {
-            //         return $planEntrainement->getTitle();
-            //     },
-            // ])
         ;
     }
 
