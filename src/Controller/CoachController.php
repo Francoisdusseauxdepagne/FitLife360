@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\ProfileCoach;
@@ -52,7 +51,6 @@ class CoachController extends AbstractController
         ]);
     }
 
-
     #[Route('/coach/edit', name: 'app_edit_profileCoach')]
     public function editProfile(Request $request): Response
     {
@@ -64,19 +62,19 @@ class CoachController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-             // Calculer l'âge
-             $dateDeNaissance = $form->get('dob')->getData();
-             $age = $this->calculateAge($dateDeNaissance);
- 
-             // Vérifier que l'utilisateur a au moins 18 ans et pas plus de 80 ans
-             if ($age < 18) {
-                 $this->addFlash('warning', 'Vous devez avoir au moins 18 ans pour créer un profil.');
-                 return $this->redirectToRoute('app_edit_profileCoach');
-             } elseif ($age > 80) {
-                 $this->addFlash('warning', 'Vous ne pouvez pas avoir plus de 80 ans pour créer un profil.');
-                 return $this->redirectToRoute('app_edit_profileCoach');
-             }
-            
+            // Calculer l'âge
+            $dateDeNaissance = $form->get('dob')->getData();
+            $age = $this->calculateAge($dateDeNaissance);
+
+            // Vérifier que l'utilisateur a au moins 18 ans et pas plus de 80 ans
+            if ($age < 18) {
+                $this->addFlash('warning', 'Vous devez avoir au moins 18 ans pour créer un profil.');
+                return $this->redirectToRoute('app_edit_profileCoach');
+            } elseif ($age > 80) {
+                $this->addFlash('warning', 'Vous ne pouvez pas avoir plus de 80 ans pour créer un profil.');
+                return $this->redirectToRoute('app_edit_profileCoach');
+            }
+
             $profileCoach->setIdUser($user);
             $profileCoach->setCreatedAt(new \DateTimeImmutable());
             $profileCoach->setActive(true);
@@ -160,9 +158,13 @@ class CoachController extends AbstractController
             return $this->redirectToRoute('app_coach_detail_entrainement', ['id' => $id]);
         }
 
+        // Récupérer les détails d'entraînement existants pour le plan d'entraînement
+        $detailsEntrainement = $this->entityManager->getRepository(DetailEntrainement::class)->findBy(['idPlanEntrainement' => $planEntrainement]);
+
         return $this->render('coach/detailEntrainement.html.twig', [
             'planEntrainement' => $planEntrainement,
             'form' => $form->createView(),
+            'detailsEntrainement' => $detailsEntrainement, // Passer les détails d'entraînement à la vue
         ]);
     }
 
@@ -176,61 +178,61 @@ class CoachController extends AbstractController
             'planEntrainements' => $planEntrainements,
         ]);
     }
-    
+
     #[Route('/coach/update-entrainement/{id}', name: 'app_coach_update_entrainement')]
     public function updateEntrainement($id, Request $request): Response
     {
         $planEntrainement = $this->entityManager->getRepository(PlanEntrainement::class)->find($id);
-    
+
         if (!$planEntrainement) {
             throw $this->createNotFoundException('Plan d\'entraînement non trouvé');
         }
-    
+
         // Créer le formulaire pour le plan d'entraînement
         $form = $this->createForm(PlanEntrainementType::class, $planEntrainement);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             $planEntrainement->setUpdatedAt(new \DateTimeImmutable());
-    
+
             $this->entityManager->flush();
-    
+
             $this->addFlash('success', 'Plan d\'entraînement mis à jour avec succès !');
-    
+
             // Redirection vers la page de détails de l'entraînement
             return $this->redirectToRoute('app_coach_list_entrainements', ['id' => $id]);
         }
-    
+
         return $this->render('coach/updateEntrainement.html.twig', [
             'planEntrainement' => $planEntrainement,
             'form' => $form->createView(),
         ]);
     }
-    
+
     #[Route('/coach/update-detail-entrainement/{id}', name: 'app_coach_update_detail_entrainement')]
     public function updateDetailEntrainement($id, Request $request): Response
     {
         $detailEntrainement = $this->entityManager->getRepository(DetailEntrainement::class)->find($id);
-    
+
         if (!$detailEntrainement) {
             throw $this->createNotFoundException('Détail d\'entraînement non trouvé');
         }
-    
+
         // Créer le formulaire pour le détail d'entraînement
         $form = $this->createForm(DetailEntrainementType::class, $detailEntrainement);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             $detailEntrainement->setUpdatedAt(new \DateTimeImmutable());
-    
+
             $this->entityManager->flush();
-    
+
             $this->addFlash('success', 'Détail d\'entraînement mis à jour avec succès !');
-    
+
             // Redirection vers la page de détails de l'entraînement
             return $this->redirectToRoute('app_coach_detail_entrainement', ['id' => $detailEntrainement->getIdPlanEntrainement()->getId()]);
         }
-    
+
         return $this->render('coach/updateDetailEntrainement.html.twig', [
             'detailEntrainement' => $detailEntrainement,
             'form' => $form->createView(),

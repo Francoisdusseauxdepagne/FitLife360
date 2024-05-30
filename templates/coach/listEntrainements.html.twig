@@ -60,10 +60,10 @@
 								{% endfor %}
 							</ul>
 							<div class="container d-flex flex-direction-row gap-3">
-								<a href="{{ path('app_coach_update_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-success btn-sm">Modifier</a>
-								<a href="{{ path('app_coach_detail_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-primary btn-sm ml-1">Ajouter détail Entrainement</a>
+								<a href="{{ path('app_coach_update_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-success btn-sm">Modifier</a>
+								<a href="{{ path('app_coach_detail_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-primary btn-sm">Ajouter détail Entrainement</a>
 								<form action="{{ path('app_coach_delete_entrainement', {'id': planEntrainement.id}) }}" method="post">
-									<button type="submit" class="btn btn-danger btn-sm ml-1">Supprimer</button>
+									<button type="submit" class="btn btn-outline-danger btn-sm ml-1">Supprimer</button>
 								</form>
 							</div>
 						</div>
