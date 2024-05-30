@@ -50,6 +50,7 @@
 					<div class="card-body w-50">
 						<ul class="list-group">
 							<li class="list-group-item bg-warning"><i class="fa-solid fa-user"></i> : {{ profile.firstName }} {{ profile.name }}</li>
+							<li class="list-group-item"><strong>Membre depuis le :</strong> {{ profile.createdAt|date('d/m/Y') }}
 							<li class="list-group-item"><i class="fa-solid fa-bullseye"></i> : {{ profile.objectifSportif }}</li>
 							<li class="list-group-item"><i class="fa-solid fa-seedling"></i> :  {{ profile.sexe }}</li>
 							<li class="list-group-item"><i class="fa-solid fa-cart-shopping"></i> : {{ profile.idAbonnement.title}}
