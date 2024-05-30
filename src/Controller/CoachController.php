@@ -7,6 +7,7 @@ use App\Entity\DetailEntrainement;
 use App\Form\PlanEntrainementType;
 use App\Form\ProfileTypeCoachType;
 use App\Form\DetailEntrainementType;
+use App\Repository\ProfileRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,9 +32,10 @@ class CoachController extends AbstractController
     }
 
     #[Route('/coach', name: 'app_coach')]
-    public function index(): Response
+    public function index(ProfileRepository $profileRepository): Response
     {
         $user = $this->getUser();
+        $profile = $profileRepository->findAll();
         $profileCoach = $user->getProfileCoach();
 
         if ($user->isVerified() == false) {
@@ -48,6 +50,7 @@ class CoachController extends AbstractController
         return $this->render('coach/index.html.twig', [
             'controller_name' => 'CoachController',
             'profileCoach' => $profileCoach,
+            'profiles' => $profile
         ]);
     }
 

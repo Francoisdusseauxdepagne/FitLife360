@@ -6,10 +6,10 @@
 <section class="container-fluid py-5 bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body">
-                        <img src="{{ asset('images/photos/' ~ profileCoach.photo) }}" class="rounded-circle img-fluid mb-4" alt="Profile">
+            <div class="col-lg-5">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <img src="{{ asset('images/photos/' ~ profileCoach.photo) }}" class="rounded-circle img-fluid mb-4" alt="image de profil">
                         <h1 class="card-title text-success mb-4">{{ profileCoach.firstName }} {{ profileCoach.name }}</h1>
                         <ul class="list-unstyled">
                             <li><strong>Date de naissance:</strong> {{ profileCoach.dob|date('d/m/Y') }}</li>
@@ -26,10 +26,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-7">
                 <div class="card shadow-sm border-0">
                     <div class="card-header bg-success text-white">
-                        <h2 class="text-center">Plans d'entraînement</h2>
+                        <h3 class="text-center">Plans d'entraînement</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -41,6 +41,22 @@
                             </div>
                         </div>
                     </div>
+                </div>
+				<div class="card shadow-sm border-0 my-5">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="text-center">Listes des athlètes</h3>
+                    </div>
+					{% for profile in profiles %}
+					<div class="card-body w-50">
+						<ul class="list-group">
+							<li class="list-group-item bg-warning"><i class="fa-solid fa-user"></i> : {{ profile.firstName }} {{ profile.name }}</li>
+							<li class="list-group-item"><i class="fa-solid fa-bullseye"></i> : {{ profile.objectifSportif }}</li>
+							<li class="list-group-item"><i class="fa-solid fa-seedling"></i> :  {{ profile.sexe }}</li>
+							<li class="list-group-item"><i class="fa-solid fa-cart-shopping"></i> : {{ profile.idAbonnement.title}}
+							<li class="list-group-item"><strong>Coach attitré :</strong> {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}</li>
+						</ul>
+					</div>
+					{% endfor %}
                 </div>
             </div>
         </div>
