@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Modifier le rendez-vous</h1>
+    <a href="{{ path('app_profile') }}" class="btn btn-primary btn-sm my-2">Retour</a>
     {{ form_start(form) }}
     {{ form_row(form.date) }}
     {{ form_row(form.startTime) }}

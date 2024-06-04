@@ -1,7 +1,7 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-
+import frLocale from '@fullcalendar/core/locales/fr'; // Importation de la langue française
 
 // Styles globaux (si nécessaire)
 import './styles/app.scss';
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let calendar = new Calendar(calendarEl, {
         plugins: [ dayGridPlugin, interactionPlugin ],
         initialView: 'dayGridMonth',
+        locale: frLocale, // Configuration de la langue française
         dateClick: function(info) {
             openReservationForm(info.dateStr);
         },
@@ -27,6 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
         selectable: true,
         selectOverlap: function(event) {
             return event.rendering === 'background';
+        },
+        // Personnalisation du texte "today" en français
+        buttonText: {
+            today: "Aujourd'hui"
         }
     });
 

@@ -2,6 +2,7 @@
 
 {% block body %}
     <h1>Nouvelle réservation</h1>
+    <a href="{{ path('app_profile') }}" class="btn btn-primary btn-sm my-2">Retour</a>
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <button class="btn">Réserver</button>

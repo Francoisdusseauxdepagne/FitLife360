@@ -31,7 +31,7 @@ class ReservationController extends AbstractController
         $date = $request->query->get('date');
         if ($date) {
             $reservation->setDate(new \DateTime($date));
-            $reservation->setStartTime(new \DateTime($date . ' 09:00:00')); // Par défaut à 9h
+            $reservation->setStartTime(new \DateTime($date . ' 08:00:00')); // Par défaut à 9h
         }
 
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -48,24 +48,24 @@ class ReservationController extends AbstractController
                 return $this->redirectToRoute('app_reservation_new');
             }
 
-            // Vérifier si la date du jour est pas dépassée
+            // interdire la prise de rdv sur une date et heure passée
             $now = new \DateTime();
             if ($date < $now) {
-                $this->addFlash('danger', 'Veuillez choisir un créneau pour demain');
-                return $this->redirectToRoute('app_reservation_new');
-            }
-
-            // Autoriser seulement les reservations le lendemain
-            $tomorrow = $now->modify('+1 day');
-            if ($date == $tomorrow) {
-                $this->addFlash('danger', 'Vous pouvez reserver a partir du lendemain.');
+                $this->addFlash('danger', 'La prise de rdv ne peut pas se faire à une date passée.');
                 return $this->redirectToRoute('app_reservation_new');
             }
 
             // Vérifier si l'heure de début est valide (9h, 10h, 11h)
             $startTimeHour = $startTime->format('H');
-            if (!in_array($startTimeHour, ['09', '10', '11'])) {
-                $this->addFlash('danger', 'Les réservations ne sont autorisées qu\'à 9h, 10h ou 11h.');
+            if (!in_array($startTimeHour, ['08', '09', '10', '11'])) {
+                $this->addFlash('danger', 'Les réservations ne sont autorisées qu\'à 8h, 9h, 10h ou 11h.');
+                return $this->redirectToRoute('app_reservation_new');
+            }
+
+            // Autoriser seulement une reservation par profil par jour
+            $existingReservation = $entityManager->getRepository(Reservation::class)->findOneBy(['date' => $date, 'idProfile' => $this->getUser()->getProfile()]);
+            if ($existingReservation) {
+                $this->addFlash('danger', 'Vous avez deja une reservation pour ce jour.');
                 return $this->redirectToRoute('app_reservation_new');
             }
 
@@ -73,9 +73,9 @@ class ReservationController extends AbstractController
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            $this->addFlash('success', 'La reservation a été correctement ajoutée.');
+            $this->addFlash('success', 'La reservation a été ajoutée avec succès.');
 
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('app_reservation');
         }
 
         return $this->render('reservation/new.html.twig', [

@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReservationController!{% endblock %}
+{% block title %}Reservation{% endblock %}
 
 {% block javascripts %}
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.12/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.12/locales-all.js'></script> <!-- Ajout du script de langue -->
 <script>
    document.addEventListener('DOMContentLoaded', function() {
        let calendarEl = document.querySelector('#calendar');
        let calendar = new FullCalendar.Calendar(calendarEl, {
            initialView: 'dayGridMonth',
+           locale: 'fr', // Configuration de la langue française
            events: [
                {% for reservation in reservations %}
                    {% if reservation.idProfile is not null %}
@@ -27,7 +29,10 @@
    });
 </script>
 {% endblock %}
-
 {% block body %}
-<div id='calendar'></div>
+<div class="p-3">
+    <h1 class="mt-5">Réserver un créneau un coach</h1>
+    <a href="{{ path('app_profile') }}" class="btn btn-primary btn-sm my-2">Retour</a>
+    <div id='calendar'></div>
+</div>
 {% endblock %}

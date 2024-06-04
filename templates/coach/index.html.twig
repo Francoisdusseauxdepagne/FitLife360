@@ -53,12 +53,16 @@
 							<li class="list-group-item"><strong>Membre depuis le :</strong> {{ profile.createdAt|date('d/m/Y') }}
 							<li class="list-group-item"><i class="fa-solid fa-bullseye"></i> : {{ profile.objectifSportif }}</li>
 							<li class="list-group-item"><i class="fa-solid fa-seedling"></i> :  {{ profile.sexe }}</li>
-							<li class="list-group-item"><i class="fa-solid fa-cart-shopping"></i> : {{ profile.idAbonnement.title}}
+							{# <li class="list-group-item"><i class="fa-solid fa-cart-shopping"></i> : {{ profile.idAbonnement.title}} #}
 							<li class="list-group-item"><strong>Coach attitré :</strong> {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}</li>
 						</ul>
 					</div>
 					{% endfor %}
                 </div>
+                {# <div class="d-flex flex-column gap-3">
+                    <a href="{{ path('messenger_profileCoach_send') }}" class="btn btn-outline-warning btn-block">Envoyer un message</a>
+                    <a href="{{ path('app_messengerProfileCoach') }}" class="btn btn-outline-warning btn-block">Lire les messages</a>
+                </div> #}
             </div>
         </div>
     </div>
