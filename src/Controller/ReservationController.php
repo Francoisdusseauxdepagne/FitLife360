@@ -92,7 +92,6 @@ class ReservationController extends AbstractController
         ]);
     }
 
-
     private function isReservationConflict(EntityManagerInterface $entityManager, Reservation $reservation, bool $isUpdate = false): bool
     {
         $date = $reservation->getDate();
@@ -107,14 +106,12 @@ class ReservationController extends AbstractController
             return true;
         }
 
-        // Pour une mise à jour, exclure la réservation actuelle
-        $criteria = ['date' => $date, 'startTime' => $startTime];
-        if ($isUpdate) {
-            $criteria['id'] = $reservation->getId();
-        }
-
         // Vérifier si une réservation existe déjà pour cette date et cette heure
-        $existingReservation = $entityManager->getRepository(Reservation::class)->findOneBy($criteria);
+        $existingReservation = $entityManager->getRepository(Reservation::class)->findOneBy([
+            'date' => $date,
+            'startTime' => $startTime,
+        ]);
+
         if ($existingReservation && (!$isUpdate || $existingReservation->getId() !== $reservation->getId())) {
             $this->addFlash('danger', 'Il y a déjà une réservation pour cette heure.');
             return true;
@@ -123,8 +120,9 @@ class ReservationController extends AbstractController
         // Vérifier si le profil a déjà une réservation pour ce jour
         $existingReservationByProfile = $entityManager->getRepository(Reservation::class)->findOneBy([
             'date' => $date,
-            'idProfile' => $profile
+            'idProfile' => $profile,
         ]);
+
         if ($existingReservationByProfile && (!$isUpdate || $existingReservationByProfile->getId() !== $reservation->getId())) {
             $this->addFlash('danger', 'Vous avez déjà une réservation pour ce jour.');
             return true;
