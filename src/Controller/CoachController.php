@@ -50,7 +50,8 @@ class CoachController extends AbstractController
         return $this->render('coach/index.html.twig', [
             'controller_name' => 'CoachController',
             'profileCoach' => $profileCoach,
-            'profiles' => $profile
+            'profiles' => $profile,
+            'reservations' => $profileCoach->getReservations(),
         ]);
     }
 

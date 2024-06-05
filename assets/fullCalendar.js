@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         events: '/reservations',
         eventColor: '#E73725',
+        eventBorderColor: '#E73725',
+        eventBackgroundColor: '#E73725',
         selectable: true,
         selectOverlap: function(event) {
             return event.rendering === 'background';

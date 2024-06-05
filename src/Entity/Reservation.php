@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReservationRepository;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -77,5 +77,10 @@ class Reservation
         $this->idProfileCoach = $idProfileCoach;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->startTime;
     }
 }

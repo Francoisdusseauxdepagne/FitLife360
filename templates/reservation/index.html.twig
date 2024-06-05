@@ -21,6 +21,7 @@
                    {% endif %}
                {% endfor %}
            ],
+           eventColor: '#E73725',
            dateClick: function(info) {
                window.location.href = '{{ path('app_reservation_new') }}?date=' + info.dateStr;
            }
@@ -47,7 +48,3 @@
     </div>
 </div>
 {% endblock %}
-
-
-
-

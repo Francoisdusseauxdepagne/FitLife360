@@ -58,20 +58,38 @@
 					</div>
 					{% endfor %}
                 </div>
-                <div class="card shadow-sm border-0">
-                    <div class="card-header bg-success text-white">
-                        <h3 class="text-center">Rendez vous avec les athlètes</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            
-                        </div>
-                    </div>
-                </div>
+                
                 {# <div class="d-flex flex-column gap-3">
                     <a href="{{ path('messenger_profileCoach_send') }}" class="btn btn-outline-warning btn-block">Envoyer un message</a>
                     <a href="{{ path('app_messengerProfileCoach') }}" class="btn btn-outline-warning btn-block">Lire les messages</a>
                 </div> #}
+            </div>
+            <div class="col-lg-12">
+                <div class="card shadow-sm border-0">
+                        <div class="card-header bg-secondary text-white">
+                            <h3 class="text-center">Rendez vous avec les athlètes</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                            {% if reservations|length == 1 %}
+                                {% for reservation in reservations %}
+                                <div class="card-body w-50">
+                                <ul class="list-group">
+                                    <li class="list-group-item bg-warning"><i class="fa-solid fa-user"></i> : {{ reservation.idProfile.firstName }} {{ reservation.idProfile.name }}</li>
+                                    <li class="list-group-item"><strong>Date du rendez-vous :</strong> {{ reservation.date|date('d/m/Y') }}</li>
+                                    <li class="list-group-item"><strong>Heure du rendez-vous :</strong> {{ reservation.startTime|date('H:i') }}</li>
+                                </ul>
+                            </div>
+                                {% endfor %}
+                            {% else %}
+                            <div class="card-body w-50">
+                                <p class="text-center fst-italic">Aucun rendez-vous</p>
+                            </div>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
