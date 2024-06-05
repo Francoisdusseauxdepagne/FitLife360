@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
+                    <a href="{{ path('app_profile') }}" class="btn btn-warning btn-sm mb-3">Retour</a>
                     <h1 class="card-title">Nouvelle réservation</h1>
                 </div>
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" class ="d-flex gap-3">
                         {{ form_start(form) }}
                         <div class="form-group">
                             {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Date'}}) }}
@@ -20,7 +21,7 @@
                         <div class="form-group">
                             {{ form_widget(form.idProfileCoach, {'attr': {'class': 'form-control', 'placeholder': 'Coach'}}) }}
                         </div>
-                        <button type="submit" class="btn btn-primary">Réserver</button>
+                        <button type="submit" class="btn btn-primary">Réserver</button>   
                         {{ form_end(form) }}
                     </form>
                 </div>
