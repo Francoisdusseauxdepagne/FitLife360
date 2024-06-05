@@ -1,10 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Nouvelle réservation</h1>
-    <a href="{{ path('app_profile') }}" class="btn btn-primary btn-sm my-2">Retour</a>
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn">Réserver</button>
-    {{ form_end(form) }}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Nouvelle réservation</h1>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {{ form_start(form) }}
+                        <div class="form-group">
+                            {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Date'}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.startTime, {'attr': {'class': 'form-control', 'placeholder': 'Heure de début'}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_widget(form.idProfileCoach, {'attr': {'class': 'form-control', 'placeholder': 'Coach'}}) }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Réserver</button>
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

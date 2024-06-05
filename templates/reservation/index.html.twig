@@ -30,9 +30,31 @@
 </script>
 {% endblock %}
 {% block body %}
-<div class="p-3">
-    <h1 class="mt-5">Réserver un créneau un coach</h1>
-    <a href="{{ path('app_profile') }}" class="btn btn-primary btn-sm my-2">Retour</a>
-    <div id='calendar'></div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="card-title">Réserver un créneau avec un coach</h1>
+                </div>
+                  {% if reservations is not empty %}
+                        {% for reservation in reservations %}
+                        <p class="alert alert-light m-0">Vous avez deja rendez vous le {{ reservation.date|date('d/m/Y') }} à {{ reservation.startTime|date('H:i') }} avec le coach {{ reservation.idProfileCoach.firstName }}</p>
+                        {% endfor %}
+                    {% else %}
+                        <p>Aucune réservation existante pour aujourd'hui.</p>
+                    {% endif %}
+                <div class="card-body">
+                    <a href="{{ path('app_profile') }}" class="btn btn-secondary btn-sm mb-3">Retour</a>
+                    <p class="fs-6 fst-italic">Les créneaux disponibles par jour : 8h, 9h, 10h, 11h</p>
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
+
+
+
+

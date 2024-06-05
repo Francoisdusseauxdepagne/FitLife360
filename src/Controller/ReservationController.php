@@ -25,55 +25,29 @@ class ReservationController extends AbstractController
     #[Route('/reservation/new', name: 'app_reservation_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $profile = $this->getUser()->getProfile();
         $reservation = new Reservation();
+        $reservation->setIdProfile($profile);
 
         // Pré-remplir la date et l'heure si elles sont passées en paramètre
         $date = $request->query->get('date');
         if ($date) {
             $reservation->setDate(new \DateTime($date));
-            $reservation->setStartTime(new \DateTime($date . ' 08:00:00')); // Par défaut à 9h
+            $reservation->setStartTime(new \DateTime($date . ' 08:00:00')); // Par défaut à 8h
         }
 
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Vérifier si une réservation existe déjà pour cette heure
-            $date = $reservation->getDate();
-            $reservation->setIdProfile($this->getUser()->getProfile());
-            $startTime = $reservation->getStartTime();
-            $existingReservation = $entityManager->getRepository(Reservation::class)->findOneBy(['date' => $date, 'startTime' => $startTime]);
-            if ($existingReservation) {
-                $this->addFlash('danger', 'Il y a déjà une réservation pour cette heure.');
+            if ($this->isReservationConflict($entityManager, $reservation)) {
                 return $this->redirectToRoute('app_reservation_new');
             }
 
-            // interdire la prise de rdv sur une date et heure passée
-            $now = new \DateTime();
-            if ($date < $now) {
-                $this->addFlash('danger', 'La prise de rdv ne peut pas se faire à une date passée.');
-                return $this->redirectToRoute('app_reservation_new');
-            }
-
-            // Vérifier si l'heure de début est valide (9h, 10h, 11h)
-            $startTimeHour = $startTime->format('H');
-            if (!in_array($startTimeHour, ['08', '09', '10', '11'])) {
-                $this->addFlash('danger', 'Les réservations ne sont autorisées qu\'à 8h, 9h, 10h ou 11h.');
-                return $this->redirectToRoute('app_reservation_new');
-            }
-
-            // Autoriser seulement une reservation par profil par jour
-            $existingReservation = $entityManager->getRepository(Reservation::class)->findOneBy(['date' => $date, 'idProfile' => $this->getUser()->getProfile()]);
-            if ($existingReservation) {
-                $this->addFlash('danger', 'Vous avez deja une reservation pour ce jour.');
-                return $this->redirectToRoute('app_reservation_new');
-            }
-
-            // Si tout est valide, enregistrer la réservation
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            $this->addFlash('success', 'La reservation a été ajoutée avec succès.');
+            $this->addFlash('success', 'La réservation a été ajoutée avec succès.');
 
             return $this->redirectToRoute('app_reservation');
         }
@@ -101,7 +75,10 @@ class ReservationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Si le formulaire est soumis et valide, enregistrez les modifications
+            if ($this->isReservationConflict($entityManager, $reservation, true)) {
+                return $this->redirectToRoute('app_reservation_update', ['id' => $reservation->getId()]);
+            }
+
             $entityManager->flush();
 
             $this->addFlash('success', 'La réservation a été mise à jour avec succès.');
@@ -109,10 +86,50 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('app_profile');
         }
 
-        // Si le formulaire n'est pas encore soumis ou s'il y a des erreurs de validation, affichez le formulaire de modification
         return $this->render('reservation/update.html.twig', [
             'form' => $form->createView(),
             'reservation' => $reservation,
         ]);
+    }
+
+
+    private function isReservationConflict(EntityManagerInterface $entityManager, Reservation $reservation, bool $isUpdate = false): bool
+    {
+        $date = $reservation->getDate();
+        $startTime = $reservation->getStartTime();
+        $profile = $reservation->getIdProfile();
+
+        // Vérifier si l'heure de début est valide (8h, 9h, 10h, 11h)
+        $startTimeHour = $startTime->format('H');
+        $startTimeMinute = $startTime->format('i');
+        if (!in_array($startTimeHour, ['08', '09', '10', '11']) || $startTimeMinute !== '00') {
+            $this->addFlash('danger', 'Les réservations ne sont autorisées qu\'à 8h, 9h, 10h ou 11h.');
+            return true;
+        }
+
+        // Pour une mise à jour, exclure la réservation actuelle
+        $criteria = ['date' => $date, 'startTime' => $startTime];
+        if ($isUpdate) {
+            $criteria['id'] = $reservation->getId();
+        }
+
+        // Vérifier si une réservation existe déjà pour cette date et cette heure
+        $existingReservation = $entityManager->getRepository(Reservation::class)->findOneBy($criteria);
+        if ($existingReservation && (!$isUpdate || $existingReservation->getId() !== $reservation->getId())) {
+            $this->addFlash('danger', 'Il y a déjà une réservation pour cette heure.');
+            return true;
+        }
+
+        // Vérifier si le profil a déjà une réservation pour ce jour
+        $existingReservationByProfile = $entityManager->getRepository(Reservation::class)->findOneBy([
+            'date' => $date,
+            'idProfile' => $profile
+        ]);
+        if ($existingReservationByProfile && (!$isUpdate || $existingReservationByProfile->getId() !== $reservation->getId())) {
+            $this->addFlash('danger', 'Vous avez déjà une réservation pour ce jour.');
+            return true;
+        }
+
+        return false;
     }
 }
