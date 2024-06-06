@@ -51,7 +51,8 @@ class ProfileType extends AbstractType
                 'label' => 'Photo de profil',
                 'constraints' => [
                     new File([
-                        'maxSize' => '1k',
+                        'maxSize' => '1M',
+                        'maxSizeMessage' => 'Format incorrect',
                     ])
                 ]
             ])
