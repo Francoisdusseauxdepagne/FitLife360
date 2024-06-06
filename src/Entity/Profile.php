@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProfileRepository::class)]
 #[Vich\Uploadable]
@@ -20,6 +21,10 @@ class Profile
     private ?int $id = null;
 
     #[Vich\UploadableField(mapping: 'photos', fileNameProperty: 'photo')]
+    #[Assert\File(
+        maxSize: '1M',
+        maxSizeMessage: 'Format invalide',
+        )]
     private ?File $photoFile = null;
 
     #[ORM\Column(length: 255)]
@@ -80,9 +85,17 @@ class Profile
     private Collection $reservations;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z\s]*$/',
+        message: 'Le nom ne doit contenir que des lettres'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z\s]*$/',
+        message: 'Le prénom ne doit contenir que des lettres'
+    )]
     private ?string $firstName = null;
 
     // #[ORM\Column]

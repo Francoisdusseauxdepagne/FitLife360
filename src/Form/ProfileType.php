@@ -9,6 +9,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -17,8 +19,24 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', null, ['label' => 'Nom'])
-            ->add('firstName', null, ['label' => 'Prénom'])
+            ->add('name', null, [
+                'label' => 'Nom',
+                'constraints' => [
+                    new Regex([
+                        'message' => 'Le nom ne doit contenir que des lettres',
+                        'pattern' => '/^[a-zA-Z\s]*$/',
+                    ])
+                ]
+            ])
+            ->add('firstName', null, [
+                'label' => 'Prénom',
+                'constraints' => [
+                    new Regex([
+                        'message' => 'Le nom ne doit contenir que des lettres',
+                        'pattern' => '/^[a-zA-Z\s]*$/',
+                    ])
+                ]
+            ])
             ->add('dateDeNaissance', null, [
                 'label' => 'Ta date de naissance',
             ])
@@ -31,6 +49,11 @@ class ProfileType extends AbstractType
                 'image_uri' => true,
                 'asset_helper' => true,
                 'label' => 'Photo de profil',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1k',
+                    ])
+                ]
             ])
             ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe',
