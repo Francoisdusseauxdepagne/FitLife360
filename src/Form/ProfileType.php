@@ -53,6 +53,12 @@ class ProfileType extends AbstractType
                     new File([
                         'maxSize' => '1M',
                         'maxSizeMessage' => 'Format incorrect',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/jpg',
+                        ],
+                        'mimeTypesMessage' => 'Format incorrect',
                     ])
                 ]
             ])

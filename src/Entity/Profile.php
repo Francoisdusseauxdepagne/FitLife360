@@ -23,6 +23,7 @@ class Profile
     #[Vich\UploadableField(mapping: 'photos', fileNameProperty: 'photo')]
     #[Assert\File(
         maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/jpg'],
         )]
     private ?File $photoFile = null;
 
