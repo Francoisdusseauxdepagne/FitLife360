@@ -20,6 +20,12 @@ class Contact
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'contacts')]
+    private ?Profile $idProfile = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +51,30 @@ class Contact
     public function setText(string $text): static
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getIdProfile(): ?Profile
+    {
+        return $this->idProfile;
+    }
+
+    public function setIdProfile(?Profile $idProfile): static
+    {
+        $this->idProfile = $idProfile;
 
         return $this;
     }

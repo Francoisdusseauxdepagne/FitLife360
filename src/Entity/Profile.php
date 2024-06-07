@@ -119,6 +119,12 @@ class Profile
     #[ORM\OneToMany(targetEntity: Messenger::class, mappedBy: 'idProfile')]
     private Collection $messengers;
 
+    /**
+     * @var Collection<int, Contact>
+     */
+    #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'idProfile')]
+    private Collection $contacts;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -128,6 +134,7 @@ class Profile
         $this->reservations = new ArrayCollection();
         $this->reportings = new ArrayCollection();
         $this->messengers = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -537,6 +544,36 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($messenger->getIdProfile() === $this) {
                 $messenger->setIdProfile(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): static
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts->add($contact);
+            $contact->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): static
+    {
+        if ($this->contacts->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getIdProfile() === $this) {
+                $contact->setIdProfile(null);
             }
         }
 
