@@ -2,28 +2,6 @@
 
 {% block title %}FitLife360 - S'inscrire{% endblock %}
 
-{% block javascript %}
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const passwordEl = document.getElementById('password-input');
-    const eyeOpen = document.getElementById('eye-open');
-    const eyeClose = document.getElementById('eye-close');
-
-    eyeOpen.addEventListener("click", () => {
-        passwordEl.type = "password";
-        eyeOpen.style.display = "none";
-        eyeClose.style.display = "block";
-    });
-
-    eyeClose.addEventListener("click", () => {
-        passwordEl.type = "text";
-        eyeClose.style.display = "none";
-        eyeOpen.style.display = "block";
-    });
-});
-</script>
-{% endblock %}
-
 {% block body %}
 <div class="container my-4">
     <div class="row justify-content-center">
@@ -50,7 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <div class="form-group form-check mt-4">
                         {{ form_widget(registrationForm.agreeTerms) }}
-                        {{ form_label(registrationForm.agreeTerms, 'Accepter les termes', {'label_attr': {'class': 'form-check-label'}}) }}
+                        <label class="form-check-label" for="registration_form_agreeTerms">
+                            Voir les <a href="{{ path('app_terms') }}" target="_blank">conditions d'utilisation</a>.
+                        </label>
                         {{ form_errors(registrationForm.agreeTerms) }}
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary mt-4">
