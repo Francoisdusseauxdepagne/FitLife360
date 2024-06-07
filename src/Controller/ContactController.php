@@ -15,12 +15,20 @@ class ContactController extends AbstractController
     public function contact(Request $request, EntityManagerInterface $entityManager): Response
     {
         $contact = new Contact();
+
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Vérifier si l'utilisateur est à la fois un utilisateur enregistré et a un profil associé
+        if ($user && $user->getProfile()) {
+            $contact->setIdProfile($user->getProfile());
+        }
+
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $contact->setCreatedAt(new \DateTimeImmutable());
 
             $entityManager->persist($contact);
@@ -28,11 +36,16 @@ class ContactController extends AbstractController
 
             $this->addFlash('success', 'Votre message a été envoyé avec succès.');
 
-            return $this->redirectToRoute('app_home');
+            // Rediriger vers la page profile si un utilisateur est connecté et s'il a un profil associé
+            if ($user && $user->getProfile()) {
+                return $this->redirectToRoute('app_profile');
+            } else {
+                return $this->redirectToRoute('app_home');
+            }
         }
 
         return $this->render('contact/index.html.twig', [
-            'contactForm' => $form->createView(), // Assurez-vous que le formulaire est passé à la vue ici
+            'contactForm' => $form->createView()
         ]);
     }
 }
