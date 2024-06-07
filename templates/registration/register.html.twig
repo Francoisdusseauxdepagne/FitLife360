@@ -2,6 +2,28 @@
 
 {% block title %}FitLife360 - S'inscrire{% endblock %}
 
+{% block javascript %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const passwordEl = document.getElementById('password-input');
+    const eyeOpen = document.getElementById('eye-open');
+    const eyeClose = document.getElementById('eye-close');
+
+    eyeOpen.addEventListener("click", () => {
+        passwordEl.type = "password";
+        eyeOpen.style.display = "none";
+        eyeClose.style.display = "block";
+    });
+
+    eyeClose.addEventListener("click", () => {
+        passwordEl.type = "text";
+        eyeClose.style.display = "none";
+        eyeOpen.style.display = "block";
+    });
+});
+</script>
+{% endblock %}
+
 {% block body %}
 <div class="container my-4">
     <div class="row justify-content-center">
@@ -22,7 +44,7 @@
 
                     <div class="form-group">
                         {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
-                        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control' }}) }}
                         {{ form_errors(registrationForm.plainPassword) }}
                     </div>
 
