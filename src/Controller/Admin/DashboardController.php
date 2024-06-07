@@ -7,6 +7,7 @@ use App\Entity\Comment;
 use App\Entity\Profile;
 use App\Entity\TutoVideo;
 use App\Entity\Abonnement;
+use App\Entity\Contact;
 use App\Entity\ProfileCoach;
 use App\Entity\PlanEntrainement;
 use App\Entity\DetailEntrainement;
@@ -53,6 +54,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Liens');
         yield MenuItem::linkToRoute('Retour à l\'accueil', 'fa fa-home', 'app_home');
         yield MenuItem::linkToDashboard('Retour Dashboard', 'fa-solid fa-user-tie');
+        yield MenuItem::section('Gestion des messages');
+        yield MenuItem::linkToCrud('Message', 'fa-solid fa-address-book', Contact::class);
         yield MenuItem::section('Vues pages');
         yield MenuItem::linkToRoute('Profil Utilisateur', 'fa-solid fa-eye', 'app_profile');
         yield MenuItem::linkToRoute('profil Coach', 'fa-solid fa-eye', 'app_coach');

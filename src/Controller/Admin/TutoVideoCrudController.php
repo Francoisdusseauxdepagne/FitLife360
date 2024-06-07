@@ -3,13 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\TutoVideo;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class TutoVideoCrudController extends AbstractCrudController
 {
@@ -18,14 +17,20 @@ class TutoVideoCrudController extends AbstractCrudController
         return TutoVideo::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Vidéo(s) sportive(s)');
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title'),
-            TextEditorField::new('description'),
-            UrlField::new('url'),
-            DateField::new('datePublication'),
-            TextField::new('temps'),
+            TextField::new('title', 'Titre'),
+            TextEditorField::new('description', 'Description'),
+            UrlField::new('url', 'Url'),
+            DateField::new('datePublication', 'Date de publication'),
+            TextField::new('temps', 'Durée de la video'),
         ];
     }
 }

@@ -20,10 +20,16 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Utilisateur(s)');
+    }
+
     
     public function configureFields(string $pageName): iterable
     {
-        $roles = ['ROLE_ADMIN', 'ROLE_USER'];
+        $roles = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_COACH'];
         $fields = [
             IdField::new('id')->hideOnForm(),
             EmailField::new('email'),

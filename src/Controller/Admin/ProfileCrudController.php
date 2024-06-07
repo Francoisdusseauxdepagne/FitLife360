@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Profile;
 use App\Controller\VichImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -16,6 +17,12 @@ class ProfileCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Profile::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Profil(s)');
     }
 
     public function configureFields(string $pageName): iterable
