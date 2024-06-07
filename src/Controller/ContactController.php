@@ -22,6 +22,9 @@ class ContactController extends AbstractController
         // Vérifier si l'utilisateur est à la fois un utilisateur enregistré et a un profil associé
         if ($user && $user->getProfile()) {
             $contact->setIdProfile($user->getProfile());
+            $contact->setEmail($user->getEmail());
+            $contact->setFirstname($user->getProfile()->getFirstname());
+            $contact->setName($user->getProfile()->getName());
         }
 
         $form = $this->createForm(ContactType::class, $contact);

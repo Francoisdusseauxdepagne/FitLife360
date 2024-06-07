@@ -31,9 +31,9 @@ class UserCrudController extends AbstractCrudController
     {
         $roles = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_COACH'];
         $fields = [
-            IdField::new('id')->hideOnForm(),
+            IdField::new('id', 'Identifiant de l\'utilisateur'),
             EmailField::new('email'),
-            ChoiceField::new('roles')
+            ChoiceField::new('roles', 'Roles')
             ->setChoices(array_combine($roles, $roles))
             ->allowMultipleChoices()
             ->renderExpanded()
@@ -51,7 +51,7 @@ class UserCrudController extends AbstractCrudController
             ->onlyOnForms()
             ;
         $fields[] = $password;
-        $isActive = BooleanField::new('isVerified');
+        $isActive = BooleanField::new('isVerified', 'Compte actif');
 
         $fields[] = $isActive;
         

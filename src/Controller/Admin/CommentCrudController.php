@@ -30,7 +30,7 @@ class CommentCrudController extends AbstractCrudController
             TextField::new('idProfile.firstname', 'Prénom du Profil'),
             TextField::new('idProfile.name', 'Nom du Profil'),
             TextField::new('idTutoVideo.title', 'Video'),
-            EmailField::new('idprofile.idUser.email', 'Email utilisateur'),
+            EmailField::new('idProfile.idUser.email', 'Email utilisateur'),
         ];
     }
 }
