@@ -74,8 +74,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Commentaires', 'fa-solid fa-comment', Comment::class);
         yield MenuItem::linkToCrud('Signalement', 'fa-solid fa-flag', Reporting::class);
         yield MenuItem::section('Gestion des programmes');
-        yield MenuItem::linkToCrud('Entrainement', 'fa-solid fa-dumbbell', PlanEntrainement::class);
-        yield MenuItem::section('Gestion des detail des programmes');
-        yield MenuItem::linkToCrud('Detail d\'entrainement', 'fa-solid fa-dumbbell', DetailEntrainement::class);
+        yield MenuItem::linkToCrud('Plan d\'entrainement', 'fa-solid fa-dumbbell', PlanEntrainement::class);
+        yield MenuItem::linkToCrud('Détail d\'entrainement', 'fa-solid fa-dumbbell', DetailEntrainement::class);
     }
 }

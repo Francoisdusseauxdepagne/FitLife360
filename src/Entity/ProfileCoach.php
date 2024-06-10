@@ -238,7 +238,7 @@ class ProfileCoach
         return $this->isActive;
     }
 
-    public function setActive(bool $isActive): static
+    public function setIsActive(bool $isActive): static
     {
         $this->isActive = $isActive;
 
@@ -391,7 +391,7 @@ class ProfileCoach
 
     public function __toString() : string
     {
-        return $this->id;
+        return $this->firstName;
     }
 
     public function getExpertise(): ?string

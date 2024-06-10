@@ -18,15 +18,17 @@ class ContactCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Message(s)');
+            ->setEntityLabelInPlural('Contact(s)')
+            ->setEntityLabelInSingular('un contact')
+            ->setDefaultSort(['id' => 'DESC']);
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('objet'),
+            TextField::new('objet', 'Objet'),
             TextEditorField::new('text', 'Texte'),
-            TextField::new('email'),
+            TextField::new('email', 'Email'),
             TextField::new('name', 'Nom'),
             TextField::new('firstname', 'Prénom'),
             TextField::new('idProfile', 'Identifiant du Profil'),

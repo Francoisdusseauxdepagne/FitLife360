@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\PlanEntrainement;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -17,18 +18,26 @@ class PlanEntrainementCrudController extends AbstractCrudController
         return PlanEntrainement::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Plan d\'Entrainement')
+            ->setEntityLabelInSingular('un plan d\'entrainement')
+            ->setDefaultSort(['id' => 'DESC']);
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title'),
-            TextEditorField::new('description'),
-            TextField::new('duree'),
-            TextField::new('objectif'),
-            TextField::new('type'),
-            TextField::new('niveau'),
-            DateField::new('createdAt'),
-            DateField::new('updatedAt'),
-            AssociationField::new('idProfile', 'Id du Profil'),
+            TextField::new('title', 'Nom du Plan d\'Entrainement'),
+            TextEditorField::new('description', 'Description'),
+            TextField::new('duree', 'Durée'),
+            TextField::new('objectif', 'Objectif'),
+            TextField::new('type', 'Type d\'Entrainement'),
+            TextField::new('niveau', 'Niveau'),
+            DateField::new('createdAt', 'Créé le'),
+            DateField::new('updatedAt', 'Modifié le'),
+            AssociationField::new('idProfile', 'Identifiant du Profil'),
         ];
     }
 }

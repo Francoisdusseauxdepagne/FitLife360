@@ -19,7 +19,8 @@ class CommentCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Commentaire(s)');
+            ->setEntityLabelInPlural('Commentaire(s)')
+            ->setEntityLabelInSingular('un commentaire');
     }
 
     public function configureFields(string $pageName): iterable

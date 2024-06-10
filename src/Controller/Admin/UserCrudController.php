@@ -32,6 +32,14 @@ class UserCrudController extends AbstractCrudController
             ->add(Crud::PAGE_EDIT, Action::DETAIL);
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Utilisateur(s)')
+            ->setEntityLabelInSingular('un utilisateur')
+            ->setDefaultSort(['id' => 'DESC']);
+    }
+
     public function configureFields(string $pageName): iterable
     {
         // Define available roles

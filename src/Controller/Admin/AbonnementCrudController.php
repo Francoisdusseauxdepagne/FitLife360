@@ -20,15 +20,16 @@ class AbonnementCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Abonnement(s)');
+            ->setEntityLabelInPlural('Abonnement(s)')
+            ->setEntityLabelInSingular('un abonnement');
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title', 'Nom'),
-            TextEditorField::new('description'),
-            NumberField::new('prix'),
+            TextField::new('title', 'Nom de la formule'),
+            TextEditorField::new('description', 'Description'),
+            NumberField::new('prix', 'Prix'),
         ];
     }
 }

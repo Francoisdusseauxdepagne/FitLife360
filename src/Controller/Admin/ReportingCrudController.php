@@ -17,7 +17,9 @@ class ReportingCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Signalement(s)');
+            ->setEntityLabelInPlural('Signalement(s)')
+            ->setEntityLabelInSingular('un signalement')
+            ->setDefaultSort(['id' => 'DESC']);
     }
 
     public function configureFields(string $pageName): iterable

@@ -20,7 +20,9 @@ class TutoVideoCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Vidéo(s) sportive(s)');
+            ->setEntityLabelInPlural('Vidéo(s) sportive(s)')
+            ->setEntityLabelInSingular('une vidéo')
+            ->setDefaultSort(['datePublication' => 'DESC']);
     }
 
     public function configureFields(string $pageName): iterable

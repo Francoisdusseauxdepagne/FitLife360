@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\DetailEntrainement;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -14,6 +15,14 @@ class DetailEntrainementCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return DetailEntrainement::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Detail d\'entrainement')
+            ->setEntityLabelInSingular('un detail d\'entrainement')
+            ->setDefaultSort(['id' => 'DESC']);
     }
 
     public function configureFields(string $pageName): iterable
