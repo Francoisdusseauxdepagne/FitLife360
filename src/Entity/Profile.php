@@ -114,12 +114,6 @@ class Profile
     private ?\DateTimeImmutable $dateDeNaissance = null;
 
     /**
-     * @var Collection<int, Messenger>
-     */
-    #[ORM\OneToMany(targetEntity: Messenger::class, mappedBy: 'idProfile')]
-    private Collection $messengers;
-
-    /**
      * @var Collection<int, Contact>
      */
     #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'idProfile')]
@@ -133,7 +127,6 @@ class Profile
         $this->detailEntrainements = new ArrayCollection();
         $this->reservations = new ArrayCollection();
         $this->reportings = new ArrayCollection();
-        $this->messengers = new ArrayCollection();
         $this->contacts = new ArrayCollection();
     }
 
@@ -366,7 +359,7 @@ class Profile
 
     public function __toString() : string
     {
-        return $this->id;
+        return $this->firstName;
     }
 
     /**
@@ -503,36 +496,6 @@ class Profile
     public function setDateDeNaissance(\DateTimeImmutable $dateDeNaissance): static
     {
         $this->dateDeNaissance = $dateDeNaissance;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Messenger>
-     */
-    public function getMessengers(): Collection
-    {
-        return $this->messengers;
-    }
-
-    public function addMessenger(Messenger $messenger): static
-    {
-        if (!$this->messengers->contains($messenger)) {
-            $this->messengers->add($messenger);
-            $messenger->setIdProfile($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessenger(Messenger $messenger): static
-    {
-        if ($this->messengers->removeElement($messenger)) {
-            // set the owning side to null (unless already changed)
-            if ($messenger->getIdProfile() === $this) {
-                $messenger->setIdProfile(null);
-            }
-        }
 
         return $this;
     }

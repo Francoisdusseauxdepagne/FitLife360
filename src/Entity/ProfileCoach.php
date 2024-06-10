@@ -85,19 +85,12 @@ class ProfileCoach
     #[ORM\Column(type: Types::TEXT)]
     private ?string $expertise = null;
 
-    /**
-     * @var Collection<int, Messenger>
-     */
-    #[ORM\OneToMany(targetEntity: Messenger::class, mappedBy: 'idProfileCoach')]
-    private Collection $messengers;
-
     public function __construct()
     {
         $this->planEntrainements = new ArrayCollection();
         $this->detailEntrainements = new ArrayCollection();
         $this->reservations = new ArrayCollection();
         $this->profiles = new ArrayCollection();
-        $this->messengers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -402,36 +395,6 @@ class ProfileCoach
     public function setExpertise(string $expertise): static
     {
         $this->expertise = $expertise;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Messenger>
-     */
-    public function getMessengers(): Collection
-    {
-        return $this->messengers;
-    }
-
-    public function addMessenger(Messenger $messenger): static
-    {
-        if (!$this->messengers->contains($messenger)) {
-            $this->messengers->add($messenger);
-            $messenger->setIdProfileCoach($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessenger(Messenger $messenger): static
-    {
-        if ($this->messengers->removeElement($messenger)) {
-            // set the owning side to null (unless already changed)
-            if ($messenger->getIdProfileCoach() === $this) {
-                $messenger->setIdProfileCoach(null);
-            }
-        }
 
         return $this;
     }

@@ -4,14 +4,15 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Comment;
+use App\Entity\Contact;
 use App\Entity\Profile;
+use App\Entity\Reporting;
 use App\Entity\TutoVideo;
 use App\Entity\Abonnement;
-use App\Entity\Contact;
+use App\Entity\Reservation;
 use App\Entity\ProfileCoach;
 use App\Entity\PlanEntrainement;
 use App\Entity\DetailEntrainement;
-use App\Entity\Reporting;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -76,5 +77,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion des programmes');
         yield MenuItem::linkToCrud('Plan d\'entrainement', 'fa-solid fa-dumbbell', PlanEntrainement::class);
         yield MenuItem::linkToCrud('Détail d\'entrainement', 'fa-solid fa-dumbbell', DetailEntrainement::class);
+        yield MenuItem::section('Gestion des Reservations');
+        yield MenuItem::linkToCrud('Reservation', 'fa-solid fa-calendar-days', Reservation::class);
     }
 }
