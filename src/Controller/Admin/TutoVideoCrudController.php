@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -32,7 +33,7 @@ class TutoVideoCrudController extends AbstractCrudController
             TextEditorField::new('description', 'Description'),
             UrlField::new('url', 'Url'),
             DateField::new('datePublication', 'Date de publication'),
-            TextField::new('temps', 'Durée de la video'),
+            TimeField::new('temps', 'Durée de la video'),
         ];
     }
 }

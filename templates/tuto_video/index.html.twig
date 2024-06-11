@@ -1,73 +1,98 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tutoriel vidéo
-{% endblock %}
+{% block title %}Tutoriel vidéo{% endblock %}
 
 {% block body %}
-	<section class="py-5">
-		<div class="container mt-5">
-			<div class="row justify-content-center">
-				<div class="col-lg-8 text-center">
-					<h1 class="display-4 fw-bold mb-4">Vidéos sportives</h1>
-					<p class="fs-5">Bienvenue sur votre espace vidéo. Découvrez nos tutoriels pour pratiquer des activités sportives en autonomie.</p>
-					<p class="fs-6 text-muted mb-5">Une nouvelle vidéo est ajoutée chaque semaine.</p>
-					<a href="{{ path('app_profile') }}" class="btn btn-primary btn-lg">Retourner à mon profil</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="py-5 bg-light">
-		<div class="container">
-			<div class="row">
-				{% for video in videos %}
-					<div class="col-lg-6 mb-4">
-						<div class="card h-100 border-0 shadow">
-							<div class="ratio ratio-16x9">
-								<iframe src="{{ video.url }}" class="card-img-top" allowfullscreen></iframe>
-							</div>
-							<div class="card-body">
-								<h2 class="card-title">{{ video.title }}</h2>
-								<p class="card-text">{{ video.description }}</p>
-								<p class="card-text">
-									<small class="text-muted">Ajouté le
-										{{ video.datePublication|date('d/m/Y') }}</small>
-								</p>
-							</div>
-							<div class="card-footer">
-								<h5 class="mb-3">Commentaires</h5>
-								{% for comment in video.comments %}
-									<div class="mb-3 d-flex align-items-center">
-										<p class="flex-grow-1 mb-0">
-											<strong>{{ comment.date|date('d/m/Y') }}</strong>
-											par
-											{{ comment.getIdProfile().getFirstName() }}
-											{{ comment.getIdProfile().getName() }}:
-											<em class="text-muted">{{ comment.text }}</em>
-										</p>
-										{% if app.user.profile == comment.getIdProfile() %}
-											<form action="{{ path('comment_delete', {'id': comment.id}) }}" method="post">
-												<input type="hidden" name="_method" value="DELETE">
-												<button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
-											</form>
-										{% else %}
-											 <form action="{{ path('app_reporting', {'id': comment.id}) }}" method="post">
-                    							<button type="submit" class="btn btn-sm btn-warning">Signaler</button>
-                							</form>
-										{% endif %}
-									</div>
-								{% endfor %}
-								<form action="{{ path('comment_add') }}" method="post">
-									<div class="mb-3">
-										<textarea class="form-control" name="comment" rows="3" placeholder="Ajouter un commentaire"></textarea>
-									</div>
-									<input type="hidden" name="video_id" value="{{ video.id }}">
-									<button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				{% endfor %}
-			</div>
-		</div>
-	</section>
+<section class="py-5">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="display-4 fw-bold mb-4">Vidéos sportives</h1>
+                <p class="fs-5">Bienvenue sur votre espace vidéo. Découvrez nos tutoriels pour pratiquer des activités sportives en autonomie.</p>
+                <p class="fs-6 text-muted mb-5">Une nouvelle vidéo est ajoutée chaque semaine.</p>
+                <a href="{{ path('app_profile') }}" class="btn btn-primary btn-lg">Retourner à mon profil</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {% for video in videos %}
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="{{ video.url }}" class="card-img-top" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title">{{ video.title }}</h2>
+                            <p class="card-text">{{ video.description }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">Ajouté le {{ video.datePublication|date('d/m/Y') }}</small>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <h5 class="mb-3">Commentaires</h5>
+                            {% for comment in video.comments %}
+                                <div class="mb-3 d-flex align-items-center">
+                                    <p class="flex-grow-1 mb-0">
+                                        <strong>{{ comment.date|date('d/m/Y') }}</strong>
+                                        par {{ comment.getIdProfile().getFirstName() }} {{ comment.getIdProfile().getName() }}:
+                                        <em class="text-muted">{{ comment.text }}</em>
+                                    </p>
+                                    {% if app.user.profile == comment.getIdProfile() %}
+                                        <form action="{{ path('comment_delete', {'id': comment.id}) }}" method="post">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                        </form>
+                                    {% else %}
+                                        <form action="{{ path('app_reporting', {'id': comment.id}) }}" method="post">
+                                            <button type="submit" class="btn btn-sm btn-warning">Signaler</button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                                {% if comment.getReplies() is not empty %}
+                                    <div class="ms-3">
+                                        {% for reply in comment.getReplies() %}
+                                            <div class="mb-3 d-flex align-items-center">
+                                                <p class="flex-grow-1 mb-0">Réponse le
+                                                    <strong>{{ reply.date|date('d/m/Y') }}</strong>
+                                                    par {{ reply.getIdProfile().getFirstName() }} {{ reply.getIdProfile().getName() }}:
+                                                    <em class="text-muted">{{ reply.text }}</em>
+                                                </p>
+                                                {% if app.user.profile == reply.getIdProfile() %}
+                                                    <form action="{{ path('comment_delete', {'id': reply.id}) }}" method="post">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                                    </form>
+                                                {% else %}
+                                                    <form action="{{ path('app_reporting', {'id': reply.id}) }}" method="post">
+                                                        <button type="submit" class="btn btn-sm btn-warning">Signaler</button>
+                                                    </form>
+                                                {% endif %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <form action="{{ path('comment_reply', {'id': comment.id}) }}" method="post">
+                                    <div class="mb-3 ms-3">
+                                        <textarea class="form-control" name="reply" rows="2" placeholder="Répondre au commentaire"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary ms-3">Répondre</button>
+                                </form>
+                            {% endfor %}
+                            <form action="{{ path('comment_add') }}" method="post">
+                                <div class="mb-3">
+                                    <textarea class="form-control" name="comment" rows="3" placeholder="Ajouter un commentaire"></textarea>
+                                </div>
+                                <input type="hidden" name="video_id" value="{{ video.id }}">
+                                <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}

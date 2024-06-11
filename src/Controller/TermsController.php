@@ -11,7 +11,7 @@ class TermsController extends AbstractController
     #[Route('/terms', name: 'app_terms')]
     public function index(): Response
     {
-        return $this->render('terms/index.html.twig', [
+        return $this->render('terms/terms.html.twig', [
             'controller_name' => 'TermsController',
         ]);
     }

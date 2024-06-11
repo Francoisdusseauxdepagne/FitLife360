@@ -34,9 +34,19 @@ class Comment
     #[ORM\OneToMany(targetEntity: Reporting::class, mappedBy: 'idComment')]
     private Collection $reportings;
 
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'replies')]
+    private ?self $parent = null;
+
+    /**
+     * @var Collection<int, self>
+     */
+    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
+    private Collection $replies;
+
     public function __construct()
     {
         $this->reportings = new ArrayCollection();
+        $this->replies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,5 +135,47 @@ class Comment
     public function __toString(): string
     {
         return $this->id;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): static
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getReplies(): Collection
+    {
+        return $this->replies;
+    }
+
+    public function addReply(self $reply): static
+    {
+        if (!$this->replies->contains($reply)) {
+            $this->replies->add($reply);
+            $reply->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReply(self $reply): static
+    {
+        if ($this->replies->removeElement($reply)) {
+            // set the owning side to null (unless already changed)
+            if ($reply->getParent() === $this) {
+                $reply->setParent(null);
+            }
+        }
+
+        return $this;
     }
 }
