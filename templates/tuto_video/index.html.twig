@@ -34,52 +34,54 @@
                         <div class="card-footer">
                             <h5 class="mb-3">Commentaires</h5>
                             {% for comment in video.comments %}
-                                <div class="mb-3 d-flex align-items-center">
-                                    <p class="flex-grow-1 mb-0">
-                                        <strong>{{ comment.date|date('d/m/Y') }}</strong>
-                                        par {{ comment.getIdProfile().getFirstName() }} {{ comment.getIdProfile().getName() }}:
-                                        <em class="text-muted">{{ comment.text }}</em>
-                                    </p>
-                                    {% if app.user.profile == comment.getIdProfile() %}
-                                        <form action="{{ path('comment_delete', {'id': comment.id}) }}" method="post">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
-                                        </form>
-                                    {% else %}
-                                        <form action="{{ path('app_reporting', {'id': comment.id}) }}" method="post">
-                                            <button type="submit" class="btn btn-sm btn-warning">Signaler</button>
-                                        </form>
+                                {% if comment.parent is null %}
+                                    <div class="mb-3 d-flex align-items-center">
+                                        <p class="flex-grow-1 mb-0">
+                                            <strong>{{ comment.date|date('d/m/Y') }}</strong>
+                                            par {{ comment.getIdProfile().getFirstName() }} {{ comment.getIdProfile().getName() }}:
+                                            <em class="text-muted">{{ comment.text }}</em>
+                                        </p>
+                                        {% if app.user.profile == comment.getIdProfile() %}
+                                            <form action="{{ path('comment_delete', {'id': comment.id}) }}" method="post">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                            </form>
+                                        {% else %}
+                                            <form action="{{ path('app_reporting', {'id': comment.id}) }}" method="post">
+                                                <button type="submit" class="btn btn-sm btn-warning">Signaler</button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                    {% if comment.replies is not empty %}
+                                        <div class="ms-3">
+                                            {% for reply in comment.replies %}
+                                                <div class="mb-3 d-flex align-items-center">
+                                                    <p class="flex-grow-1 mb-0">
+                                                        <strong>{{ reply.date|date('d/m/Y') }}</strong>
+                                                        par {{ reply.getIdProfile().getFirstName() }} {{ reply.getIdProfile().getName() }}:
+                                                        <em class="text-muted">{{ reply.text }}</em>
+                                                    </p>
+                                                    {% if app.user.profile == reply.getIdProfile() %}
+                                                        <form action="{{ path('comment_delete', {'id': reply.id}) }}" method="post">
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                                        </form>
+                                                    {% else %}
+                                                        <form action="{{ path('app_reporting', {'id': reply.id}) }}" method="post">
+                                                            <button type="submit" class="btn btn-sm btn-warning">Signaler</button>
+                                                        </form>
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
                                     {% endif %}
-                                </div>
-                                {% if comment.getReplies() is not empty %}
-                                    <div class="ms-3">
-                                        {% for reply in comment.getReplies() %}
-                                            <div class="mb-3 d-flex align-items-center">
-                                                <p class="flex-grow-1 mb-0">Réponse le
-                                                    <strong>{{ reply.date|date('d/m/Y') }}</strong>
-                                                    par {{ reply.getIdProfile().getFirstName() }} {{ reply.getIdProfile().getName() }}:
-                                                    <em class="text-muted">{{ reply.text }}</em>
-                                                </p>
-                                                {% if app.user.profile == reply.getIdProfile() %}
-                                                    <form action="{{ path('comment_delete', {'id': reply.id}) }}" method="post">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
-                                                    </form>
-                                                {% else %}
-                                                    <form action="{{ path('app_reporting', {'id': reply.id}) }}" method="post">
-                                                        <button type="submit" class="btn btn-sm btn-warning">Signaler</button>
-                                                    </form>
-                                                {% endif %}
-                                            </div>
-                                        {% endfor %}
-                                    </div>
+                                    <form action="{{ path('comment_reply', {'id': comment.id}) }}" method="post">
+                                        <div class="mb-3 ms-3">
+                                            <textarea class="form-control" name="reply" rows="2" placeholder="Répondre au commentaire"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary ms-3">Répondre</button>
+                                    </form>
                                 {% endif %}
-                                <form action="{{ path('comment_reply', {'id': comment.id}) }}" method="post">
-                                    <div class="mb-3 ms-3">
-                                        <textarea class="form-control" name="reply" rows="2" placeholder="Répondre au commentaire"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary ms-3">Répondre</button>
-                                </form>
                             {% endfor %}
                             <form action="{{ path('comment_add') }}" method="post">
                                 <div class="mb-3">
