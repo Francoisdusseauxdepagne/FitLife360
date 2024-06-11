@@ -1,0 +1,97 @@
+{# templates/legal/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions légales - FitLife360{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Consultez les mentions légales de FitLife360 pour connaître les informations légales concernant notre site web.">
+{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card p-4">
+                <h1 class="card-title text-center mb-4">Mentions légales de FitLife360</h1>
+                <div class="card-body">
+                    <h2 id="identite">1. Informations sur l'éditeur du site</h2>
+                    <p><strong>Raison sociale :</strong> FitLife360</p>
+                    <p><strong>URL :</strong> Localhost:127.0.0.1</p>
+                    {# <p><strong>Forme juridique de la société :</strong> Société par Actions Simplifiée.</p> #}
+                    <p><strong>Adresse de courrier électronique :</strong> francoisddpro@gmail.com</p>
+                    <p><strong>Numéro d’inscription au registre du commerce et des sociétés :</strong> Paris</p>
+                    <p><strong>Numéro de TVA intracommunautaire :</strong> FR 00 123456789</p>
+                    <p><strong>Directeur de la publication :</strong> Monsieur François Dusseaux-Depagne</p>
+                    
+                    <h2 id="hebergement">2. Hébergement du site</h2>
+                    <p><strong>Hébergeur :</strong> Localhost/phpMyAdmin</p>
+                    <p><strong>Adresse :</strong> France</p>
+                    <p><strong>Téléphone :</strong> 06 00 00 00 00</p>
+                    <p><strong>Email :</strong> francoisddpro@gmail.com</p>
+
+                    <h2 id="propriete-intellectuelle">3. Propriété intellectuelle</h2>
+                    <p>L’ensemble des éléments qui figurent sur le présent site est protégé par la législation française sur le droit d’auteur et le droit des marques conformément aux dispositions contenues dans les Conditions Générales de Vente.</p>
+                    <p>Toute copie ou reproduction du site et de l’ensemble des données fournies par la société est strictement interdite sous peine de poursuites judiciaires.</p>
+                    
+                    <h2 id="donnees">4. Charte de protection des données</h2>
+                    <h3>Article 1 : Préambule</h3>
+                    <p>Les utilisateurs de fitlife360.com, personnes physiques, sont invités à lire attentivement la présente Charte avant de communiquer toute donnée à caractère personnel à la société FitLife360.</p>
+
+                    <h3>Article 2 : Généralités</h3>
+                    <p>La présente charte a pour objet d’informer les utilisateurs des modalités de collecte, de traitement, et d’utilisation de leurs données personnelles et de leurs droits en matière de protection des données à caractère personnel au regard des dispositions applicables en la matière, notamment la loi 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés dite « Informatique et libertés » et au règlement européen sur la protection des données personnelles 2016/679.</p>
+                    
+                    <h3>Article 3 : Le responsable du traitement des données personnelles</h3>
+                    <p>Les données personnelles des utilisateurs sont collectées, sauvegardées et traitées par la société FitLife360, dont le siège social est situé en France.</p>
+                    <p>Le délégué à la protection des données est Monsieur François Dusseaux-Depagne. L’utilisateur a la faculté de s’adresser à lui par écrit à cette adresse mail : francoisddpro@gmail.com</p>
+
+                    <h3>Article 4 : Finalité des données personnelles recueillies par FitLife360</h3>
+                    <p>Les données à caractère personnel communiquées à FitLife360 sont collectées, stockées et traitées aux fins de :</p>
+                    <ul>
+                        <li>Identifier les utilisateurs du site, via la création de leur compte</li>
+                        <li>Permettre la personnalisation des services proposés par le site</li>
+                        {# <li>Communiquer la newsletter aux utilisateurs inscrits</li> #}
+                        <li>Permettre la gestion et le suivi des relations avec les titulaires de comptes</li>
+                    </ul>
+                    <p>FitLife360 peut également utiliser ces données pour améliorer la qualité de ses services, pour réaliser des études de marché, ou à des fins statistiques.</p>
+
+                    <h3>Article 5 : Fondement juridique du traitement des données</h3>
+                    <p>Le traitement des données personnelles est effectué sur les bases suivantes :</p>
+                    <ul>
+                        <li>Le consentement exprès (clic et case à cocher lors de l’inscription)</li>
+                        <li>L’exécution du contrat entre FitLife360 et l’utilisateur</li>
+                    </ul>
+                    
+                    <h3>Article 6 : Droits des utilisateurs</h3>
+                    <p>Tout utilisateur dont les données à caractère personnel ont été collectées par FitLife360 dispose des droits suivants :</p>
+                    <ul>
+                        <li>Droit à l’information</li>
+                        <li>Droit d’accès, de rectification et de suppression de ses données</li>
+                        <li>Droit de s’opposer au traitement de ses données</li>
+                        <li>Droit à la portabilité de ses données</li>
+                        <li>Temps de conservation de ses données</li>
+                    </ul>
+                    <p>Toute demande devra être adressée par e-mail au responsable du traitement visé à l’article 3 à l’adresse support@fitlife360.com. Toute demande sera traitée dans un délai de 72h à réception de la demande écrite de l’utilisateur.</p>
+
+                    <h3>Article 7 : Utilisation des données par des services tiers</h3>
+                    <p>L’utilisateur est libre d’établir une connexion entre son compte FitLife360 et des services tiers (tel que Facebook, Twitter ou Instagram, etc.) en vue de faciliter le partage d’informations. FitLife360 n’est pas responsable du traitement des données qui peut être effectué par les services tiers.</p>
+
+                    {# <h3>Article 8 : Carte de crédit</h3>
+                    <p>Lorsque l’utilisateur communique le numéro de sa carte de crédit pour payer des services sur FitLife360, FitLife360 utilise le système de paiement en ligne sécurisé STRIPE et PAYPAL avec cryptage. Les numéros de cartes de crédit sont utilisés uniquement dans le cadre des paiements en ligne et ne sont en aucun cas conservés à d’autres fins.</p>
+
+                    <h3>Article 9 : Utilisation des Cookies</h3>
+                    <p>Les cookies sont des éléments d’information qu’un site web installe sur l’ordinateur de l’utilisateur pour conserver cette information lors d’une nouvelle consultation. Les cookies temporaires sont nécessaires pour certaines applications et fonctions du site. Les cookies permanents sont utilisés pour personnaliser la visite sur le site fitlife360.com.</p> #}
+
+                    <h3>Article 8 : Sécurité des données</h3>
+                    <p>FitLife360 prend toutes les précautions utiles pour préserver la sécurité des données et empêcher qu’elles soient déformées, endommagées ou que des tiers non autorisés y aient accès. En cas de sous-traitance d’une partie ou de la totalité d’un traitement de données à caractère personnel, FitLife360 impose contractuellement à ses sous-traitants des garanties de sécurité et de confidentialité.</p>
+
+                    <h3>Article 9 : Mise à jour de la politique de protection des données</h3>
+                    <p>La politique de confidentialité est susceptible d’être modifiée ou aménagée à tout moment. Vous êtes invités à la consulter régulièrement. Dernière modification : le 11/06/2024</p>
+
+                    <h2 id="droit">10. Droit applicable</h2>
+                    <p>Le présent site et ses mentions légales sont soumis au droit français.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

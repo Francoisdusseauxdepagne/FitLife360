@@ -15,4 +15,12 @@ class TermsController extends AbstractController
             'controller_name' => 'TermsController',
         ]);
     }
+
+    #[Route('/mentions', name: 'app_mentions')]
+    public function privacy(): Response
+    {
+        return $this->render('terms/mentions.html.twig', [
+            'controller_name' => 'TermsController',
+        ]);
+    }
 }

@@ -64,6 +64,8 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($this->urlGenerator->generate('admin'));  // Remplacez 'admin_route' par le nom de votre route admin
         } elseif (in_array('ROLE_USER', $roles, true)) {
             return new RedirectResponse($this->urlGenerator->generate('app_profile'));  // Remplacez 'profile_route' par le nom de votre route profil
+        } elseif (in_array('ROLE_COACH', $roles, true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_profileCoach'));  // Remplacez 'profile_route' par le nom de votre route profil
         } else {
             throw new \Exception('Aucune route trouvée pour le rôle utilisateur');
         }
