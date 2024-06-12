@@ -12,7 +12,7 @@
         {% else %}
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">{{ panier.idAbonnement.title }}</h5>
+                    <h2 class="card-title">{{ panier.idAbonnement.title }}</h2>
                     <p class="card-text">{{ panier.idAbonnement.description }}</p>
                     <p class="card-text"><strong>Prix :</strong> {{ panier.idAbonnement.prix }}€/an</p>
                     <form action="{{ path('app_pay', {'id': panier.idAbonnement.id}) }}" method="post">

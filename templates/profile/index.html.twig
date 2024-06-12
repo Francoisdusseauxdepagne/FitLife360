@@ -85,6 +85,7 @@
                                             {{ profile.idAbonnement.prix }}€ / an</strong>
                                     </p>
                                     <a href="{{ path('app_abonnement') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
+                                    <a href="{{ path('app_resiliation')}}" class="btn btn-warning btn-sm">Supprimer mon abonnement</a>
                                 </div>
                             </div>
                         </div>
@@ -125,13 +126,9 @@
                                         {{ profile.idProfileCoach.firstName }}
                                         {{ profile.idProfileCoach.name }}</p>
                                     {% if profile.idAbonnement and (profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium") %}
-                                        <a href="{{ path('app_reservation') }}" class="btn btn-warning mt-2">Réserver un créneau avec un coach</a>    
+                                        <a href="{{ path('app_reservation') }}" class="btn btn-warning mt-2">Réserver un rendez-vous bilan avec un coach</a>    
                                     {% endif %}
                                 </div>
-                                {# <div class="d-flex flex-column gap-3">
-                                    <a href="{{ path('messenger_profile_send') }}" class="btn btn-outline-warning btn-block">Envoyer un message</a>
-                                    <a href="{{ path('app_messengerProfile') }}" class="btn btn-outline-warning btn-block">Lire les messages</a>
-                                </div> #}
                             </div>                                
                         {% else %}
                             <p class="fs-6">Aucun coach assigné.</p>

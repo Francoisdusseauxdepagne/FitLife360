@@ -103,26 +103,6 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    // #[Route('/profile/updateAbonnement', name: 'profile_update')]
-    // public function updateProfileAbonnement(Request $request, AbonnementRepository $abonnementRepository): Response
-    // {
-    //     // Récupérer l'utilisateur connecté
-    //     $user = $this->getUser();
-    //     // Récupérer l'abonnement sélectionné
-    //     $abonnementId = $request->request->get('abonnement_id');
-    //     $abonnement = $abonnementRepository->find($abonnementId);
-
-    //     // Mettre à jour le profil de l'utilisateur avec l'abonnement sélectionné
-    //     $user->getProfile()->setIdAbonnement($abonnement);
-
-    //     // Sauvegarder les changements en base de données
-    //     $this->entityManager->persist($user->getProfile());
-    //     $this->entityManager->flush();
-
-    //     // Rediriger l'utilisateur vers la page du profil
-    //     return $this->redirectToRoute('app_show_profile');
-    // }
-
     #[Route('/profile/updateProfile', name: 'app_update_profile')]
     public function updateProfileInfo(Request $request): Response
     {

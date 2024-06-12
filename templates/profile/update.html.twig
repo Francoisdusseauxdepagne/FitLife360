@@ -6,9 +6,11 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-12 col-sm-12">
+                <a href="{{ path('app_profile')}}" class="btn btn-outline-warning mb-2 mt-0">Retour</a>
+
             <div class="card shadow p-3">
                 <div class="card-header bg-primary text-white text-center">
-                    <h3 class="mb-0">Modifier mon Profil</h3>
+                    <h1 class="mb-0 fs-3">Modifier mon Profil</h1>
                 </div>
                 <div class="card-body">
                     <form method="post" action="{{ path('app_update_profile') }}">
@@ -37,9 +39,8 @@
                         <div class="mb-3">
                             {{ form_row(form.idProfileCoach, {'label': 'Coach', 'attr': {'class': 'form-control'}}) }}
                         </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
-                        </div>
+                        <button type="submit" class="btn btn-outline-primary ">Enregistrer</button>
+                        <a href="{{ path('app_profile')}}" class="btn btn-outline-danger">Annuler</a>
                         {{ form_end(form) }}
                     </form>
                 </div>

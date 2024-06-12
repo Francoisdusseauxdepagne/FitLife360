@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Profile;
 use App\Controller\VichImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -31,6 +32,7 @@ class ProfileCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IdField::new('id', 'Identifiant du profil'),
             AssociationField::new('idUser', 'Email de l\'utilisateur')
                 ->formatValue(function ($value, $entity) {
                     return $entity->getIdUser()->getEmail();
