@@ -81,8 +81,12 @@
                                 </div>
                                 <div class="col">
                                     <p class="card-text fs-6">
-                                        <strong>Prix de l'abonnement est de:
-                                            {{ profile.idAbonnement.prix }}€ / an</strong>
+                                        <strong>Montant payé:</strong>
+                                            {{ profile.idAbonnement.prix }}€ 
+                                    </p>
+                                    <p class"card-text fs-6">
+                                        <strong>Durée contratuelle :</strong>
+                                            {{ profile.idAbonnement.duree }} 
                                     </p>
                                     <a href="{{ path('app_abonnement') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
                                     <a href="{{ path('app_resiliation')}}" class="btn btn-warning btn-sm">Supprimer mon abonnement</a>

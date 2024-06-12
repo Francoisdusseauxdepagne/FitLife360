@@ -37,6 +37,9 @@ class Abonnement
     #[ORM\OneToMany(targetEntity: Panier::class, mappedBy: 'idAbonnement')]
     private Collection $paniers;
 
+    #[ORM\Column(length: 255)]
+    private ?string $duree = null;
+
     public function __construct()
     {
         $this->profiles = new ArrayCollection();
@@ -147,5 +150,17 @@ class Abonnement
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    public function getDuree(): ?string
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(string $duree): static
+    {
+        $this->duree = $duree;
+
+        return $this;
     }
 }

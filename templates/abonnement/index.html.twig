@@ -14,8 +14,13 @@
                             <h2 class="card-title my-2">{{ abonnement.title }}</h2>
                         </div>
                         <div class="card-body d-flex flex-column">
-                            <div class="mb-4 text-center">
-                                <span class="display-6 fw-bold">{{ abonnement.prix }}€ / an</span>
+                            <div class="mb-4 text-center d-flex flex-column">
+                                <h3 class="display-6 fw-bold">{{ abonnement.prix }}€</h3>
+                                {% if abonnement.title == 'Basic' %}
+                                    <p class="fs-5 fw-bold">{{ abonnement.duree }}</p>
+                                {% elseif abonnement.title == 'Premium' or abonnement.title == 'Vip' %} 
+                                    <p class="fs-5 fw-bold">Engagement: {{ abonnement.duree }}</p>
+                                {% endif %}
                             </div>
                             <ul class="list-group list-unstyled mb-4">
                                 {% set abonnement_details = abonnement.description|split(", ") %}
