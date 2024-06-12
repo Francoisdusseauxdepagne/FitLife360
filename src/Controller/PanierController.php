@@ -93,7 +93,6 @@ class PanierController extends AbstractController
         ]);
 
         // Recherche du panier de l'utilisateur
-        $user = $this->getUser();
         $panier = $entityManager->getRepository(Panier::class)->findOneBy(['idProfile' => $this->getUser()->getProfile()]);
 
         if ($panier) {
