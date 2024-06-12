@@ -34,7 +34,7 @@
                                 {% elseif app.user.profile.idAbonnement is null %}
                                     <a href="{{ path('app_panier', {'id': abonnement.id}) }}" class="btn btn-secondary btn-block">Je choisis</a>
                                 {% else %}
-                                    <a href="{{ path('app_panier', {'id': abonnement.id}) }}" class="btn btn-secondary btn-block">Je choisis</a>
+                                    <a href="{{ path('app_resiliation') }}" class="btn btn-secondary btn-block">Je veux changer</a>
                                 {% endif %}
                             </div>
                         </div>

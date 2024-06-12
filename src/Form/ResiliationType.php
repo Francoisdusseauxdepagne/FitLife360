@@ -29,8 +29,13 @@ class ResiliationType extends AbstractType
                 ],
                 'attr' => ['id' => 'resiliation_objet'] // Add id attribute for easy selection in JS
             ])
-            ->add('content', null, ['label' => 'Message de résiliation', 'attr' => ['id' => 'resiliation_content']]) // Add id attribute for easy selection in JS
-        ;
+            ->add('content', null, [
+                'label' => 'Message de résiliation',
+                'attr' => [
+                    'id' => 'resiliation_content',
+                    'disabled' => true, // Rend le champ non modifiable
+                ]
+            ])        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
