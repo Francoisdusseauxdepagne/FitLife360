@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Entity\Panier;
 use App\Entity\Comment;
 use App\Entity\Contact;
 use App\Entity\Profile;
@@ -68,6 +69,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Profils', 'fa-regular fa-address-card', Profile::class);
         yield MenuItem::section('Gestion des abonnements');
         yield MenuItem::linkToCrud('Abonnements', 'fa-solid fa-credit-card', Abonnement::class);
+        yield MenuItem::linkToCrud('Panier', 'fa-solid fa-cart-plus', Panier::class);
         yield MenuItem::section('Gestion des Collaborateur');
         yield MenuItem::linkToCrud('Collaborateurs', 'fa-solid fa-people-group', ProfileCoach::class);
         yield MenuItem::section('Gestion des Videos sportives');

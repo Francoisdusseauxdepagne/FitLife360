@@ -76,10 +76,10 @@
                                         </div>
                                     {% endif %}
                                     <form action="{{ path('comment_reply', {'id': comment.id}) }}" method="post">
-                                        <div class="mb-3 ms-3">
-                                            <textarea class="form-control" name="reply" rows="2" placeholder="Répondre au commentaire"></textarea>
+                                        <div class="mb-3 ms-4">
+                                            <textarea class="form-control" name="reply" rows="3" placeholder="Répondre au commentaire"></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-primary ms-3">Répondre</button>
+                                        <button type="submit" class="btn btn-primary ms-4 btn-sm mb-3 mt-0">Répondre</button>
                                     </form>
                                 {% endif %}
                             {% endfor %}

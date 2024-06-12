@@ -35,6 +35,19 @@
             "ref": "b131e6cbfe1b898a508987851963fff485986285"
         }
     },
+    "fpt/stripe-bundle": {
+        "version": "0.11",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.5",
+            "ref": "b08d10161bfafa6dfa58f73d5151cc021187038f"
+        },
+        "files": [
+            "config/packages/stripe.yaml",
+            "config/routes/stripe.yaml"
+        ]
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {

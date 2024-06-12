@@ -22,6 +22,9 @@ class Panier
     #[ORM\ManyToOne(inversedBy: 'paniers')]
     private ?Profile $idProfile = null;
 
+    #[ORM\Column]
+    private ?bool $isPaid = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Panier
     public function setIdProfile(?Profile $idProfile): static
     {
         $this->idProfile = $idProfile;
+
+        return $this;
+    }
+
+    public function isPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): static
+    {
+        $this->isPaid = $isPaid;
 
         return $this;
     }

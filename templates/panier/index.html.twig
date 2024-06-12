@@ -15,9 +15,9 @@
                     <h5 class="card-title">{{ panier.idAbonnement.title }}</h5>
                     <p class="card-text">{{ panier.idAbonnement.description }}</p>
                     <p class="card-text"><strong>Prix :</strong> {{ panier.idAbonnement.prix }}€/an</p>
-                    <form action="{{ path('profile_update') }}" method="post">
-                        <input type="hidden" name="abonnement_id" value="{{ panier.idAbonnement.id }}">
-                        <button type="submit" class="btn btn-primary">Je valide</button>
+                    <form action="{{ path('app_pay', {'id': panier.idAbonnement.id}) }}" method="post">
+                        <input type="hidden" name="product_id" value="{{ panier.idAbonnement.id }}">
+                        <button type="submit" class="btn btn-primary">Payer</button>
                     </form>
                 </div>
             </div>
