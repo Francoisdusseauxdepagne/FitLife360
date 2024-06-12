@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block head %}
+    {{ parent() }}
+    <meta name="description" content="FitLife360 est votre partenaire pour une vie plus saine et active. Découvrez nos programmes d'entraînement personnalisés, suivez votre progression, recevez des conseils nutritionnels et accédez à une bibliothèque de vidéos d'entraînement. Inscrivez-vous dès maintenant pour commencer votre parcours vers une meilleure forme physique et un bien-être optimal.">
+{% endblock %}
+
 {% block title %}FitLife360-Accueil{% endblock %}
 
 {% block body %}
