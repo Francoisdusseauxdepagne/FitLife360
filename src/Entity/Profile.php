@@ -580,4 +580,9 @@ class Profile
         }
         return null;
     }
+
+    public function getFullName(): string
+    {
+        return $this->firstName . ' ' . $this->name;
+    }
 }
