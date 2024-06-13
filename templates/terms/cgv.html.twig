@@ -1,0 +1,57 @@
+{# templates/cgv/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Conditions Générales de Vente - FitLife360{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Découvrez les Conditions Générales de Vente de FitLife360. En souscrivant à nos abonnements, vous acceptez les termes et conditions de vente.">
+{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card p-4">
+                <h1 class="card-title text-center mb-4">Conditions Générales de Vente de FitLife360</h1>
+                <div class="card-body">
+                    <h2 id="objet">1. Objet</h2>
+                    <p>Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre FitLife360 et toute personne physique ou morale (ci-après dénommée "le Client") souhaitant souscrire aux services proposés sur le site web fitlife360.com.</p>
+
+                    <h2 id="services">2. Services</h2>
+                    <p>FitLife360 propose des abonnements à des services de coaching en ligne. Les détails des services inclus dans chaque type d'abonnement sont disponibles sur la page des abonnements de notre site.</p>
+
+                    <h2 id="tarifs">3. Tarifs</h2>
+                    <p>Les tarifs des abonnements sont indiqués en euros, toutes taxes comprises (TTC). FitLife360 se réserve le droit de modifier ses tarifs à tout moment, mais s'engage à appliquer les tarifs en vigueur au moment de la souscription de l'abonnement par le Client.</p>
+
+                    <h2 id="commande">4. Commande</h2>
+                    <p>Pour souscrire à un abonnement, le Client doit créer un compte sur le site fitlife360.com et suivre le processus de commande en ligne. La validation de la commande implique l'acceptation des présentes CGV.</p>
+
+                    <h2 id="paiement">5. Paiement</h2>
+                    <p>Le paiement des abonnements s'effectue en ligne via un service de paiement sécurisé tel que Stripe avec une carte bancaire . Le débit est effectué lors de la validation de la commande.</p>
+
+                    <h2 id="duree">6. Durée et résiliation</h2>
+                    <p>Les abonnements sont proposés pour des durées définies (mensuelles, trimestrielles, annuelles). Le Client peut résilier son abonnement à tout moment via son espace personnel sur le site. La résiliation prend effet à la fin de la période d'abonnement en cours.</p>
+
+                    <h2 id="retractation">7. Droit de rétractation</h2>
+                    <p>Conformément à l'article L. 221-18 du Code de la consommation, le Client dispose d'un délai de 14 jours à compter de la souscription de l'abonnement pour exercer son droit de rétractation sans avoir à justifier de motifs ni à payer de pénalités. Pour exercer ce droit, le Client doit notifier sa décision de rétractation à FitLife360 sur l'onglet <a href="{{ path('app_resiliation')}}">contact</a>.</p>
+
+                    <h2 id="responsabilite">8. Responsabilité</h2>
+                    <p>FitLife360 s'engage à fournir les services conformément aux descriptions présentes sur le site. Toutefois, la responsabilité de FitLife360 ne saurait être engagée en cas de force majeure ou de faits indépendants de sa volonté. Le Client est responsable de la bonne utilisation de ses identifiants et mots de passe et s'engage à ne pas les divulguer.</p>
+
+                    <h2 id="confidentialite">9. Confidentialité et protection des données</h2>
+                    <p>FitLife360 s'engage à respecter la confidentialité des informations personnelles fournies par le Client. Les données sont collectées et traitées conformément à notre politique de confidentialité et en conformité avec le RGPD.</p>
+
+                    <h2 id="propriete-intellectuelle">10. Propriété intellectuelle</h2>
+                    <p>Tous les contenus présents sur le site fitlife360.com sont protégés par les droits de propriété intellectuelle et restent la propriété exclusive de FitLife360.</p>
+
+                    <h2 id="litiges">11. Litiges et droit applicable</h2>
+                    <p>Les présentes CGV sont régies par le droit français. En cas de litige, le Client s'engage à contacter en priorité FitLife360 pour tenter de résoudre à l'amiable tout différend avant de recourir aux tribunaux compétents.</p>
+
+                    <h2 id="contact">12. Contact</h2>
+                    <p>Pour toute question ou demande d'information, le Client peut contacter FitLife360 sur l'onglet <a href="{{ path('app_contact')}}">contact</a> du site.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
