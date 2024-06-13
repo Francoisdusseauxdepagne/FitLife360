@@ -39,7 +39,7 @@
                                 {% elseif app.user.profile.idAbonnement is null %}
                                     <a href="{{ path('app_panier', {'id': abonnement.id}) }}" class="btn btn-secondary btn-block">Je choisis</a>
                                 {% else %}
-                                    <a href="{{ path('app_resiliation') }}" class="btn btn-secondary btn-block">Je veux changer</a>
+                                    <button class="btn btn-secondary btn-block" data-bs-toggle="modal" data-bs-target="#changeModal">Je veux changer</button>
                                 {% endif %}
                             </div>
                         </div>
@@ -48,5 +48,23 @@
             {% endfor %}
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="changeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changeModalLabel">Demande de Changement de formule</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Avant de demander de changer d’abonnement, veuillez vérifier votre engagement.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-secondary"><a href="{{ path('app_resiliation')}}" class="text-decoration-none text-white">Confirmer</a></button>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
