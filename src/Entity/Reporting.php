@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ReportingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReportingRepository;
 
 #[ORM\Entity(repositoryClass: ReportingRepository::class)]
 class Reporting

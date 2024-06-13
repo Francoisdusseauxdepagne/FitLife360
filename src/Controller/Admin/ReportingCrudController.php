@@ -4,8 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Reporting;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ReportingCrudController extends AbstractCrudController
 {
@@ -28,6 +29,7 @@ class ReportingCrudController extends AbstractCrudController
             TextField::new('idProfile.firstname', 'Prénom du signaleur'),
             TextField::new('idProfile.name', 'Nom du signaleur'),
             TextField::new('comment', 'Commentaire de signalement'),
+            DateField::new('createdAt', 'Date du signalement')
         ];
     }
 }

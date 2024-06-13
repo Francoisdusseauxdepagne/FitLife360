@@ -25,8 +25,8 @@ class TutoVideo
     #[ORM\Column(length: 255)]
     private ?string $url = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $datePublication = null;
+    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    private ?\DateTimeImmutable $datePublication = null;
 
     /**
      * @var Collection<int, Comment>
@@ -83,12 +83,12 @@ class TutoVideo
         return $this;
     }
 
-    public function getDatePublication(): ?\DateTimeInterface
+    public function getDatePublication(): ?\DateTimeImmutable
     {
         return $this->datePublication;
     }
 
-    public function setDatePublication(\DateTimeInterface $datePublication): static
+    public function setDatePublication(\DateTimeImmutable $datePublication): static
     {
         $this->datePublication = $datePublication;
 

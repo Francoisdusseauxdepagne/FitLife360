@@ -33,7 +33,7 @@ class TutoVideoCrudController extends AbstractCrudController
             TextEditorField::new('description', 'Description'),
             UrlField::new('url', 'Url'),
             DateField::new('datePublication', 'Date de publication'),
-            TimeField::new('temps', 'Durée de la video'),
+            TextField::new('temps', 'Durée de la video'),
         ];
     }
 }
