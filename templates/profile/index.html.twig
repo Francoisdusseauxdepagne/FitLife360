@@ -89,20 +89,23 @@
 										<strong>Durée contratuelle:</strong>
 										{{ profile.idAbonnement.duree }}
 									</p>
-									{% if subscriptionDate %}
-										<p class="card-text fs-6">
-											<strong>Souscription le:</strong>
-											{{ subscriptionDate|date('d-m-Y') }}
-											<br>
-											<strong>Date de fin:</strong>
-											{{ subscriptionDate|date_modify('+12 months')|date('d-m-Y') }}
-										</p>
-									{% else %}
-										<p>Pas de souscription active</p>
+									{% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium"  %}
+										{% if subscriptionDate %}
+											<p class="card-text fs-6">
+												<strong>Souscription le:</strong>
+												{{ subscriptionDate|date('d-m-Y') }}
+												<br>
+												<strong>Date de fin:</strong>
+												{{ subscriptionDate|date_modify('+12 months')|date('d-m-Y') }}
+											</p>
+										{% else %}
+											<p>Pas de souscription active</p>
+										{% endif %}
 									{% endif %}
 									<a href="{{ path('app_abonnement') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
 									<a href="{{ path('app_resiliation')}}" class="btn btn-warning btn-sm">Supprimer mon abonnement</a>
-									<a href="{{ path('app_delete')}}" class="btn btn-danger btn-sm">Supprimer</a>
+
+									<a href="{{ path('app_delete')}}" class="btn btn-danger btn-sm mt-3">Supprimer</a>
 								</div>
 							</div>
 						</div>
