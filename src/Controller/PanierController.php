@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Panier;
 use App\Repository\AbonnementRepository;
+use App\Repository\PanierRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,6 +28,7 @@ class PanierController extends AbstractController
     {
         // Récupérer l'abonnement à ajouter au panier
         $abonnement = $abonnementRepository->find($id);
+        
 
         if (!$abonnement) {
             throw $this->createNotFoundException('Abonnement non trouvé');
@@ -35,11 +37,16 @@ class PanierController extends AbstractController
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
 
+
         // Créer une nouvelle instance de Panier et lui attribuer l'abonnement et le profil de l'utilisateur
+        $profile = $user->getProfile();
         $panier = new Panier();
         $panier->setCreatedAt(new DateTimeImmutable());
         $panier->setIdAbonnement($abonnement);
-        $panier->setIdProfile($user->getProfile());
+        $panier->setIdProfile($profile);
+        $profile->setIdAbonnement($abonnement);
+        $this->entityManager->persist($profile);
+        
 
         // Sauvegarder le panier en base de données
         $this->entityManager->persist($panier);
@@ -50,11 +57,21 @@ class PanierController extends AbstractController
     }
 
     #[Route('/panier', name: 'panier')]
-    public function showPanier(): Response
+    public function showPanier(PanierRepository $panierRepository): Response
     {
-        $panier = $this->entityManager->getRepository(Panier::class)->findOneBy(['idProfile' => $this->getUser()->getProfile()]);
-        
-        $abonnement = $panier ? $panier->getIdAbonnement() : [];
+        $user = $this->getUser();
+       
+
+        // Récupérer le dernier panier créé pour cet utilisateur
+        $panier = $panierRepository->findOneBy(
+            ['idProfile' => $user->getProfile()],
+            ['createdAt' => 'DESC'] // Tri par date de création décroissante pour obtenir le dernier panier
+        );
+
+        // Vous pouvez aussi récupérer tous les paniers associés à cet utilisateur pour un traitement plus avancé
+        // $paniers = $entityManager->getRepository(Panier::class)->findBy(['idProfile' => $user->getProfile()], ['createdAt' => 'DESC']);
+
+        $abonnement = $panier ? $panier->getIdAbonnement() : null;
 
         return $this->render('panier/index.html.twig', [
             'panier' => $panier,
@@ -63,8 +80,9 @@ class PanierController extends AbstractController
     }
 
     #[Route('/paid/{id}', name: 'app_pay', methods: ['POST'])]
-    public function pay(int $id, AbonnementRepository $abonnementRepository, EntityManagerInterface $entityManager): Response
+    public function pay(int $id, AbonnementRepository $abonnementRepository, EntityManagerInterface $entityManager,PanierRepository $panierRepository): Response
     {
+        $user = $this->getUser();
         $abonnement = $abonnementRepository->find($id);
 
         if (!$abonnement) {
@@ -93,7 +111,10 @@ class PanierController extends AbstractController
         ]);
 
         // Recherche du panier de l'utilisateur
-        $panier = $entityManager->getRepository(Panier::class)->findOneBy(['idProfile' => $this->getUser()->getProfile()]);
+        $panier = $panierRepository->findOneBy(
+            ['idProfile' => $user->getProfile()],
+            ['createdAt' => 'DESC'] // Tri par date de création décroissante pour obtenir le dernier panier
+        );
 
         if ($panier) {
             $panier->setIsPaid(true);
@@ -104,13 +125,16 @@ class PanierController extends AbstractController
     }
 
     #[Route('/pay/success', name: 'app_pay_success')]
-    public function paySuccess(AbonnementRepository $abonnementRepository): Response
+    public function paySuccess(PanierRepository $panierRepository): Response
     {
         $user = $this->getUser();
         $profile = $user->getProfile();
 
-        // Récupérer le panier de l'utilisateur
-        $panier = $this->entityManager->getRepository(Panier::class)->findOneBy(['idProfile' => $profile]);
+        // Recherche du panier de l'utilisateur
+        $panier = $panierRepository->findOneBy(
+            ['idProfile' => $user->getProfile()],
+            ['createdAt' => 'DESC'] // Tri par date de création décroissante pour obtenir le dernier panier
+        );
 
         if ($panier && $panier->isPaid()) {
             // Mettre à jour le profil avec l'abonnement choisi
@@ -121,6 +145,12 @@ class PanierController extends AbstractController
         } else {
             $this->addFlash('error', 'Erreur lors de la mise à jour du profil.');
         }
+
+        // // Supprimer le panier du profil quand il paiement est valide
+        // if ($panier) {
+        //     $this->entityManager->remove($panier);
+        //     $this->entityManager->flush();
+        // }
 
         return $this->redirectToRoute('app_profile');
     }

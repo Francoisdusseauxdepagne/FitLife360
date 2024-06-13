@@ -99,10 +99,13 @@ class ProfileController extends AbstractController
 
         $subscriptionDate = $profile->getSubscriptionDate();
 
+        $abonnement = $profile->getIdAbonnement();
+
         return $this->render('profile/index.html.twig', [
             'profile' => $profile,
             'reservation' => $reservation,
-            'subscriptionDate' => $subscriptionDate
+            'subscriptionDate' => $subscriptionDate,
+            'abonnement' => $abonnement
         ]);
     }
 
@@ -128,5 +131,27 @@ class ProfileController extends AbstractController
         return $this->render('profile/update.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    #[Route('/profile/delete', name: 'app_delete')]
+    public function delete(EntityManagerInterface $entityManager): Response
+    {   
+        $user= $this->getUser();
+        $profile = $user->getProfile();
+        // Suppression de l'abonnement associé, s'il existe
+        $abonnement = $profile->getIdAbonnement();
+        if ($abonnement !== null) {
+            $abonnement = $profile->setIdAbonnement(null); // Détacher l'abonnement du profil
+             // Supprimer l'abonnement
+            $entityManager->persist($abonnement);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Abonnement au profil supprimé avec succès.');
+        } else {
+            $this->addFlash('warning', 'Ce profil n\'a pas d\'abonnement associé à supprimer.');
+        }
+
+        // Redirection vers une page appropriée (par exemple, page de profil)
+        return $this->redirectToRoute('app_profile');
     }
 }

@@ -95,13 +95,14 @@
 											{{ subscriptionDate|date('d-m-Y') }}
 											<br>
 											<strong>Date de fin:</strong>
-											{{ subscriptionDate|date_modify('+364 days')|date('d-m-Y') }}
+											{{ subscriptionDate|date_modify('+12 months')|date('d-m-Y') }}
 										</p>
 									{% else %}
 										<p>Pas de souscription active</p>
 									{% endif %}
 									<a href="{{ path('app_abonnement') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
 									<a href="{{ path('app_resiliation')}}" class="btn btn-warning btn-sm">Supprimer mon abonnement</a>
+									<a href="{{ path('app_delete')}}" class="btn btn-danger btn-sm">Supprimer</a>
 								</div>
 							</div>
 						</div>
