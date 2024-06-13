@@ -147,11 +147,9 @@ class ProfileController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Abonnement au profil supprimé avec succès.');
-        } else {
-            $this->addFlash('warning', 'Ce profil n\'a pas d\'abonnement associé à supprimer.');
-        }
-
+      
         // Redirection vers une page appropriée (par exemple, page de profil)
         return $this->redirectToRoute('app_profile');
+        }
     }
 }

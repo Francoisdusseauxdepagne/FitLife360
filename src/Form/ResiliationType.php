@@ -33,9 +33,10 @@ class ResiliationType extends AbstractType
                 'label' => 'Message de résiliation',
                 'attr' => [
                     'id' => 'resiliation_content',
-                    'disabled' => true, // Rend le champ non modifiable
+                    'readonly' => true, // Rend le champ non modifiable
                 ]
-            ])        ;
+            ])        
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

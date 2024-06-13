@@ -34,8 +34,9 @@ class ResiliationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $content = $form->get('content')->getData();
             $resiliation->setCreatedAt(new \DateTimeImmutable());
-
+            $resiliation->setContent($content);
             $entityManager->persist($resiliation);
             $entityManager->flush();
 
