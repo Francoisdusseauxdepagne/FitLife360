@@ -566,4 +566,18 @@ class Profile
 
         return $this;
     }
+
+     /**
+     *
+     * @return \DateTimeImmutable|null
+     */
+    public function getSubscriptionDate(): ?\DateTimeImmutable
+    {
+        foreach ($this->paniers as $panier) {
+            if ($panier->isPaid()) {
+                return $panier->getCreatedAt();
+            }
+        }
+        return null;
+    }
 }
