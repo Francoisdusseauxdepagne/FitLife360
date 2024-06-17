@@ -97,14 +97,11 @@ class ProfileController extends AbstractController
             'idProfile' => $profile
         ]);
 
-        $subscriptionDate = $profile->getSubscriptionDate();
-
         $abonnement = $profile->getIdAbonnement();
 
         return $this->render('profile/index.html.twig', [
             'profile' => $profile,
             'reservation' => $reservation,
-            'subscriptionDate' => $subscriptionDate,
             'abonnement' => $abonnement
         ]);
     }

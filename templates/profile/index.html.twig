@@ -90,17 +90,6 @@
 										{{ profile.idAbonnement.duree }}
 									</p>
 									{% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium" %}
-										{% if subscriptionDate %}
-											<p class="card-text fs-6">
-												<strong>Souscription le:</strong>
-												{{ subscriptionDate|date('d-m-Y') }}
-												<br>
-												<strong>Date de fin:</strong>
-												{{ subscriptionDate|date_modify('+12 months')|date('d-m-Y') }}
-											</p>
-										{% else %}
-											<p>Pas de souscription active</p>
-										{% endif %}
 										<a href="{{ path('app_resiliation')}}" class="btn btn-warning btn-sm my-2">Supprimer mon abonnement</a>
 										<a href="{{ path('abonnement_list') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
 									{% elseif profile.idAbonnement.title == "Basic" %}
