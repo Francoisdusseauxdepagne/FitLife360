@@ -30,11 +30,11 @@ class ReservationCrudController extends AbstractCrudController
     {
         return [
             AssociationField::new('idProfile', 'Prénom du sportif')
-                ->formatValue(function ($value, $entity) {
+                ->formatValue(function ($entity) {
                     return $entity->getIdProfile()->getFirstName();
                 }),
             AssociationField::new('idProfileCoach', 'Prénom du Coach')
-                ->formatValue(function ($value, $entity) {
+                ->formatValue(function ($entity) {
                     return $entity->getIdProfileCoach()->getFirstName();
                 }),
             DateField::new('date', 'Date'),

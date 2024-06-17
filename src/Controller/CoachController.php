@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Messenger;
 use App\Entity\ProfileCoach;
 use App\Entity\PlanEntrainement;
 use App\Entity\DetailEntrainement;

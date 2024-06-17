@@ -37,9 +37,12 @@
                                 {% elseif app.user and app.user.profile is null %}
                                     <a href="{{ path('app_edit_profile') }}" class="btn btn-secondary btn-block">Complétez votre profil</a>
                                 {% elseif app.user.profile.idAbonnement is null %}
-                                    <a href="{{ path('app_panier', {'id': abonnement.id}) }}" class="btn btn-secondary btn-block">Je choisis</a>
+                                    <form action="{{ path('create_panier') }}" method="post" class="d-inline">
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('create_panier') }}">
+                                        <input type="hidden" name="abonnements[]" value="{{ abonnement.id }}">
+                                        <button type="submit" class="btn btn-secondary btn-block">Je choisis</button>
+                                    </form>
                                 {% else %}
-                                    <button class="btn btn-secondary btn-block" data-bs-toggle="modal" data-bs-target="#changeModal">Je veux changer</button>
                                 {% endif %}
                             </div>
                         </div>
@@ -50,21 +53,29 @@
     </div>
 </div>
 
-<div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="changeModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="changeModalLabel">Demande de Changement de formule</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Avant de demander de changer d’abonnement, veuillez vérifier votre engagement.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-secondary"><a href="{{ path('app_resiliation')}}" class="text-decoration-none text-white">Confirmer</a></button>
-      </div>
-    </div>
-  </div>
-</div>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('{{ path('create_panier') }}', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+            .then(data => {
+                if (data.id) {
+                    const stripe = Stripe('{{ stripe_public_key }}');
+                    stripe.redirectToCheckout({ sessionId: data.id });
+                } else {
+                    console.error('Error:', data.error);
+                    alert('Failed to create checkout session.');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Failed to create checkout session.');
+            });
+        });
+    });
+</script>
 {% endblock %}

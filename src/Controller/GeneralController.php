@@ -26,16 +26,15 @@ class GeneralController extends AbstractController
         ]);
     }
 
+    // #[Route('/abonnement', name: 'app_abonnement')]
+    // public function abonnement(): Response
+    // {
+    //     $abonnements = $this->entityManager->getRepository(Abonnement::class)->findAll();
 
-    #[Route('/abonnement', name: 'app_abonnement')]
-    public function abonnement(): Response
-    {
-        $abonnements = $this->entityManager->getRepository(Abonnement::class)->findAll();
-
-        return $this->render('abonnement/index.html.twig', [
-            'abonnements' => $abonnements,
-        ]);
-    }
+    //     return $this->render('abonnement/index.html.twig', [
+    //         'abonnements' => $abonnements,
+    //     ]);
+    // }
 
     #[Route('/apropos', name: 'app_apropos')]
     public function apropos(): Response
@@ -74,7 +73,6 @@ class GeneralController extends AbstractController
     #[Route('/tuto/video', name: 'app_tuto_video')]
     public function video(): Response
     {
-
         $videos = $this->entityManager->getRepository(TutoVideo::class)->findAll();
 
         return $this->render('tuto_video/index.html.twig', [

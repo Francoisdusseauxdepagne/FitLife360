@@ -27,6 +27,20 @@ class Panier
     #[ORM\Column]
     private ?bool $isPaid = false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeSessionId = null;
+
+    /**
+     * @var Collection<int, Invoice>
+     */
+    #[ORM\OneToMany(targetEntity: Invoice::class, mappedBy: 'idPanier')]
+    private Collection $invoices;
+
+    public function __construct()
+    {
+        $this->invoices = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +90,49 @@ class Panier
     public function setIsPaid(bool $isPaid): static
     {
         $this->isPaid = $isPaid;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Invoice>
+     */
+    public function getInvoices(): Collection
+    {
+        return $this->invoices;
+    }
+
+    public function addInvoice(Invoice $invoice): static
+    {
+        if (!$this->invoices->contains($invoice)) {
+            $this->invoices->add($invoice);
+            $invoice->setIdPanier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvoice(Invoice $invoice): static
+    {
+        if ($this->invoices->removeElement($invoice)) {
+            // set the owning side to null (unless already changed)
+            if ($invoice->getIdPanier() === $this) {
+                $invoice->setIdPanier(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripeSessionId;
+    }
+
+    public function setStripeSessionId(?string $stripeSessionId): static
+    {
+        $this->stripeSessionId = $stripeSessionId;
 
         return $this;
     }

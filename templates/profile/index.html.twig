@@ -61,7 +61,7 @@
 						</div>
 						<div class="card-body">
 							<p class="fs-6">Vous n'avez pas encore choisi d'abonnement.</p>
-							<a href="{{ path('app_abonnement') }}" class="btn btn-primary">Voir les abonnements</a>
+							<a href="{{ path('abonnement_list') }}" class="btn btn-primary">Voir les abonnements</a>
 						</div>
 					</div>
 				{% else %}
@@ -102,11 +102,11 @@
 											<p>Pas de souscription active</p>
 										{% endif %}
 										<a href="{{ path('app_resiliation')}}" class="btn btn-warning btn-sm my-2">Supprimer mon abonnement</a>
-										<a href="{{ path('app_abonnement') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
+										<a href="{{ path('abonnement_list') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
 									{% elseif profile.idAbonnement.title == "Basic" %}
 										<p>Pas d'abonnement</p>
 										<a href="{{ path('app_delete')}}" class="btn btn-danger btn-sm">Supprimer</a>
-										<a href="{{ path('app_abonnement') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
+										<a href="{{ path('abonnement_list') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
 									{% endif %}
 								</div>
 							</div>
