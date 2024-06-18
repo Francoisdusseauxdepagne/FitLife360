@@ -14,6 +14,7 @@ use App\Entity\TutoVideo;
 use App\Entity\Abonnement;
 use App\Entity\Reservation;
 use App\Entity\Resiliation;
+use App\Entity\ContactEvent;
 use App\Entity\ProfileCoach;
 use App\Entity\PlanEntrainement;
 use App\Entity\DetailEntrainement;
@@ -88,5 +89,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Reservation', 'fa-solid fa-calendar-days', Reservation::class);
         yield MenuItem::section('Gestion des Evènements');
         yield MenuItem::linkToCrud('Evènements', 'fa-solid fa-calendar-days', Event::class);
+        yield MenuItem::linkToCrud('Demande de reservation', 'fa-solid fa-envelope', ContactEvent::class);
     }
 }

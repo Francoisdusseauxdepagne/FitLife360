@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactEventController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mt-5">Demander une reservation</h1>
+    <p>Les premiers messages envoyés seront pris en compte.</p>
+    {{ form_start(form) }}
+        {{ form_row(form.content) }}
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

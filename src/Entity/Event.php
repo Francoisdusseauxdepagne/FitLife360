@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EventRepository;
@@ -50,6 +52,17 @@ class Event
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $endTime = null;
+
+    /**
+     * @var Collection<int, ContactEvent>
+     */
+    #[ORM\OneToMany(targetEntity: ContactEvent::class, mappedBy: 'idEvent')]
+    private Collection $contactEvents;
+
+    public function __construct()
+    {
+        $this->contactEvents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -196,6 +209,36 @@ class Event
     public function setEndTime(DateTimeInterface $endTime): static
     {
         $this->endTime = $endTime;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ContactEvent>
+     */
+    public function getContactEvents(): Collection
+    {
+        return $this->contactEvents;
+    }
+
+    public function addContactEvent(ContactEvent $contactEvent): static
+    {
+        if (!$this->contactEvents->contains($contactEvent)) {
+            $this->contactEvents->add($contactEvent);
+            $contactEvent->setIdEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContactEvent(ContactEvent $contactEvent): static
+    {
+        if ($this->contactEvents->removeElement($contactEvent)) {
+            // set the owning side to null (unless already changed)
+            if ($contactEvent->getIdEvent() === $this) {
+                $contactEvent->setIdEvent(null);
+            }
+        }
 
         return $this;
     }

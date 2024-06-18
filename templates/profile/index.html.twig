@@ -76,7 +76,7 @@
 														<li>Places disponibles :
 															{{ event.spaceAvailable }}</li>
 													</ul>
-													<a href="#" class="btn btn-warning">Je veux participer</a>
+													<a href="{{ path('app_contact_event', {'id': event.id}) }}" class="btn btn-warning">Je veux participer</a>
 												</div>
 											</div>
 										</div>

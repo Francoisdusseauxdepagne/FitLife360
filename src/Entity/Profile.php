@@ -125,6 +125,12 @@ class Profile
     #[ORM\OneToMany(targetEntity: Resiliation::class, mappedBy: 'idProfile')]
     private Collection $resiliations;
 
+    /**
+     * @var Collection<int, ContactEvent>
+     */
+    #[ORM\OneToMany(targetEntity: ContactEvent::class, mappedBy: 'idProfile')]
+    private Collection $contactEvents;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -135,6 +141,7 @@ class Profile
         $this->reportings = new ArrayCollection();
         $this->contacts = new ArrayCollection();
         $this->resiliations = new ArrayCollection();
+        $this->contactEvents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -579,5 +586,35 @@ class Profile
             }
         }
         return null;
+    }
+
+    /**
+     * @return Collection<int, ContactEvent>
+     */
+    public function getContactEvents(): Collection
+    {
+        return $this->contactEvents;
+    }
+
+    public function addContactEvent(ContactEvent $contactEvent): static
+    {
+        if (!$this->contactEvents->contains($contactEvent)) {
+            $this->contactEvents->add($contactEvent);
+            $contactEvent->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContactEvent(ContactEvent $contactEvent): static
+    {
+        if ($this->contactEvents->removeElement($contactEvent)) {
+            // set the owning side to null (unless already changed)
+            if ($contactEvent->getIdProfile() === $this) {
+                $contactEvent->setIdProfile(null);
+            }
+        }
+
+        return $this;
     }
 }
