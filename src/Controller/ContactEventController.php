@@ -40,7 +40,7 @@ class ContactEventController extends AbstractController
             $this->entityManager->persist($contactEvent);
             $this->entityManager->flush();
 
-            $this->addFlash('success', 'Votre message a été envoyé avec succès.');
+            $this->addFlash('success', 'Votre message a été envoyé avec succès. Vous recevrez une reponse dans les plus brefs delais par e-mail.');
 
             // Redirection vers une autre page après l'envoi du formulaire
             return $this->redirectToRoute('app_profile'); // Remplacez 'app_profile' par le nom de votre route de redirection
