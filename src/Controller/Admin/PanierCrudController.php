@@ -27,9 +27,9 @@ class PanierCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id', 'Identifiant du paiement'),
+            IdField::new('id', 'Identifiant du panier'),
             AssociationField::new('idAbonnement', 'Abonnement'),
-            AssociationField::new('idProfile', 'Prénom du profil'),
+            AssociationField::new('idProfile', 'Prénom du membre'),
             BooleanField::new('isPaid', 'Statut de paiement'),
         ];
     }

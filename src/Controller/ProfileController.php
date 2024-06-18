@@ -102,7 +102,7 @@ class ProfileController extends AbstractController
         return $this->render('profile/index.html.twig', [
             'profile' => $profile,
             'reservation' => $reservation,
-            'abonnement' => $abonnement
+            'abonnement' => $abonnement,
         ]);
     }
 

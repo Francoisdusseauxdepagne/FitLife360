@@ -25,8 +25,8 @@ class ProfileCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Profil(s)')
-            ->setEntityLabelInSingular('un profil');
+            ->setEntityLabelInPlural('Membre(s)')
+            ->setEntityLabelInSingular('un membre');
     }
 
     public function configureFields(string $pageName): iterable

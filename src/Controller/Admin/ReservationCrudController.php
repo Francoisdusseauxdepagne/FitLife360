@@ -29,15 +29,9 @@ class ReservationCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('idProfile', 'Prénom du sportif')
-                ->formatValue(function ($entity) {
-                    return $entity->getIdProfile()->getFirstName();
-                }),
-            AssociationField::new('idProfileCoach', 'Prénom du Coach')
-                ->formatValue(function ($entity) {
-                    return $entity->getIdProfileCoach()->getFirstName();
-                }),
-            DateField::new('date', 'Date'),
+            AssociationField::new('idProfile', 'Prénom du sportif'),
+            AssociationField::new('idProfileCoach', 'Prénom du Coach'),
+            DateField::new('date', 'Date '),
             TimeField::new('startTime', 'Heure de la reservation'),
         ];
     }

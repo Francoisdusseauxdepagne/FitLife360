@@ -27,11 +27,10 @@ class ReportingCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('idProfile.FullName', 'Signaleur'),
+            AssociationField::new('idProfile', 'Signaleur'),
             TextField::new('comment', 'Commentaire du signaleur'),
-            TextField::new('idComment.text', 'Commentaire signalé'),
+            AssociationField::new('idComment', 'Commentaire signalé'),
             DateField::new('createdAt', 'Date du signalement'),
-            TextField::new('idComment.idTutoVideo.title', 'Titre de la vidéo')
         ];
     }
 }
