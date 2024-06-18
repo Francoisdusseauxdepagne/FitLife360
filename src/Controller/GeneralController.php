@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\TutoVideo;
-use App\Entity\Abonnement;
 use App\Entity\ProfileCoach;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,16 +24,6 @@ class GeneralController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-
-    // #[Route('/abonnement', name: 'app_abonnement')]
-    // public function abonnement(): Response
-    // {
-    //     $abonnements = $this->entityManager->getRepository(Abonnement::class)->findAll();
-
-    //     return $this->render('abonnement/index.html.twig', [
-    //         'abonnements' => $abonnements,
-    //     ]);
-    // }
 
     #[Route('/apropos', name: 'app_apropos')]
     public function apropos(): Response

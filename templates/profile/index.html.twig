@@ -61,111 +61,113 @@
 						</div>
 						<div class="card-body">
 							<p class="fs-6">Vous n'avez pas encore choisi d'abonnement.</p>
-							<small><p class="fst-italic">Pour profiter des services de FitLife360 vous devez souscrire à un abonnement.</p><small>
-							<a href="{{ path('abonnement_list') }}" class="btn btn-primary">Voir les abonnements</a>
-						</div>
-					</div>
-				{% else %}
-					<div class="card mb-4">
-						<div class="card-header bg-secondary text-white">
-							<h2 class="fs-5 mb-0">Mon abonnement
-								{{ profile.idAbonnement.title }}</h2>
-						</div>
-						<div class="card-body">
-							<div class="row row-cols-1 row-cols-md-2 g-4">
-								<div class="col">
-									<ul class="list-unstyled mb-0">
-										{% set abonnement_details = profile.idAbonnement.description|split(", ") %}
-										{% for detail in abonnement_details %}
-											<li class="fs-6 text-muted">{{ detail|replace({'. ': ''}) }}</li>
-										{% endfor %}
-									</ul>
-								</div>
-								<div class="col">
-									<p class="card-text fs-6">
-										<strong>Montant payé:</strong>
-										{{ profile.idAbonnement.prix }}€
-									</p>
-									<p class"card-text fs-6">
-										<strong>Durée contratuelle:</strong>
-										{{ profile.idAbonnement.duree }}
-									</p>
-									{% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium" %}
-										<a href="{{ path('app_resiliation')}}" class="btn btn-warning btn-sm my-2">Supprimer mon abonnement</a>
-										<a href="{{ path('abonnement_list') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
-									{% elseif profile.idAbonnement.title == "Basic" %}
-										<p>Pas d'abonnement</p>
-										<a href="{{ path('app_delete')}}" class="btn btn-danger btn-sm">Supprimer</a>
-										<a href="{{ path('abonnement_list') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
-									{% endif %}
+							<small>
+								<p class="fst-italic">Pour profiter des services de FitLife360 vous devez souscrire à un abonnement.</p>
+								<small>
+									<a href="{{ path('abonnement_list') }}" class="btn btn-primary">Voir les abonnements</a>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="card mb-4">
-						<div class="card-header bg-secondary text-white">
-							<h2 class="fs-5 mb-0">Mes accès</h2>
-						</div>
-						<div class="card-body">
-							<div class="row row-cols-1 row-cols-md-2 g-4">
-								{% if profile.idAbonnement.title == "Vip" %}
-									<div class="col">
-										<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
+						{% else %}
+							<div class="card mb-4">
+								<div class="card-header bg-secondary text-white">
+									<h2 class="fs-5 mb-0">Mon abonnement
+										{{ profile.idAbonnement.title }}</h2>
+								</div>
+								<div class="card-body">
+									<div class="row row-cols-1 row-cols-md-2 g-4">
+										<div class="col">
+											<ul class="list-unstyled mb-0">
+												{% set abonnement_details = profile.idAbonnement.description|split(", ") %}
+												{% for detail in abonnement_details %}
+													<li class="fs-6 text-muted">{{ detail|replace({'. ': ''}) }}</li>
+												{% endfor %}
+											</ul>
+										</div>
+										<div class="col">
+											<p class="card-text fs-6">
+												<strong>Montant payé:</strong>
+												{{ profile.idAbonnement.prix }}€
+											</p>
+											<p class"card-text fs-6">
+												<strong>Durée contratuelle:</strong>
+												{{ profile.idAbonnement.duree }}
+											</p>
+											{% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium" %}
+												<a href="{{ path('app_resiliation')}}" class="btn btn-warning btn-sm my-2">Supprimer mon abonnement</a>
+												<a href="{{ path('abonnement_list') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
+											{% elseif profile.idAbonnement.title == "Basic" %}
+												<p>Pas d'abonnement</p>
+												<a href="{{ path('app_delete')}}" class="btn btn-danger btn-sm">Supprimer</a>
+												<a href="{{ path('abonnement_list') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
+											{% endif %}
+										</div>
 									</div>
-									<div class="col">
-										<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
+								</div>
+							</div>
+							<div class="card mb-4">
+								<div class="card-header bg-secondary text-white">
+									<h2 class="fs-5 mb-0">Mes accès</h2>
+								</div>
+								<div class="card-body">
+									<div class="row row-cols-1 row-cols-md-2 g-4">
+										{% if profile.idAbonnement.title == "Vip" %}
+											<div class="col">
+												<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
+											</div>
+											<div class="col">
+												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
+											</div>
+										{% else %}
+											<div class="col">
+												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
+											</div>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						<div class="card mb-4">
+							<div class="card-header bg-primary text-white">
+								<h2 class="fs-5 mb-0">Mon coach personnel</h2>
+							</div>
+							<div class="card-body">
+								{% if profile.idProfileCoach %}
+									<div class="d-flex align-items-center">
+										<img class="w-25 me-3" src="{{ asset('/images/photos/' ~ profile.idProfileCoach.photo) }}" alt="Photo de profil de {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}">
+										<div>
+											<p class="fs-6 mb-0">Votre coach :
+												{{ profile.idProfileCoach.firstName }}
+												{{ profile.idProfileCoach.name }}</p>
+											{% if profile.idAbonnement and (profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium") %}
+												<a href="{{ path('app_reservation') }}" class="btn btn-warning mt-2">Réserver un rendez-vous bilan avec un coach</a>
+											{% endif %}
+										</div>
 									</div>
 								{% else %}
-									<div class="col">
-										<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
+									<p class="fs-6">Aucun coach assigné.</p>
+								{% endif %}
+								{% if reservation %}
+									<div class="card mt-3">
+										<div class="card-body">
+											<h3 class="card-title fs-5 mb-3">Mon rendez-vous</h3>
+											<ul class="list-group list-group-flush">
+												<li class="list-group-item">Date :
+													{{ reservation.date | date('d/m/Y') }}</li>
+												<li class="list-group-item">Heure :
+													{{ reservation.startTime | date('H:i') }}</li>
+											</ul>
+											<a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="btn btn-warning mt-3">Modifier mon rendez-vous</a>
+											<a href="{{ path('app_reservation_delete', {'id': reservation.id}) }}" class="btn btn-danger mt-3">Supprimer mon rendez-vous</a>
+										</div>
+									</div>
+								{% else %}
+									<div class="alert alert-light mt-3" role="alert">
+										Pas de rendez-vous programmé pour le moment.
 									</div>
 								{% endif %}
 							</div>
 						</div>
 					</div>
-				{% endif %}
-				<div class="card mb-4">
-					<div class="card-header bg-primary text-white">
-						<h2 class="fs-5 mb-0">Mon coach personnel</h2>
-					</div>
-					<div class="card-body">
-						{% if profile.idProfileCoach %}
-							<div class="d-flex align-items-center">
-								<img class="w-25 me-3" src="{{ asset('/images/photos/' ~ profile.idProfileCoach.photo) }}" alt="Photo de profil de {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}">
-								<div>
-									<p class="fs-6 mb-0">Votre coach :
-										{{ profile.idProfileCoach.firstName }}
-										{{ profile.idProfileCoach.name }}</p>
-									{% if profile.idAbonnement and (profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium") %}
-										<a href="{{ path('app_reservation') }}" class="btn btn-warning mt-2">Réserver un rendez-vous bilan avec un coach</a>
-									{% endif %}
-								</div>
-							</div>
-						{% else %}
-							<p class="fs-6">Aucun coach assigné.</p>
-						{% endif %}
-						{% if reservation %}
-							<div class="card mt-3">
-								<div class="card-body">
-									<h3 class="card-title fs-5 mb-3">Mon rendez-vous</h3>
-									<ul class="list-group list-group-flush">
-										<li class="list-group-item">Date :
-											{{ reservation.date | date('d/m/Y') }}</li>
-										<li class="list-group-item">Heure :
-											{{ reservation.startTime | date('H:i') }}</li>
-									</ul>
-									<a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="btn btn-warning mt-3">Modifier mon rendez-vous</a>
-									<a href="{{ path('app_reservation_delete', {'id': reservation.id}) }}" class="btn btn-danger mt-3">Supprimer mon rendez-vous</a>
-								</div>
-							</div>
-						{% else %}
-							<div class="alert alert-light mt-3" role="alert">
-								Pas de rendez-vous programmé pour le moment.
-							</div>
-						{% endif %}
-					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-{% endblock %}
+		{% endblock %}
