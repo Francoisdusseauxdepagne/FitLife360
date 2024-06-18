@@ -85,12 +85,19 @@ class ProfileCoach
     #[ORM\Column(type: Types::TEXT)]
     private ?string $expertise = null;
 
+    /**
+     * @var Collection<int, Event>
+     */
+    #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'idProfileCoach')]
+    private Collection $events;
+
     public function __construct()
     {
         $this->planEntrainements = new ArrayCollection();
         $this->detailEntrainements = new ArrayCollection();
         $this->reservations = new ArrayCollection();
         $this->profiles = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -395,6 +402,36 @@ class ProfileCoach
     public function setExpertise(string $expertise): static
     {
         $this->expertise = $expertise;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): static
+    {
+        if (!$this->events->contains($event)) {
+            $this->events->add($event);
+            $event->setIdProfileCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): static
+    {
+        if ($this->events->removeElement($event)) {
+            // set the owning side to null (unless already changed)
+            if ($event->getIdProfileCoach() === $this) {
+                $event->setIdProfileCoach(null);
+            }
+        }
 
         return $this;
     }

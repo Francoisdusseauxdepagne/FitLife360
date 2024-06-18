@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Profile;
 use App\Form\ProfileType;
+use App\Repository\EventRepository;
 use App\Repository\AbonnementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ReservationRepository;
@@ -88,7 +89,7 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/show', name: 'app_show_profile')]
-    public function showProfile(ReservationRepository $reservationRepository): Response
+    public function showProfile(ReservationRepository $reservationRepository, EventRepository $eventRepository): Response
     {
         $user = $this->getUser();
         $profile = $user->getProfile();
@@ -99,10 +100,14 @@ class ProfileController extends AbstractController
 
         $abonnement = $profile->getIdAbonnement();
 
+        // Récupérez tous les événements disponibles
+        $events = $eventRepository->findAll();
+
         return $this->render('profile/index.html.twig', [
             'profile' => $profile,
             'reservation' => $reservation,
             'abonnement' => $abonnement,
+            'events' => $events,
         ]);
     }
 

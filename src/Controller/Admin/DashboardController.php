@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Entity\Event;
 use App\Entity\Panier;
 use App\Entity\Comment;
 use App\Entity\Contact;
@@ -64,7 +65,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Vues pages');
         yield MenuItem::linkToRoute('Profil Utilisateur', 'fa-solid fa-eye', 'app_profile');
         yield MenuItem::linkToRoute('profil Coach', 'fa-solid fa-eye', 'app_coach');
-        yield MenuItem::linkToRoute('Abonnement', "fa-brands fa-shopify", 'app_abonnement');
+        yield MenuItem::linkToRoute('Abonnement', "fa-brands fa-shopify", 'abonnement_list');
         yield MenuItem::linkToRoute('A propos', 'fa-solid fa-address-card', 'app_apropos');
         yield MenuItem::linkToRoute('Vidéos', 'fa-solid fa-film', 'app_tuto_video');
         yield MenuItem::section('Gestion des Utilisateurs');
@@ -85,5 +86,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Détail d\'entrainement', 'fa-solid fa-dumbbell', DetailEntrainement::class);
         yield MenuItem::section('Gestion des Reservations');
         yield MenuItem::linkToCrud('Reservation', 'fa-solid fa-calendar-days', Reservation::class);
+        yield MenuItem::section('Gestion des Evènements');
+        yield MenuItem::linkToCrud('Evènements', 'fa-solid fa-calendar-days', Event::class);
     }
 }

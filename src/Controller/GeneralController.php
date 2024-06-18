@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use App\Entity\TutoVideo;
 use App\Entity\ProfileCoach;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,8 +21,10 @@ class GeneralController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function accueil(): Response
     {
+        $events = $this->entityManager->getRepository(Event::class)->findAll();
+        
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'events' => $events,
         ]);
     }
 

@@ -54,6 +54,40 @@
 				</div>
 			</div>
 			<div class="col-lg-8">
+				{% if profile.idAbonnement.title == "Vip" %}
+					<div class="card mb-4">
+						<div class="card-header bg-secondary text-white">
+							<h2 class="fs-5 mb-0">Événements disponibles</h2>
+						</div>
+						<div class="card-body">
+							{% if events is not empty %}
+								<div class="row row-cols-1 row-cols-md-2 g-4">
+									{% for event in events %}
+										<div class="col">
+											<div class="card">
+												<div class="card-body">
+													<h2 class="card-title">{{ event.eventType }}</h2>
+													<p class="card-text">{{ event.description }}</p>
+													<ul class="list-unstyled">
+														<li>Date :
+															{{ event.date|date('d/m/Y') }}</li>
+														<li>Heure :
+															{{ event.startTime|date('H:i') }} à {{ event.endTime|date('H:i') }}</li>
+														<li>Places disponibles :
+															{{ event.spaceAvailable }}</li>
+													</ul>
+													<a href="#" class="btn btn-warning">Je veux participer</a>
+												</div>
+											</div>
+										</div>
+									{% endfor %}
+								</div>
+							{% else %}
+								<p class="text-muted">Aucun événement prévu pour le moment.</p>
+							{% endif %}
+						</div>
+					</div>
+				{% endif %}
 				{% if not profile.idAbonnement %}
 					<div class="card mb-4">
 						<div class="card-header bg-danger text-white">
@@ -109,7 +143,7 @@
 									<h2 class="fs-5 mb-0">Mes accès</h2>
 								</div>
 								<div class="card-body">
-									<div class="row row-cols-1 row-cols-md-2 g-4">
+									<div class="row g-4">
 										{% if profile.idAbonnement.title == "Vip" %}
 											<div class="col">
 												<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
@@ -117,7 +151,12 @@
 											<div class="col">
 												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
 											</div>
-										{% else %}
+										{% elseif profile.idAbonnement.title == "Premium" %}
+											<div class="col">
+												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
+												<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
+											</div>
+										{% elseif profile.idAbonnement.title == "Basic" %}
 											<div class="col">
 												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
 											</div>
