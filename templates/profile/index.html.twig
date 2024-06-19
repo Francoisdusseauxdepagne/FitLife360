@@ -106,12 +106,15 @@
 										{{ profile.idAbonnement.title }}</h2>
 								</div>
 								<div class="card-body bg-light">
-									<div class="row row-cols-1 row-cols-md-2 g-4">
+									<div class="row g-4">
 										<div class="col">
-											<ul>
+											<ul class="p-0">
 												{% set abonnement_details = profile.idAbonnement.description|split(", ") %}
 												{% for detail in abonnement_details %}
-													<li class="fs-6 textProfile fs-5 my-3">{{ detail|replace({'. ': ''}) }}</li>
+												<li class="d-flex align-items-center fs-6 textProfile fs-5 my-3">
+													<span class="mx-2"><i class="fa-regular fa-circle-check text-primary fs-5"></i></span>
+													{{ detail|replace({'. ': ''}) }}
+												</li>
 												{% endfor %}
 											</ul>
 										</div>
