@@ -7,19 +7,16 @@
 	<div class="container mt-5">
 		<div class="row gx-5">
 			<div class="col-lg-4">
-				<div class="card mb-4">
+				<div class="card mb-4 shadow-sm">
 					<div class="card-header bg-primary text-white">
-						<h1 class="fs-4 mb-0">Bonjour
-							{{ profile.firstName }}
-							{{ profile.name }}
-							💪</h1>
+						<h1 class="fs-4 mb-0 display-5">Ravie de vous voir {{ profile.firstName }}</h1>
 					</div>
-					<div class="card-body">
+					<div class="card-body bg-light">
 						<div class="text-center">
-							<img src="{{ asset('images/photos/' ~ profile.photo) }}" class="card-img-top rounded-circle" alt="Profile">
+							<img src="{{ asset('images/photos/' ~ profile.photo) }}" class="card-img-top rounded-circle shadow-lg" alt="Profile">
 						</div>
 						<div class="mt-4">
-							<h2 class="text-primary fs-3">Informations personnelles :</h2>
+							<h2 class="text-primary fs-3 mb-3 ">Informations personnelles :</h2>
 							<ul class="lists p-0">
 								<li class="lists_profile">
 									<p class="lists_profile--poppins"><strong>Prénom :</strong>
@@ -39,16 +36,16 @@
 							</ul>
 						</div>
 						<div class="mt-4">
-							<h2 class="text-primary fs-3">Objectifs :</h2>
-							<ul class="list-group">
-								<li class="listProfile">
-									<strong>Objectif sportif :</strong>
-									{{ profile.objectifSportif }}</li>
-								<li class="listProfile">
-									<strong>Biographie :</strong>
-									{{ profile.bio }}</li>
+							<h2 class="text-primary fs-3 mb-3">Objectifs :</h2>
+							<ul class="lists p-0">
+								<li class="lists_profile">
+									<p class="lists_profile--poppins"><strong>Objectif sportif :</strong>
+									{{ profile.objectifSportif }}</p></li>
+								<li class="lists_profile">
+									<p class="lists_profile--poppins"><strong>Biographie :</strong>
+									{{ profile.bio }}</p></li>
 							</ul>
-							<a href="{{ path('app_update_profile') }}" class="btn btn-warning btn-sm mt-4">Modifier mon profil</a>
+							<a href="{{ path('app_update_profile') }}" class="btn mt-3 btn-outline-warning">Modifier mon profil</a>
 						</div>
 					</div>
 				</div>
@@ -59,7 +56,7 @@
 						<div class="card-header bg-secondary">
 							<h2 class="fs-5 mb-0 display-6 text-white">Événements disponibles</h2>
 						</div>
-						<div class="card-body">
+						<div class="card-body bg-light">
 							{% if events is not empty %}
 								<div class="row row-cols-1 row-cols-md-2 g-4">
 									{% for event in events %}
@@ -84,7 +81,7 @@
 									{% endfor %}
 								</div>
 							{% else %}
-								<p class="text-muted">Aucun événement prévu pour le moment.</p>
+								<p class="text-muted textProfile">Aucun événement prévu pour le moment.</p>
 							{% endif %}
 						</div>
 					</div>
@@ -95,9 +92,9 @@
 							<h2 class="fs-5 mb-0">Choisir un abonnement</h2>
 						</div>
 						<div class="card-body">
-							<p class="fs-6">Vous n'avez pas encore choisi d'abonnement.</p>
+							<p class="fs-6 textProfile">Vous n'avez pas encore choisi d'abonnement.</p>
 							<small>
-								<p class="fst-italic">Pour profiter des services de FitLife360 vous devez souscrire à un abonnement.</p>
+								<p class="fst-italic textProfile">Pour profiter des services de FitLife360 vous devez souscrire à un abonnement.</p>
 								<small>
 									<a href="{{ path('abonnement_list') }}" class="btn btn-primary">Voir les abonnements</a>
 								</div>
@@ -108,17 +105,17 @@
 									<h2 class="fs-5 mb-0 display-6">Mon abonnement
 										{{ profile.idAbonnement.title }}</h2>
 								</div>
-								<div class="card-body">
+								<div class="card-body bg-light">
 									<div class="row row-cols-1 row-cols-md-2 g-4">
 										<div class="col">
-											<ul class="list-unstyled mb-0">
+											<ul>
 												{% set abonnement_details = profile.idAbonnement.description|split(", ") %}
 												{% for detail in abonnement_details %}
-													<li class="fs-6 text-muted">{{ detail|replace({'. ': ''}) }}</li>
+													<li class="fs-6 textProfile fs-5 my-3">{{ detail|replace({'. ': ''}) }}</li>
 												{% endfor %}
 											</ul>
 										</div>
-										<div class="col">
+										<div class="col textProfile">
 											<p class="card-text fs-6">
 												<strong>Montant payé:</strong>
 												{{ profile.idAbonnement.prix }}€
@@ -128,12 +125,12 @@
 												{{ profile.idAbonnement.duree }}
 											</p>
 											{% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium" %}
-												<a href="{{ path('app_resiliation')}}" class="btn btn-warning btn-sm my-2">Supprimer mon abonnement</a>
-												<a href="{{ path('abonnement_list') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
+												<a href="{{ path('app_resiliation')}}" class="btn btn-outline-warning btn-sm my-2">Supprimer mon abonnement</a>
+												<a href="{{ path('abonnement_list') }}" class="btn btn-outline-warning btn-sm">Voir les abonnements</a>
 											{% elseif profile.idAbonnement.title == "Basic" %}
 												<p>Pas d'abonnement</p>
-												<a href="{{ path('app_delete')}}" class="btn btn-danger btn-sm">Supprimer</a>
-												<a href="{{ path('abonnement_list') }}" class="btn btn-warning btn-sm">Voir les abonnements</a>
+												<a href="{{ path('app_delete')}}" class="btn btn-outline-danger btn-sm">Supprimer</a>
+												<a href="{{ path('abonnement_list') }}" class="btn btn-outline-warning btn-sm">Voir les abonnements</a>
 											{% endif %}
 										</div>
 									</div>
@@ -143,23 +140,23 @@
 								<div class="card-header bg-secondary text-white">
 									<h2 class="fs-5 mb-0 display-6">Mes accès</h2>
 								</div>
-								<div class="card-body">
+								<div class="card-body bg-light">
 									<div class="row g-4">
 										{% if profile.idAbonnement.title == "Vip" %}
 											<div class="col">
-												<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
+												<a href="{{ path('app_tuto_video') }}" class="btn btn-outline-primary btn-sm mb-2 textProfile">Accès aux vidéos</a>
 											</div>
 											<div class="col">
-												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
+												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-outline-primary  btn-sm mb-2 textProfile">Accès à mon programme d'entraînement</a>
 											</div>
 										{% elseif profile.idAbonnement.title == "Premium" %}
 											<div class="col">
 												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
-												<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2">Accès aux vidéos</a>
+												<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2 textProfile">Accès aux vidéos</a>
 											</div>
 										{% elseif profile.idAbonnement.title == "Basic" %}
 											<div class="col">
-												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
+												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2 textProfile">Accès à mon programme d'entraînement</a>
 											</div>
 										{% endif %}
 									</div>
@@ -167,10 +164,10 @@
 							</div>
 						{% endif %}
 						<div class="card mb-4">
-							<div class="card-header bg-primary text-white">
+							<div class="card-header bg-secondary text-white">
 								<h2 class="fs-5 mb-0 display-6">Mon coach personnel</h2>
 							</div>
-							<div class="card-body">
+							<div class="card-body bg-light">
 								{% if profile.idProfileCoach %}
 									<div class="d-flex align-items-center">
 										<img class="w-25 me-3" src="{{ asset('/images/photos/' ~ profile.idProfileCoach.photo) }}" alt="Photo de profil de {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}">
@@ -184,7 +181,7 @@
 										</div>
 									</div>
 								{% else %}
-									<p class="fs-6">Aucun coach assigné.</p>
+									<p class="fs-6 textProfile">Aucun coach assigné.</p>
 								{% endif %}
 								{% if profile.idAbonnement == "Vip" or profile.idAbonnement == "Premium" %}
 									{% if reservation %}
@@ -202,7 +199,7 @@
 											</div>
 										</div>
 									{% else %}
-										<div class="alert alert-light mt-3" role="alert">
+										<div class="alert alert-light mt-3 textProfile w-75" role="alert">
 											Pas de rendez-vous programmé pour le moment.
 										</div>
 									{% endif %}

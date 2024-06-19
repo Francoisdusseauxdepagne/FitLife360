@@ -1,6 +1,5 @@
 @import 'variables';
 
-
 .lists{
     gap: 10px;
     &_profile{
@@ -9,4 +8,8 @@
             font-family: $fontPoppins;
         }
     }
+}
+
+.textProfile{
+    font-family: $fontPoppins;
 }

@@ -7,43 +7,43 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav fs-5 me-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ path('app_home') }}">Accueil</a>
+                    <a class="nav-link text-white navLink" href="{{ path('app_home') }}">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ path('app_apropos') }}">A propos</a>
+                    <a class="nav-link text-white navLink" href="{{ path('app_apropos') }}">A propos</a>
                 </li>
                 {% if app.user %}
                     {% if app.user.isVerified() %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ path('app_profile')}}">Mon profil</a>
+                            <a class="nav-link text-white navLink" href="{{ path('app_profile')}}">Mon profil</a>
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ path('admin')}}">Administrateur</a>
+                            <a class="nav-link text-white navLink" href="{{ path('admin')}}">Administrateur</a>
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_COACH') %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ path('app_coach')}}">Espace Coach</a>
+                            <a class="nav-link text-white navLink" href="{{ path('app_coach')}}">Espace Coach</a>
                         </li>
                     {% endif %}
                      <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ path('app_logout')}}"><i class="fa-solid fa-right-from-bracket"></i></a>
+                        <a class="nav-link text-white navLink" href="{{ path('app_logout')}}"><i class="fa-solid fa-right-from-bracket"></i></a>
                     </li>
                 {% elseif not app.user %}
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ path('abonnement_list') }}">Abonnement</a>
+                        <a class="nav-link text-white navLink" href="{{ path('abonnement_list') }}">Abonnement</a>
                     </li>
                 {% endif %}
             </ul>
             <ul class="navbar-nav fs-5">
                 {% if not app.user %}
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ path('app_register')}}">S'inscrire</a>
+                        <a class="nav-link text-white navLink" href="{{ path('app_register')}}">S'inscrire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ path('app_login')}}">Connexion</a>
+                        <a class="nav-link text-white navLink" href="{{ path('app_login')}}">Connexion</a>
                     </li>
                 {% endif %}
             </ul>
