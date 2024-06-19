@@ -5,6 +5,7 @@ import './styles/nav.scss';
 // Styles particuliers
 import './styles/home.scss';
 import './styles/profile.scss';
+import './styles/about.scss';
 
 
 // Démarrage de Stimulus (si utilisé)
