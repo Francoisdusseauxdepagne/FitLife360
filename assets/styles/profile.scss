@@ -1,0 +1,12 @@
+@import 'variables';
+
+
+.lists{
+    gap: 10px;
+    &_profile{
+        list-style-type: none;
+        &--poppins{
+            font-family: $fontPoppins;
+        }
+    }
+}

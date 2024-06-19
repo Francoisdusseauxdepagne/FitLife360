@@ -1,5 +1,6 @@
 // Styles globaux (si nécessaire)
 import './styles/app.scss';
+import './styles/profile.scss';
 
 // Démarrage de Stimulus (si utilisé)
 import './bootstrap';

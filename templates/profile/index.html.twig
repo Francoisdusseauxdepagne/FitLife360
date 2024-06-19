@@ -19,32 +19,32 @@
 							<img src="{{ asset('images/photos/' ~ profile.photo) }}" class="card-img-top rounded-circle" alt="Profile">
 						</div>
 						<div class="mt-4">
-							<h2 class="text-primary">Informations personnelles :</h2>
-							<ul class="list-group">
-								<li class="list-group-item">
-									<strong>Prénom :</strong>
-									{{ profile.firstName }}</li>
-								<li class="list-group-item">
-									<strong>Nom :</strong>
-									{{ profile.name }}</li>
-								<li class="list-group-item">
-									<strong>Date de naissance :</strong>
-									{{ profile.dateDeNaissance | date('d/m/Y') }}</li>
-								<li class="list-group-item">
-									<strong>Email :</strong>
-									{{ app.user.email }}</li>
-								<li class="list-group-item">
-									<strong>Profil créé le :</strong>
-									{{ profile.createdAt | date('d/m/Y') }}</li>
+							<h2 class="text-primary fs-3">Informations personnelles :</h2>
+							<ul class="lists p-0">
+								<li class="lists_profile">
+									<p class="lists_profile--poppins"><strong>Prénom :</strong>
+									{{ profile.firstName }}</p></li>
+								<li class="lists_profile">
+									<p class="lists_profile--poppins"><strong>Nom :</strong>
+									{{ profile.name }}</p></li>
+								<li class="lists_profile">
+									<p class="lists_profile--poppins"><strong>Date de naissance :</strong>
+									{{ profile.dateDeNaissance | date('d/m/Y') }}</p></li>
+								<li class="lists_profile">
+									<p class="lists_profile--poppins"><strong>Email :</strong>
+									{{ app.user.email }}</p></li>
+								<li class="lists_profile">
+									<p class="lists_profile--poppins"><strong>Profil créé le :</strong>
+									{{ profile.createdAt | date('d/m/Y') }}</p></li>
 							</ul>
 						</div>
 						<div class="mt-4">
-							<h2 class="text-primary">Objectifs :</h2>
+							<h2 class="text-primary fs-3">Objectifs :</h2>
 							<ul class="list-group">
-								<li class="list-group-item">
+								<li class="listProfile">
 									<strong>Objectif sportif :</strong>
 									{{ profile.objectifSportif }}</li>
-								<li class="list-group-item">
+								<li class="listProfile">
 									<strong>Biographie :</strong>
 									{{ profile.bio }}</li>
 							</ul>
@@ -56,8 +56,8 @@
 			<div class="col-lg-8">
 				{% if profile.idAbonnement == "Vip" %}
 					<div class="card mb-4">
-						<div class="card-header bg-secondary text-white">
-							<h2 class="fs-5 mb-0">Événements disponibles</h2>
+						<div class="card-header bg-secondary">
+							<h2 class="fs-5 mb-0 display-6 text-white">Événements disponibles</h2>
 						</div>
 						<div class="card-body">
 							{% if events is not empty %}
@@ -105,7 +105,7 @@
 						{% else %}
 							<div class="card mb-4">
 								<div class="card-header bg-secondary text-white">
-									<h2 class="fs-5 mb-0">Mon abonnement
+									<h2 class="fs-5 mb-0 display-6">Mon abonnement
 										{{ profile.idAbonnement.title }}</h2>
 								</div>
 								<div class="card-body">
@@ -141,7 +141,7 @@
 							</div>
 							<div class="card mb-4">
 								<div class="card-header bg-secondary text-white">
-									<h2 class="fs-5 mb-0">Mes accès</h2>
+									<h2 class="fs-5 mb-0 display-6">Mes accès</h2>
 								</div>
 								<div class="card-body">
 									<div class="row g-4">
@@ -168,7 +168,7 @@
 						{% endif %}
 						<div class="card mb-4">
 							<div class="card-header bg-primary text-white">
-								<h2 class="fs-5 mb-0">Mon coach personnel</h2>
+								<h2 class="fs-5 mb-0 display-6">Mon coach personnel</h2>
 							</div>
 							<div class="card-body">
 								{% if profile.idProfileCoach %}
