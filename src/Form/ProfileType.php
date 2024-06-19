@@ -80,12 +80,6 @@ class ProfileType extends AbstractType
                 'placeholder' => 'Choisissez votre objectif sportif',
             ])
             ->add('bio', null, ['label' => 'Dites en plus sur vous'])
-            ->add('idProfileCoach', EntityType::class, [
-                'class' => ProfileCoach::class,
-                'choice_label' => 'firstName',
-                'label' => 'Mon coach',
-                'placeholder' => 'Choisissez votre coach',
-            ])
         ;
     }
 
