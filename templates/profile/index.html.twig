@@ -186,24 +186,26 @@
 								{% else %}
 									<p class="fs-6">Aucun coach assigné.</p>
 								{% endif %}
-								{% if reservation %}
-									<div class="card mt-3">
-										<div class="card-body">
-											<h3 class="card-title fs-5 mb-3">Mon rendez-vous</h3>
-											<ul class="list-group list-group-flush">
-												<li class="list-group-item">Date :
-													{{ reservation.date | date('d/m/Y') }}</li>
-												<li class="list-group-item">Heure :
-													{{ reservation.startTime | date('H:i') }}</li>
-											</ul>
-											<a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="btn btn-warning mt-3">Modifier mon rendez-vous</a>
-											<a href="{{ path('app_reservation_delete', {'id': reservation.id}) }}" class="btn btn-danger mt-3">Supprimer mon rendez-vous</a>
+								{% if profile.idAbonnement == "Vip" or profile.idAbonnement == "Premium" %}
+									{% if reservation %}
+										<div class="card mt-3">
+											<div class="card-body">
+												<h3 class="card-title fs-5 mb-3">Mon rendez-vous</h3>
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">Date :
+														{{ reservation.date | date('d/m/Y') }}</li>
+													<li class="list-group-item">Heure :
+														{{ reservation.startTime | date('H:i') }}</li>
+												</ul>
+												<a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="btn btn-warning mt-3">Modifier mon rendez-vous</a>
+												<a href="{{ path('app_reservation_delete', {'id': reservation.id}) }}" class="btn btn-danger mt-3">Supprimer mon rendez-vous</a>
+											</div>
 										</div>
-									</div>
-								{% else %}
-									<div class="alert alert-light mt-3" role="alert">
-										Pas de rendez-vous programmé pour le moment.
-									</div>
+									{% else %}
+										<div class="alert alert-light mt-3" role="alert">
+											Pas de rendez-vous programmé pour le moment.
+										</div>
+									{% endif %}
 								{% endif %}
 							</div>
 						</div>
