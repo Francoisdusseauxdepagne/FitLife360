@@ -3,90 +3,99 @@
 {% block title %}FitLife360-Coach{% endblock %}
 
 {% block body %}
-    <section class="container-fluid py-5 bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-secondary text-white">
-                            <h3 class="text-center">Profil du Coach</h3>
-                        </div>
-                        <div class="card-body text-center">
-                            <img src="{{ asset('images/photos/' ~ profileCoach.photo) }}" class="rounded-circle img-fluid mb-4" alt="image de profil">
-                            <h1 class="card-title text-success mb-4">{{ profileCoach.firstName }} {{ profileCoach.name }}</h1>
-                            <ul class="list-unstyled">
-                                <li><strong>Date de naissance:</strong> {{ profileCoach.dob|date('d/m/Y') }}</li>
-                                <li><strong>Profil Coach créé le:</strong> {{ profileCoach.createdAt|date('d/m/Y') }}</li>
-                                <li><strong>Mon diplôme:</strong> {{ profileCoach.diplome }}</li>
-                                <li><strong>Mon expérience:</strong> {{ profileCoach.experience }}</li>
-                                <li><strong>Mon statut:</strong> {{ profileCoach.contrat }}</li>
+    <div class="container mt-5">
+        <div class="row gx-5">
+            <div class="col-lg-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="fs-4 mb-0 display-5">Bienvenue, Coach {{ profileCoach.firstName }}</h1>
+                    </div>
+                    <div class="card-body bg-light">
+                        <div class="text-center">
+                            <img src="{{ asset('images/photos/' ~ profileCoach.photo) }}" class="rounded-circle img-fluid mb-4" alt="image de profil">                </div>
+                        <div class="mt-4">
+                            <h2 class="text-primary fs-3 mb-3">Informations personnelles :</h2>
+                            <ul class="lists p-0">
+                                <li class="lists_profile">
+                                    <p class="lists_profile--poppins"><strong>Prénom :</strong> {{ profileCoach.firstName }}</p></li>
+                                <li class="lists_profile">
+                                    <p class="lists_profile--poppins"><strong>Nom :</strong> {{ profileCoach.name }}</p></li>
+                                <li class="lists_profile">
+                                    <p class="lists_profile--poppins"><strong>Date de naissance :</strong> {{ profileCoach.dob | date('d/m/Y') }}</p></li>
+                                <li class="lists_profile">
+                                    <p class="lists_profile--poppins"><strong>Profil créé le :</strong> {{ profileCoach.createdAt | date('d/m/Y') }}</p></li>
+                                <li class="lists_profile">
+                                    <p class="lists_profile--poppins"><strong>Diplôme :</strong> {{ profileCoach.diplome }}</p></li>
+                                <li class="lists_profile">
+                                    <p class="lists_profile--poppins"><strong>Expérience :</strong> {{ profileCoach.experience }}</p></li>
+                                <li class="lists_profile">
+                                    <p class="lists_profile--poppins"><strong>Statut :</strong> {{ profileCoach.contrat }}</p></li>
                             </ul>
-                            <hr>
-                            <h2 class="mb-3">À propos de moi</h2>
+                        </div>
+                        <div class="mt-4">
+                            <h2 class="text-primary fs-3 mb-3">À propos de moi :</h2>
                             <p>{{ profileCoach.bio }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-lg-4">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-secondary text-white">
-                            <h3 class="text-center">Plans d'entraînement</h3>
-                        </div>
-                        <div class="card-body text-center">
+            <div class="col-lg-8">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h2 class="fs-5 mb-0 display-6">Plans d'entraînement</h2>
+                    </div>
+                    <div class="card-body bg-light">
+                        <div class="text-center mb-3">
                             <a href="{{ path('app_coach_create_entrainement') }}" class="btn btn-outline-success btn-block">Créer un plan</a>
                             <a href="{{ path('app_coach_list_entrainements') }}" class="btn btn-outline-success btn-block">Modifier les plans</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-secondary text-white">
-                            <h3 class="text-center">Rendez-vous avec les athlètes</h3>
-                        </div>
-                        <div class="card-body">
-                            {% if reservations|length > 0 %}
-                                {% for reservation in reservations %}
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <ul class="list-unstyled">
-                                                <li><i class="fa-solid fa-user"></i>: {{ reservation.idProfile.firstName }} {{ reservation.idProfile.name }}</li>
-                                                <li><strong>Date du rendez-vous :</strong> {{ reservation.date|date('d/m/Y') }}</li>
-                                                <li><strong>Heure du rendez-vous :</strong> {{ reservation.startTime|date('H:i') }}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            {% else %}
-                                <p class="text-center fst-italic">Aucun rendez-vous</p>
-                            {% endif %}
-                        </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h2 class="fs-5 mb-0 display-6">Rendez-vous avec les athlètes</h2>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-secondary text-white">
-                            <h3 class="text-center">Listes des athlètes</h3>
-                        </div>
-                        <div class="card-body">
-                            {% for profile in profiles %}
+                    <div class="card-body bg-light">
+                        {% if reservations|length > 0 %}
+                            {% for reservation in reservations %}
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <ul class="list-unstyled">
-                                            <li><i class="fa-solid fa-user"></i>: {{ profile.firstName }} {{ profile.name }}</li>
-                                            <li><strong>Membre depuis le :</strong> {{ profile.createdAt|date('d/m/Y') }}</li>
-                                            <li><i class="fa-solid fa-bullseye"></i>: {{ profile.objectifSportif }}</li>
-                                            <li><i class="fa-solid fa-seedling"></i>: {{ profile.sexe }}</li>
-                                            <li><strong>Coach attitré :</strong> {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}</li>
+                                            <li><i class="fa-solid fa-user"></i>: {{ reservation.idProfile.firstName }} {{ reservation.idProfile.name }}</li>
+                                            <li><strong>Date du rendez-vous :</strong> {{ reservation.date|date('d/m/Y') }}</li>
+                                            <li><strong>Heure du rendez-vous :</strong> {{ reservation.startTime|date('H:i') }}</li>
                                         </ul>
                                     </div>
                                 </div>
                             {% endfor %}
-                        </div>
+                        {% else %}
+                            <p class="text-center fst-italic">Aucun rendez-vous</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h2 class="fs-5 mb-0 display-6">Liste des athlètes</h2>
+                    </div>
+                    <div class="card-body bg-light">
+                        {% for profile in profiles %}
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fa-solid fa-user"></i>: {{ profile.firstName }} {{ profile.name }}</li>
+                                        <li><strong>Membre depuis le :</strong> {{ profile.createdAt|date('d/m/Y') }}</li>
+                                        <li><i class="fa-solid fa-bullseye"></i>: {{ profile.objectifSportif }}</li>
+                                        <li><i class="fa-solid fa-seedling"></i>: {{ profile.sexe }}</li>
+                                        {% if profile.idProfileCoach %}
+                                        <li><strong>Coach attitré :</strong> {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}</li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-    </section> 
+    </div>
 {% endblock %}

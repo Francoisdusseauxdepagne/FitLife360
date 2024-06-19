@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FitLife360-Profil
-{% endblock %}
+{% block title %}FitLife360-Profil{% endblock %}
 
 {% block body %}
 	<div class="container mt-5">
@@ -107,7 +106,7 @@
 								</div>
 								<div class="card-body bg-light">
 									<div class="row g-4">
-										<div class="col">
+										<div class="col-lg-6 col-md-12 col-sm-12">
 											<ul class="p-0">
 												{% set abonnement_details = profile.idAbonnement.description|split(", ") %}
 												{% for detail in abonnement_details %}
@@ -146,19 +145,19 @@
 								<div class="card-body bg-light">
 									<div class="row g-4">
 										{% if profile.idAbonnement.title == "Vip" %}
-											<div class="col">
+											<div class="col-lg-6 col-md-12 col-sm-12">
 												<a href="{{ path('app_tuto_video') }}" class="btn btn-outline-primary btn-sm mb-2 textProfile">Accès aux vidéos</a>
 											</div>
-											<div class="col">
+											<div class="col-lg-6 col-md-12 col-sm-12">
 												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-outline-primary  btn-sm mb-2 textProfile">Accès à mon programme d'entraînement</a>
 											</div>
 										{% elseif profile.idAbonnement.title == "Premium" %}
-											<div class="col">
+											<div class="col-lg-6 col-md-12 col-sm-12">
 												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
 												<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2 textProfile">Accès aux vidéos</a>
 											</div>
 										{% elseif profile.idAbonnement.title == "Basic" %}
-											<div class="col">
+											<div class="col-lg-6 col-md-12 col-sm-12">
 												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2 textProfile">Accès à mon programme d'entraînement</a>
 											</div>
 										{% endif %}

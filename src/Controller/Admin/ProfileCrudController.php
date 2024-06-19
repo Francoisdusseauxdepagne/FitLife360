@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Profile;
 use App\Controller\VichImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -50,14 +49,8 @@ class ProfileCrudController extends AbstractCrudController
             VichImageField::new('photoFile', 'Image')
                 ->setTemplatePath('admin/field/vich_image_widget.html.twig')
                 ->hideOnIndex(),
-            AssociationField::new('idAbonnement', 'Abonnement')
-                ->formatValue(function ($value, $entity) {
-                    return $entity->getIdAbonnement()->getTitle();
-            }),
-            AssociationField::new('idProfileCoach', 'Coach')
-                ->formatValue(function ($value, $entity) {
-                    return $entity->getIdProfileCoach()->getFirstName();
-            }),
+            AssociationField::new('idAbonnement', 'Abonnement'),
+            AssociationField::new('idProfileCoach', 'Coach'),
             BooleanField::new('isActive', 'Profil actif'),
         ];
     }

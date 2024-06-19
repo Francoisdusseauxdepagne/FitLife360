@@ -1,4 +1,5 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
+# config/packages/framework.yaml
 framework:
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true
@@ -8,6 +9,11 @@ framework:
 
     #esi: true
     #fragments: true
+
+    # Configuration du contrôleur personnalisé pour les erreurs 404
+    error_controller: 'App\Controller\ErrorController::show404'
+
+# Autres configurations framework peuvent suivre ici
 
 when@test:
     framework:

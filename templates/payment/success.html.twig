@@ -1,9 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Paiement Reussi{% endblock %}
+{% block title %}Paiement Réussi{% endblock %}
 
 {% block body %}
-<h1>Paiement Reussi</h1>
-<p>Votre paiement a été reussi.</p>
-<a href="{{ path('app_profile') }}" class="btn btn-primary btn-lg">Retourner à Votre espace profil</a>
+<div class="container my-5 mx-auto">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="card text-center shadow-lg p-5">
+                <div class="text-success d-flex flex-row align-items-center justify-content-center gap-4">
+                    <i class="fa-solid fa-check fs-3"></i>
+                    <h1 class="fs-2 mb-0 text-success">Paiement Réussi</h1>
+                </div>
+                <div class="card-body">
+                    <p class="fs-5 fst-italic">Paiement a été effectué avec succès.</p>
+                    <a href="{{ path('app_profile') }}" class="btn btn-outline-warning btn-lg mt-3">
+                        Votre espace profil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

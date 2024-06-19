@@ -10,7 +10,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -39,8 +38,8 @@ class ProfileCoachCrudController extends AbstractCrudController
             TextField::new('name', 'Nom'),
             DateField::new('dob', 'Date de Naissance'),
             TextField::new('diplome', 'Diplome(s)'),
-            TextEditorField::new('experience', 'Experience(s)'),
-            TextEditorField::new('expertise', 'Expertise(s)'),
+            TextField::new('experience', 'Experience(s)'),
+            TextField::new('expertise', 'Expertise(s)'),
             ImageField::new('photo', 'Photo profil coach')
             ->setBasePath('/images/photos')
             ->setUploadDir('public/images/photos')
@@ -49,7 +48,7 @@ class ProfileCoachCrudController extends AbstractCrudController
             ->setTemplatePath('admin/field/vich_image_widget.html.twig')
             ->hideOnIndex(),            
             TextField::new('genre', 'Sexe'),
-            TextEditorField::new('bio', 'Biographie'),
+            TextField::new('bio', 'Biographie'),
             DateTimeField::new('createdAt', 'Créé le'),
             TextField::new('contrat', 'Contrat'),
             BooleanField::new('isActive', 'Actif'),
