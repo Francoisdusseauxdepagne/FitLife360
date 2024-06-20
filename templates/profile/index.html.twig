@@ -45,7 +45,6 @@
 									{{ profile.bio }}</p></li>
 							</ul>
 							<a href="{{ path('app_update_profile') }}" class="btn mt-3 btn-outline-warning">Modifier mon profil</a>
-							<a href="{{ path('app_delete_profile') }}" class="btn mt-3 btn-outline-danger">Supprimer mon profil</a>
 						</div>
 					</div>
 				</div>
@@ -58,9 +57,9 @@
 						</div>
 						<div class="card-body bg-light">
 							{% if events is not empty %}
-								<div class="row row-cols-1 row-cols-md-2 g-4">
+								<div class="row g-4">
 									{% for event in events %}
-										<div class="col">
+										<div class="col-lg-6 col-md-12 col-sm-12">
 											<div class="card">
 												<div class="card-body">
 													<h2 class="card-title">{{ event.eventType }}</h2>
