@@ -14,6 +14,10 @@ class ReservationController extends AbstractController
     #[Route('/reservation', name: 'app_reservation')]
     public function index(EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         // Vérifier le type d'abonnement
         if ($this->checkSubscription() !== 'Vip') {
             $this->addFlash('warning', 'Vous devez être abonné VIP pour accéder aux réservations.');
@@ -30,6 +34,10 @@ class ReservationController extends AbstractController
     #[Route('/reservation/new', name: 'app_reservation_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         // Vérifier le type d'abonnement
         if ($this->checkSubscription() !== 'Vip') {
             $this->addFlash('warning', 'Vous devez être abonné VIP pour créer une réservation.');
@@ -71,6 +79,10 @@ class ReservationController extends AbstractController
     #[Route('/reservation/delete/{id}', name: 'app_reservation_delete')]
     public function delete(Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         // Vérifier le type d'abonnement
         if ($this->checkSubscription() !== 'Vip') {
             $this->addFlash('warning', 'Vous devez être abonné VIP pour supprimer une réservation.');
@@ -88,6 +100,10 @@ class ReservationController extends AbstractController
     #[Route('/reservation/update/{id}', name: 'app_reservation_update')]
     public function update(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+        
         // Vérifier le type d'abonnement
         if ($this->checkSubscription() !== 'vip') {
             $this->addFlash('warning', 'Vous devez être abonné VIP pour mettre à jour une réservation.');

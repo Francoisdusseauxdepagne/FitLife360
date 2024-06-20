@@ -20,6 +20,10 @@ class VideoController extends AbstractController
     #[Route('/tuto/video', name: 'app_tuto_video')]
     public function video(): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         // Vérifier le type d'abonnement
         if (!$this->checkVideoSubscription()) {
             $this->addFlash('warning', 'Vous devez être abonné Premium ou VIP pour accéder aux vidéos sportives.');
