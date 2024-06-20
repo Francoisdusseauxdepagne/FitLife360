@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Profile;
 use App\Form\ProfileType;
 use App\Repository\EventRepository;
-use App\Repository\AbonnementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -135,7 +134,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/delete', name: 'app_delete')]
+    #[Route('/profile/deleteAbonnement', name: 'app_delete')]
     public function delete(EntityManagerInterface $entityManager): Response
     {   
         $user= $this->getUser();
@@ -153,5 +152,20 @@ class ProfileController extends AbstractController
         // Redirection vers une page appropriée (par exemple, page de profil)
         return $this->redirectToRoute('app_profile');
         }
+    }
+
+    // route pour supprimer le profile complet
+    #[Route('/profile/deleteProfile', name: 'app_delete_profile')]
+    public function deleteProfile(EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        $profile = $user->getProfile();
+        $entityManager->remove($profile);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Profil supprimé avec succès.');
+
+        // Redirection vers la page home)
+        return $this->redirectToRoute('app_home');
     }
 }

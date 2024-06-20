@@ -71,4 +71,10 @@ class GeneralController extends AbstractController
             'videos' => $videos,
         ]);
     }
+
+    #[Route('/404', name: 'app_error404')]
+    public function error404(): Response
+    {
+        return $this->render('404/error.html.twig');
+    }
 }
