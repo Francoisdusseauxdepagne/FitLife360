@@ -62,16 +62,6 @@ class GeneralController extends AbstractController
         ]);
     }
 
-    #[Route('/tuto/video', name: 'app_tuto_video')]
-    public function video(): Response
-    {
-        $videos = $this->entityManager->getRepository(TutoVideo::class)->findAll();
-
-        return $this->render('tuto_video/index.html.twig', [
-            'videos' => $videos,
-        ]);
-    }
-
     #[Route('/404', name: 'app_error404')]
     public function error404(): Response
     {
