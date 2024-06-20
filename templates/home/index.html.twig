@@ -79,9 +79,9 @@
         <h2 class="display-4 fw-bold text-center">Événements</h2>
         <p class="lead text-center mb-5 fst-italic">Participez à nos événements en ligne pour rester actif et en bonne santé depuis chez vous.</p>
         {% if events is not empty %}
-            <div class="row row-cols-1 row-cols-lg-2 g-4">
+            <div class="row g-4">
                 {% for event in events %}
-                    <div class="col mb-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
                         <div class="card bg-light text-dark h-100">
                             {% if event.photo %}
                                 <img src="{{ asset('images/photos/' ~ event.photo) }}" class="card-img-top" alt="Photo de l'événement">

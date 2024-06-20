@@ -154,18 +154,18 @@ class ProfileController extends AbstractController
         }
     }
 
-    // route pour supprimer le profile complet
-    #[Route('/profile/deleteProfile', name: 'app_delete_profile')]
+    //route pour supprimer le profil si abonnement est null
+    #[Route('/profile/delete', name: 'app_delete_profile')]
     public function deleteProfile(EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         $profile = $user->getProfile();
-        $entityManager->remove($profile);
-        $entityManager->flush();
-
-        $this->addFlash('success', 'Profil supprimé avec succès.');
-
-        // Redirection vers la page home)
-        return $this->redirectToRoute('app_home');
+        if ($profile !== null) {
+            $profile = $user->setProfile(null);
+            $entityManager->persist($profile);
+            $entityManager->flush();
+            $this->addFlash('success', 'Profil supprimé avec succès !');
+            return $this->redirectToRoute('app_home');
+        }
     }
 }
