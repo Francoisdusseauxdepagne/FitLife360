@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\Reservation;
@@ -15,6 +14,12 @@ class ReservationController extends AbstractController
     #[Route('/reservation', name: 'app_reservation')]
     public function index(EntityManagerInterface $entityManager): Response
     {
+        // Vérifier le type d'abonnement
+        if ($this->checkSubscription() !== 'Vip') {
+            $this->addFlash('warning', 'Vous devez être abonné VIP pour accéder aux réservations.');
+            return $this->redirectToRoute('app_home'); // Remplacez 'homepage' par la route de votre choix
+        }
+
         $reservations = $entityManager->getRepository(Reservation::class)->findAll();
 
         return $this->render('reservation/index.html.twig', [
@@ -25,6 +30,12 @@ class ReservationController extends AbstractController
     #[Route('/reservation/new', name: 'app_reservation_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Vérifier le type d'abonnement
+        if ($this->checkSubscription() !== 'Vip') {
+            $this->addFlash('warning', 'Vous devez être abonné VIP pour créer une réservation.');
+            return $this->redirectToRoute('app_reservation');
+        }
+
         $profile = $this->getUser()->getProfile();
         $reservation = new Reservation();
         $reservation->setIdProfile($profile);
@@ -60,6 +71,12 @@ class ReservationController extends AbstractController
     #[Route('/reservation/delete/{id}', name: 'app_reservation_delete')]
     public function delete(Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
+        // Vérifier le type d'abonnement
+        if ($this->checkSubscription() !== 'Vip') {
+            $this->addFlash('warning', 'Vous devez être abonné VIP pour supprimer une réservation.');
+            return $this->redirectToRoute('app_reservation');
+        }
+
         $entityManager->remove($reservation);
         $entityManager->flush();
 
@@ -71,6 +88,12 @@ class ReservationController extends AbstractController
     #[Route('/reservation/update/{id}', name: 'app_reservation_update')]
     public function update(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
+        // Vérifier le type d'abonnement
+        if ($this->checkSubscription() !== 'vip') {
+            $this->addFlash('warning', 'Vous devez être abonné VIP pour mettre à jour une réservation.');
+            return $this->redirectToRoute('app_reservation');
+        }
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
@@ -90,6 +113,12 @@ class ReservationController extends AbstractController
             'form' => $form->createView(),
             'reservation' => $reservation,
         ]);
+    }
+
+    private function checkSubscription(): string
+    {
+        $profile = $this->getUser()->getProfile();
+        return $profile->getIdAbonnement()->getTitle();
     }
 
     private function isReservationConflict(EntityManagerInterface $entityManager, Reservation $reservation, bool $isUpdate = false): bool
