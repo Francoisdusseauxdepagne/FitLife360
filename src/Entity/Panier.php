@@ -33,7 +33,7 @@ class Panier
     /**
      * @var Collection<int, Invoice>
      */
-    #[ORM\OneToMany(targetEntity: Invoice::class, mappedBy: 'idPanier')]
+    #[ORM\OneToMany(targetEntity: Invoice::class, mappedBy: 'idPanier', cascade: ['persist', 'remove'])]
     private Collection $invoices;
 
     public function __construct()

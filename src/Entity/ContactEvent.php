@@ -16,7 +16,7 @@ class ContactEvent
     #[ORM\Column(length: 255)]
     private ?string $content = null;
 
-    #[ORM\ManyToOne(inversedBy: 'contactEvents')]
+    #[ORM\ManyToOne(inversedBy: 'contactEvents', cascade: ['persist', 'remove'])]
     private ?Event $idEvent = null;
 
     #[ORM\ManyToOne(inversedBy: 'contactEvents')]

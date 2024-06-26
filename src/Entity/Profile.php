@@ -48,7 +48,7 @@ class Profile
     #[ORM\Column]
     private ?bool $isActive = null;
 
-    #[ORM\ManyToOne(inversedBy: 'profiles')]
+    #[ORM\ManyToOne(inversedBy: 'profiles', cascade: ['persist', 'remove'])]
     private ?Abonnement $idAbonnement = null;
 
     /**

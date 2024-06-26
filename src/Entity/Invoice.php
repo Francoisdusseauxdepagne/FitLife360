@@ -13,7 +13,7 @@ class Invoice
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Panier::class)]
+    #[ORM\ManyToOne(targetEntity: Panier::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $idPanier;
 
