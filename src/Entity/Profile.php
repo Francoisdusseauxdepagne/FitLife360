@@ -95,9 +95,6 @@ class Profile
     )]
     private ?string $firstName = null;
 
-    // #[ORM\Column]
-    // private ?int $age = null;
-
     #[ORM\ManyToOne(inversedBy: 'profiles')]
     private ?ProfileCoach $idProfileCoach = null;
 

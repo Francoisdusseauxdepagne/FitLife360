@@ -82,7 +82,7 @@ class CoachController extends AbstractController
 
             $profileCoach->setIdUser($user);
             $profileCoach->setCreatedAt(new \DateTimeImmutable());
-            $profileCoach->setActive(true);
+            $profileCoach->setIsActive(true);
 
             $this->entityManager->persist($profileCoach);
             $this->entityManager->flush();

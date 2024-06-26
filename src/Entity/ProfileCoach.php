@@ -50,6 +50,9 @@ class ProfileCoach
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column]
     private ?bool $isActive = null;
 
     /**
@@ -112,17 +115,34 @@ class ProfileCoach
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $avatarFile
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $photoFile
      */
 
      public function setPhotoFile(?File $photoFile = null): void
     {
         $this->photoFile = $photoFile;
+
+        if (null !== $photoFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
     public function getPhotoFile(): ?File
     {
         return $this->photoFile;
+    }
+
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): static
+    {
+        $this->photo = $photo;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -173,18 +193,6 @@ class ProfileCoach
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): static
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
     public function getGenre(): ?string
     {
         return $this->genre;
@@ -229,6 +237,18 @@ class ProfileCoach
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
