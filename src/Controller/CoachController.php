@@ -108,7 +108,7 @@ class CoachController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($profileCoach);
             $this->entityManager->flush();
-            $this->addFlash('success', 'Profil Coach mis à jour avec succès !');
+            $this->addFlash('success', 'Mon profil mis à jour avec succès !');
             return $this->redirectToRoute('app_coach');
         }
 
