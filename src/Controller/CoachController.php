@@ -96,6 +96,28 @@ class CoachController extends AbstractController
         ]);
     }
 
+    #[Route('/coach/update', name: 'app_update_coach')]
+    public function updateCoach(Request $request): Response
+    {
+        $user = $this->getUser();
+        $profileCoach = $user->getProfileCoach();
+
+        $form = $this->createForm(ProfileTypeCoachType::class, $profileCoach);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->persist($profileCoach);
+            $this->entityManager->flush();
+            $this->addFlash('success', 'Profil Coach mis à jour avec succès !');
+            return $this->redirectToRoute('app_coach');
+        }
+
+        return $this->render('coach/updateProfile.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+
     #[Route('/coach/create-entrainement', name: 'app_coach_create_entrainement')]
     public function createEntrainement(Request $request): Response
     {
