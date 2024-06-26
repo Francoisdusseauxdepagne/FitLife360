@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-use Stripe\Stripe;
 use Stripe\Webhook;
 use App\Entity\Panier;
 use App\Entity\Invoice;
 use Stripe\StripeClient;
 use Psr\Log\LoggerInterface;
-use Stripe\Checkout\Session;
 use App\Repository\PanierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;

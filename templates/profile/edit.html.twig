@@ -1,20 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Creation du profil{% endblock %}
+{% block title %}Mon profil{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1 class="mt-5">Créez votre profil</h1>
-
-    {{ form_start(form) }}
-        {{ form_row(form.firstName) }}
-        {{ form_row(form.name) }}
-        {{ form_row(form.dateDeNaissance) }}
-        {{ form_row(form.photoFile) }}
-        {{ form_row(form.sexe) }}
-        {{ form_row(form.objectifSportif) }}
-        {{ form_row(form.bio) }}
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-    {{ form_end(form) }}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="mb-0">Mon profil</h1>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="mb-3">
+                        {{ form_row(form.firstName, {'label': 'Prénom', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.name, {'label': 'Nom', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.dateDeNaissance, {'label': 'Date de Naissance', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.photoFile, {'label': 'Photo', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.sexe, {'label': 'Sexe', 'attr': {'class': 'form-select'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.objectifSportif, {'label': 'Objectif Sportif', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.bio, {'label': 'Biographie', 'attr': {'class': 'form-control', 'rows': 3}}) }}
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        {# <a href="{{ path('app_profile') }}" class="btn btn-outline-danger">Annuler</a> #}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

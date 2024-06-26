@@ -45,19 +45,7 @@ class ProfileType extends AbstractType
                 'download_uri' => true,
                 'image_uri' => true,
                 'asset_helper' => true,
-                'label' => 'Photo de profil',
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1M',
-                        'maxSizeMessage' => 'Format incorrect',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                            'image/jpg',
-                        ],
-                        'mimeTypesMessage' => 'Format incorrect',
-                    ])
-                ]
+                'label' => 'Photo de profil'
             ])
             ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe',

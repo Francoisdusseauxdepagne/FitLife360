@@ -21,13 +21,9 @@ class Profile
     private ?int $id = null;
 
     #[Vich\UploadableField(mapping: 'photos', fileNameProperty: 'photo')]
-    #[Assert\File(
-        maxSize: '1M',
-        mimeTypes: ['image/jpeg', 'image/png', 'image/jpg'],
-        )]
     private ?File $photoFile = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
     #[ORM\Column(length: 255)]
@@ -40,6 +36,7 @@ class Profile
     private ?string $bio = null;
 
     #[ORM\OneToOne(inversedBy: 'profile', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $idUser = null;
 
     #[ORM\Column]
@@ -156,7 +153,7 @@ class Profile
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $avatarFile
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $photoFile
      */
 
      public function setPhotoFile(?File $photoFile = null): void
@@ -178,7 +175,7 @@ class Profile
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): static
+    public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
@@ -373,7 +370,7 @@ class Profile
 
     public function __toString() : string
     {
-        return $this->firstName;
+        return (string) $this->photo;
     }
 
     /**
@@ -614,7 +611,31 @@ class Profile
                 $contactEvent->setIdProfile(null);
             }
         }
-
         return $this;
+    }
+
+    public function __sleep(): array
+    {
+        // Spécifiez les propriétés à sérialiser, en excluant celles qui ne peuvent pas être sérialisées
+        return [
+            'id', 'photo', 'sexe', 'objectifSportif', 'bio', 'idUser', 'createdAt', 'updatedAt', 'isActive', 
+            'idAbonnement', 'comments', 'planEntrainements', 'paniers', 'detailEntrainements', 'reservations', 
+            'name', 'firstName', 'idProfileCoach', 'reportings', 'dateDeNaissance', 'contacts', 'resiliations', 'contactEvents'
+        ];
+    }
+
+    public function __wakeup(): void
+    {
+        // Restaurez ici tout ce qui doit l'être après désérialisation
+        // Par exemple, réinitialiser des collections, etc.
+        $this->comments = $this->comments ?? new ArrayCollection();
+        $this->planEntrainements = $this->planEntrainements ?? new ArrayCollection();
+        $this->paniers = $this->paniers ?? new ArrayCollection();
+        $this->detailEntrainements = $this->detailEntrainements ?? new ArrayCollection();
+        $this->reservations = $this->reservations ?? new ArrayCollection();
+        $this->reportings = $this->reportings ?? new ArrayCollection();
+        $this->contacts = $this->contacts ?? new ArrayCollection();
+        $this->resiliations = $this->resiliations ?? new ArrayCollection();
+        $this->contactEvents = $this->contactEvents ?? new ArrayCollection();
     }
 }

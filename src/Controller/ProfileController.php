@@ -110,31 +110,39 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/updateProfile', name: 'app_update_profile')]
+    #[Route('/profile/update', name: 'app_update_profile')]
     public function updateProfileInfo(Request $request): Response
     {
         $user = $this->getUser();
         $profile = $user->getProfile();
 
-        // Créer le formulaire de mise à jour du profil
         $form = $this->createForm(ProfileType::class, $profile);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $profile->setUpdatedAt(new \DateTimeImmutable()); // Mettre à jour la date de mise à jour du profil
+            $dateDeNaissance = $form->get('dateDeNaissance')->getData();
+            $age = $this->calculateAge($dateDeNaissance);
+
+            if ($age < 18) {
+                $this->addFlash('warning', 'Vous devez avoir au moins 18 ans.');
+                return $this->redirectToRoute('app_update_profile');
+            } elseif ($age > 99) {
+                $this->addFlash('warning', 'Vous ne pouvez pas avoir plus de 99 ans pour créer un profil.');
+                return $this->redirectToRoute('app_update_profile');
+            }
 
             $this->entityManager->flush();
 
             $this->addFlash('success', 'Profil mis à jour avec succès !');
-            return $this->redirectToRoute('app_show_profile');
+            return $this->redirectToRoute('app_profile');
         }
 
         return $this->render('profile/update.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
-    #[Route('/profile/deleteAbonnement', name: 'app_delete')]
+    #[Route('/profile/delete/bonnement', name: 'app_delete')]
     public function delete(EntityManagerInterface $entityManager): Response
     {   
         $user= $this->getUser();
