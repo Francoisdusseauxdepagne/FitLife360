@@ -40,7 +40,7 @@ class ProfileCrudController extends AbstractCrudController
             DateField::new('dateDeNaissance', 'Date de naissance'),
             TextField::new('sexe', 'Sexe'),
             TextField::new('objectifSportif', 'Objectif sportif'),
-            TextEditorField::new('bio', 'Biographie'),
+            TextField::new('bio', 'Biographie'),
             DateTimeField::new('createdAt', 'Créé le'),
             ImageField::new('photo', 'Photo de profil')
                 ->setBasePath('/images/photos')

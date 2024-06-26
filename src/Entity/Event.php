@@ -148,7 +148,7 @@ class Event
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $avatarFile
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $photoFile
      */
 
      public function setPhotoFile(?File $photoFile = null): void

@@ -15,7 +15,7 @@
                 {% if app.user %}
                     {% if app.user.isVerified() %}
                         <li class="nav-item">
-                            <a class="nav-link text-white navLink" href="{{ path('app_profile')}}">Mon profil</a>
+                            <a class="nav-link text-white navLink" href="{{ path('app_profile')}}">Espace membre</a>
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
