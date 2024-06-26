@@ -117,7 +117,6 @@ class CoachController extends AbstractController
         ]);
     }
 
-
     #[Route('/coach/create-entrainement', name: 'app_coach_create_entrainement')]
     public function createEntrainement(Request $request): Response
     {
