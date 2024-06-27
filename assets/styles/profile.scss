@@ -13,3 +13,11 @@
 .textProfile{
     font-family: $fontPoppins;
 }
+
+.vich-image{
+    a{
+        img{
+            width: 100%;
+        }  
+    }
+}
