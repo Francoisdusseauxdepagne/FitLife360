@@ -1,9 +1,46 @@
 @import 'variables';
 
-.titleHome{
-    font-family: $fontPlayfair;
+header{
+    background-color: $colorBlack;
+    border-bottom-right-radius: 250px;
+    padding-top: $padding100;
+    padding-bottom: $padding100;
+    @media screen and (max-width: 425px) {
+        border-bottom-right-radius: 0;
+        padding-top: $padding50;
+        padding-bottom: $padding50;
+    }
+    .headerTitle{
+        font-family: $fontPlayfair;
+    }
+    .headerText{
+        font-family: $fontPoppins;
+    }
 }
 
-.titleImg, .textImg, .titleText{
-    font-family: $fontPoppins;
+.containerAbout, .containerVideo{
+    &_btn{
+        background-color: $colorblue;
+        &:hover{
+            background-color: $colorblue;
+        }
+    }
 }
+
+.containerAbonnement, .footerEvent{
+    &_btn{
+        background-color: $colorRed;
+        &:hover{
+            background-color: $colorRed;
+        }
+    }
+}
+
+.footerEvent{
+    &_link, &_text{
+        color: $colorblue;
+    }
+}
+
+
+

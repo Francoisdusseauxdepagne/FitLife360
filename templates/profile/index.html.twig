@@ -6,7 +6,7 @@
 	<div class="container mt-5">
 		<div class="row gx-5">
 			<div class="col-lg-4">
-				<div class="card mb-4 shadow-sm">
+				<div class="card mb-4 shadow-lg border-2">
 					<div class="card-header bg-primary text-white">
 						<h1 class="fs-4 mb-0 display-5">Ravie de vous voir {{ profile.firstName }}</h1>
 					</div>
@@ -15,7 +15,7 @@
 							<img src="{{ asset('images/photos/' ~ profile.photo) }}" class="card-img-top rounded-circle shadow-lg" alt="Profile">
 						</div>
 						<div class="mt-4">
-							<h2 class="text-primary fs-3 mb-3 ">Informations personnelles :</h2>
+							<h2 class="text-primary fs-4 mb-3 ">Informations personnelles :</h2>
 							<ul class="lists p-0">
 								<li class="lists_profile">
 									<p class="lists_profile--poppins"><strong>Prénom :</strong>
@@ -38,10 +38,10 @@
 							</ul>
 						</div>
 						<div class="mt-4">
-							<h2 class="text-primary fs-3 mb-3">Objectifs :</h2>
+							<h2 class="text-primary fs-4 mb-3">Objectifs :</h2>
 							<ul class="lists p-0">
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong>Objectif sportif :</strong>
+									<p class="lists_profile--poppins"><strong>Sportif :</strong>
 									{{ profile.objectifSportif }}</p></li>
 								<li class="lists_profile">
 									<p class="lists_profile--poppins"><strong>Biographie :</strong>
@@ -63,10 +63,10 @@
 								<div class="row g-4">
 									{% for event in events %}
 										<div class="col-lg-6 col-md-12 col-sm-12">
-											<div class="card">
+											<div class="card shadow-sm">
 												<img src="{{ asset('images/photos/' ~ event.photo) }}" class="card-img-top" alt="Event">
 												<div class="card-body">
-													<h2 class="card-title">{{ event.eventType }}</h2>
+													<h2 class="card-title fs-3">{{ event.eventType }}</h2>
 													<p class="card-text">{{ event.description }}</p>
 													<ul class="list-unstyled">
 														<li>Date :
