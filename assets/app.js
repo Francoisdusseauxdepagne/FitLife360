@@ -1,6 +1,5 @@
 // Styles globaux (si nécessaire)
 import './styles/bootstrap.scss';
-import './styles/nav.scss';
 import './styles/global.scss';
 
 // Styles particuliers

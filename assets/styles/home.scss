@@ -16,6 +16,10 @@ header{
     .headerText{
         font-family: $fontPoppins;
     }
+    .letter {
+        opacity: 0;
+        transition: opacity 0.3s ease ;
+    }
 }
 
 .footerEvent{

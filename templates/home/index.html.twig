@@ -7,6 +7,28 @@
 
 {% block title %}FitLife360 - Accueil{% endblock %}
 
+{% block javascripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const title = document.querySelector('#headerText');
+    function animateText() {
+        const text = title.innerText;
+        title.innerText = '';
+        for(let i = 0; i < text.length; i++) {
+            const letter = document.createElement('span');
+            letter.innerText = text[i];
+            letter.classList.add('letter');
+            title.appendChild(letter);
+            setTimeout(() => {
+                letter.style.opacity = '1';
+            }, i * 100);
+        }
+    }
+    animateText();
+});
+</script>
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid p-0">
     <header class="bg-dark text-white">
@@ -14,7 +36,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h1 class="fw-bold display-3 headerTitle">Bienvenue sur FitLife360</h1>
-                    <p class="lead mb-0 headerText">Votre partenaire pour une vie plus saine et plus active</p>
+                    <p class="lead mb-0 headerText" id="headerText">Votre partenaire pour une vie plus saine et plus active</p>
                 </div>
             </div>
         </div>
