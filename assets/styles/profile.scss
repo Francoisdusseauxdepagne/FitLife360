@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 .lists{
     gap: 10px;
@@ -15,5 +16,25 @@
         img{
             width: 100%;
         }  
+    }
+}
+
+.divProfile, .abonnementProfile, .accesProfile, .rdvProfile{
+    @include btnHoverRed();
+}
+
+.abonnementProfile{
+    &_btn{
+        margin-top: $marginTop10;
+    }
+}
+
+.myCoachProfile{
+    &_btn{
+        margin-top: $marginTop20;
+        background-color: $colorblue;
+        &:hover{
+            background-color: $colorblue;
+        }
     }
 }

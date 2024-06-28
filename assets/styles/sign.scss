@@ -1,0 +1,11 @@
+@import 'variables';
+
+.bodyLogin, .bodyRegister{
+    &_btn{
+        background-color: $colorblue;
+        &:hover{
+            background-color: $colorRed;
+        }
+    }
+}
+

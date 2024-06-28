@@ -1,7 +1,7 @@
 @import 'variables';
+@import 'mixins';
 
 header{
-    background-color: $colorBlack;
     border-bottom-right-radius: 250px;
     padding-top: $padding100;
     padding-bottom: $padding100;
@@ -18,29 +18,8 @@ header{
     }
 }
 
-.containerAbout, .containerVideo{
-    &_btn{
-        background-color: $colorblue;
-        &:hover{
-            background-color: $colorblue;
-        }
-    }
-}
-
-.containerAbonnement, .footerEvent{
-    &_btn{
-        background-color: $colorRed;
-        &:hover{
-            background-color: $colorRed;
-        }
-    }
-}
-
 .footerEvent{
     &_link, &_text{
         color: $colorblue;
     }
 }
-
-
-

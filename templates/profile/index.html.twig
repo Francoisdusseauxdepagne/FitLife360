@@ -7,7 +7,7 @@
 		<div class="row gx-5">
 			<div class="col-lg-4">
 				<div class="card mb-4 shadow-lg border-2">
-					<div class="card-header bg-primary text-white">
+					<div class="card-header bgBlue text-white p-3">
 						<h1 class="fs-4 mb-0 display-5">Ravie de vous voir {{ profile.firstName }}</h1>
 					</div>
 					<div class="card-body bg-light">
@@ -15,39 +15,39 @@
 							<img src="{{ asset('images/photos/' ~ profile.photo) }}" class="card-img-top rounded-circle shadow-lg" alt="Profile">
 						</div>
 						<div class="mt-4">
-							<h2 class="text-primary fs-4 mb-3 ">Informations personnelles :</h2>
-							<ul class="lists p-0">
+							<h2 class="colorBlue fs-4 mb-3 text-decoration-underline">Informations personnelles :</h2>
+							<ul class="lists p-0 colorBlue">
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong>Prénom :</strong>
+									<p class="lists_profile--poppins"><strong class="colorBlue">Prénom :</strong>
 									{{ profile.firstName }}</p></li>
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong>Nom :</strong>
+									<p class="lists_profile--poppins"><strong class="colorBlue">Nom :</strong>
 									{{ profile.name }}</p></li>
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong>Date de naissance :</strong>
+									<p class="lists_profile--poppins"><strong class="colorBlue">Date de naissance :</strong>
 									{{ profile.dateDeNaissance | date('d/m/Y') }}</p></li>
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong>Email :</strong>
+									<p class="lists_profile--poppins"><strong class="colorBlue">Email :</strong>
 									{{ app.user.email }}</p></li>
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong>Profil créé le :</strong>
+									<p class="lists_profile--poppins"><strong class="colorBlue">Profil créé le :</strong>
 									{{ profile.createdAt | date('d/m/Y') }}</p></li>
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong>Profil modifié le :</strong>
+									<p class="lists_profile--poppins"><strong class="colorBlue">Profil modifié le :</strong>
 									{{ profile.updatedAt | date('d/m/Y') }}</p></li>
 							</ul>
 						</div>
-						<div class="mt-4">
-							<h2 class="text-primary fs-4 mb-3">Objectifs :</h2>
-							<ul class="lists p-0">
+						<div class="mt-4 divProfile">
+							<h2 class="colorBlue fs-4 mb-3 text-decoration-underline">Objectifs :</h2>
+							<ul class="lists p-0 colorBlue">
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong>Sportif :</strong>
+									<p class="lists_profile--poppins"><strong class="colorBlue">Sportif :</strong>
 									{{ profile.objectifSportif }}</p></li>
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong>Biographie :</strong>
+									<p class="lists_profile--poppins"><strong class="colorBlue">Biographie :</strong>
 									{{ profile.bio }}</p></li>
 							</ul>
-							<a href="{{ path('app_update_profile') }}" class="btn mt-3 btn-outline-warning">Modifier mon profil</a>
+							<button class="divProfile_btn btn btn-md"><a href="{{ path('app_update_profile') }}" class="text-decoration-none divProfile_btn--link">Modifier mon profil</a></button>
 						</div>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 			<div class="col-lg-8">
 				{% if profile.idAbonnement == "Vip" %}
 					<div class="card mb-4">
-						<div class="card-header bg-secondary">
+						<div class="card-header bgBlue">
 							<h2 class="fs-5 mb-0 display-6 text-white">Événements disponibles</h2>
 						</div>
 						<div class="card-body bg-light">
@@ -63,9 +63,9 @@
 								<div class="row g-4">
 									{% for event in events %}
 										<div class="col-lg-6 col-md-12 col-sm-12">
-											<div class="card shadow-sm">
+											<div class="card shadow-sm colorBlue">
 												<img src="{{ asset('images/photos/' ~ event.photo) }}" class="card-img-top" alt="Event">
-												<div class="card-body">
+												<div class="card-body cardEventProfile">
 													<h2 class="card-title fs-3">{{ event.eventType }}</h2>
 													<p class="card-text">{{ event.description }}</p>
 													<ul class="list-unstyled">
@@ -76,7 +76,7 @@
 														<li>Places disponibles :
 															{{ event.spaceAvailable }}</li>
 													</ul>
-													<a href="{{ path('app_contact_event', {'id': event.id}) }}" class="btn btn-warning">Je veux participer</a>
+													<button class="cardEventProfile_btn btn btn-md"><a href="{{ path('app_contact_event', {'id': event.id}) }}" class="text-white text-decoration-none">Je veux participer</a></button>
 													<small><p class="fst-italic mt-3">Veuillez envoyer qu'une demande par événement</p></small>
 												</div>
 											</div>
@@ -104,24 +104,24 @@
 							</div>
 						{% else %}
 							<div class="card mb-4">
-								<div class="card-header bg-secondary text-white">
+								<div class="card-header bgBlue text-white">
 									<h2 class="fs-5 mb-0 display-6">Mon abonnement
 										{{ profile.idAbonnement.title }}</h2>
 								</div>
-								<div class="card-body bg-light">
+								<div class="card-body bg-light colorBlue">
 									<div class="row g-4">
 										<div class="col-lg-6 col-md-12 col-sm-12">
 											<ul class="p-0">
 												{% set abonnement_details = profile.idAbonnement.description|split(", ") %}
 												{% for detail in abonnement_details %}
-												<li class="d-flex align-items-center fs-6 textProfile fs-5 my-3">
-													<span class="mx-2"><i class="fa-regular fa-circle-check text-primary fs-5"></i></span>
+												<li class="d-flex align-items-center fs-6 colorBlue fs-5 my-3">
+													<span class="mx-2"><i class="fa-regular fa-circle-check colorBlue fs-5"></i></span>
 													{{ detail|replace({'. ': ''}) }}
 												</li>
 												{% endfor %}
 											</ul>
 										</div>
-										<div class="col textProfile">
+										<div class="col abonnmentProfile">
 											<p class="card-text fs-6">
 												<strong>Montant payé:</strong>
 												{{ profile.idAbonnement.prix }}€
@@ -131,8 +131,8 @@
 												{{ profile.idAbonnement.duree }}
 											</p>
 											{% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium" %}
-												<a href="{{ path('app_resiliation')}}" class="btn btn-outline-warning btn-sm my-2">Supprimer mon abonnement</a>
-												<a href="{{ path('abonnement_list') }}" class="btn btn-outline-warning btn-sm">Voir les abonnements</a>
+												<button class="abonnementProfile_btn btn btn-sm"><a href="{{ path('app_resiliation')}}" class="abonnementProfile_btn--link text-decoration-none">Supprimer mon abonnement</a></button>
+												<button class="abonnementProfile_btn btn btn-sm"><a href="{{ path('abonnement_list') }}" class="abonnementProfile_btn--link text-decoration-none">Voir les abonnements</a></button>
 											{% elseif profile.idAbonnement.title == "Basic" %}
 												<p>Pas d'abonnement</p>
 												<a href="{{ path('app_delete')}}" class="btn btn-outline-danger btn-sm">Supprimer</a>
@@ -143,26 +143,26 @@
 								</div>
 							</div>
 							<div class="card mb-4">
-								<div class="card-header bg-secondary text-white">
+								<div class="card-header bgBlue text-white">
 									<h2 class="fs-5 mb-0 display-6">Mes accès</h2>
 								</div>
 								<div class="card-body bg-light">
 									<div class="row g-4">
 										{% if profile.idAbonnement.title == "Vip" %}
-											<div class="col-lg-6 col-md-12 col-sm-12">
-												<a href="{{ path('app_tuto_video') }}" class="btn btn-outline-primary btn-sm mb-2 textProfile">Accès aux vidéos</a>
+											<div class="col-lg-6 col-md-12 col-sm-12 accesProfile">
+												<button class="accesProfile_btn btn btn-sm"><a href="{{ path('app_tuto_video') }}" class="accesProfile_btn--link text-decoration-none">Accès aux vidéos</a></button>
 											</div>
-											<div class="col-lg-6 col-md-12 col-sm-12">
-												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-outline-primary  btn-sm mb-2 textProfile">Accès à mon programme d'entraînement</a>
+											<div class="col-lg-6 col-md-12 col-sm-12 accesProfile">
+												<button class="accesProfile_btn btn btn-sm"><a href="{{ path('app_plan_entrainement') }}" class="accesProfile_btn--link text-decoration-none">Accès à mon programme d'entraînement</a></button>
 											</div>
 										{% elseif profile.idAbonnement.title == "Premium" %}
-											<div class="col-lg-6 col-md-12 col-sm-12">
-												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2">Accès à mon programme d'entraînement</a>
-												<a href="{{ path('app_tuto_video') }}" class="btn btn-warning btn-sm mb-2 textProfile">Accès aux vidéos</a>
+											<div class="col-lg-6 col-md-12 col-sm-12 accesProfile">
+												<button class="accesProfile_btn btn btn-sm"><a href="{{ path('app_plan_entrainement') }}" class="accesProfile_btn--link text-decoration-none">Accès à mon programme d'entraînement</a></button>
+												<button class="accesProfile_btn btn btn-sm"><a href="{{ path('app_tuto_video') }}" class="accesProfile_btn--link text-decoration-none">Accès aux vidéos</a>
 											</div>
 										{% elseif profile.idAbonnement.title == "Basic" %}
-											<div class="col-lg-6 col-md-12 col-sm-12">
-												<a href="{{ path('app_plan_entrainement') }}" class="btn btn-warning btn-sm mb-2 textProfile">Accès à mon programme d'entraînement</a>
+											<div class="col-lg-6 col-md-12 col-sm-12 accesProfile">
+												<button class="accesProfile_btn btn btn-sm"><a href="{{ path('app_plan_entrainement') }}" class="accesProfile_btn--link text-decoration-none">Accès à mon programme d'entraînement</a></button>
 											</div>
 										{% endif %}
 									</div>
@@ -170,29 +170,29 @@
 							</div>
 						{% endif %}
 						<div class="card mb-4">
-							<div class="card-header bg-secondary text-white">
+							<div class="card-header bgBlue text-white">
 								<h2 class="fs-5 mb-0 display-6">Mon coach personnel</h2>
 							</div>
 							<div class="card-body bg-light">
 								{% if profile.idProfileCoach %}
 									<div class="d-flex align-items-center">
 										<img class="w-25 me-3" src="{{ asset('/images/photos/' ~ profile.idProfileCoach.photo) }}" alt="Photo de profil de {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}">
-										<div>
+										<div class="myCoachProfile">
 											<p class="fs-6 mb-0">Votre coach :
 												{{ profile.idProfileCoach.firstName }}
 												{{ profile.idProfileCoach.name }}</p>
 											{% if profile.idAbonnement and (profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium") %}
-												<a href="{{ path('app_reservation') }}" class="btn btn-warning mt-2">Réserver un rendez-vous bilan avec un coach</a>
+												<button class="myCoachProfile_btn btn btn-md"><a href="{{ path('app_reservation') }}" class="text-decoration-none text-white">Réserver un rendez-vous bilan avec un coach</a></button>
 											{% endif %}
 										</div>
 									</div>
 								{% else %}
-									<p class="fs-6 textProfile">Aucun coach assigné.</p>
+									<p class="fs-6">Aucun coach assigné.</p>
 								{% endif %}
 								{% if profile.idAbonnement == "Vip" or profile.idAbonnement == "Premium" %}
 									{% if reservation %}
-										<div class="card mt-3">
-											<div class="card-body">
+										<div class="card mt-3 colorBlue">
+											<div class="card-body rdvProfile">
 												<h3 class="card-title fs-5 mb-3">Mon rendez-vous</h3>
 												<ul class="list-group list-group-flush">
 													<li class="list-group-item">Date :
@@ -200,12 +200,12 @@
 													<li class="list-group-item">Heure :
 														{{ reservation.startTime | date('H:i') }}</li>
 												</ul>
-												<a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="btn btn-warning mt-3">Modifier mon rendez-vous</a>
-												<a href="{{ path('app_reservation_delete', {'id': reservation.id}) }}" class="btn btn-danger mt-3">Supprimer mon rendez-vous</a>
+												<button class="rdvProfile_btn btn btn-sm"><a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="text-decoration-none rdvProfile_btn--link">Modifier mon rendez-vous</a></button>
+												<button class="rdvProfile_btn btn btn-sm"><a href="{{ path('app_reservation_delete', {'id': reservation.id}) }}" class="text-decoration-none rdvProfile_btn--link">Supprimer mon rendez-vous</a></button>
 											</div>
 										</div>
 									{% else %}
-										<div class="alert alert-light mt-3 textProfile w-75" role="alert">
+										<div class="alert alert-light mt-3 w-75" role="alert">
 											Pas de rendez-vous programmé pour le moment.
 										</div>
 									{% endif %}

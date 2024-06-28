@@ -7,6 +7,9 @@ import './styles/global.scss';
 import './styles/home.scss';
 import './styles/profile.scss';
 import './styles/about.scss';
+import './styles/sign.scss';
+import './styles/abonnement.scss';
+import './styles/btn.scss';
 
 // Démarrage de Stimulus (si utilisé)
 import './bootstrap';

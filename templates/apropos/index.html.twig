@@ -18,11 +18,11 @@
         <h2 class="mb-4 aboutPlayfair text-center">Nos Coachs</h2>
         <div class="row">
             {% for profileCoach in profileCoachs %}
-            <div class="col-lg-4 mb-4">
+            <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
                 <div class="card h-100 border-1 shadow-lg p-4">
                     <img src="{{ asset('/images/photos/' ~ profileCoach.photo) }}" class="card-img-top rounded-circle" alt="Photo de profil de {{ profileCoach.firstName }} {{ profileCoach.name }}">
                     <div class="card-body">
-                        <h2 class="card-title text-success">{{ profileCoach.firstName }} {{ profileCoach.name }}</h2>
+                        <h2 class="card-title titleCoach">{{ profileCoach.firstName }} {{ profileCoach.name }}</h2>
                         <p class="card-text">{{ profileCoach.bio }}</p>
                     </div>
                     <ul class="list-group list-group-flush">

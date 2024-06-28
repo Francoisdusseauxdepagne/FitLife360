@@ -3,13 +3,13 @@
 {% block title %}FitLife360-Plan d'entrainement{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-    <h1 class="text-center mb-5">Mon Plan d'entrainement</h1>
+<div class="container mt-5 colorBlue">
+    <h1 class="text-center mb-5 playfair">Mon Plan d'entrainement</h1>
     {% for planEntrainement in planEntrainements %}
     <div class="row mb-5">
         <div class="col-lg-12 col-md-12 col-sm-12">
-            <h2 class="fw-bold">{{ planEntrainement.title }}</h2>
-            <div class="plan-details">
+            <h2 class="fw-bold colorRed">{{ planEntrainement.title }}</h2>
+            <div class="plan-details fs-5">
                 <p><strong>Description:</strong> {{ planEntrainement.description }}</p>
                 <p><strong>Durée:</strong> {{ planEntrainement.duree }}</p>
                 <p><strong>Objectif:</strong> {{ planEntrainement.objectif }}</p>
@@ -20,24 +20,24 @@
                     {% set detailsByDay = detailsByDay|merge({ (day): detailsByDay[day]|default([])|merge([detailEntrainement]) }) %}
                 {% endfor %}
                 {% for day, details in detailsByDay %}
-                    <h3>{{ day }}</h3>
-                    <table class="table">
+                    <h3 class="colorRed fs-3">{{ day }}</h3>
+                    <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Échauffement</th>
-                                <th>Exercice</th>
-                                <th>Séries</th>
-                                <th>Répétitions</th>
+                                <th class="colorBlue fs-5">Échauffement</th>
+                                <th class="colorBlue fs-5">Exercice</th>
+                                <th class="colorBlue fs-5">Séries</th>
+                                <th class="colorBlue fs-5">Répétitions</th>
                                 {# <th>Description</th> #}
                             </tr>
                         </thead>
                         <tbody>
                             {% for detailEntrainement in details %}
                             <tr>
-                                <td>{{ detailEntrainement.echauffement }}</td>
-                                <td>{{ detailEntrainement.exercices }}</td>
-                                <td>{{ detailEntrainement.series }}</td>
-                                <td>{{ detailEntrainement.repetitions }}</td>
+                                <td class="colorBlue">{{ detailEntrainement.echauffement }}</td>
+                                <td class="colorBlue">{{ detailEntrainement.exercices }}</td>
+                                <td class="colorBlue">{{ detailEntrainement.series }}</td>
+                                <td class="colorBlue">{{ detailEntrainement.repetitions }}</td>
                                 {# <td>{{ detailEntrainement.description }}</td> #}
                             </tr>
                             {% endfor %}

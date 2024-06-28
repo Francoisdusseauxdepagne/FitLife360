@@ -3,14 +3,14 @@
 {% block title %}Tutoriel vidéo{% endblock %}
 
 {% block body %}
-<section class="py-5">
+<section class="py-5 colorBlue">
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
+            <div class="col-lg-8 text-center btnVideo">
                 <h1 class="display-4 fw-bold mb-4">Vidéos sportives</h1>
                 <p class="fs-5">Bienvenue sur votre espace vidéo. Découvrez nos tutoriels pour pratiquer des activités sportives en autonomie.</p>
                 <p class="fs-6 text-muted mb-5">Une nouvelle vidéo est ajoutée chaque semaine.</p>
-                <a href="{{ path('app_profile') }}" class="btn btn-primary btn-lg">Retourner à mon profil</a>
+                <button class="btnVideo_btn btn btn-lg"><a href="{{ path('app_profile') }}" class="text-decoration-none text-white">Retourner à mon profil</a>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
         <div class="row">
             {% for video in videos %}
                 <div class="col-lg-6 mb-4">
-                    <div class="card h-100 border-0 shadow">
+                    <div class="card h-100 border-0 shadow colorBlue">
                         <div class="ratio ratio-16x9">
                             <iframe src="{{ video.url }}" class="card-img-top" allowfullscreen></iframe>
                         </div>
@@ -76,19 +76,20 @@
                                         </div>
                                     {% endif %}
                                     <form action="{{ path('comment_reply', {'id': comment.id}) }}" method="post">
-                                        <div class="mb-3 ms-4">
+                                        <div class="mb-3 ms-4 btnVideo">
                                             <textarea class="form-control" name="reply" rows="3" placeholder="Répondre au commentaire"></textarea>
+                                        <button type="submit" class="btnVideo_btn btn btn-sm text-white my-2">Répondre</button>
                                         </div>
-                                        <button type="submit" class="btn btn-primary ms-4 btn-sm mb-3 mt-0">Répondre</button>
+                                        
                                     </form>
                                 {% endif %}
                             {% endfor %}
-                            <form action="{{ path('comment_add') }}" method="post">
+                            <form action="{{ path('comment_add') }}" method="post" class="btnVideo">
                                 <div class="mb-3">
                                     <textarea class="form-control" name="comment" rows="3" placeholder="Ajouter un commentaire"></textarea>
                                 </div>
                                 <input type="hidden" name="video_id" value="{{ video.id }}">
-                                <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
+                                <button type="submit" class="btnVideo_btn btn btn-md text-white my-2">Ajouter le commentaire</button>
                             </form>
                         </div>
                     </div>

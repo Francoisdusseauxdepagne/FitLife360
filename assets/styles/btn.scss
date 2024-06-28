@@ -1,0 +1,30 @@
+@import 'variables';
+@import 'mixins';
+
+.error404{
+    @include btnTypeBlue();
+}
+
+.containerAbout, .containerVideo{
+    @include btnTypeBlue();
+}
+
+.containerAbonnement, .footerEvent{
+    @include btnTypeRed();
+}
+
+.btnReservation{
+    @include btnTypeBlue();
+}
+
+.cardPayment{
+    @include btnTypeBlue();
+}
+
+.btnVideo{
+    @include btnTypeBlue();
+}
+
+.cardEventProfile{
+    @include btnTypeRed();
+}

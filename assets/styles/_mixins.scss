@@ -1,0 +1,33 @@
+@mixin btnTypeBlue(){
+    &_btn{
+        background-color: $colorblue;
+        &:hover{
+            background-color: $colorblue;
+        }
+    }
+}
+
+@mixin btnTypeRed(){
+    &_btn{
+        background-color: $colorRed;
+        &:hover{
+            background-color: $colorRed;
+        }
+    }
+}
+
+@mixin btnHoverRed(){
+    &_btn{
+        background-color: transparent;
+        border-color: $colorRed;
+        &:hover{
+            background-color: $colorRed;
+        }
+        &--link{
+            color: $colorRed;
+            &:hover{
+                color: $colorWhite;
+            }
+        }
+    }
+}
