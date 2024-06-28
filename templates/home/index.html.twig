@@ -26,6 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     animateText();
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const images = document.querySelectorAll('.cardImg');
+    images.forEach((img, index) => {
+        setTimeout(() => {
+            img.classList.add('show');
+        }, index * 400); // stagger the animation for each image
+    });
+});
 </script>
 {% endblock %}
 
@@ -45,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-12 col-sm-12 my-4">
-                    <div class="card h-100 shadow-lg border-2">
+                    <div class="card h-100 shadow-lg border-2 cardImg">
                         <img src="{{ asset('images/imgHomeEntrainement.jpeg') }}" class="card-img-top" alt="Entraînement personnalisé">
                         <div class="card-body">
                             <h2 class="card-title fs-3">Entraînement personnalisé</h2>
@@ -54,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 my-4">
-                    <div class="card h-100 shadow-lg border-2">
+                    <div class="card h-100 shadow-lg border-2 cardImg">
                         <img src="{{ asset('images/imgHomeSuivi.jpeg') }}" class="card-img-top" alt="Suivi de votre progression">
                         <div class="card-body">
                             <h2 class="card-title fs-3">Suivi de votre progression</h2>
@@ -63,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 my-4">
-                    <div class="card h-100 shadow-lg border-2">
+                    <div class="card h-100 shadow-lg border-2 cardImg">
                         <img src="{{ asset('images/imgEvent.jpg') }}" class="card-img-top" alt="Nutrition équilibrée">
                         <div class="card-body">
                             <h2 class="card-title fs-3">Évènements</h2>
