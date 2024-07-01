@@ -3,21 +3,36 @@
 {% block title %}FitLife360 - Modifier l'Entraînement{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1 class="text-center mb-5">Modifier l'Entraînement</h1>
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <form method="post">
+<div class="container my-5 colorBlue">
+    <h1 class="text-center mb-5 playfair colorBlue">Modifier l'Entraînement</h1>
+    <div class="row poppins">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <form method="post" class="bg-light p-4 rounded shadow-sm">
                 {{ form_start(form) }}
-                {{ form_row(form.idProfile, {'label': 'Client'}) }}
-                {{ form_row(form.title, {'label': 'Titre'}) }}
-                {{ form_row(form.description, {'label': 'Description'}) }}
-                {{ form_row(form.duree, {'label': 'Durée'}) }}
-                {{ form_row(form.objectif, {'label': 'Objectif'}) }}
-                {{ form_row(form.niveau, {'label': 'Niveau'}) }}
-                {{ form_row(form.type, {'label': 'Type'}) }}
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <div class="mb-3">
+                    {{ form_row(form.idProfile, {'label': 'Client', 'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(form.title, {'label': 'Titre', 'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(form.description, {'label': 'Description', 'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(form.duree, {'label': 'Durée', 'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(form.objectif, {'label': 'Objectif', 'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(form.niveau, {'label': 'Niveau', 'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(form.type, {'label': 'Type', 'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-outline-danger">Enregistrer</button>
+                    <a href="{{ path('app_coach_list_entrainements') }}" class="btn btn-outline-secondary">Annuler</a>
                 </div>
                 {{ form_end(form) }}
             </form>

@@ -4,75 +4,75 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container poppins mb-3 colorBlue py-4">
-		<h1 class="text-center my-5 playfair">Liste des Programmes d'Entraînement</h1>
-		<div class="row">
-			{% for planEntrainement in planEntrainements %}
-				<div class="col-lg-12 col-md-12 col-sm-12 my-2">
-					<div class="card colorBlue shadow-lg p-4">
-						<div class="card-body">
-							<h2 class="card-title colorRed">{{ planEntrainement.title }}</h2>
-							<p class="card-text">
-								<strong>Client:</strong>
-								{{ planEntrainement.idProfile.firstName ?? 'N/A' }}
-								{{ planEntrainement.idProfile.name ?? '' }}
-							</p>
-							{% set details = planEntrainement.detailEntrainements %}
-							<p class="card-text">
-								<strong>Description:</strong>
-								{{ planEntrainement.description }}</p>
-							<p class="card-text">
-								<strong>Durée:</strong>
-								{{ planEntrainement.duree }}</p>
-							<p class="card-text">
-								<strong>Objectif:</strong>
-								{{ planEntrainement.objectif }}</p>
-							<p class="card-text">
-								<strong>Niveau:</strong>
-								{{ planEntrainement.niveau }}</p>
-							<p class="card-text">
-								<strong>Détails d'entraînement:</strong>
-							</p>
-							<ul class="list-group list-group-flush">
-								{% for detail in details %}
-									<li class="list-group-item">
-										{{ detail.day }}
-										-
-										{{ detail.echauffement }}
-										-
-										{{ detail.exercices }}
-										-
-										{{ detail.series }}
-										-
-										{{ detail.repetitions }}
-										-
-										{{ detail.description }}
-										-
-										<div class="d-flex gap-2">
-											<form method="post" action="{{ path('app_coach_delete_detail_entrainement', {'id': detail.id}) }}">
-												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ detail.id) }}">
-												<button type="submit" class="btn btn-sm btn-danger">
-													<i class="fa-solid fa-trash"></i>
-												</button>
-											</form>
-											<a href="{{ path('app_coach_update_detail_entrainement', {'id': detail.id}) }}" class="btn btn-sm bgBlue ml-1">
-												<i class="fa-solid fa-pen text-white"></i>
-											</a>
-										</div>
-									</li>
-								{% endfor %}
-							</ul>
-							<a href="{{ path('app_coach_detail_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-primary btn-sm my-2">Ajouter détail Entrainement</a>
-						</div>
-						<div class="container d-flex flex-direction-row gap-3">
-							<a href="{{ path('app_coach_update_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-success btn-sm">Modifier</a>
+	<div class="container-fluid">
+		<div class="container poppins mb-3 colorBlue py-4">
+			<h1 class="text-center my-5 playfair">Liste des Programmes d'Entraînement</h1>
+			<div class="row">
+				{% for planEntrainement in planEntrainements %}
+					<div class="col-lg-12 col-md-12 col-sm-12 my-2">
+						<div class="card colorBlue shadow-lg p-4">
+							<div class="card-body">
+								<h2 class="card-title colorRed">{{ planEntrainement.title }}</h2>
+								<p class="card-text">
+									<strong>Client:</strong>
+									{{ planEntrainement.idProfile.firstName ?? 'N/A' }}
+									{{ planEntrainement.idProfile.name ?? '' }}
+								</p>
+								{% set details = planEntrainement.detailEntrainements %}
+								<p class="card-text">
+									<strong>Description:</strong>
+									{{ planEntrainement.description }}</p>
+								<p class="card-text">
+									<strong>Durée:</strong>
+									{{ planEntrainement.duree }}</p>
+								<p class="card-text">
+									<strong>Objectif:</strong>
+									{{ planEntrainement.objectif }}</p>
+								<p class="card-text">
+									<strong>Niveau:</strong>
+									{{ planEntrainement.niveau }}</p>
+								<a href="{{ path('app_coach_update_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-secondary btn-sm">Modifier</a>
+								<ul class="list-group list-group-flush gap-1">
+									{% set last_day = null %}
+									{% for detail in details %}
+										{% if detail.day != last_day %}
+											<h3 class="mt-3">{{ detail.day }}</h3>
+											{% set last_day = detail.day %}
+										{% endif %}
+										Echauffement : {{ detail.echauffement }}
+										<li class="list-group-item">
+											<strong class="colorBlue">{{ detail.exercices }}</strong>
+											-
+											{{ detail.series }}
+											série{% if detail.series > 1 %}s{% endif %}
+											-
+											{{ detail.repetitions }}
+											répétition{% if detail.repetitions > 1 %}s{% endif %}
+											- <br>
+											{{ detail.description }}
+											<div class="d-flex gap-2 mt-2">
+												<form method="post" action="{{ path('app_coach_delete_detail_entrainement', {'id': detail.id}) }}">
+													<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ detail.id) }}">
+													<button type="submit" class="btn btn-sm bgRed">
+														<i class="fa-solid fa-trash text-white"></i>
+													</button>
+												</form>
+												<a href="{{ path('app_coach_update_detail_entrainement', {'id': detail.id}) }}" class="btn btn-sm bgBlue ml-1"><i class="fa-solid fa-pen text-white"></i>
+												</a>
+											</div>
+										</li>
+									{% endfor %}
+
+								</ul>
+								<a href="{{ path('app_coach_detail_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-secondary btn-sm my-2"><i class="fa-solid fa-pen"></i> Modifier le programme</a>
+							</div>
 							<form action="{{ path('app_coach_delete_entrainement', {'id': planEntrainement.id}) }}" method="post">
-								<button type="submit" class="btn btn-outline-danger btn-sm ml-1">Supprimer</button>
+								<button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i> Supprimer ce programme</button>
 							</form>
 						</div>
 					</div>
-				</div>
-			{% endfor %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 {% endblock %}

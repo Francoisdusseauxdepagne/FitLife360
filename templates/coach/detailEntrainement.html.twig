@@ -4,16 +4,16 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mt-5">
-		<div class="row my-4">
-			<div class="d-flex flex-row w-50 gap-4">
+	<div class="container my-5">
+		<div class="row mb-4">
+			<div class="d-flex flex-row gap-4">
 				<a class="btn btn-outline-secondary btn-sm" href="{{ path('app_coach_list_entrainements') }}">Liste des entrainements</a>
 				<a class="btn btn-outline-secondary btn-sm" href="{{ path('app_coach') }}">Retour à mon profil coach</a>
 			</div>
 		</div>
 		<h1 class="mb-4">Détail du programme d'entraînement</h1>
 		<div class="row">
-			<div class="col-lg-5">
+			<div class="col-lg-5 col-md-12 col-sm-12">
 				{{ form_start(form) }}
 				<div class="mb-3">
 					{{ form_row(form.day, {'attr': {'class': 'form-control', 'placeholder': 'Jour'}}) }}
@@ -36,7 +36,7 @@
 				<button type="submit" class="btn btn-outline-success">Enregistrer cet exercice</button>
 				{{ form_end(form) }}
 			</div>
-			<div class="col-lg-7">
+			<div class="col-lg-7 col-md-12 col-sm-12">
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -62,7 +62,7 @@
 					</tbody>
 				</table>
 				{% if detailsEntrainement is not empty %}
-					<a class="btn btn-outline-success w-50" href="{{ path('app_coach') }}">Valider le programme</a>
+					<a class="btn btn-outline-success w-25" href="{{ path('app_coach') }}">Valider le programme</a>
 				{% endif %}
 			</div>
 		</div>

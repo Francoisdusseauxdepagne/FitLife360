@@ -6,7 +6,7 @@
     @include btnTypeBlue();
 }
 
-.containerAbonnement, .footerEvent, .cardEventProfile, .divContact, .profileEdit{
+.containerAbonnement, .footerEvent, .cardEventProfile, .divContact, .profileEdit, .avis{
     @include btnTypeRed();
 }
 

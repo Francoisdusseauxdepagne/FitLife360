@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Avis;
 use App\Entity\Event;
+use App\Entity\Profile;
 use App\Entity\TutoVideo;
 use App\Entity\ProfileCoach;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,9 +24,21 @@ class GeneralController extends AbstractController
     public function accueil(): Response
     {
         $events = $this->entityManager->getRepository(Event::class)->findAll();
+        $avis = $this->entityManager->getRepository(Avis::class)->findAll();
+
+        $totalNotes = 0;
+        $count = count($avis);
+
+        foreach ($avis as $avi) {
+            $totalNotes += $avi->getNote();
+        }
+
+        $averageRating = $count > 0 ? $totalNotes / $count : 0;
         
         return $this->render('home/index.html.twig', [
             'events' => $events,
+            'avis' => $avis,
+            'averageRating' => $averageRating
         ]);
     }
 
