@@ -3,11 +3,11 @@
 {% block title %}FitLife360 - Contact{% endblock %}
 
 {% block body %}
-<div class="container p-5">
+<div class="container p-5 poppins">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="card shadow-lg border-0">
-                <div class="card-body p-5">
+                <div class="card-body p-5 colorBlue">
                     <h2 class="text-center mb-4">Contactez-nous</h2>
                     {{ form_start(contactForm, {'attr': {'class': 'row g-3'}}) }}
                     {% if not app.user %}
@@ -32,8 +32,8 @@
                         {{ form_label(contactForm.text, 'Message', {'class': 'form-label'}) }}
                         {{ form_widget(contactForm.text, {'attr': {'class': 'form-control', 'rows': '5', 'placeholder': 'Entrez votre message'}}) }}
                     </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+                    <div class="text-center divContact">
+                        <button type="submit" class="divContact_btn btn btn-lg text-white">Envoyer</button>
                     </div>
                     {{ form_end(contactForm) }}
                 </div>

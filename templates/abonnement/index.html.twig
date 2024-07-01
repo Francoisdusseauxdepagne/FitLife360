@@ -2,14 +2,27 @@
 
 {% block title %}FitLife360 - Abonnements{% endblock %}
 
+{% block javascripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const images = document.querySelectorAll('.cardAbonnement');
+    images.forEach((img, index) => {
+        setTimeout(() => {
+            img.classList.add('show');
+        }, index * 400);
+    });
+});
+</script>
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid py-5 bg-dark">
     <div class="container">
-        <h1 class="text-center display-4 mb-5 text-white">Découvrez nos Abonnements</h1>
-        <div class="row">
+        <h1 class="text-center display-4 mb-5 text-white playfair">Découvrez nos Abonnements</h1>
+        <div class="row poppins">
             {% for abonnement in abonnements %}
                 <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
-                    <div class="card shadow-lg border-2 w-100">
+                    <div class="card shadow-lg border-2 w-100 cardAbonnement">
                         <div class="card-header text-center text-white bg-success">
                             <h2 class="card-title my-2">{{ abonnement.title }}</h2>
                         </div>

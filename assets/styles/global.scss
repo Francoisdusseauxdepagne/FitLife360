@@ -1,6 +1,6 @@
 @import 'variables';
 
-.p, h2, a, small{
+.poppins{
     font-family: $fontPoppins;
 }
 
@@ -10,6 +10,10 @@
 
 .bgBlue{
     background-color: $colorblue !important;
+}
+
+.bgRed{
+    background-color: $colorRed !important;
 }
 
 .colorBlue{

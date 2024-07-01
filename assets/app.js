@@ -5,10 +5,9 @@ import './styles/global.scss';
 // Styles particuliers
 import './styles/home.scss';
 import './styles/profile.scss';
-import './styles/about.scss';
 import './styles/sign.scss';
-import './styles/abonnement.scss';
 import './styles/btn.scss';
+import './styles/js.scss';
 
 // Démarrage de Stimulus (si utilisé)
 import './bootstrap';

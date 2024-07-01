@@ -19,10 +19,6 @@
     }
 }
 
-.divProfile, .abonnementProfile, .accesProfile, .rdvProfile{
-    @include btnHoverRed();
-}
-
 .abonnementProfile{
     &_btn{
         margin-top: $marginTop10;
