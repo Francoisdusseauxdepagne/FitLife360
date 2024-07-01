@@ -185,7 +185,7 @@
 					{% for avi in avis %}
 						<div class="col-lg-6 col-md-12 col-sm-12">
 							<div class="card h-100 shadow-lg border-2">
-								<div class="card-body">
+								<div class="card-body colorBlue">
 									{% if avi.getIdProfile() is not null %}
 										<p class="card-title">{{ avi.getIdProfile().getFirstname() }}
 											{{ avi.getIdProfile().getName() }}</p>
@@ -194,9 +194,8 @@
 									{% endif %}
 									<p class="card-text">{{ avi.getContent() }}</p>
 									<div class="d-flex justify-content-between align-items-center">
-										<p class="card-text">
-											<strong>Note :
-												{{ avi.getNote() }}/5</strong>
+										<p class="card-text fw-bold fst-italic">
+											Note : {{ avi.getNote() }}/5
 										</p>
 									</div>
 								</div>
