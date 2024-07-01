@@ -3,68 +3,68 @@
 {% block title %}FitLife360-Coach{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
+    <div class="container mt-5 poppins">
         <div class="row gx-5">
             <div class="col-lg-4">
                 <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header text-white bgBlue">
                         <h1 class="fs-4 mb-0 display-5">Bienvenue, Coach {{ profileCoach.firstName }}</h1>
                     </div>
-                    <div class="card-body bg-light">
+                    <div class="card-body bg-light divProfile">
                         <div class="text-center">
                             <img src="{{ asset('images/photos/' ~ profileCoach.photo) }}" class="rounded-circle img-fluid mb-4" alt="image de profil">                </div>
-                        <div class="mt-4">
-                            <h2 class="text-primary fs-3 mb-3">Informations personnelles :</h2>
-                            <ul class="lists p-0">
-                                <li class="lists_profile">
-                                    <p class="lists_profile--poppins"><strong>Prénom :</strong> {{ profileCoach.firstName }}</p></li>
-                                <li class="lists_profile">
-                                    <p class="lists_profile--poppins"><strong>Nom :</strong> {{ profileCoach.name }}</p></li>
-                                <li class="lists_profile">
-                                    <p class="lists_profile--poppins"><strong>Date de naissance :</strong> {{ profileCoach.dob | date('d/m/Y') }}</p></li>
-                                <li class="lists_profile">
-                                    <p class="lists_profile--poppins"><strong>Profil créé le :</strong> {{ profileCoach.createdAt | date('d/m/Y') }}</p></li>
-                                <li class="lists_profile">
-                                    <p class="lists_profile--poppins"><strong>Diplôme :</strong> {{ profileCoach.diplome }}</p></li>
-                                <li class="lists_profile">
-                                    <p class="lists_profile--poppins"><strong>Expérience :</strong> {{ profileCoach.experience }}</p></li>
-                                <li class="lists_profile">
-                                    <p class="lists_profile--poppins"><strong>Statut :</strong> {{ profileCoach.contrat }}</p></li>
+                        <div class="mt-4 colorBlue">
+                            <h2 class="fs-4 mb-3 text-decoration-underline colorRed">Informations personnelles :</h2>
+                            <ul class="p-0 list-unstyled">
+                                <li>
+                                    <p><strong>Prénom :</strong> {{ profileCoach.firstName }}</p></li>
+                                <li>
+                                    <p><strong>Nom :</strong> {{ profileCoach.name }}</p></li>
+                                <li>
+                                    <p><strong>Date de naissance :</strong> {{ profileCoach.dob | date('d/m/Y') }}</p></li>
+                                <li>
+                                    <p><strong>Profil créé le :</strong> {{ profileCoach.createdAt | date('d/m/Y') }}</p></li>
+                                <li>
+                                    <p><strong>Diplôme :</strong> {{ profileCoach.diplome }}</p></li>
+                                <li>
+                                    <p><strong>Expérience :</strong> {{ profileCoach.experience }}</p></li>
+                                <li>
+                                    <p><strong>Statut :</strong> {{ profileCoach.contrat }}</p></li>
                             </ul>
                         </div>
-                        <div class="mt-4">
-                            <h2 class="text-primary fs-3 mb-3">À propos de moi :</h2>
-                            <p>{{ profileCoach.bio }}</p>
+                        <div class="mt-4 colorBlue">
+                            <h2 class="fs-4 mb-3">À propos de moi :</h2>
+                            <p class="fst-italic">"{{ profileCoach.bio }}"</p>
                         </div>
-                        <a href="{{ path('app_update_coach') }}" class="btn mt-3 btn-outline-warning">Modifier mon profil</a>
+                        <button class="divProfile_btn btn btn-md"><a href="{{ path('app_update_coach') }}" class="text-decoration-none divProfile_btn--link">Modifier mon profil</a></button>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-12 col-sm-12">
                 <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-secondary text-white">
-                        <h2 class="fs-5 mb-0 display-6">Plans d'entraînement</h2>
+                    <div class="card-header bgBlue">
+                        <h2 class="fs-5 mb-0 display-6 text-white">Plans d'entraînement</h2>
                     </div>
                     <div class="card-body bg-light">
-                        <div class="text-center mb-3">
-                            <a href="{{ path('app_coach_create_entrainement') }}" class="btn btn-outline-success btn-block">Créer un plan</a>
-                            <a href="{{ path('app_coach_list_entrainements') }}" class="btn btn-outline-success btn-block">Modifier les plans</a>
+                        <div class="text-center mb-3 divProfile">
+                            <button class="divProfile_btn btn btn-md"><a href="{{ path('app_coach_create_entrainement') }}" class="text-decoration-none divProfile_btn--link">Créer un plan</a></button>
+                            <button class="divProfile_btn btn btn-md"><a href="{{ path('app_coach_list_entrainements') }}" class="text-decoration-none divProfile_btn--link">Modifier les plans</a></button>
                         </div>
                     </div>
                 </div>
                 <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-secondary text-white">
+                    <div class="card-header bgBlue text-white">
                         <h2 class="fs-5 mb-0 display-6">Rendez-vous avec les membres</h2>
                     </div>
                     <div class="card-body bg-light">
                         {% if reservations|length > 0 %}
                             {% for reservation in reservations %}
-                                <div class="card mb-3">
+                                <div class="card mb-3 colorBlue">
                                     <div class="card-body">
                                         <ul class="list-unstyled">
-                                            <li><i class="fa-solid fa-user"></i>: {{ reservation.idProfile.firstName }} {{ reservation.idProfile.name }}</li>
-                                            <li><strong>Date du rendez-vous :</strong> {{ reservation.date|date('d/m/Y') }}</li>
-                                            <li><strong>Heure du rendez-vous :</strong> {{ reservation.startTime|date('H:i') }}</li>
+                                            <li><i class="fa-solid fa-user"></i> : {{ reservation.idProfile.firstName }} {{ reservation.idProfile.name }}</li>
+                                            <li><strong>Date du rendez-vous </strong> : {{ reservation.date|date('d/m/Y') }}</li>
+                                            <li><strong>Heure du rendez-vous </strong> : {{ reservation.startTime|date('H:i') }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -75,20 +75,20 @@
                     </div>
                 </div>
                 <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-secondary text-white">
+                    <div class="card-header bgBlue text-white">
                         <h2 class="fs-5 mb-0 display-6">Liste des membres</h2>
                     </div>
                     <div class="card-body bg-light">
                         {% for profile in profiles %}
-                            <div class="card mb-3">
+                            <div class="card mb-3 colorBlue">
                                 <div class="card-body">
                                     <ul class="list-unstyled">
-                                        <li><i class="fa-solid fa-user"></i>: {{ profile.firstName }} {{ profile.name }}</li>
-                                        <li><strong>Membre depuis le :</strong> {{ profile.createdAt|date('d/m/Y') }}</li>
-                                        <li><i class="fa-solid fa-bullseye"></i>: {{ profile.objectifSportif }}</li>
-                                        <li><i class="fa-solid fa-seedling"></i>: {{ profile.sexe }}</li>
+                                        <li><i class="fa-solid fa-user"></i> : {{ profile.firstName }} {{ profile.name }}</li>
+                                        <li><strong>Membre depuis le </strong> : {{ profile.createdAt|date('d/m/Y') }}</li>
+                                        <li><i class="fa-solid fa-bullseye"></i> : {{ profile.objectifSportif }}</li>
+                                        <li><i class="fa-solid fa-seedling"></i> : {{ profile.sexe }}</li>
                                         {% if profile.idProfileCoach %}
-                                        <li><strong>Coach attitré :</strong> {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}</li>
+                                        <li><strong>Coach attitré </strong> : {{ profile.idProfileCoach.firstName }} {{ profile.idProfileCoach.name }}</li>
                                         {% endif %}
                                     </ul>
                                 </div>

@@ -3,7 +3,7 @@
 {% block title %}FitLife360-Profil{% endblock %}
 
 {% block body %}
-	<div class="container mt-5">
+	<div class="container mt-5 poppins">
 		<div class="row gx-5">
 			<div class="col-lg-4">
 				<div class="card mb-4 shadow-lg border-2">
@@ -15,36 +15,36 @@
 							<img src="{{ asset('images/photos/' ~ profile.photo) }}" class="card-img-top rounded-circle shadow-lg" alt="Profile">
 						</div>
 						<div class="mt-4">
-							<h2 class="colorBlue fs-4 mb-3 text-decoration-underline">Informations personnelles :</h2>
-							<ul class="lists p-0 colorBlue">
-								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong class="colorBlue">Prénom :</strong>
+							<h2 class="colorBlue fs-4 mb-3 text-decoration-underline colorRed">Informations personnelles :</h2>
+							<ul class="list-unstyled p-0 colorBlue">
+								<li>
+									<p><strong>Prénom :</strong>
 									{{ profile.firstName }}</p></li>
-								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong class="colorBlue">Nom :</strong>
+								<li>
+									<p><strong>Nom :</strong>
 									{{ profile.name }}</p></li>
-								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong class="colorBlue">Date de naissance :</strong>
+								<li>
+									<p><strong>Date de naissance :</strong>
 									{{ profile.dateDeNaissance | date('d/m/Y') }}</p></li>
-								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong class="colorBlue">Email :</strong>
+								<li>
+									<p><strong>Email :</strong>
 									{{ app.user.email }}</p></li>
-								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong class="colorBlue">Profil créé le :</strong>
+								<li>
+									<p><strong>Profil créé le :</strong>
 									{{ profile.createdAt | date('d/m/Y') }}</p></li>
-								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong class="colorBlue">Profil modifié le :</strong>
+								<li>
+									<p><strong>Profil modifié le :</strong>
 									{{ profile.updatedAt | date('d/m/Y') }}</p></li>
 							</ul>
 						</div>
 						<div class="mt-4 divProfile">
 							<h2 class="colorBlue fs-4 mb-3 text-decoration-underline">Objectifs :</h2>
 							<ul class="lists p-0 colorBlue">
-								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong class="colorBlue">Sportif :</strong>
+								<li class="list-unstyled p-0 colorBlue">
+									<p><strong class="colorBlue">Sportif :</strong>
 									{{ profile.objectifSportif }}</p></li>
 								<li class="lists_profile">
-									<p class="lists_profile--poppins"><strong class="colorBlue">Biographie :</strong>
+									<p><strong class="colorBlue">Biographie :</strong>
 									{{ profile.bio }}</p></li>
 							</ul>
 							<button class="divProfile_btn btn btn-md"><a href="{{ path('app_update_profile') }}" class="text-decoration-none divProfile_btn--link">Modifier mon profil</a></button>
