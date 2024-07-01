@@ -181,9 +181,17 @@
 				<h2 class="display-4 fw-bold text-center text-white">Avis de nos utilisateurs</h2>
 				<p class="text-center text-white">Notes de nos membres
 					{{ averageRating|number_format(1, '.', '') }}/5</p>
+        	</div>
+			<div class="avis text-center my-2">
+			{% if app.user %}
+					<button class="avis_btn btn btn-lg text-center">
+						<a href="{{ path('app_avis_add') }}" class="fw-bold text-decoration-none text-white">Ajouter un avis</a>
+					</button>
+            	{% endif %}
+			</div>
 				<div class="row g-4">
 					{% for avi in avis %}
-						<div class="col-lg-6 col-md-12 col-sm-12">
+						<div class="col-lg-6 col-md-12 col-sm-12 p-4">
 							<div class="card h-100 shadow-lg border-2">
 								<div class="card-body colorBlue">
 									{% if avi.getIdProfile() is not null %}
@@ -197,10 +205,12 @@
 										<p class="card-text fw-bold fst-italic">
 											Note : {{ avi.getNote() }}/5
 										</p>
+										<small class="text-muted">{{ avi.getCreatedAt()|date('d/m/Y') }}</small>
 									</div>
 								</div>
 							</div>
 						</div>
+
 					{% endfor %}
 				</div>
 				{% if avis is empty %}

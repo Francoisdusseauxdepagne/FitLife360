@@ -46,6 +46,7 @@ class AvisController extends AbstractController
             $user = $this->getUser();
             $profile = $user->getProfile();
             $avis->setIdProfile($profile);
+            $avis->setCreatedAt(new \DateTimeImmutable());
 
             $entityManager = $this->entityManager;
             $entityManager->persist($avis);

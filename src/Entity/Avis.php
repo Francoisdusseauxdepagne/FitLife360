@@ -20,6 +20,9 @@ class Avis
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
     #[ORM\ManyToOne(inversedBy: 'avis')]
     private ?Profile $idProfile = null;
 
@@ -60,6 +63,18 @@ class Avis
     public function setIdProfile(?Profile $idProfile): static
     {
         $this->idProfile = $idProfile;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
