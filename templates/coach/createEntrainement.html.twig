@@ -3,11 +3,10 @@
 {% block title %}Créer un plan d'entraînement{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1 class="mt-5">Créer un plan d'entraînement</h1>
-
-        <div class="row mt-5">
-            <div class="col-lg-12">
+    <div class="container my-5">
+        <h1 class="mt-5 playfair colorBlue">Créer un plan d'entraînement</h1>
+        <div class="row mt-5 poppins">
+            <div class="col-lg-12 col-md-12 col-sm-12 colorBlue programmeEdit">
                 {{ form_start(form) }}
                     <div class="mb-3">
                         {{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
@@ -30,8 +29,7 @@
                     <div class="mb-3">
                         {{ form_row(form.idProfile, {'attr': {'class': 'form-control'}}) }}
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Créer le programme d'entraînement</button>
+                    <button type="submit" class="programmeEdit_btn btn btn-md text-white w-25">Créer le programme d'entraînement</button>
                 {{ form_end(form) }}
             </div>
         </div>

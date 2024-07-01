@@ -2,7 +2,7 @@
 @import 'mixins';
 
 
-.containerAbout, .containerVideo, .error404, .btnReservation, .cardPayment, .btnVideo, .profileUpdate{
+.containerAbout, .containerVideo, .error404, .btnReservation, .cardPayment, .btnVideo, .profileUpdate, .programmeEdit{
     @include btnTypeBlue();
 }
 

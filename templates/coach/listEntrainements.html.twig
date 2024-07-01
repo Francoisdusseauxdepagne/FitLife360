@@ -4,14 +4,14 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h1 class="text-center mb-5">Liste des Programmes d'Entraînement</h1>
+	<div class="container poppins mb-3 colorBlue py-4">
+		<h1 class="text-center my-5 playfair">Liste des Programmes d'Entraînement</h1>
 		<div class="row">
 			{% for planEntrainement in planEntrainements %}
-				<div class="col-lg-12 my-2">
-					<div class="card">
+				<div class="col-lg-12 col-md-12 col-sm-12 my-2">
+					<div class="card colorBlue shadow-lg p-4">
 						<div class="card-body">
-							<h2 class="card-title">{{ planEntrainement.title }}</h2>
+							<h2 class="card-title colorRed">{{ planEntrainement.title }}</h2>
 							<p class="card-text">
 								<strong>Client:</strong>
 								{{ planEntrainement.idProfile.firstName ?? 'N/A' }}
@@ -33,9 +33,9 @@
 							<p class="card-text">
 								<strong>Détails d'entraînement:</strong>
 							</p>
-							<ul>
+							<ul class="list-group list-group-flush">
 								{% for detail in details %}
-									<li>
+									<li class="list-group-item">
 										{{ detail.day }}
 										-
 										{{ detail.echauffement }}
@@ -47,25 +47,28 @@
 										{{ detail.repetitions }}
 										-
 										{{ detail.description }}
-										<form method="post" action="{{ path('app_coach_delete_detail_entrainement', {'id': detail.id}) }}">
-											<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ detail.id) }}">
-											<button type="submit" class="btn btn-sm btn-danger">
-												<i class="fa-solid fa-trash"></i>
-											</button>
-										</form>
-										<a href="{{ path('app_coach_update_detail_entrainement', {'id': detail.id}) }}" class="btn btn-sm btn-primary ml-1">
-											<i class="fa-solid fa-pen"></i>
-										</a>
+										-
+										<div class="d-flex gap-2">
+											<form method="post" action="{{ path('app_coach_delete_detail_entrainement', {'id': detail.id}) }}">
+												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ detail.id) }}">
+												<button type="submit" class="btn btn-sm btn-danger">
+													<i class="fa-solid fa-trash"></i>
+												</button>
+											</form>
+											<a href="{{ path('app_coach_update_detail_entrainement', {'id': detail.id}) }}" class="btn btn-sm bgBlue ml-1">
+												<i class="fa-solid fa-pen text-white"></i>
+											</a>
+										</div>
 									</li>
 								{% endfor %}
 							</ul>
-							<div class="container d-flex flex-direction-row gap-3">
-								<a href="{{ path('app_coach_update_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-success btn-sm">Modifier</a>
-								<a href="{{ path('app_coach_detail_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-primary btn-sm">Ajouter détail Entrainement</a>
-								<form action="{{ path('app_coach_delete_entrainement', {'id': planEntrainement.id}) }}" method="post">
-									<button type="submit" class="btn btn-outline-danger btn-sm ml-1">Supprimer</button>
-								</form>
-							</div>
+							<a href="{{ path('app_coach_detail_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-primary btn-sm my-2">Ajouter détail Entrainement</a>
+						</div>
+						<div class="container d-flex flex-direction-row gap-3">
+							<a href="{{ path('app_coach_update_entrainement', {'id': planEntrainement.id}) }}" class="btn btn-outline-success btn-sm">Modifier</a>
+							<form action="{{ path('app_coach_delete_entrainement', {'id': planEntrainement.id}) }}" method="post">
+								<button type="submit" class="btn btn-outline-danger btn-sm ml-1">Supprimer</button>
+							</form>
 						</div>
 					</div>
 				</div>
