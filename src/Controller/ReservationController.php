@@ -104,11 +104,11 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         
-        // Vérifier le type d'abonnement
-        if ($this->checkSubscription() !== 'vip') {
-            $this->addFlash('warning', 'Vous devez être abonné VIP pour mettre à jour une réservation.');
-            return $this->redirectToRoute('app_reservation');
-        }
+        // // Vérifier le type d'abonnement
+        // if ($this->checkSubscription() !== 'vip') {
+        //     $this->addFlash('warning', 'Vous devez être abonné VIP pour mettre à jour une réservation.');
+        //     return $this->redirectToRoute('app_reservation');
+        // }
 
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
