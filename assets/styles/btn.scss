@@ -2,11 +2,11 @@
 @import 'mixins';
 
 
-.containerAbout, .containerVideo, .error404, .btnReservation, .cardPayment, .btnVideo, .profileUpdate, .programmeEdit{
+.containerAbout, .containerVideo, .btnReservation, .cardPayment, .btnVideo, .profileUpdate, .programmeEdit{
     @include btnTypeBlue();
 }
 
-.containerAbonnement, .footerEvent, .cardEventProfile, .divContact, .profileEdit, .avis{
+.containerAbonnement, .footerEvent, .cardEventProfile, .divContact, .profileEdit, .avis, .error404{
     @include btnTypeRed();
 }
 
