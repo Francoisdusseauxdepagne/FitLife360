@@ -2,4 +2,9 @@
 
 .containerError{
     padding: $padding200;
+    @media screen and (max-width: 768px) {
+        padding: $padding0;
+        padding-top: $padding200;
+        padding-bottom: $padding200;
+    }
 }

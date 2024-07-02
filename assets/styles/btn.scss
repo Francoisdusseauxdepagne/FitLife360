@@ -6,10 +6,10 @@
     @include btnTypeBlue();
 }
 
-.containerAbonnement, .footerEvent, .cardEventProfile, .divContact, .profileEdit, .avis, .error404{
+.containerAbonnement, .footerEvent, .cardEventProfile, .divContact, .profileEdit, .avis{
     @include btnTypeRed();
 }
 
-.divProfile, .abonnementProfile, .accesProfile, .rdvProfile{
+.divProfile, .abonnementProfile, .accesProfile, .rdvProfile, .error404{
     @include btnHoverRed();
 }
