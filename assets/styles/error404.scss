@@ -7,4 +7,7 @@
         padding-top: $padding200;
         padding-bottom: $padding200;
     }
+    .shadowError {
+        text-shadow: 3px 3px $colorblue;
+    }
 }

@@ -2,7 +2,7 @@
 @import 'mixins';
 
 
-.containerAbout, .containerVideo, .btnReservation, .cardPayment, .btnVideo, .profileUpdate, .programmeEdit{
+.containerAbout, .containerVideo, .btnReservation, .cardPayment, .btnVideo, .profileUpdate, .programmeEdit, .error404{
     @include btnTypeBlue();
 }
 
@@ -10,6 +10,6 @@
     @include btnTypeRed();
 }
 
-.divProfile, .abonnementProfile, .accesProfile, .rdvProfile, .error404{
+.divProfile, .abonnementProfile, .accesProfile, .rdvProfile{
     @include btnHoverRed();
 }

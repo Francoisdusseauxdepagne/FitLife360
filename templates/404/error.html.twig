@@ -3,13 +3,13 @@
 {% block title %}Page non trouvée{% endblock %}
 
 {% block body %}
-<div class="container-fuild bg-dark containerError">
+<div class="container-fuild containerError bg-light">
     <div class="container playfair">
         <div class="row justify-content-center">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="text-center">
-                    <h1 class="display-1 fw-bold colorRed mb-2">ERROR 404</h1>
-                    <p class="lead text-white"> Oups... la page que vous recherchez n'existe pas ou plus ! <strong class="fs-4">🏋️‍♂️</strong></p>
+                    <h1 class="display-1 fw-bold colorRed mb-2 shadowError">ERROR 404</h1>
+                    <p class="lead colorBlue"><strong class="fs-4">🏋️‍♂️</strong> Oups... la page que vous recherchez n'existe pas ! <strong class="fs-4">🏋️‍♂️</strong></p>
                 </div>
                 <div class="text-center mt-4 error404 poppins mt-5">
                     <button class="error404_btn btn btn-lg"><a href="{{ path('app_home') }}" class="text-white text-decoration-none">Retour à l'accueil</a>
