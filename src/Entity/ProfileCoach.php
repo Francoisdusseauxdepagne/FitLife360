@@ -132,13 +132,12 @@ class ProfileCoach
         return $this->photoFile;
     }
 
-
     public function getPhoto(): ?string
     {
         return $this->photo;
     }
 
-    public function setPhoto(?string $photo): static
+    public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
@@ -455,4 +454,10 @@ class ProfileCoach
 
         return $this;
     }
+
+    public function __sleep(): array{
+
+        return ['photo'];
+    }
+
 }

@@ -7,38 +7,6 @@
 
 {% block title %}FitLife360 - Accueil{% endblock %}
 
-{% block javascripts %}
-{{ parent()}}
-<script>
-	document.addEventListener("DOMContentLoaded", () => {
-        const title = document.querySelector('#headerText');
-        function animateText() {
-        const text = title.innerText;
-        title.innerText = '';
-        for (let i = 0; i < text.length; i++) {
-        const letter = document.createElement('span');
-        letter.innerText = text[i];
-        letter.classList.add('letter');
-        title.appendChild(letter);
-        setTimeout(() => {
-        letter.style.opacity = '1';
-        }, i * 100);
-        }
-        }
-        animateText();
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const images = document.querySelectorAll('.cardImg');
-        images.forEach((img, index) => {
-        setTimeout(() => {
-        img.classList.add('show');
-        }, index * 400);
-        });
-    });
-</script>
-{% endblock %}
-
 {% block body %}
 	<div class="container-fluid p-0">
 		<header class="bg-dark text-white">

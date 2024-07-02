@@ -8,9 +8,6 @@ import './styles/home.scss';
 import './styles/profile.scss';
 import './styles/sign.scss';
 import './styles/btn.scss';
-import './styles/js.scss';
-
-
 
 require('bootstrap');
 require('@fortawesome/fontawesome-free/css/all.min.css');
