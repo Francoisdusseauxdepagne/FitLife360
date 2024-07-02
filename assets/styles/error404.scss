@@ -1,5 +1,6 @@
 @import 'variables';
+@import 'mixins';
 
 .containerError{
-    padding: $padding200;
+    @include containerError();
 }
