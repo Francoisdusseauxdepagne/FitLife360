@@ -66,13 +66,16 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Resiliation', "fa-solid fa-envelope", Resiliation::class);
         yield MenuItem::linkToCrud('Avis', "fa-solid fa-star", Avis::class);
         yield MenuItem::section('Vues pages');
+        yield MenuItem::linkToRoute('Accueil', 'fa fa-home', 'app_home');
         yield MenuItem::linkToRoute('Profil Utilisateur', 'fa-solid fa-eye', 'app_profile');
         yield MenuItem::linkToRoute('profil Coach', 'fa-solid fa-eye', 'app_coach');
         yield MenuItem::linkToRoute('Abonnement', "fa-brands fa-shopify", 'abonnement_list');
         yield MenuItem::linkToRoute('A propos', 'fa-solid fa-address-card', 'app_apropos');
-        yield MenuItem::linkToRoute('Vidéos', 'fa-solid fa-film', 'app_tuto_video');
         yield MenuItem::linkToRoute('Contact', 'fa-solid fa-envelope', 'app_contact');
-        yield MenuItem::linkToRoute('Avis', 'fa-solid fa-star', 'app_avis');
+        yield MenuItem::linkToRoute('Avis', 'fa-solid fa-star', 'app_avis_add');
+        yield MenuItem::linkToRoute('Videos sportives', 'fa-solid fa-film', 'app_tuto_video');
+        yield MenuItem::linkToRoute('Reservation', 'fa-solid fa-calendar', 'app_reservation');
+        yield MenuItem::linkToRoute('Error404', 'fa-solid fa-bug', 'app_error404');
         yield MenuItem::section('Gestion des Utilisateurs');
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class);
         yield MenuItem::linkToCrud('Membres', 'fa-solid fa-user', Profile::class);
