@@ -374,7 +374,7 @@ class Profile
 
     public function __toString() : string
     {
-        return (string) $this->photo;
+        return (string) $this->firstName . ' ' . $this->name;
     }
 
     /**
@@ -622,9 +622,8 @@ class Profile
     {
         // Spécifiez les propriétés à sérialiser, en excluant celles qui ne peuvent pas être sérialisées
         return [
-            'id', 'photo', 'sexe', 'objectifSportif', 'bio', 'idUser', 'createdAt', 'updatedAt', 'isActive', 
-            'idAbonnement', 'comments', 'planEntrainements', 'paniers', 'detailEntrainements', 'reservations', 
-            'name', 'firstName', 'idProfileCoach', 'reportings', 'dateDeNaissance', 'contacts', 'resiliations', 'contactEvents'
+            'id', 'name', 'firstName', 'photo', 'sexe', 'objectifSportif', 'bio', 'idUser', 'createdAt', 'updatedAt', 'isActive', 
+            'idAbonnement', 'comments', 'planEntrainements', 'paniers', 'detailEntrainements', 'reservations', 'idProfileCoach', 'reportings', 'dateDeNaissance', 'contacts', 'resiliations', 'contactEvents'
         ];
     }
 

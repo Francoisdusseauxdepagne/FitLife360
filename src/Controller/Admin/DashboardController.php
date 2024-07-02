@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Avis;
 use App\Entity\User;
 use App\Entity\Event;
 use App\Entity\Panier;
@@ -63,12 +64,15 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion des messages');
         yield MenuItem::linkToCrud('Message', 'fa-solid fa-message', Contact::class);
         yield MenuItem::linkToCrud('Resiliation', "fa-solid fa-envelope", Resiliation::class);
+        yield MenuItem::linkToCrud('Avis', "fa-solid fa-star", Avis::class);
         yield MenuItem::section('Vues pages');
         yield MenuItem::linkToRoute('Profil Utilisateur', 'fa-solid fa-eye', 'app_profile');
         yield MenuItem::linkToRoute('profil Coach', 'fa-solid fa-eye', 'app_coach');
         yield MenuItem::linkToRoute('Abonnement', "fa-brands fa-shopify", 'abonnement_list');
         yield MenuItem::linkToRoute('A propos', 'fa-solid fa-address-card', 'app_apropos');
         yield MenuItem::linkToRoute('Vidéos', 'fa-solid fa-film', 'app_tuto_video');
+        yield MenuItem::linkToRoute('Contact', 'fa-solid fa-envelope', 'app_contact');
+        yield MenuItem::linkToRoute('Avis', 'fa-solid fa-star', 'app_avis');
         yield MenuItem::section('Gestion des Utilisateurs');
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class);
         yield MenuItem::linkToCrud('Membres', 'fa-solid fa-user', Profile::class);

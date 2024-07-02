@@ -455,9 +455,8 @@ class ProfileCoach
         return $this;
     }
 
-    public function __sleep(): array{
-
+    public function __sleep(): array
+    {
         return ['photo'];
     }
-
 }
