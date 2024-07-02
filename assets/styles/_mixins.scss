@@ -31,19 +31,3 @@
         }
     }
 }
-
-@mixin containerError(){
-    position: relative;
-    height: 100vh;
-    background-color: $colorBlack;
-    padding: $padding350;
-    background-image: url('../images/imgError.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: -1;
-    &_text{
-        position: absolute;
-        top: $top100;
-        left: $left100;
-    }
-}
