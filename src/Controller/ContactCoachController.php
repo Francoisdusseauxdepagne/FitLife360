@@ -59,6 +59,7 @@ class ContactCoachController extends AbstractController
 
         return $this->render('contact/coach.html.twig', [
             'contactCoachForm' => $form->createView(),
+            'coach' => $coach
         ]);
     }
 }
