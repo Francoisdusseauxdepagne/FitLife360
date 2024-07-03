@@ -9,7 +9,7 @@ framework:
     #esi: true
     #fragments: true
 
-    #error_controller: 'App\Controller\GeneralController::error404'
+    error_controller: 'App\Controller\GeneralController::error404'
 
 when@test:
     framework:
