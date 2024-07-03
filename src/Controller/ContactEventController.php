@@ -47,7 +47,7 @@ class ContactEventController extends AbstractController
         }
 
         // Si le formulaire n'est pas soumis ou n'est pas valide, rendre la vue du formulaire
-        return $this->render('contact_event/index.html.twig', [
+        return $this->render('contact/event.html.twig', [
             'form' => $form->createView(),
         ]);
     }

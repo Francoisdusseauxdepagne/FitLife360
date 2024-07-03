@@ -57,7 +57,7 @@ class ContactCoachController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('contact_coach/index.html.twig', [
+        return $this->render('contact/coach.html.twig', [
             'contactCoachForm' => $form->createView(),
         ]);
     }
