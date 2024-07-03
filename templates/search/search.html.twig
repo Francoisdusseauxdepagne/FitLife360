@@ -3,11 +3,19 @@
 {% block title %}FitLife360 - Recherche{% endblock %}
 
 {% block body %}
-<section class="py-5 bg-light poppins">
+<section class="sectionSearch bg-light py-5">
     <div class="container">
-        <div class="row justify-content-center mb-4">
+        <div class="row justify-content-center colorBlue">
+            <div class="col-lg-10 col-md-12 col-sm-12">
+                <div class="text-center">
+                    <h1 class="playfair fs-1 my-4">Trouvez un Coach près de chez vous</h1>
+                    <p class="fst-italic poppins my-4">"Découvrez notre réseau de coachs certifiés disponibles pour vous accompagner dans votre parcours vers une meilleure forme physique et bien-être. Utilisez le formulaire ci-dessous pour trouver un coach adapté à vos besoins et à votre localisation"</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center my-3 poppins">
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="card shadow-sm border-0">
+                <div class="card bg-light shadow-lg rounded-3">
                     <div class="card-body">
                         <h3 class="card-title text-center mb-4 colorBlue">Rechercher un coach</h3>
                         <form method="get" action="{{ path('search_coaches') }}">
