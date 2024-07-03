@@ -55,6 +55,8 @@ class ProfileCoach
     #[ORM\Column]
     private ?bool $isActive = null;
 
+    
+
     /**
      * @var Collection<int, PlanEntrainement>
      */
@@ -94,6 +96,18 @@ class ProfileCoach
     #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'idProfileCoach')]
     private Collection $events;
 
+    /**
+     * @var Collection<int, SessionCoaching>
+     */
+    #[ORM\OneToMany(targetEntity: SessionCoaching::class, mappedBy: 'coach')]
+    private Collection $sessionCoachings;
+
+    /**
+     * @var Collection<int, ContactCoach>
+     */
+    #[ORM\OneToMany(targetEntity: ContactCoach::class, mappedBy: 'idProfileCoach')]
+    private Collection $contactCoaches;
+
     public function __construct()
     {
         $this->planEntrainements = new ArrayCollection();
@@ -101,6 +115,8 @@ class ProfileCoach
         $this->reservations = new ArrayCollection();
         $this->profiles = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->sessionCoachings = new ArrayCollection();
+        $this->contactCoaches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -458,5 +474,65 @@ class ProfileCoach
     public function __sleep(): array
     {
         return ['photo'];
+    }
+
+    /**
+     * @return Collection<int, SessionCoaching>
+     */
+    public function getSessionCoachings(): Collection
+    {
+        return $this->sessionCoachings;
+    }
+
+    public function addSessionCoaching(SessionCoaching $sessionCoaching): static
+    {
+        if (!$this->sessionCoachings->contains($sessionCoaching)) {
+            $this->sessionCoachings->add($sessionCoaching);
+            $sessionCoaching->setCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSessionCoaching(SessionCoaching $sessionCoaching): static
+    {
+        if ($this->sessionCoachings->removeElement($sessionCoaching)) {
+            // set the owning side to null (unless already changed)
+            if ($sessionCoaching->getCoach() === $this) {
+                $sessionCoaching->setCoach(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ContactCoach>
+     */
+    public function getContactCoaches(): Collection
+    {
+        return $this->contactCoaches;
+    }
+
+    public function addContactCoach(ContactCoach $contactCoach): static
+    {
+        if (!$this->contactCoaches->contains($contactCoach)) {
+            $this->contactCoaches->add($contactCoach);
+            $contactCoach->setIdProfileCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContactCoach(ContactCoach $contactCoach): static
+    {
+        if ($this->contactCoaches->removeElement($contactCoach)) {
+            // set the owning side to null (unless already changed)
+            if ($contactCoach->getIdProfileCoach() === $this) {
+                $contactCoach->setIdProfileCoach(null);
+            }
+        }
+
+        return $this;
     }
 }

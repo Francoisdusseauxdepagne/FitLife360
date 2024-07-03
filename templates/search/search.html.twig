@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FitLife360 - Recherche{% endblock %}
+
+{% block body %}
+<section class="py-5 bg-light poppins">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4 colorBlue">Rechercher un coach</h3>
+                        <form method="get" action="{{ path('search_coaches') }}">
+                            <div class="input-group mb-3 search">
+                                <input type="text" name="location" placeholder="Entrez votre lieu" class="form-control" required>
+                                <button type="submit" class="search_btn btn text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if sessions is defined %}
+            <div class="row justify-content-center">
+                {% for session in sessions %}
+                    <h2 class="mt-5 fs-5 text-center">Résultats de recherche :</h2>
+                    <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+                        <div class="card shadow-lg border-0 h-100 p-2">
+                            <div class="card-body search colorBlue">
+                                <h3 class="card-title fs-4">{{ session.idProfileCoach.firstname }} {{ session.idProfileCoach.name }}</h3>
+                                <img src="{{ asset('images/photos/' ~ session.idProfileCoach.photo) }}" alt="photo du coach" class="w-100 my-2 rounded-circle">
+                                <p class="card-text"><strong>Expertise du coach :</strong> {{ session.idProfileCoach.expertise }}</p>
+                                <p class="card-text"><strong>Lieu de présentiel :</strong> {{ session.lieu }}</p>
+                                <p class="card-text"><strong>Tarifs :</strong> {{ session.prix }}</p>
+                                <button class="search_btn btn btn-sm">
+                                    <a href="{{ path('app_apropos') }}" class="text-decoration-none fw-bold text-white">
+                                        <i class="fa-solid fa-user me-2"></i>Voir le profil
+                                    </a>
+                                </button>
+                                <button class="search_btn btn btn-sm">
+                                    <a href="{{ path('contact_coach_form', {'id': session.idProfileCoach.id}) }}" class="text-decoration-none fw-bold text-white">
+                                        <i class="fa-solid fa-phone me-2"></i>Contacter-moi
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info text-center" role="alert">
+                Aucun coach trouvé pour le lieu spécifié.
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

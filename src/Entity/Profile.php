@@ -131,6 +131,12 @@ class Profile
     #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'idProfile')]
     private Collection $avis;
 
+    /**
+     * @var Collection<int, ContactCoach>
+     */
+    #[ORM\OneToMany(targetEntity: ContactCoach::class, mappedBy: 'idProfile')]
+    private Collection $contactCoaches;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -143,6 +149,7 @@ class Profile
         $this->resiliations = new ArrayCollection();
         $this->contactEvents = new ArrayCollection();
         $this->avis = new ArrayCollection();
+        $this->contactCoaches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -666,6 +673,36 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($avi->getIdProfile() === $this) {
                 $avi->setIdProfile(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ContactCoach>
+     */
+    public function getContactCoaches(): Collection
+    {
+        return $this->contactCoaches;
+    }
+
+    public function addContactCoach(ContactCoach $contactCoach): static
+    {
+        if (!$this->contactCoaches->contains($contactCoach)) {
+            $this->contactCoaches->add($contactCoach);
+            $contactCoach->setIdProfile($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContactCoach(ContactCoach $contactCoach): static
+    {
+        if ($this->contactCoaches->removeElement($contactCoach)) {
+            // set the owning side to null (unless already changed)
+            if ($contactCoach->getIdProfile() === $this) {
+                $contactCoach->setIdProfile(null);
             }
         }
 

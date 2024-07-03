@@ -12,24 +12,32 @@
                     </div>
                     <div class="card-body bg-light divProfile">
                         <div class="text-center">
-                            <img src="{{ asset('images/photos/' ~ profileCoach.photo) }}" class="rounded-circle img-fluid mb-4" alt="image de profil">                </div>
+                            <img src="{{ asset('images/photos/' ~ profileCoach.photo) }}" class="rounded-circle img-fluid mb-4" alt="image de profil">
+                        </div>
                         <div class="mt-4 colorBlue">
                             <h2 class="fs-4 mb-3 text-decoration-underline colorRed">Informations personnelles :</h2>
                             <ul class="p-0 list-unstyled">
                                 <li>
-                                    <p><strong>Prénom :</strong> {{ profileCoach.firstName }}</p></li>
+                                    <p><strong>Prénom :</strong> {{ profileCoach.firstName }}</p>
+                                </li>
                                 <li>
-                                    <p><strong>Nom :</strong> {{ profileCoach.name }}</p></li>
+                                    <p><strong>Nom :</strong> {{ profileCoach.name }}</p>
+                                </li>
                                 <li>
-                                    <p><strong>Date de naissance :</strong> {{ profileCoach.dob | date('d/m/Y') }}</p></li>
+                                    <p><strong>Date de naissance :</strong> {{ profileCoach.dob | date('d/m/Y') }}</p>
+                                </li>
                                 <li>
-                                    <p><strong>Profil créé le :</strong> {{ profileCoach.createdAt | date('d/m/Y') }}</p></li>
+                                    <p><strong>Profil créé le :</strong> {{ profileCoach.createdAt | date('d/m/Y') }}</p>
+                                </li>
                                 <li>
-                                    <p><strong>Diplôme :</strong> {{ profileCoach.diplome }}</p></li>
+                                    <p><strong>Diplôme :</strong> {{ profileCoach.diplome }}</p>
+                                </li>
                                 <li>
-                                    <p><strong>Expérience :</strong> {{ profileCoach.experience }}</p></li>
+                                    <p><strong>Expérience :</strong> {{ profileCoach.experience }}</p>
+                                </li>
                                 <li>
-                                    <p><strong>Statut :</strong> {{ profileCoach.contrat }}</p></li>
+                                    <p><strong>Statut :</strong> {{ profileCoach.contrat }}</p>
+                                </li>
                             </ul>
                         </div>
                         <div class="mt-4 colorBlue">
@@ -94,6 +102,29 @@
                                 </div>
                             </div>
                         {% endfor %}
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bgBlue text-white">
+                        <h2 class="fs-5 mb-0 display-6">Messages reçus</h2>
+                    </div>
+                    <div class="card-body bg-light">
+                        {% if messages is not empty %}
+                            {% for message in messages %}
+                                <div class="card mb-3 colorBlue">
+                                    <div class="card-body">
+                                        <ul class="list-unstyled">
+                                            <li><strong>De :</strong> {{ message.getFirstName() }} {{ message.getName() }}</li>
+                                            <li><strong>Objet :</strong> {{ message.getObjet() }}</li>
+                                            <li><strong>Date :</strong> {{ message.getCreatedAt()|date('d/m/Y H:i') }}</li>
+                                            <li><strong>Message :</strong> {{ message.getContent() }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-center fst-italic">Aucun message reçu.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>

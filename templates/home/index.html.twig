@@ -192,5 +192,21 @@
 				{% endif %}
 			</div>
 		</section>
+		<section class="py-5 bg-light poppins">
+        	<div class="container">
+            	<div class="row align-items-center justify-content-center">
+                	<div class="col-lg-6 col-md-12 col-sm-12">
+                    	<h2 class="display-7 fw-bold text-center mb-4 pla">Trouvez un coach près de chez vous</h2>
+                    	<p class="lead text-center">Découvrez notre réseau de coachs certifiés disponibles pour vous accompagner dans votre parcours vers une meilleure forme physique et bien-être.</p>
+                    	<div class="text-center mt-4 search">
+                        	<button class="search_btn btn btn-lg"><a href="{{ path('search_coaches') }}" class="fw-bold text-decoration-none text-white">Trouver un Coach</a></button>
+                    	</div>
+                	</div>
+                	<div class="col-lg-6 col-md-12 col-sm-12">
+                    	<img src="{{ asset('images/imgSearchCoach.jpg') }}" class="img-fluid rounded" alt="Trouver un coach">
+               		</div>
+            	</div>
+        	</div>
+    	</section>
 	</div>
 {% endblock %}

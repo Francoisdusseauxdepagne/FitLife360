@@ -2,12 +2,15 @@
 namespace App\Controller;
 
 use App\Entity\Messenger;
+use App\Entity\ContactCoach;
 use App\Entity\ProfileCoach;
+use App\Form\SearchCoachType;
 use App\Entity\PlanEntrainement;
 use App\Entity\DetailEntrainement;
 use App\Form\PlanEntrainementType;
 use App\Form\ProfileTypeCoachType;
 use App\Form\DetailEntrainementType;
+use App\Repository\ContactCoachRepository;
 use App\Repository\ProfileRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +36,7 @@ class CoachController extends AbstractController
     }
 
     #[Route('/coach', name: 'app_coach')]
-    public function index(ProfileRepository $profileRepository): Response
+    public function index(ProfileRepository $profileRepository, ContactCoachRepository $contactCoachRepository): Response
     {
         $user = $this->getUser();
         $profile = $profileRepository->findAll();
@@ -48,11 +51,14 @@ class CoachController extends AbstractController
             return $this->redirectToRoute('app_edit_profileCoach');
         }
 
+        $messages = $contactCoachRepository->findBy(['idProfileCoach' => $profileCoach]);
+
         return $this->render('coach/index.html.twig', [
             'controller_name' => 'CoachController',
             'profileCoach' => $profileCoach,
             'profiles' => $profile,
             'reservations' => $profileCoach->getReservations(),
+            'messages' => $messages,
         ]);
     }
 

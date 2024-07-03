@@ -2,29 +2,34 @@
 
 namespace App\Controller;
 
-use App\Entity\Avis;
-use App\Entity\Event;
-use App\Entity\Profile;
-use App\Entity\TutoVideo;
-use App\Entity\ProfileCoach;
-use Doctrine\ORM\EntityManagerInterface;
+// use App\Entity\Avis;
+// use App\Entity\Event;
+// use App\Entity\Profile;
+// use App\Entity\TutoVideo;
+// use App\Entity\ProfileCoach;
+// use Doctrine\ORM\EntityManagerInterface;
+// use App\Repository\SessionCoachingRepository;
+// use Symfony\Component\HttpFoundation\Request;
+use App\Repository\AvisRepository;
+use App\Repository\EventRepository;
+use App\Repository\ProfileCoachRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GeneralController extends AbstractController
 {
-    private EntityManagerInterface $entityManager;
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
+    // private EntityManagerInterface $entityManager;
+    // public function __construct(EntityManagerInterface $entityManager)
+    // {
+    //     $this->entityManager = $entityManager;
+    // }
 
     #[Route('/', name: 'app_home')]
-    public function accueil(): Response
+    public function accueil(EventRepository $eventRepository, AvisRepository $avisRepository): Response
     {
-        $events = $this->entityManager->getRepository(Event::class)->findAll();
-        $avis = $this->entityManager->getRepository(Avis::class)->findAll();
+        $events = $eventRepository->findAll();
+        $avis = $avisRepository->findAll();
 
         $totalNotes = 0;
         $count = count($avis);
@@ -43,9 +48,9 @@ class GeneralController extends AbstractController
     }
 
     #[Route('/apropos', name: 'app_apropos')]
-    public function apropos(): Response
+    public function apropos(ProfileCoachRepository $profileCoachRepository): Response
     {
-        $ProfileCoaches = $this->entityManager->getRepository(ProfileCoach::class)->findAll();
+        $ProfileCoaches = $profileCoachRepository->findAll();
 
         return $this->render('apropos/index.html.twig', [
             'profileCoachs' => $ProfileCoaches,
@@ -81,4 +86,6 @@ class GeneralController extends AbstractController
     {
         return $this->render('404/error.html.twig');
     }
+
+    //
 }

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FitLife360 - Contact{% endblock %}
+
+{% block body %}
+<div class="container p-5 poppins">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5 colorBlue">
+                    <h2 class="text-center mb-4">Contacter votre coach</h2>
+                    {{ form_start(contactCoachForm, {'attr': {'class': 'row g-3'}}) }}
+                    {% if not app.user %}
+                        <div class="mb-3">
+                            {{ form_label(contactCoachForm.name, 'Nom', {'class': 'form-label'}) }}
+                            {{ form_widget(contactCoachForm.name, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre nom'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(contactCoachForm.firstName, 'Prénom', {'class': 'form-label'}) }}
+                            {{ form_widget(contactCoachForm.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre prénom'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(contactCoachForm.email, 'Email', {'class': 'form-label'}) }}
+                            {{ form_widget(contactCoachForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre email'}}) }}
+                        </div>
+                    {% endif %}
+                    <div class="mb-3">
+                        {{ form_label(contactCoachForm.objet, 'Objet', {'class': 'form-label'}) }}
+                        {{ form_widget(contactCoachForm.objet, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre objet'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(contactCoachForm.content, 'Message', {'class': 'form-label'}) }}
+                        {{ form_widget(contactCoachForm.content, {'attr': {'class': 'form-control', 'rows': '5', 'placeholder': 'Entrez votre message'}}) }}
+                    </div>
+                    <div class="text-center divContact">
+                        <button type="submit" class="divContact_btn btn btn-lg text-white">Envoyer</button>
+                    </div>
+                    {{ form_end(contactCoachForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
