@@ -56,19 +56,7 @@
 			<div class="container containerVideo">
 				<h2 class="display-4 fw-bold">Vidéos d'entraînement</h2>
 				<p class="lead">Accédez à notre bibliothèque de vidéos d'entraînement pour vous aider à atteindre vos objectifs.</p>
-				{% if app.user and app.user.profile %}
-					{# {% if app.user.profile.idAbonnement %} #}
-						{% if app.user.profile.idAbonnement.title in ['Vip', 'Premium'] %}
-							<button class="containerVideo_btn btn btn-lg">
-								<a href="{{ path('app_tuto_video') }}" class="fw-bold text-decoration-none text-white">Voir les vidéos</a>
-							</button>
-						{% endif %}
-					{# {% endif %} #}
-				{% else %}
-					<button class="containerVideo_btn btn btn-lg">
-						<a href="{{ path('app_register') }}" class="fw-bold text-decoration-none text-white">S'inscrire</a>
-					</button>
-				{% endif %}
+				<p class="text-muted fs-6 fst-italic">Disponible avec les formules premium et VIP</p>
 			</div>
 		</section>
 		<section class="py-5 bg-light">

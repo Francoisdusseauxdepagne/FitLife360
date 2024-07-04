@@ -629,8 +629,7 @@ class Profile
     {
         // Spécifiez les propriétés à sérialiser, en excluant celles qui ne peuvent pas être sérialisées
         return [
-            'id', 'name', 'firstName', 'photo', 'sexe', 'objectifSportif', 'bio', 'idUser', 'createdAt', 'updatedAt', 'isActive', 
-            'idAbonnement', 'comments', 'planEntrainements', 'paniers', 'detailEntrainements', 'reservations', 'idProfileCoach', 'reportings', 'dateDeNaissance', 'contacts', 'resiliations', 'contactEvents'
+            'id', 'name', 'firstName', 'photo', 'sexe', 'objectifSportif', 'bio', 'idUser', 'createdAt', 'updatedAt', 'isActive', 'comments', 'planEntrainements', 'paniers', 'detailEntrainements', 'reservations', 'idProfileCoach', 'reportings', 'dateDeNaissance', 'contacts', 'resiliations', 'contactEvents'
         ];
     }
 
