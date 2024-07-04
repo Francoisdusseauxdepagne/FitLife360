@@ -42,12 +42,12 @@
                                 {% elseif app.user and app.user.profile is null %}
                                     <a href="{{ path('app_edit_profile') }}" class="btn btn-secondary btn-block">Complétez votre profil</a>
                                 {% elseif app.user.profile.idAbonnement is null %}
-                                    <form action="{{ path('create_panier') }}" method="post" class="d-inline">
+                                    <form action="{{ path('create_panier') }}" method="post" class="d-inline" onsubmit="return confirm('Êtes-vous sûr de vouloir choisir cet abonnement ?');">
                                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('create_panier') }}">
                                         <input type="hidden" name="abonnements[]" value="{{ abonnement.id }}">
                                         <button type="submit" class="btn btn-secondary btn-block">Je choisis</button>
                                     </form>
-                                {% else %}
+                                {# {% else %} #}
                                 {% endif %}
                             </div>
                         </div>

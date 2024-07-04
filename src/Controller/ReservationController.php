@@ -19,7 +19,7 @@ class ReservationController extends AbstractController
         }
 
         // Vérifier le type d'abonnement
-        if ($this->checkSubscription() !== 'Vip') {
+        if ($this->checkSubscription() !== 'Vip' && $this->checkSubscription() !== 'Premium') {
             $this->addFlash('warning', 'Vous devez être abonné VIP pour accéder aux réservations.');
             return $this->redirectToRoute('app_home'); // Remplacez 'homepage' par la route de votre choix
         }
@@ -39,7 +39,7 @@ class ReservationController extends AbstractController
         }
 
         // Vérifier le type d'abonnement
-        if ($this->checkSubscription() !== 'Vip') {
+        if ($this->checkSubscription() !== 'Vip' && $this->checkSubscription() !== 'Premium') {
             $this->addFlash('warning', 'Vous devez être abonné VIP pour créer une réservation.');
             return $this->redirectToRoute('app_reservation');
         }
@@ -68,7 +68,7 @@ class ReservationController extends AbstractController
 
             $this->addFlash('success', 'La réservation a été ajoutée avec succès.');
 
-            return $this->redirectToRoute('app_reservation');
+            return $this->redirectToRoute('app_profile');
         }
 
         return $this->render('reservation/new.html.twig', [
