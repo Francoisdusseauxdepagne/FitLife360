@@ -114,12 +114,18 @@
 										<small>
 											<p class="card-text fst-italic my-2 footerEvent_text">Événement disponible avec la formule "VIP"</p>
 										</small>
-										<button class="footerEvent_btn btn btn-md my-2">
-											<a href="{{ path('abonnement_list') }}" class="fw-bold text-decoration-none text-white my-2">Voir les abonnements</a>
-										</button>
-										<a href="{{ path('app_login')}}">
-											<p class=" card-text text-center my-2 fw-bold footerEvent_link">Inscrivez-vous maintenant !</p>
-										</a>
+										{% if app.user is null %}
+											<button class="footerEvent_btn btn btn-md my-2">
+												<a href="{{ path('abonnement_list') }}" class="fw-bold text-decoration-none text-white my-2">Voir les abonnements</a>
+											</button>
+											<a href="{{ path('app_login')}}">
+												<p class="card-text text-center my-2 fw-bold footerEvent_link">Inscrivez-vous maintenant !</p>
+											</a>
+										{% elseif app.user.profile is not null %}
+											<button class="footerEvent_btn btn btn-md my-2">
+												<a href="{{ path('app_profile') }}" class="fw-bold text-decoration-none text-white my-2">Voir mon profil</a>
+											</button>
+										{% endif %}
 									</div>
 								</div>
 							</div>
