@@ -116,6 +116,7 @@
                                         <ul class="list-unstyled">
                                             <li><strong>De :</strong> {{ message.getFirstName() }} {{ message.getName() }}</li>
                                             <li><strong>Objet :</strong> {{ message.getObjet() }}</li>
+                                            <li><strong>Email :</strong> {{ message.getEmail() }}</li>
                                             <li><strong>Date :</strong> {{ message.getCreatedAt()|date('d/m/Y H:i') }}</li>
                                             <li><strong>Message :</strong> {{ message.getContent() }}</li>
                                         </ul>

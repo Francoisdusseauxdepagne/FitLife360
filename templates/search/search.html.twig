@@ -20,19 +20,19 @@
                         <h3 class="card-title text-center mb-4 colorBlue">Rechercher un coach</h3>
                         <form method="get" action="{{ path('search_coaches') }}">
                             <div class="input-group mb-3 search">
-                                <input type="text" name="location" placeholder="Entrez votre lieu" class="form-control" required>
+                                <input type="text" name="location" placeholder="Entrez une ville" class="form-control" required>
                                 <button type="submit" class="search_btn btn text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </form>
-                        <a href="{{ path('app_home') }}" class="btn btn-outline-secondary btn-ms mb-3">Retour accueil</a>
+                        <a href="{{ path('app_home') }}" class="btn btn-outline-secondary btn-ms mb-3">Retour à l'accueil</a>
                     </div>
                 </div>
             </div>
         </div>
-        {% if sessions is defined %}
+        {% if sessions is not empty %}
+            <h2 class="mt-5 fs-5 text-center">Résultats de recherche :</h2>
             <div class="row justify-content-center">
                 {% for session in sessions %}
-                    <h2 class="mt-5 fs-5 text-center">Résultats de recherche :</h2>
                     <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
                         <div class="card shadow-lg border-0 h-100 p-2">
                             <div class="card-body search colorBlue">
@@ -57,9 +57,7 @@
                 {% endfor %}
             </div>
         {% else %}
-            <div class="alert alert-info text-center" role="alert">
-                Aucun coach trouvé pour le lieu spécifié.
-            </div>
+            <p class="text-center">Aucune session trouvée pour cet emplacement.</p>
         {% endif %}
     </div>
 </section>

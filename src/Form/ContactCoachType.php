@@ -28,6 +28,7 @@ class ContactCoachType extends AbstractType
                     ->add('name', null, ['label' => 'Nom'])
                     ->add('firstName', null, ['label' => 'Prénom'])
                     ->add('email', null, ['label' => 'Email']);
+                ;
             }
     }
 
