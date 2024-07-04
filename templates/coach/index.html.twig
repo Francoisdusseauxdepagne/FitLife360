@@ -106,7 +106,7 @@
                 </div>
                 <div class="card mb-4 shadow-sm">
                     <div class="card-header bgBlue text-white">
-                        <h2 class="fs-5 mb-0 display-6">Messages reçus</h2>
+                        <h2 class="fs-5 mb-0 display-6">Messages coaching en presentiel</h2>
                     </div>
                     <div class="card-body bg-light">
                         {% if messages is not empty %}
@@ -116,7 +116,7 @@
                                         <ul class="list-unstyled">
                                             <li><strong>De :</strong> {{ message.getFirstName() }} {{ message.getName() }}</li>
                                             <li><strong>Objet :</strong> {{ message.getObjet() }}</li>
-                                            <li><strong>Email :</strong> {{ message.getEmail() }}</li>
+                                            <li><strong>Email :</strong> <a href="mailto:{{ message.getEmail() }}" target="_blank">{{ message.getEmail() }}</a></li>
                                             <li><strong>Date :</strong> {{ message.getCreatedAt()|date('d/m/Y H:i') }}</li>
                                             <li><strong>Message :</strong> {{ message.getContent() }}</li>
                                         </ul>
