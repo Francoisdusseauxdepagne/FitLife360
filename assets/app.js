@@ -9,6 +9,7 @@ import './styles/profile.scss';
 import './styles/sign.scss';
 import './styles/btn.scss';
 import './styles/error404.scss';
+import './styles/abonnement.scss';
 
 require('bootstrap');
 require('@fortawesome/fontawesome-free/css/all.min.css');

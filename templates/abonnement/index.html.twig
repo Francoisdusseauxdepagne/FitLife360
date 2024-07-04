@@ -13,12 +13,17 @@
                         <div class="card-header text-center text-white bg-success">
                             <h2 class="card-title my-2">{{ abonnement.title }}</h2>
                         </div>
+                        {% if abonnement.title == 'Premium' %}
+                            <div class="premium text-center bg-light rounded p-3">
+                                <i class="fa-solid fa-medal iAbonnement fs-4"></i>
+                            </div>
+                        {% endif %}
                         <div class="card-body d-flex flex-column">
                             <div class="mb-4 text-center d-flex flex-column">
                                 <h3 class="display-6 fw-bold">{{ abonnement.prix }}€</h3>
                                 {% if abonnement.title == 'Basic' %}
                                     <p class="fs-5 fw-bold">{{ abonnement.duree }}</p>
-                                {% elseif abonnement.title == 'Premium' or abonnement.title == 'Vip' %} 
+                                {% elseif abonnement.title == 'Premium' or abonnement.title == 'Vip' %}
                                     <p class="fs-5 fw-bold">Engagement: {{ abonnement.duree }}</p>
                                 {% endif %}
                             </div>
@@ -77,5 +82,16 @@
             });
         });
     });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const images = document.querySelectorAll('.cardAbonnement');
+    images.forEach((img, index) => {
+        setTimeout(() => {
+            img.classList.add('show');
+        }, index * 500);
+    });
+});
 </script>
 {% endblock %}
