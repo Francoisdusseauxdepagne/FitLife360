@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\ContactCoach;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,13 +15,21 @@ class ContactCoachType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('objet', TextType::class, [
+            ->add('objet', ChoiceType::class, [
                 'label' => 'Objet',
-                'attr' => ['class' => 'form-control mb-3'],
+                'choices' => [
+                    '' => '',
+                    'Je souhaite des informations' => 'Je souhaite des informations',
+                    'Je souhaite prendre un rendez-vous' => 'Je souhaite prendre un rendez-vous',
+                ],
+                'attr' => ['id' => 'contact_coach_objet']
             ])
-            ->add('content', TextareaType::class, [
+            ->add('content', null, [
                 'label' => 'Message',
-                'attr' => ['class' => 'form-control mb-3', 'rows' => 5],
+                'attr' => [
+                    'id' => 'contact_coach_content',
+                    'readonly' => true,
+                ]            
             ]);
 
             if (!is_object($options['data']->getIdProfile())) {
@@ -28,7 +37,7 @@ class ContactCoachType extends AbstractType
                     ->add('name', null, ['label' => 'Nom'])
                     ->add('firstName', null, ['label' => 'Prénom'])
                     ->add('email', null, ['label' => 'Email']);
-                ;
+;
             }
     }
 

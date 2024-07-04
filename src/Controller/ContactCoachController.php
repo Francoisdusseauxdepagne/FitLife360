@@ -23,7 +23,7 @@ class ContactCoachController extends AbstractController
     }
 
     #[Route('/contact-coach/{id}', name: 'contact_coach_form')]
-    public function contactCoachForm(Request $request, int $id, ProfileCoachRepository $profileCoachRepository): Response
+    public function contactCoachForm(Request $request, int $id, ProfileCoachRepository $profileCoachRepository, EntityManagerInterface $entityManager): Response
     {
         // Récupérer le coach par son ID
         $coach = $profileCoachRepository->find($id);

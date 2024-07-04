@@ -27,7 +27,7 @@ class ResiliationType extends AbstractType
                     'Je rencontre des problèmes de facturation' => 'Je rencontre des problèmes de facturation',
                     'Ma situation personnelle a changé' => 'Ma situation personnelle a changé',
                 ],
-                'attr' => ['id' => 'resiliation_objet'] // Add id attribute for easy selection in JS
+                'attr' => ['id' => 'resiliation_objet']
             ])
             ->add('content', null, [
                 'label' => 'Message de résiliation',
