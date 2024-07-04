@@ -52,7 +52,7 @@ class GeneralController extends AbstractController
     {
         $ProfileCoaches = $profileCoachRepository->findAll();
 
-        return $this->render('apropos/index.html.twig', [
+        return $this->render('about/about.html.twig', [
             'profileCoachs' => $ProfileCoaches,
         ]);
     }

@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FitLife360 - À propos{% endblock %}
+
+{% block body %}
+<section class="colorBlue my-5">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="display-4 fw-bold mb-4 playfair">Qui sommes-nous ?</h1>
+                <p class="lead fs-5 poppins">Notre mission est d'inspirer et d'aider les individus à atteindre leurs objectifs de santé et de bien-être en fournissant des ressources et un soutien personnalisé à travers nos coachs de vie expérimentés et nos plateformes en ligne.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-light py-5 poppins colorBlue">
+    <div class="container">
+        <h2 class="mb-4 text-center">Nos Valeurs</h2>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-check-circle fa-3x mb-3 colorRed"></i>
+                                <h3 class="card-title fs-5 fw-bold">Engagement envers la santé et le bien-être</h3>
+                                <p class="card-text">Nous nous engageons à promouvoir la santé et le bien-être de nos membres à chaque étape de leur parcours.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-check-circle fa-3x mb-3 colorRed"></i>
+                                <h3 class="card-title fs-5 fw-bold">Approche personnalisée pour chaque individu</h3>
+                                <p class="card-text">Nous adaptons nos services pour répondre aux besoins uniques de chacun, assurant ainsi une expérience personnalisée et enrichissante.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-check-circle fa-3x mb-3 colorRed"></i>
+                                <h3 class="card-title fs-5 fw-bold">Transparence et professionnalisme</h3>
+                                <p class="card-text">Nous agissons avec transparence et professionnalisme dans toutes nos interactions, assurant ainsi la confiance et la satisfaction de nos membres.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-check-circle fa-3x mb-3 colorRed"></i>
+                                <h3 class="card-title fs-5 fw-bold">Innovation continue dans nos services</h3>
+                                <p class="card-text">Nous sommes dédiés à l'innovation constante pour offrir des solutions de pointe qui répondent aux besoins évolutifs de nos membres.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-dark py-5 text-white poppins">
+    <div class="container">
+        <h2 class="mb-4 text-center">Nos Coachs</h2>
+        {% for profileCoach in profileCoachs %}
+        <div class="row mb-4 align-items-center">
+            <div class="col-lg-4 mb-3 mb-lg-0">
+                <img src="{{ asset('/images/photos/' ~ profileCoach.photo) }}" class="rounded-5 w-100" alt="Photo de profil de {{ profileCoach.firstName }} {{ profileCoach.name }}">
+            </div>
+            <div class="col-lg-8">
+                <ul class="list-unstyled fs-5">
+                    <li class="mb-2"><i class="fa-solid fa-user me-2 colorRed"></i>{{ profileCoach.firstName }} {{ profileCoach.name }}</li>
+                    <li class="mb-2"><i class="fa-solid fa-graduation-cap me-2 colorRed"></i>Diplôme: {{ profileCoach.diplome }}</li>
+                    <li class="mb-2"><i class="fa-solid fa-briefcase me-2 colorRed"></i>Expérience: {{ profileCoach.experience }}</li>
+                    <li class="mb-2"><i class="fa-solid fa-bullseye me-2 colorRed"></i>Domaines d'expertise: {{ profileCoach.expertise }}</li>
+                    <li><i class="fa-solid fa-seedling me-2 colorRed"></i>Biographie: <em>"{{ profileCoach.bio }}"</em></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
