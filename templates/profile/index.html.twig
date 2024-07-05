@@ -52,7 +52,7 @@
 							</ul>
 						</div>
 						<div class="mt-4 divProfile">
-							<h2 class="colorBlue fs-4 mb-3 text-decoration-underline">Objectifs :</h2>
+							<h2 class="colorBlue fs-4 mb-3 colorRed text-decoration-underline">Objectifs :</h2>
 							<ul class="lists p-0 colorBlue">
 								<li class="list-unstyled p-0 colorBlue">
 									<p>
@@ -125,7 +125,7 @@
 							<small>
 								<p class="fst-italic textProfile">Pour profiter des services de FitLife360 vous devez souscrire à un abonnement.</p>
 								<small>
-									<a href="{{ path('abonnement_list') }}" class="btn btn-primary">Voir les abonnements</a>
+									<a href="{{ path('abonnement_list') }}" class="btn btn-outline-secondary btn-md">Voir les abonnements</a>
 								</div>
 							</div>
 						{% else %}
@@ -230,7 +230,7 @@
 											</div>
 										</div>
 									{% else %}
-										<p class="fs-6">Vous pouvez voir les coachs <a href="{{ path('app_apropos') }}" class="text-decoration-none colorRed">ici</a><br> Envoyer un message une fois le coach choisit<a href="{{ path('app_contact') }}" class="text-decoration-none colorRed"> ici</a></p>
+										<p class="fs-6">Vous pouvez voir les coachs <a href="{{ path('app_apropos') }}" class="text-decoration-none colorRed"><strong>ici</strong></a><br> Envoyer un message une fois le coach choisit<a href="{{ path('app_contact') }}" class="text-decoration-none colorRed"> <strong>ici</strong></a></p>
 									{% endif %}
 									{% if profile.idAbonnement == "Vip" or profile.idAbonnement == "Premium" %}
 										{% if reservation %}
