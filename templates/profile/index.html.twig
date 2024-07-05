@@ -212,7 +212,7 @@
 							{% endif %}
 							<div class="card mb-4">
 								<div class="card-header bgBlue text-white">
-									<h2 class="fs-5 mb-0 display-6">Mon coach personnel</h2>
+									<h2 class="fs-5 mb-0 display-6">Mon espace rendre-vous</h2>
 								</div>
 								<div class="card-body bg-light">
 									{% if profile.idProfileCoach %}
@@ -230,7 +230,7 @@
 											</div>
 										</div>
 									{% else %}
-										<p class="fs-6">Aucun coach assigné.</p>
+										<p class="fs-6">Vous pouvez voir les coachs <a href="{{ path('app_apropos') }}" class="text-decoration-none colorRed">ici</a><br> Envoyer un message une fois le coach choisit<a href="{{ path('app_contact') }}" class="text-decoration-none colorRed"> ici</a></p>
 									{% endif %}
 									{% if profile.idAbonnement == "Vip" or profile.idAbonnement == "Premium" %}
 										{% if reservation %}

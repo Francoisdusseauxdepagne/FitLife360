@@ -35,11 +35,6 @@ class ResiliationCrudController extends AbstractCrudController
                 ->formatValue(function ($entity) {
                     return $entity->getIdProfile()->getFirstName() . ' ' . $entity->getIdProfile()->getName();
                 }),
-            EmailField::new('idProfile.idUser.email', 'Email de l\'utilisateur')
-                ->formatValue(function ($entity) {
-                    return $entity->getIdProfile()->getIdUser()->getEmail();
-                }),
-            NumberField::new('idProfile.id', 'Identifiant du Profil'),
         ];
     }
 }
