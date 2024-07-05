@@ -33,8 +33,8 @@ class DetailEntrainementCrudController extends AbstractCrudController
             TextField::new('series'),
             TextField::new('repetitions'),
             TextEditorField::new('description'),
-            DateField::new('created_at')->hideOnForm(),
-            DateField::new('updated_at')->hideOnForm(),
+            DateField::new('createdAt', 'Date d\'envoie'),
+            DateField::new('updatedAt', 'Dernière mise à jour'),
             AssociationField::new('idPlanEntrainement', 'Plan d\'entrainement'),
         ];
     }

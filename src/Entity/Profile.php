@@ -707,4 +707,9 @@ class Profile
 
         return $this;
     }
+
+    public function toString (): string
+    {
+        return $this->firstName . ' ' . $this->name;
+    }
 }

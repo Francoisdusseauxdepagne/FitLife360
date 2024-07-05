@@ -31,10 +31,7 @@ class ProfileCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('idUser', 'Email de l\'utilisateur')
-                ->formatValue(function ($value, $entity) {
-                    return $entity->getIdUser()->getEmail();
-            }),
+            AssociationField::new('idUser', 'Email de l\'utilisateur'),
             TextField::new('firstname', 'Prénom'),
             TextField::new('name', 'Nom'),
             DateField::new('dateDeNaissance', 'Date de naissance'),
