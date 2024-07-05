@@ -30,6 +30,7 @@ class AbonnementCrudController extends AbstractCrudController
             TextField::new('title', 'Nom de la formule'),
             TextEditorField::new('description', 'Description'),
             NumberField::new('prix', 'Prix'),
+            TextField::new('duree', 'Duree')
         ];
     }
 }

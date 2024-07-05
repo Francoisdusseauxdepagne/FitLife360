@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class CommentCrudController extends AbstractCrudController
 {
@@ -28,10 +29,8 @@ class CommentCrudController extends AbstractCrudController
         return [
             TextField::new('text', 'Commentaire'),
             DateField::new('date', 'Date du commentaire'),
-            TextField::new('idProfile.firstname', 'Prénom du Profil'),
-            TextField::new('idProfile.name', 'Nom du Profil'),
-            TextField::new('idTutoVideo.title', 'Video'),
-            EmailField::new('idProfile.idUser.email', 'Email utilisateur'),
+            AssociationField::new('idProfile', 'Profil'),
+            AssociationField::new('idTutoVideo', 'Video'),
         ];
     }
 }

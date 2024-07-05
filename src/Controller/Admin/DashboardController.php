@@ -13,6 +13,7 @@ use App\Entity\Profile;
 use App\Entity\Reporting;
 use App\Entity\TutoVideo;
 use App\Entity\Abonnement;
+use App\Entity\ContactCoach;
 use App\Entity\Reservation;
 use App\Entity\Resiliation;
 use App\Entity\ContactEvent;
@@ -85,6 +86,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Factures', 'fa-solid fa-file-invoice', Invoice::class);
         yield MenuItem::section('Gestion des Collaborateur');
         yield MenuItem::linkToCrud('Collaborateurs', 'fa-solid fa-people-group', ProfileCoach::class);
+        yield MenuItem::linkToCrud('Messages aux coachs', 'fa-solid fa-envelope', ContactCoach::class);
         yield MenuItem::section('Gestion des Videos sportives');
         yield MenuItem::linkToCrud('Videos sportives', 'fa-solid fa-film', TutoVideo::class);
         yield MenuItem::linkToCrud('Commentaires', 'fa-solid fa-comment', Comment::class);

@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
 class InvoiceCrudController extends AbstractCrudController
 {
@@ -31,6 +32,7 @@ class InvoiceCrudController extends AbstractCrudController
         return [
             IdField::new('id', 'Numéro de la facture'),
             AssociationField::new('idPanier', 'Numéro du panier'),
+            DateField::new('createdAt', 'Date de la facture'),
             NumberField::new('amount', 'Montant en euros'),
         ];
     }

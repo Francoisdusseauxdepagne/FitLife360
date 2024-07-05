@@ -30,13 +30,12 @@ class PlanEntrainementCrudController extends AbstractCrudController
     {
         return [
             TextField::new('title', 'Nom du Plan d\'Entrainement'),
-            TextEditorField::new('description', 'Description'),
+            TextField::new('description', 'Description'),
             TextField::new('duree', 'Durée'),
             TextField::new('objectif', 'Objectif'),
             TextField::new('type', 'Type d\'Entrainement'),
             TextField::new('niveau', 'Niveau'),
             DateField::new('createdAt', 'Créé le'),
-            DateField::new('updatedAt', 'Modifié le'),
             AssociationField::new('idProfile', 'Identifiant du Profil'),
         ];
     }

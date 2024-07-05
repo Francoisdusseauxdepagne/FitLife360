@@ -471,11 +471,6 @@ class ProfileCoach
         return $this;
     }
 
-    public function __sleep(): array
-    {
-        return ['photo'];
-    }
-
     /**
      * @return Collection<int, SessionCoaching>
      */
@@ -535,4 +530,9 @@ class ProfileCoach
 
         return $this;
     }
+
+    //  public function __sleep(): array
+    // {
+    //      return ['photo'];
+    // }
 }

@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class ResiliationCrudController extends AbstractCrudController
 {
@@ -31,10 +32,7 @@ class ResiliationCrudController extends AbstractCrudController
             TextField::new('objet', 'Objet'),
             TextEditorField::new('content', 'Demande de résiliation'),
             DateField::new('createdAt', 'Date de la demande'),
-            TextField::new('idProfile', 'Profil du demandeur')
-                ->formatValue(function ($entity) {
-                    return $entity->getIdProfile()->getFirstName() . ' ' . $entity->getIdProfile()->getName();
-                }),
+            AssociationField::new('idProfile', 'Profil du demandeur')
         ];
     }
 }

@@ -633,20 +633,20 @@ class Profile
         ];
     }
 
-    public function __wakeup(): void
-    {
-        // Restaurez ici tout ce qui doit l'être après désérialisation
-        // Par exemple, réinitialiser des collections, etc.
-        $this->comments = $this->comments ?? new ArrayCollection();
-        $this->planEntrainements = $this->planEntrainements ?? new ArrayCollection();
-        $this->paniers = $this->paniers ?? new ArrayCollection();
-        $this->detailEntrainements = $this->detailEntrainements ?? new ArrayCollection();
-        $this->reservations = $this->reservations ?? new ArrayCollection();
-        $this->reportings = $this->reportings ?? new ArrayCollection();
-        $this->contacts = $this->contacts ?? new ArrayCollection();
-        $this->resiliations = $this->resiliations ?? new ArrayCollection();
-        $this->contactEvents = $this->contactEvents ?? new ArrayCollection();
-    }
+    // public function __wakeup(): void
+    // {
+    //     // Restaurez ici tout ce qui doit l'être après désérialisation
+    //     // Par exemple, réinitialiser des collections, etc.
+    //     $this->comments = $this->comments ?? new ArrayCollection();
+    //     $this->planEntrainements = $this->planEntrainements ?? new ArrayCollection();
+    //     $this->paniers = $this->paniers ?? new ArrayCollection();
+    //     $this->detailEntrainements = $this->detailEntrainements ?? new ArrayCollection();
+    //     $this->reservations = $this->reservations ?? new ArrayCollection();
+    //     $this->reportings = $this->reportings ?? new ArrayCollection();
+    //     $this->contacts = $this->contacts ?? new ArrayCollection();
+    //     $this->resiliations = $this->resiliations ?? new ArrayCollection();
+    //     $this->contactEvents = $this->contactEvents ?? new ArrayCollection();
+    // }
 
     /**
      * @return Collection<int, Avis>

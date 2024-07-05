@@ -246,7 +246,6 @@
 													<button class="rdvProfile_btn btn btn-sm">
 														<a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="text-decoration-none rdvProfile_btn--link">Modifier mon rendez-vous</a>
 													</button>
-													<!-- Ajout de la confirmation avant la suppression -->
 													<button class="rdvProfile_btn btn btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?');">
 														<a href="{{ path('app_reservation_delete', {'id': reservation.id}) }}" class="text-decoration-none rdvProfile_btn--link">Supprimer mon rendez-vous</a>
 													</button>
