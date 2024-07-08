@@ -32,7 +32,7 @@ class ContactCoachCrudController extends AbstractCrudController
             AssociationField::new('idProfile', 'Profil'),
             AssociationField::new('idProfileCoach', 'Coach'),
             TextField::new('objet' , 'Objet'),
-            TextField::new('content', 'Message'),
+            TextEditorField::new('content', 'Message'),
             DateField::new('createdAt', 'Date d\'envoie'),
             TextField::new('email', 'Email'),
             TextField::new('firstName', 'Prénom'),

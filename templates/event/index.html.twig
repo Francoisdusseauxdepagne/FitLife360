@@ -15,7 +15,7 @@
                             {% endif %}
                             <div class="card-body bg-white">
                                 <h2 class="card-title text-success">{{ event.eventType }}</h2>
-                                <p class="card-text fst-italic text-muted">"{{ event.description }}"</p>
+                                <p class="card-text fst-italic text-muted">"{{ event.description | raw }}"</p>
                                 <p class="card-text"><strong>Date :</strong> {{ event.date|date('d/m/Y') }}</p>
                                 <p class="card-text"><strong>Heure :</strong> De {{ event.startTime|date('H:i') }} à {{ event.endTime|date('H:i') }}</p>
                                 <p class="card-text"><strong>Places disponibles :</strong> {{ event.spaceAvailable }}</p>

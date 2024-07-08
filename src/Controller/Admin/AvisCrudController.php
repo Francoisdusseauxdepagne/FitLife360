@@ -29,9 +29,8 @@ class AvisCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            // IdField::new('id', 'Numero de l\'avis'),
             NumberField::new('note', 'Note /5'),
-            TextField::new('content', 'Commentaire'),
+            TextEditorField::new('content', 'Commentaire'),
             AssociationField::new('idProfile', 'Identifiant du Profil'),
             DateField::new('createdAt', 'Date de création'),
         ];

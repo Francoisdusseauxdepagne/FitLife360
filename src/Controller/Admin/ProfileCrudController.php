@@ -36,7 +36,7 @@ class ProfileCrudController extends AbstractCrudController
             TextField::new('name', 'Nom'),
             DateField::new('dateDeNaissance', 'Date de naissance'),
             TextField::new('sexe', 'Sexe'),
-            TextField::new('objectifSportif', 'Objectif sportif'),
+            TextEditorField::new('objectifSportif', 'Objectif sportif'),
             TextField::new('bio', 'Biographie'),
             DateTimeField::new('createdAt', 'Créé le'),
             ImageField::new('photo', 'Photo de profil')

@@ -10,7 +10,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12">
             <h2 class="fw-bold colorRed">{{ planEntrainement.title }}</h2>
             <div class="plan-details fs-5">
-                <p><strong>Description:</strong> {{ planEntrainement.description }}</p>
+                <p><strong>Description:</strong> {{ planEntrainement.description | raw }}</p>
                 <p><strong>Durée:</strong> {{ planEntrainement.duree }}</p>
                 <p><strong>Objectif:</strong> {{ planEntrainement.objectif }}</p>
                 <p><strong>Niveau:</strong> {{ planEntrainement.niveau }}</p>

@@ -33,7 +33,7 @@ class EventCrudController extends AbstractCrudController
     {
         return [
             TextField::new('eventType', 'Type d\'évènement'),
-            TextField::new('description', 'Description'),
+            TextEditorField::new('description', 'Description'),
             DateField::new('date', 'Date de l\'évènement'),
             TimeField::new('startTime', 'Début de l\'évènement'),
             TimeField::new('endTime', 'Fin de l\'évènement'),

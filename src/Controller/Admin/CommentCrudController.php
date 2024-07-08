@@ -7,8 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class CommentCrudController extends AbstractCrudController
 {
@@ -27,7 +28,7 @@ class CommentCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('text', 'Commentaire'),
+            TextEditorField::new('text', 'Commentaire'),
             DateField::new('date', 'Date du commentaire'),
             AssociationField::new('idProfile', 'Profil'),
             AssociationField::new('idTutoVideo', 'Video'),
