@@ -140,5 +140,5 @@ Grâce à l'utilisation de Symfony 7, de Stripe pour les paiements et à une con
 
 7. Lancement de l'application
     ```bash
-    symfony server:start
+    symfony serve
     ```
