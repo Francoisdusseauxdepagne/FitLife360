@@ -99,10 +99,12 @@ Grâce à l'utilisation de Symfony 7, de Stripe pour les paiements et à une con
 10. Création de message flash (exemple)
     ```bash
     {% for label, messages in app.flashes %}
-    {% for message in messages %}
-        <div class="m-0 alert alert-{{ label }}">
-            {{ message }}
-        </div>
+        {% for message in messages %}
+            <div class="m-0 alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
     ```
     
 ### Back-End
