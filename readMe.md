@@ -55,6 +55,7 @@ npm install bootstrap --save-dev
 npm install sass-loader@^14.0.0 sass --save-dev
 
 npm install @fortawesome/fontawesome-free
+(app.js > require('@fortawesome/fontawesome-free/css/all.min.css'))
 ```
 
 - Utilisation du theme bootstrap5 pour nos form twig dans le projet
@@ -63,10 +64,18 @@ npm install @fortawesome/fontawesome-free
 twig:
     form_themes: ['bootstrap_5_layout.html.twig']
 ```
+- Utilisation du theme bootstrap5 dans le projet
+    - assets > styles > app.scss > @import "~bootstrap/scss/bootstrap";
+    - app.js > import 'bootstrap';
 
-- Compilation de l'application
+- Installation de SASS (exemple)
+    - assets > styles > test.scss
+    - app.js > import './styles/test.scss'
+    - compilation de l'application :
 ```bash
 npm run dev
+
+npm run watch (continue)
 ```
 
 ### Back-End
