@@ -2,6 +2,8 @@
 
 {% block title %}FitLife360 - Recherche{% endblock %}
 
+{% block meta_description %} Découvrez notre recherche de coach proche de chez vous. Utilisez le formulaire pour trouver un coach adapté à vos besoins et à votre localisation.{% endblock %}
+
 {% block body %}
 <section class="sectionSearch bg-light py-5">
     <div class="container">
@@ -17,7 +19,7 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card bg-light shadow-lg rounded-3">
                     <div class="card-body">
-                        <h3 class="card-title text-center mb-4 colorBlue">Rechercher un coach</h3>
+                        <h2 class="card-title text-center mb-4 colorBlue">Rechercher un coach</h2>
                         <form method="get" action="{{ path('search_coaches') }}">
                             <div class="input-group mb-3 search">
                                 <input type="text" name="location" placeholder="Entrez une ville" class="form-control" required>

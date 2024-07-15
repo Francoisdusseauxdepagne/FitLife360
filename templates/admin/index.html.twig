@@ -1,5 +1,5 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
-{% block head_stylesheets %}
+{# {% block head_stylesheets %}
     {{ parent() }}
     <style>
         body {
@@ -7,7 +7,10 @@
             background-repeat: no-repeat;
         }     
     </style>
-{% endblock %}
+{% endblock %} #}
+
+{% block meta_description %}Bienvenue sur votre espace d'administration{% endblock %}
+
 {% block content_header %}
     <h1 class="text-secondary pb-3">Bienvenue sur votre espace d'administration</h1>
 {% endblock %}

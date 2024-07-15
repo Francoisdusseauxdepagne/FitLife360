@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block head %}
-	{{ parent() }}
-	<meta name="description" content="FitLife360 est votre partenaire pour une vie plus saine et active. Découvrez nos programmes d'entraînement personnalisés, suivez votre progression, recevez des conseils nutritionnels et accédez à une bibliothèque de vidéos d'entraînement. Inscrivez-vous dès maintenant pour commencer votre parcours vers une meilleure forme physique et un bien-être optimal.">
+{% block meta_description %}
+    FitLife360 est votre partenaire pour une vie plus saine et active. Découvrez nos programmes d'entraînement personnalisés, suivez votre progression, recevez des conseils nutritionnels et accédez à une bibliothèque de vidéos d'entraînement. Inscrivez-vous dès maintenant pour commencer votre parcours vers une meilleure forme physique et un bien-être optimal.
 {% endblock %}
 
-{% block title %}FitLife360 - Accueil{% endblock %}
+{% block title %}
+    FitLife360 - Votre partenaire pour une vie plus saine et active
+{% endblock %}
 
 {% block body %}
 	<div class="container-fluid p-0">
@@ -13,9 +14,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 col-md-12 col-sm-12 header">
-						<h1 class="fw-bold display-3 header_Title">Bienvenue sur FitLife360</h1>
-						<p class="lead mb-0 header_Text" id="headerText">Votre partenaire pour une vie plus saine et plus active</p>
-					</div>
+                        <h1 class="fw-bold display-3 header_Title">Bienvenue sur FitLife360</h1>
+                        <p class="lead mb-0 header_Text">Votre partenaire pour une vie plus saine et plus active</p>
+                    </div>
 				</div>
 			</div>
 		</header>

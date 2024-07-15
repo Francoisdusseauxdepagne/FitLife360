@@ -20,15 +20,15 @@ class AvisController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/avis', name: 'app_avis')]
-    public function index(AvisRepository $avisRepository): Response
-    {
-        $avis = $avisRepository->findAll();
+    // #[Route('/avis', name: 'app_avis')]
+    // public function index(AvisRepository $avisRepository): Response
+    // {
+    //     $avis = $avisRepository->findAll();
 
-        return $this->render('avis/index.html.twig', [
-            'avis' => $avis,
-        ]);
-    }
+    //     return $this->render('avis/index.html.twig', [
+    //         'avis' => $avis,
+    //     ]);
+    // }
 
     #[Route('/avis/add', name: 'app_avis_add')]
     public function add(Request $request): Response
