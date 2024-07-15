@@ -12,6 +12,8 @@ L'objectif principal de ce projet est de créer une plateforme permettant des in
 - HTML5
 - SCSS/SASS/BEM
 - Javascript
+- Stripe
+- chatGPT
 
 ## Fonctionnalités principales
 - Connexion et inscription
