@@ -78,7 +78,7 @@ npm run dev
 npm run watch (continue)
 ```
 
-### SASS :
+#### SASS :
 - Décommenter les lignes suivantes dans le webpack.config.js :
     ```bash
     .enableSassLoader()
