@@ -88,11 +88,10 @@ Grâce à l'utilisation de Symfony 7, de Stripe pour les paiements et à une con
 9. Exemple de la configuration de la la twig `base.html.twig` :
     ```twig
     <body>
-        {{ include('commons/test.html.twig') }}
-        {{ include('commons/test.html.twig') }}
+        {{ include('commons/nav.html.twig') }}
+        {{ include('commons/message.html.twig') }}
         {% block body %}{% endblock %}
-        {{ include('commons/test.html.twig')}}
-        {{ include('commons/test.html.twig') }}
+        {{ include('commons/footer.html.twig')}}
     </body>
     ```
 
