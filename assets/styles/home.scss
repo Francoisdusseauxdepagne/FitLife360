@@ -10,17 +10,17 @@ header{
         padding-top: $padding50;
         padding-bottom: $padding50;
     }
-    .headerTitle{
-        font-family: $fontPlayfair;
-    }
-    .headerText{
-        font-family: $fontPoppins;
-    }
-    .letter {
-        opacity: 0;
-        transition: opacity 0.3s ease ;
+    .header{
+        &_Title{
+            font-family: $fontPlayfair;
+        }
+
+        &_text{
+            font-family: $fontPoppins;
+        }
     }
 }
+
 
 .footerEvent{
     &_link, &_text{

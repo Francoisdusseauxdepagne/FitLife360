@@ -11,6 +11,11 @@ framework:
 
     error_controller: 'App\Controller\GeneralController::error404'
 
+    form:
+        csrf_protection:
+            enabled: true
+            field_name: '_token'
+
 when@test:
     framework:
         test: true

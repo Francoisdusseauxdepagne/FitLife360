@@ -86,6 +86,4 @@ class GeneralController extends AbstractController
     {
         return $this->render('404/error.html.twig');
     }
-
-    //
 }
