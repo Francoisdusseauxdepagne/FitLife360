@@ -94,6 +94,7 @@ Grâce à l'utilisation de Symfony 7, de Stripe pour les paiements et à une con
         {{ include('commons/footer.html.twig')}}
     </body>
     ```
+    - inclure {% extends 'base.html.twig' %} dans les twig
 
 10. Création de message flash (exemple)
     ```bash
