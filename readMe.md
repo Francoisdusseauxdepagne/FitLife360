@@ -13,7 +13,7 @@ L'objectif principal de ce projet est de créer une plateforme permettant des in
 - SCSS/SASS/BEM
 - Javascript
 - Stripe
-- chatGPT
+- chatGPT 3.5
 
 ## Fonctionnalités principales
 - Connexion et inscription
