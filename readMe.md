@@ -1,4 +1,4 @@
-<h1>FitLife360</h1>
+<h1 class="text-center">FitLife360</h1>
 
 <h2 class="text-decoration-underline">Introduction au projet</h2>
 <p>Lors de la conception de ce projet de coaching en ligne, je me suis trouvé(e) dans une situation unique : pas de stage trouvé, mais une forte motivation à réaliser un site innovant en utilisant Symfony 7.</p>
