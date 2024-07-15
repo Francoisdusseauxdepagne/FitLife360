@@ -48,7 +48,7 @@ symfony new nomProjet --webapp
 composer require symfony/webpack-encore-bundle
 ```
 
-- Installation de Boostrap 5, SASS, fontawesome
+#### Installation de Boostrap 5, SASS, fontawesome
 ```bash
 npm install bootstrap --save-dev
 
@@ -58,25 +58,31 @@ npm install @fortawesome/fontawesome-free
 (app.js > require('@fortawesome/fontawesome-free/css/all.min.css'))
 ```
 
-- Utilisation du theme bootstrap5 pour nos form twig dans le projet
+#### Utilisation du theme bootstrap5 pour nos form twig dans le projet
 (# config/packages/twig.yaml)
 ```bash
 twig:
     form_themes: ['bootstrap_5_layout.html.twig']
 ```
-- Utilisation du theme bootstrap5 dans le projet
-    - assets > styles > app.scss > @import "~bootstrap/scss/bootstrap";
-    - app.js > import 'bootstrap';
+#### Utilisation du theme bootstrap5 dans le projet
+- assets > styles > app.scss > @import "~bootstrap/scss/bootstrap";
+- app.js > import 'bootstrap';
 
-- Installation de SASS (exemple)
-    - assets > styles > test.scss
-    - app.js > import './styles/test.scss'
-    - compilation de l'application :
+#### Installation de SASS (exemple)
+- assets > styles > test.scss
+- app.js > import './styles/test.scss'
+- compilation de l'application :
 ```bash
 npm run dev
 
 npm run watch (continue)
 ```
+
+### SASS :
+- Décommenter les lignes suivantes dans le webpack.config.js :
+    ```bash
+    .enableSassLoader()
+    ```
 
 ### Back-End
 #### Installation environnement de base
