@@ -38,3 +38,6 @@
 
 <h2>Défis rencontrés</h2>
 <p>Le principal défi a été de gérer les différentes interactions entre les utilisateurs et les coachs tout en assurant une expérience utilisateur intuitive. La gestion des réservations et des événements flash a également nécessité une attention particulière pour garantir un système sans faille</p>
+
+<h2>Conclusion</h2>
+<p>Grâce à l'utilisation de Symfony 7, de Stripe pour les paiements et à une conception centrée sur l'utilisateur, ce projet de coaching en ligne est sur la bonne voie pour devenir une plateforme de référence pour les amateurs de sport et les coachs professionnels.</p>
