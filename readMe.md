@@ -85,15 +85,15 @@ Grâce à l'utilisation de Symfony 7, de Stripe pour les paiements et à une con
     npm run watch
     ```
 
-9. Configuration de l'environnement (`base.html.twig`) exemple :
+9. Exemple de la configuration de la la twig `base.html.twig` :
     ```twig
-        <body>
-            {{ include('commons/test.html.twig') }}
-            {{ include('commons/test.html.twig') }}
-            {% block body %}{% endblock %}
-            {{ include('commons/test.html.twig')}}
-            {{ include('commons/test.html.twig') }}
-        </body>
+    <body>
+        {{ include('commons/test.html.twig') }}
+        {{ include('commons/test.html.twig') }}
+        {% block body %}{% endblock %}
+        {{ include('commons/test.html.twig')}}
+        {{ include('commons/test.html.twig') }}
+    </body>
     ```
 
 10. Création de message flash (exemple)
