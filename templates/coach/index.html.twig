@@ -46,7 +46,7 @@
                             <h2 class="fs-4 mb-3 colorRed text-decoration-underline">À propos de moi :</h2>
                             <p class="fst-italic">"{{ profileCoach.bio }}"</p>
                         </div>
-                        <button class="divProfile_btn btn btn-md"><a href="{{ path('app_update_coach') }}" class="text-decoration-none divProfile_btn--link">Modifier mon profil</a></button>
+                        <a href="{{ path('app_update_coach') }}" class="divProfile_btn btn btn-md text-decoration-none divProfile_btn--link">Modifier mon profil</a>
                     </div>
                 </div>
             </div>
@@ -57,8 +57,8 @@
                     </div>
                     <div class="card-body bg-light">
                         <div class="text-center mb-3 divProfile">
-                            <button class="divProfile_btn btn btn-md"><a href="{{ path('app_coach_create_entrainement') }}" class="text-decoration-none divProfile_btn--link">Créer un plan</a></button>
-                            <button class="divProfile_btn btn btn-md"><a href="{{ path('app_coach_list_entrainements') }}" class="text-decoration-none divProfile_btn--link">Modifier les plans</a></button>
+                            <a href="{{ path('app_coach_create_entrainement') }}" class="divProfile_btn btn btn-md text-decoration-none divProfile_btn--link">Créer un plan</a>
+                            <a href="{{ path('app_coach_list_entrainements') }}" class="divProfile_btn btn btn-md text-decoration-none divProfile_btn--link">Modifier les plans</a>
                         </div>
                     </div>
                 </div>

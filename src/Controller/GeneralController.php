@@ -12,6 +12,7 @@ namespace App\Controller;
 // use Symfony\Component\HttpFoundation\Request;
 use App\Repository\AvisRepository;
 use App\Repository\EventRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ProfileCoachRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,11 +20,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GeneralController extends AbstractController
 {
-    // private EntityManagerInterface $entityManager;
-    // public function __construct(EntityManagerInterface $entityManager)
-    // {
-    //     $this->entityManager = $entityManager;
-    // }
+    private EntityManagerInterface $entityManager;
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
     #[Route('/', name: 'app_home')]
     public function accueil(EventRepository $eventRepository, AvisRepository $avisRepository): Response

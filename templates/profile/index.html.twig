@@ -67,9 +67,7 @@
 										{{ profile.bio | raw }}</p>
 								</li>
 							</ul>
-							<button class="divProfile_btn btn btn-md">
-								<a href="{{ path('app_update_profile') }}" class="text-decoration-none divProfile_btn--link">Modifier mon profil</a>
-							</button>
+							<a href="{{ path('app_update_profile') }}" class="divProfile_btn btn btn-md text-decoration-none divProfile_btn--link">Modifier mon profil</a>
 						</div>
 					</div>
 				</div>
@@ -100,9 +98,7 @@
 														<li>Places disponibles :
 															{{ event.spaceAvailable }}</li>
 													</ul>
-													<button class="cardEventProfile_btn btn btn-md">
-														<a href="{{ path('app_contact_event', {'id': event.id}) }}" class="text-white text-decoration-none">Je veux participer</a>
-													</button>
+													<a href="{{ path('app_contact_event', {'id': event.id}) }}" class="cardEventProfile_btn btn btn-md text-white text-decoration-none">Je veux participer</a>
 													<small>
 														<p class="fst-italic mt-3">Veuillez envoyer qu'une demande par événement</p>
 													</small>
@@ -161,12 +157,8 @@
 												{{ profile.idAbonnement.duree }}
 											</p>
 											{% if profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium" %}
-												<button class="abonnementProfile_btn btn btn-sm">
-													<a href="{{ path('app_resiliation')}}" class="abonnementProfile_btn--link text-decoration-none">Supprimer mon abonnement</a>
-												</button>
-												<button class="abonnementProfile_btn btn btn-sm">
-													<a href="{{ path('abonnement_list') }}" class="abonnementProfile_btn--link text-decoration-none">Voir les abonnements</a>
-												</button>
+												<a href="{{ path('app_resiliation')}}" class="abonnementProfile_btn btn btn-sm abonnementProfile_btn--link text-decoration-none">Supprimer mon abonnement</a>
+												<a href="{{ path('abonnement_list') }}" class="abonnementProfile_btn btn btn-sm abonnementProfile_btn--link text-decoration-none">Voir les abonnements</a>
 											{% elseif profile.idAbonnement.title == "Basic" %}
 												<p>Pas d'abonnement</p>
 												<a href="{{ path('app_delete')}}" class="btn btn-outline-danger btn-sm">Supprimer</a>
@@ -184,28 +176,19 @@
 									<div class="row g-4">
 										{% if profile.idAbonnement.title == "Vip" %}
 											<div class="col-lg-6 col-md-12 col-sm-12 accesProfile">
-												<button class="accesProfile_btn btn btn-sm">
-													<a href="{{ path('app_tuto_video') }}" class="accesProfile_btn--link text-decoration-none">Accès aux vidéos</a>
-												</button>
+												<a href="{{ path('app_tuto_video') }}" class="accesProfile_btn btn btn-sm accesProfile_btn--link text-decoration-none">Accès aux vidéos</a>
 											</div>
 											<div class="col-lg-6 col-md-12 col-sm-12 accesProfile">
-												<button class="accesProfile_btn btn btn-sm">
-													<a href="{{ path('app_plan_entrainement') }}" class="accesProfile_btn--link text-decoration-none">Accès à mon programme d'entraînement</a>
-												</button>
+												<a href="{{ path('app_plan_entrainement') }}" class="accesProfile_btn btn btn-sm accesProfile_btn--link text-decoration-none">Accès à mon programme d'entraînement</a>
 											</div>
 										{% elseif profile.idAbonnement.title == "Premium" %}
 											<div class="col-lg-6 col-md-12 col-sm-12 accesProfile">
-												<button class="accesProfile_btn btn btn-sm">
-													<a href="{{ path('app_plan_entrainement') }}" class="accesProfile_btn--link text-decoration-none">Accès à mon programme d'entraînement</a>
-												</button>
-												<button class="accesProfile_btn btn btn-sm">
-													<a href="{{ path('app_tuto_video') }}" class="accesProfile_btn--link text-decoration-none">Accès aux vidéos</a>
+													<a href="{{ path('app_plan_entrainement') }}" class="accesProfile_btn btn btn-sm accesProfile_btn--link text-decoration-none">Accès à mon programme d'entraînement</a>
+													<a href="{{ path('app_tuto_video') }}" class="accesProfile_btn btn btn-sm accesProfile_btn--link text-decoration-none">Accès aux vidéos</a>
 												</div>
 											{% elseif profile.idAbonnement.title == "Basic" %}
 												<div class="col-lg-6 col-md-12 col-sm-12 accesProfile">
-													<button class="accesProfile_btn btn btn-sm">
-														<a href="{{ path('app_plan_entrainement') }}" class="accesProfile_btn--link text-decoration-none">Accès à mon programme d'entraînement</a>
-													</button>
+													<a href="{{ path('app_plan_entrainement') }}" class="accesProfile_btn btn btn-sm accesProfile_btn--link text-decoration-none">Accès à mon programme d'entraînement</a>
 												</div>
 											{% endif %}
 										</div>
@@ -225,9 +208,7 @@
 													{{ profile.idProfileCoach.firstName }}
 													{{ profile.idProfileCoach.name }}</p>
 												{% if profile.idAbonnement and (profile.idAbonnement.title == "Vip" or profile.idAbonnement.title == "Premium") %}
-													<button class="myCoachProfile_btn btn btn-md">
-														<a href="{{ path('app_reservation') }}" class="text-decoration-none text-white">Réserver un rendez-vous bilan avec un coach</a>
-													</button>
+												<a href="{{ path('app_reservation') }}" class="myCoachProfile_btn btn btn-md text-decoration-none text-white">Réserver un rendez-vous bilan avec un coach</a>
 												{% endif %}
 											</div>
 										</div>
@@ -245,9 +226,7 @@
 														<li class="list-group-item">Heure :
 															{{ reservation.startTime | date('H:i') }}</li>
 													</ul>
-													<button class="rdvProfile_btn btn btn-sm">
-														<a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="text-decoration-none rdvProfile_btn--link">Modifier mon rendez-vous</a>
-													</button>
+													<a href="{{ path('app_reservation_update', {'id': reservation.id}) }}" class="rdvProfile_btn btn btn-sm text-decoration-none rdvProfile_btn--link">Modifier mon rendez-vous</a>
 													<button class="rdvProfile_btn btn btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?');">
 														<a href="{{ path('app_reservation_delete', {'id': reservation.id}) }}" class="text-decoration-none rdvProfile_btn--link">Supprimer mon rendez-vous</a>
 													</button>
