@@ -30,6 +30,28 @@ class AvisController extends AbstractController
     //     ]);
     // }
 
+    // route pour supprimer un avis
+    #[Route('/avis/delete/{id}', name: 'app_avis_delete')]
+    public function delete(Avis $avis, EntityManagerInterface $entityManager): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $currentUser = $this->getUser()->getProfile();
+
+        if ($currentUser === $avis->getIdProfile()) {
+        $entityManager->remove($avis);
+        $entityManager->flush();
+        $this->addFlash('success', 'L\'avis a été supprimé avec succès.');
+        } else {
+            $this->addFlash('danger', 'Vous ne pouvez pas supprimer cet avis.');
+        }
+
+        // Rediriger vers la page d'accueil
+        return $this->redirectToRoute('app_home');
+    }
+
     #[Route('/avis/add', name: 'app_avis_add')]
     public function add(Request $request): Response
     {

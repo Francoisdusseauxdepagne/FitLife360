@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block meta_description %}
-    FitLife360 est votre partenaire pour une vie plus saine et active. Découvrez nos programmes d'entraînement personnalisés, suivez votre progression, recevez des conseils nutritionnels et accédez à une bibliothèque de vidéos d'entraînement. Inscrivez-vous dès maintenant pour commencer votre parcours vers une meilleure forme physique et un bien-être optimal.
+    FitLife360 est votre partenaire pour une vie plus saine et active. Découvrez nos programmes d'entraînement personnalisés, suivez votre progression, recevez des conseils nutritionnels et accédez à une bibliothèque de vidéos d'entraînement.
 {% endblock %}
 
 {% block title %}
@@ -25,7 +25,7 @@
 				<div class="row">
 					<div class="col-lg-4 col-md-12 col-sm-12 my-4">
 						<div class="card h-100 shadow-lg border-2 cardImg ">
-							<img src="{{ asset('images/imgHomeEntrainement.jpeg') }}" class="card-img-top" alt="Entraînement personnalisé">
+							<img src="{{ asset('images/imgHomeEntrainement.webp') }}" class="card-img-top" alt="Entraînement personnalisé">
 							<div class="card-body">
 								<h2 class="card-title fs-3">Entraînement personnalisé</h2>
 								<p class="card-text">Obtenez un programme d'entraînement personnalisé adapté à vos objectifs et votre niveau.</p>
@@ -34,7 +34,7 @@
 					</div>
 					<div class="col-lg-4 col-md-12 col-sm-12 my-4">
 						<div class="card h-100 shadow-lg border-2 cardImg">
-							<img src="{{ asset('images/imgHomeSuivi.jpeg') }}" class="card-img-top" alt="Suivi de votre progression">
+							<img src="{{ asset('images/imgHomeSuivi.webp') }}" class="card-img-top" alt="Suivi de votre progression">
 							<div class="card-body">
 								<h2 class="card-title fs-3">Suivi de votre progression</h2>
 								<p class="card-text">Suivez vos progrès et analysez vos performances pour atteindre vos objectifs plus rapidement.</p>
@@ -43,7 +43,7 @@
 					</div>
 					<div class="col-lg-4 col-md-12 col-sm-12 my-4">
 						<div class="card h-100 shadow-lg border-2 cardImg">
-							<img src="{{ asset('images/imgEvent.jpg') }}" class="card-img-top" alt="Nutrition équilibrée">
+							<img src="{{ asset('images/imgEvent.webp') }}" class="card-img-top" alt="Nutrition équilibrée">
 							<div class="card-body">
 								<h2 class="card-title fs-3">Évènements</h2>
 								<p class="card-text">Participez à nos événements en ligne pour rester actif et en bonne santé depuis chez vous.</p>
@@ -143,10 +143,8 @@
         	</div>
 			<div class="avis text-center my-2">
 			{% if app.user %}
-					<button class="avis_btn btn btn-lg text-center">
-						<a href="{{ path('app_avis_add') }}" class="fw-bold text-decoration-none text-white">Ajouter un avis</a>
-					</button>
-            	{% endif %}
+				<a href="{{ path('app_avis_add') }}" class="avis_btn btn btn-lg fw-bold text-decoration-none text-white">Ajouter un avis</a>
+            {% endif %}
 			</div>
 				<div class="row g-4">
 					{% for avi in avis %}
@@ -165,11 +163,13 @@
 											Note : {{ avi.getNote() }}/5
 										</p>
 										<small class="text-muted">{{ avi.getCreatedAt()|date('d/m/Y') }}</small>
+										{% if app.user and avi.getIdProfile() == app.user.getProfile() %}
+											<a href="{{ path('app_avis_delete', {id: avi.getId()}) }}" class="btn btn-danger">Supprimer</a>
+										{% endif %}
 									</div>
 								</div>
 							</div>
 						</div>
-
 					{% endfor %}
 				</div>
 				{% if avis is empty %}
@@ -194,7 +194,7 @@
                     	</div>
                 	</div>
                 	<div class="col-lg-6 col-md-12 col-sm-12">
-                    	<img src="{{ asset('images/imgSearchCoach.jpg') }}" class="img-fluid rounded" alt="Trouver un coach">
+                    	<img src="{{ asset('images/imgSearchCoach.webp') }}" class="img-fluid rounded" alt="image de coaching">
                		</div>
             	</div>
         	</div>
