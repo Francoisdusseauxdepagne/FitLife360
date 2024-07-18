@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card poppins bg-light">
-                    <div class="card-body">
+                    <div class="card-body avis">
                         <h1 class="card-title playfair">Votre avis nous interesse !</h1>
                         {{ form_start(form, {'attr': {'class': 'form'}}) }}
                         <div class="mb-3">
@@ -21,7 +21,7 @@
                             {{ form_label(form.content, 'Commentaire', {'attr': {'class': 'form-label'}}) }}
                             {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': 5}}) }}
                         </div>
-                        <button type="submit" class="btn btn-primary">🏋️‍♂️ Ajoute ton avis 🏋️‍♂️</button>
+                        <button type="submit" class="btn avis_btn text-white">🏋️‍♂️ Ajoute ton avis 🏋️‍♂️</button>
                         {{ form_end(form) }}
                     </div>
                 </div>

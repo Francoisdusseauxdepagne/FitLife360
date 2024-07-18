@@ -158,13 +158,13 @@
 										<p class="card-title">Anonyme</p>
 									{% endif %}
 									<p class="card-text">{{ avi.getContent() }}</p>
-									<div class="d-flex justify-content-between align-items-center">
+									<div class="d-flex justify-content-between align-items-center avis">
 										<p class="card-text fw-bold fst-italic">
 											Note : {{ avi.getNote() }}/5
 										</p>
 										<small class="text-muted">{{ avi.getCreatedAt()|date('d/m/Y') }}</small>
 										{% if app.user and avi.getIdProfile() == app.user.getProfile() %}
-											<a href="{{ path('app_avis_delete', {id: avi.getId()}) }}" class="btn btn-danger">Supprimer</a>
+											<a href="{{ path('app_avis_delete', {id: avi.getId()}) }}" class="btn btn-sm fw-bold text-white avis_btn">Supprimer</a>
 										{% endif %}
 									</div>
 								</div>
