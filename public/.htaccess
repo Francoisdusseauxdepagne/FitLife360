@@ -1,0 +1,84 @@
+# Activer la réécriture d'URL
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Définir le répertoire de base automatiquement
+    RewriteCond %{REQUEST_URI}::$0 ^(/.+)/(.*)::\2$
+    RewriteRule .* - [E=BASE:%1]
+
+    # Rediriger vers l'URI sans front controller pour éviter le contenu en double
+    RewriteCond %{ENV:REDIRECT_STATUS} =""
+    RewriteRule ^index\.php(?:/(.*)|$) %{ENV:BASE}/$1 [R=301,L]
+
+    # Si le fichier demandé n'existe pas, rediriger vers le front controller
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ %{ENV:BASE}/index.php [L]
+</IfModule>
+
+# Activer la compression pour les types de fichiers suivants
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+
+    # Compression Gzip
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE "application/javascript" "application/json" "application/rss+xml" "application/vnd.ms-fontobject" "application/x-font" "application/x-font-opentype" "application/x-font-otf" "application/x-font-truetype" "application/x-font-ttf" "application/x-javascript" "application/xhtml+xml" "application/xml" "font/opentype" "font/otf" "font/ttf" "image/svg+xml" "image/x-icon" "text/css" "text/html" "text/javascript" "text/plain" "text/xml"
+    </IfModule>
+</IfModule>
+
+# Activer la mise en cache pour les types de fichiers suivants
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/json "access plus 1 month"
+    ExpiresByType application/rss+xml "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+    ExpiresByType application/x-font "access plus 1 month"
+    ExpiresByType application/x-font-opentype "access plus 1 month"
+    ExpiresByType application/x-font-otf "access plus 1 month"
+    ExpiresByType application/x-font-truetype "access plus 1 month"
+    ExpiresByType application/x-font-ttf "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType application/xhtml+xml "access plus 1 month"
+    ExpiresByType application/xml "access plus 1 month"
+    ExpiresByType font/opentype "access plus 1 month"
+    ExpiresByType font/otf "access plus 1 month"
+    ExpiresByType font/ttf "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/html "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType text/plain "access plus 1 month"
+    ExpiresByType text/xml "access plus 1 month"
+</IfModule>
+
+# Définir le répertoire de base pour les URL canoniques
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|svg|gif|png|jpg|jpeg)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{REQUEST_FILENAME} !/public/images
+    RewriteRule \.(gif|jpg|png|svg)$ /public/images [L]
+</IfModule>
