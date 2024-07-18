@@ -51,6 +51,16 @@ class ReservationController extends AbstractController
         // Pré-remplir la date et l'heure si elles sont passées en paramètre
         $date = $request->query->get('date');
         if ($date) {
+
+            $reservationDate = new \DateTime($date);
+
+            // Vérifier si la date de réservation est antérieure à aujourd'hui
+            $currentDate = new \DateTime();
+            if ($reservationDate < $currentDate) {
+                $this->addFlash('warning', 'La date de réservation ne peut pas être antérieure à aujourd\'hui.');
+                return $this->redirectToRoute('app_reservation_new');
+            }
+
             $reservation->setDate(new \DateTime($date));
             $reservation->setStartTime(new \DateTime($date . ' 08:00:00')); // Par défaut à 8h
         }
