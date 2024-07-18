@@ -6,15 +6,15 @@
 
 
 {% block body %}
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-12 col-sm-12">
             <div class="card">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header colorBlue text-white">
                     <h1 class="card-title">Modifier le rendez-vous</h1>
                 </div>
-                <div class="card-body">
-                    <a href="{{ path('app_profile') }}" class="btn btn-primary btn-sm my-2">Retour</a>
+                <div class="card-body updateReservation returnReservationBis">
+                    <a href="{{ path('app_profile') }}" class="btn btn-sm my-2 returnReservationBis_btn text-white fw-bold">Retour</a>
                     {{ form_start(form) }}
                     <div class="form-group">
                         {{ form_label(form.date) }}
@@ -28,7 +28,7 @@
                         {{ form_label(form.idProfileCoach) }}
                         {{ form_widget(form.idProfileCoach, {'attr': {'class': 'form-control'}}) }}
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Enregistrer les modifications</button>
+                    <button type="submit" class="btn updateReservation_btn mt-3 text-white fw-bold">Enregistrer les modifications</button>
                     {{ form_end(form) }}
                 </div>
             </div>

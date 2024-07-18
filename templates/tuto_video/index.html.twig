@@ -26,7 +26,7 @@
                         <div class="ratio ratio-16x9">
                             <iframe src="{{ video.url }}" class="card-img-top" allowfullscreen></iframe>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body d-flex flex-column">
                             <h2 class="card-title">{{ video.title }}</h2>
                             <p class="card-text">{{ video.description | raw }}</p>
                             <p class="card-text">
@@ -34,7 +34,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <h5 class="mb-3">Commentaires</h5>
+                            <h3 class="mb-3 ">Commentaires</h3>
                             {% for comment in video.comments %}
                                 {% if comment.parent is null %}
                                     <div class="mb-3 d-flex align-items-center">
